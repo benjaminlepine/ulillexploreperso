@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <NavHeader></NavHeader>
+    <router-view class="mt-4"></router-view>
   </div>
 </template>
 
+<script>
+  import NavHeader from "./components/NavHeader";
+  export default {
+    name: 'App',
+    components: {NavHeader},
+  }
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  @import "./scss/_app-variables.scss";
+  #app {
+    min-height: 100%;
+    background-color: var(--background-main);
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    background-image: url("./assets/img/worldmap.svg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 50% 65px;
+  }
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: $text-color;
 
     &.router-link-exact-active {
       color: #42b983;

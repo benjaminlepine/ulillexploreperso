@@ -1,0 +1,35 @@
+/* OVERRIDE Bootstrap*/
+:root {
+  --main-color: #06a099;
+  --background-main: #13505D;
+}
+
+/* Brand Colors - University of Lille */
+$main-color: #093943;
+$second-color: #B8166B;
+$third-color: #FAEB49;
+$third-color-text: #CE9A21;
+$text-color: white;
+$ulill-font: 'Raleway', sans-serif;
+
+/* Generic class - Usefull in all App */
+.text-main{
+  color : $text-color !important;
+  font-weight: normal ;
+}
+.text-second{ color : $second-color !important;}
+p, h1, h2, h3, h4, h5, h6, span, a{
+  font-family: $ulill-font, sans-serif !important;
+  text-decoration:none !important;
+}
+p, h1, h2, h3, h4, h5, h6, span{color: $text-color;}
+//a {color: $main-color!important;}
+
+
+ul{
+  list-style-type: '○ ';
+  padding-left: 16px;
+  & > li{
+    font-size: 15px;
+  }
+}
