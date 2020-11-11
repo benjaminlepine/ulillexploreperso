@@ -1,20 +1,48 @@
 <template>
   <div>
-    <div id="nav">
-      <router-link to="/ambassador">Ambassador</router-link> |
-      <router-link to="/buddy">Buddy</router-link>
-    </div>
+    <!--    <p class="mb-0 title">{{ $t('home.ulillexplore')}}</p>-->
+    <h1 class="mb-0 title">{{ $t('home.welcome')}}</h1>
+    <p class="mb-0 subtitle">{{ $t('home.on')}}<span> {{ $t('home.ulillexplore')}}</span></p>
+    <router-link to="/buddy" class="homecard">
+      <div class="homecard-text">
+        <p class="mb-0 homecard-text--title">{{ $t('home.buddySystem')}}</p>
+        <p class="mb-0 homecard-text--subtitle">{{ $t('home.findYourGodfather')}}</p>
+      </div>
+      <img :alt="$t('home.findYourGodfather')" src="../assets/img/buddy2.svg">
+    </router-link>
+
+    <router-link to="/ambassador" class="homecard">
+      <div class="homecard-text">
+        <p class="mb-0 homecard-text--title">{{ $t('home.ambassador')}}</p>
+        <p class="mb-0 homecard-text--subtitle">{{ $t('home.shareYourExperience')}}</p>
+      </div>
+      <img :alt="$t('home.shareYourExperience')" src="../assets/img/postal.svg">
+    </router-link>
+
+
   </div>
 </template>
 
 <script>
-export default {
-  name: 'Ambassador',
-  props: {
-    msg: String
+  export default {
+    name: 'Ambassador',
+    props: {
+      msg: String
+    }
   }
-}
 </script>
 
 <style scoped lang="scss">
+  @import "../scss/_app-variables.scss";
+  @import "../scss/app.scss";
+  .title{
+    font-size: 35px;
+    color: white;
+  }
+
+  .subtitle{
+    color: white;
+    font-size: 16px;
+    & span{color: $third-color}
+  }
 </style>

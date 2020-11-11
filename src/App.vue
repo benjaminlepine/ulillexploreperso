@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavHeader></NavHeader>
-    <router-view class="mt-4"></router-view>
+    <router-view class="pt-4"></router-view>
   </div>
 </template>
 
@@ -16,6 +16,7 @@
 <style lang="scss">
   @import "./scss/_app-variables.scss";
   #app {
+    margin-top: 70px;
     min-height: 100%;
     background-color: var(--background-main);
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -29,6 +30,7 @@
     background-position: 50% 65px;
   }
 
+  /*
 #nav {
   padding: 30px;
   a {
@@ -39,5 +41,5 @@
       color: #42b983;
     }
   }
-}
+}*/
 </style>

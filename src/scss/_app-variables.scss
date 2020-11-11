@@ -6,10 +6,11 @@
 
 /* Brand Colors - University of Lille */
 $main-color: #093943;
+$clear-main-color: #06a099;
 $second-color: #B8166B;
 $third-color: #FAEB49;
 $third-color-text: #CE9A21;
-$text-color: white;
+$text-color: #13505D;
 $ulill-font: 'Raleway', sans-serif;
 
 /* Generic class - Usefull in all App */
@@ -19,17 +20,8 @@ $ulill-font: 'Raleway', sans-serif;
 }
 .text-second{ color : $second-color !important;}
 p, h1, h2, h3, h4, h5, h6, span, a{
-  font-family: $ulill-font, sans-serif !important;
-  text-decoration:none !important;
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  //font-family: $ulill-font, sans-serif !important;
+  //text-decoration:none !important;
 }
-p, h1, h2, h3, h4, h5, h6, span{color: $text-color;}
-//a {color: $main-color!important;}
-
-
-ul{
-  list-style-type: '○ ';
-  padding-left: 16px;
-  & > li{
-    font-size: 15px;
-  }
-}
+p, h1, h2, h3, h4, h5, h6, span, label{color: $text-color;}

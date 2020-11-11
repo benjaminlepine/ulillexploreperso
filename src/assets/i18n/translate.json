@@ -1,0 +1,171 @@
+{
+  "fr": {
+    "home": {
+      "ulillexplore": "UlillExplore",
+      "welcome": "Bienvenue",
+      "on": "sur",
+      "buddySystem": "Buddy Système",
+      "findYourGodfather": "Trouver votre parrain/filleul",
+      "ambassador": "Ambassadeur",
+      "shareYourExperience": "Partager votre expérience"
+    },
+    "login": {
+      "login": "Connexion",
+      "iHaveUlillAdress": "Je possède une adresse ULille ?",
+      "noteAboutUnivlille": "Note : Pour être parrain ou ambassadeur, il est nécessaire de posséder une adresse univ-lille",
+      "iClickHere": "Je clique ici",
+      "iDontHaveAddress": "Je n'ai pas d'adresse univ-lille",
+      "email": "Adresse Email (pas en @univ-lille)",
+      "password": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié",
+      "signUp": "Inscription"
+    },
+    "signup": {
+      "signup": "Inscription",
+      "lastname": "Nom",
+      "firstname": "Prénom",
+      "email": "Email",
+      "password": "Mot de passe",
+      "rgpd": "Clause RGPD : « en cochant la case suivante, vous consentez à ce que votre adresse mail soit transmise au parrain qui vous  sera attribué. si vous ne le souhaitez pas ne cochez pas cette case. »",
+      "register": "S'inscrire"
+    },
+    "wait": {
+      "sorry": "Désolé",
+      "oneUndredDay": "Il faut au moins 100 jours d’ancienneté. N’hésite pas à revenir lorsque tu auras pris tes marques à l’Université"
+    },
+    "buddy": {
+      "chooseCategorie": "Choisir une catégorie",
+      "iWantBeGodfather": "Je veux être parrain",
+      "toBeClassy": "et avoir la classe (le tout en moins de 5 min)",
+      "iSearchAGodfather": "Je cherche un parrain",
+      "iNeedGodfather": "J'ai besoin d'un parrain pour me guider"
+    },
+    "godchild": {
+      "createMyProfil": "Je crée mon profil (filleul)",
+      "nationality": "Nationalité",
+      "whenYouStarted": "Quand as tu commencé tes études à Lille ?",
+      "whenAreYouAvailable": "A quelle période pourras-tu passer du temps avec ton parrain ?",
+      "whatLanguageSpeak": "Quelle(s) langue(s) es-tu prêt à parler avec ton parrain ?",
+      "whatYouStudying": "Cycle d'études ?",
+      "whatFaculty": "Dans quelle faculté étudies-tu ?",
+      "whatDepartment": "Dans quelle département étudies-tu ?",
+      "outsideCourses": "En dehors des cours tu es plutôt ?",
+      "whatHobbies": "Quelles activités privilégieras-tu / Qu'est-ce que tu aimerais faire avec ton parrain ?",
+      "validate": "Valider"
+    },
+    "godfather": {
+      "createMyProfil": "Je crée mon profil (parrain)",
+      "nationality": "Nationalité",
+      "whenYouStarted": "Quand as tu commencé tes études à Lille ?",
+      "howManyGodchild": "Combien de filleuls es-tu prêt à encadrer ?",
+      "whenAreYouAvailable": "A quelle période pourras-tu passer du temps avec ton ou tes filleuls ?",
+      "whatLanguageSpeak": "Quelle(s) langue(s) es-tu prêt à parler avec ton/tes filleuls ?",
+      "whatYouStudying": "Cycle d'études ?",
+      "whatFaculty": "Dans quelle faculté étudies-tu ?",
+      "whatDepartment": "Dans quelle département étudies-tu ?",
+      "outsideCourses": "En dehors des cours tu es plutôt ?",
+      "whatHobbies": "Quelles activités privilégieras-tu / Qu'est-ce que tu aimerais faire avec ton/tes filleuls ?",
+      "validate": "Valider"
+    },
+    "matching": {
+      "weFinGodfather": "Nous avons trouver ton parrain",
+      "youCanContact": "Vous pouvez dès à présent le contacter avec les informations suivantes :",
+      "aboutProblem": "Pour tout problème avec votre parrain, cliquez ici"
+    },
+    "problem": {
+      "problemWithMyGodfather": "Problème avec mon parrain",
+      "whatIsTheProblem": "Quel est le problème avec ton parrain ?",
+      "chooseOption": "Choisir une option",
+      "unavailable": "Mon parrain/ filleul n'est pas assez disponible (ou ne répond pas)",
+      "noAffinity": "Je n'ai pas d'affinités avec mon parrain / filleul",
+      "communication": "J'ai des difficultés à communiquer avec mon parrain/ filleul (langue)",
+      "weird": "Mon parrain/filleul a eu un comportement déplacé",
+      "rgpd": "En envoyant ce formulaire vous perdrez tout contact avec votre parrain, vous ne pourrez plus voir ses coordonnées et l'administration de Lille sera prévenu"
+    }
+  },
+
+  "en": {
+    "home": {
+      "ulillexplore": "UlillExplore",
+      "welcome": "Welcome",
+      "on": "on",
+      "buddySystem": "Buddy System",
+      "findYourGodfather": "Find your godfather/godchild",
+      "ambassador": "Ambassador",
+      "shareYourExperience": "Share your experience"
+    },
+    "login": {
+      "login": "Login",
+      "iHaveUlillAdress": "I have a ULille address ?",
+      "noteAboutUnivlille": "Note: To be a godfather or an ambassador, it is necessary to have a univ-lille address",
+      "iClickHere": "Je clique ici",
+      "iDontHaveAddress": "I don't have univ-lille address",
+      "email": "Email Adress (not in @univ-lille)",
+      "password": "Password",
+      "forgotPassword": "Forgot your password",
+      "signUp": "Sign Up"
+    },
+    "signup": {
+      "signup": "Sign Up",
+      "lastname": "Last name",
+      "firstname": "First name",
+      "email": "Email",
+      "password": "Password",
+      "rgpd": "GDPR clause: by checking the following box, you consent to your email address being sent to godfather that will be assigned to you. if you don't want it do not check this box.",
+      "register": "Register"
+    },
+    "wait": {
+      "sorry": "Sorry",
+      "oneUndredDay": "You need at least 100 days of seniority. Do not hesitate to come back in a few weeks"
+    },
+    "buddy": {
+      "chooseCategorie": "Choose a category",
+      "iWantBeGodfather": "I want be a godfather",
+      "toBeClassy": "and be classy (in less than 5 min)",
+      "iSearchAGodfather": "I search a godfather",
+      "iNeedGodfather": "I need a godfather to help me"
+    },
+    "godchild": {
+      "createMyProfil": "I create my profile (godchild)",
+      "nationality": "Nationality",
+      "whenYouStarted": "When did you start your studies in Lille ?",
+      "whenAreYouAvailable": "When can you spend time with your godfather ?",
+      "whatLanguageSpeak": "What language(s) are you ready to speak with your godfather ?",
+      "whatYouStudying": "Cycle of studies ?",
+      "whatFaculty": "In which faculty are you studying ?",
+      "whatDepartment": "In which department are you studying ?",
+      "outsideCourses": "Are you rather outside of class ?",
+      "whatHobbies": "What activities will you focus on / What would you like to do with your godfather?",
+      "validate": "Validate"
+    },
+    "godfather": {
+      "createMyProfil": "I create my profile (godfather)",
+      "nationality": "Nationality",
+      "whenYouStarted": "When did you start your studies in Lille ?",
+      "howManyGodchild": "How many godchild are you ready to mentor ?",
+      "whenAreYouAvailable": "When can you spend time with your(s) godchild(s) ?",
+      "whatLanguageSpeak": "What language(s) are you ready to speak with your(s) godchild(s) ?",
+      "whatYouStudying": "Cycle of studies ?",
+      "whatFaculty": "In which faculty are you studying ?",
+      "whatDepartment": "In which department are you studying ?",
+      "outsideCourses": "Are you rather outside of class ?",
+      "whatHobbies": "What activities will you focus on / What would you like to do with your(s) godchild(s) ?",
+      "validate": "Validate"
+    },
+    "matching": {
+      "weFinGodfather": "We found your godfather",
+      "youCanContact": "You can now contact him with the following information:",
+      "aboutProblem": "For any problem with your godfather, click here"
+    },
+    "problem": {
+      "problemWithMyGodfather": "Problem with my godfather",
+      "whatIsTheProblem": "What is the problem with your godfather ?",
+      "chooseOption": "Choose an option",
+      "unavailable": "My godfather / godson is not available enough (or does not respond)",
+      "noAffinity": "I have no affinity with my godfather / godchild",
+      "communication": "I have difficulty communicating with my godfather / godchild (language)",
+      "weird": "My godfather / godchild behaved inappropriately",
+      "rgpd": "By sending this form you will lose all contact with your godfather, you will no longer be able to see their contact details and the Lille administration will be notified"
+    }
+  }
+}
