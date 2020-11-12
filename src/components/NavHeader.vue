@@ -1,79 +1,84 @@
 <template>
   <div class="header">
-    <div>
+    <div v-on:click.prevent="openNav">
       <i class="fa fa-bars fa-2x bar-menu"></i>
     </div>
     <router-link to="/">
       <img class="logo-univ" src="../assets/img/logo-univ.gif">
     </router-link>
     <div class="lang-ctn">
-      <div>
-        <img class="country" src="../assets/img/france.svg">
-<!--        <img v-if="this.$i18n.locale === 'en'" class="country" src="../assets/img/united-kingdom.svg">-->
+      <div @click="showLang = !showLang" ref="button">
+        <img v-if="this.$i18n.locale === 'fr'" class="country" src="../assets/img/france.svg">
+        <img v-if="this.$i18n.locale === 'en'" class="country" src="../assets/img/united-kingdom.svg">
         ▼</div>
+      <div v-if="showLang === true"
+           v-closable="{ exclude: ['button'], handler: 'onClose'}"
+           onclick="showLang = false" class="language-pop-in">
+        <div @click="selectLanguage('fr')" class="d-flex language-row">
+          <img class="country" src="../assets/img/france.svg">
+          <span class="ml-2 text-dark">{{ $t('lang.fr') }}</span>
+        </div>
+        <div @click="selectLanguage('en')" class="d-flex language-row">
+          <img class="country" src="../assets/img/united-kingdom.svg">
+          <span class="ml-2 text-dark">{{ $t('lang.en') }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  // import store from '../store';
-
-  // let handleOutsideClick;
-  //
-  // export default {
-  //   name: 'Header',
-  //   data: function ()  {
-  //     return {
-  //       showLang : false,
-  //       store: store
-  //     }
-  //   },
-  //   directives: {
-  //     closable: {
-  //       bind (el, binding, vnode) {
-  //         handleOutsideClick = (e) => {
-  //           e.stopPropagation()
-  //           const { handler, exclude } = binding.value
-  //           let clickedOnExcludedEl = false
-  //           exclude.forEach(refName => {
-  //             if (!clickedOnExcludedEl) {
-  //               const excludedEl = vnode.context.$refs[refName]
-  //               clickedOnExcludedEl = excludedEl.contains(e.target)
-  //             }
-  //           })
-  //           if (!el.contains(e.target) && !clickedOnExcludedEl) {
-  //             vnode.context[handler]()
-  //           }
-  //         }
-  //         document.addEventListener('click', handleOutsideClick)
-  //         document.addEventListener('touchstart', handleOutsideClick)
-  //       },
-  //       unbind () {
-  //         document.removeEventListener('click', handleOutsideClick)
-  //         document.removeEventListener('touchstart', handleOutsideClick)
-  //       }
-  //     }
-  //   },
-  //   methods: {
-  //     openNav(){
-  //       this.store.commit('toggleNav');
-  //     },
-  //     selectLanguage(lang) {
-  //       localStorage.setItem('language', lang);
-  //       this.$i18n.locale = lang;
-  //       this.store.commit('setLanguage', lang);
-  //       this.$apiService.loadData();
-  //       this.showLang = false;
-  //       if (this.$router.currentRoute.path != "/Home"){
-  //         this.$router.push({ path: '/Home' });
-  //       }
-  //     },
-  //     onClose () {
-  //       this.showLang = false
-  //     }
-  //   }
-  // }
-
+  import store from '../store.js';
+  let handleOutsideClick;
+  export default {
+    name: 'Header',
+    data: function () {
+      return {
+        showLang: false,
+        store: store
+      }
+    },
+    directives: {
+      closable: {
+        bind (el, binding, vnode) {
+          handleOutsideClick = (e) => {
+            e.stopPropagation()
+            const { handler, exclude } = binding.value
+            let clickedOnExcludedEl = false
+            exclude.forEach(refName => {
+              if (!clickedOnExcludedEl) {
+                const excludedEl = vnode.context.$refs[refName]
+                clickedOnExcludedEl = excludedEl.contains(e.target)
+              }
+            })
+            if (!el.contains(e.target) && !clickedOnExcludedEl) {
+              vnode.context[handler]()
+            }
+          }
+          document.addEventListener('click', handleOutsideClick)
+          document.addEventListener('touchstart', handleOutsideClick)
+        },
+        unbind () {
+          document.removeEventListener('click', handleOutsideClick)
+          document.removeEventListener('touchstart', handleOutsideClick)
+        }
+      }
+    },
+    methods: {
+      openNav(){
+        this.store.commit('toggleNav');
+      },
+      selectLanguage(lang) {
+        localStorage.setItem('language', lang);
+        this.$i18n.locale = lang;
+        this.store.commit('setLanguage', lang);
+        this.showLang = false;
+      },
+      onClose () {
+        this.showLang = false
+      },
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

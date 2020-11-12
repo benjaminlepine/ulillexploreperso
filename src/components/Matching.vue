@@ -2,12 +2,22 @@
     <div>
         <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
         <div class="mainctn">
-            <h3 class="mb-0">{{ $t('matching.weFinGodfather')}}</h3>
+            <h3 class="mb-4">{{ $t('matching.weFinGodfather')}}</h3>
             <img :alt="$t('matching.weFinGodfather')" src="../assets/img/parrainboring.svg">
             <p class="mb-0 mt-4">{{ $t('matching.youCanContact')}}</p>
-            <p class="info info--email mb-0"><i class="fas fa-envelope mr-2"></i>arthur.livingston@univ.lille.eu</p>
-            <p class="info info--phone"><i class="fas fa-phone mr-2"></i>+33627552136</p>
-            <p class="mb-0"><b>{{ $t('matching.aboutProblem')}}</b></p>
+            <a class="info info--email mb-0"
+               href="mailto:arthur.livingston@univ.lille.eu">
+                <i class="fas fa-envelope mr-2"></i>
+                arthur.livingston@univ.lille.eu
+            </a><br>
+            <a class="info info--phone"
+               href="tel:+33627552136">
+                <i class="fas fa-phone mr-2"></i>
+                +33627552136
+            </a>
+            <router-link to="/problem">
+                <p class="mb-0 mt-4"><b>{{ $t('matching.aboutProblem')}}</b></p>
+            </router-link>
         </div>
     </div>
 </template>

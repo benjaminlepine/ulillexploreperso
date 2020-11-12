@@ -24,11 +24,17 @@
 </template>
 
 <script>
+  import store from '../store';
   export default {
     name: 'Ambassador',
     props: {
       msg: String
-    }
+    },
+    data() {
+      return {
+        store: store
+      }
+    },
   }
 </script>
 

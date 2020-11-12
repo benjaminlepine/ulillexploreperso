@@ -9,6 +9,17 @@
       "ambassador": "Ambassadeur",
       "shareYourExperience": "Partager votre expérience"
     },
+    "lang": {
+      "fr": "Français",
+      "en": "Anglais"
+    },
+    "sideMenu": {
+      "home": "Accueil",
+      "becomeGodfather": "Devenir parrain",
+      "becomeGodchild": "Etre parrainé",
+      "ambassador": "Ambassadeurs",
+      "logout": "Deconnexion"
+    },
     "login": {
       "login": "Connexion",
       "iHaveUlillAdress": "Je possède une adresse ULille ?",
@@ -31,7 +42,8 @@
     },
     "wait": {
       "sorry": "Désolé",
-      "oneUndredDay": "Il faut au moins 100 jours d’ancienneté. N’hésite pas à revenir lorsque tu auras pris tes marques à l’Université"
+      "oneUndredDay": "Il faut au moins 100 jours d’ancienneté. N’hésite pas à revenir lorsque tu auras pris tes marques à l’Université",
+      "back": "Retour à l'accueil"
     },
     "buddy": {
       "chooseCategorie": "Choisir une catégorie",
@@ -84,6 +96,16 @@
     }
   },
 
+
+
+
+
+
+
+
+
+
+
   "en": {
     "home": {
       "ulillexplore": "UlillExplore",
@@ -93,6 +115,17 @@
       "findYourGodfather": "Find your godfather/godchild",
       "ambassador": "Ambassador",
       "shareYourExperience": "Share your experience"
+    },
+    "lang": {
+      "fr": "French",
+      "en": "English"
+    },
+    "sideMenu": {
+      "home": "Home",
+      "becomeGodfather": "Become godfather",
+      "becomeGodchild": "To be sponsored",
+      "ambassador": "Ambassador",
+      "logout": "Logout"
     },
     "login": {
       "login": "Login",
@@ -116,7 +149,8 @@
     },
     "wait": {
       "sorry": "Sorry",
-      "oneUndredDay": "You need at least 100 days of seniority. Do not hesitate to come back in a few weeks"
+      "oneUndredDay": "You need at least 100 days of seniority. Do not hesitate to come back in a few weeks",
+      "back": "Back to home"
     },
     "buddy": {
       "chooseCategorie": "Choose a category",

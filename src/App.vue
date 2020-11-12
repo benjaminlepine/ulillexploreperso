@@ -1,16 +1,30 @@
 <template>
   <div id="app">
     <NavHeader></NavHeader>
+    <NavMenu></NavMenu>
     <router-view class="pt-4"></router-view>
   </div>
 </template>
 
 <script>
   import NavHeader from "./components/NavHeader";
+  import NavMenu from "./components/NavMenu";
+  import store from './store';
   export default {
     name: 'App',
-    components: {NavHeader},
+    components: {NavHeader, NavMenu},
+    data: function () {
+      return {
+        store: store,
+      }
+    },
+    mounted(){
+      if(localStorage.getItem('language')){
+        this.$i18n.locale = localStorage.getItem('language');
+      }
+    },
   }
+
 </script>
 
 <style lang="scss">
