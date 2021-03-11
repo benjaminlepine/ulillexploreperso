@@ -8,18 +8,18 @@
     </router-link>
     <div class="lang-ctn">
       <div @click="showLang = !showLang" ref="button">
-        <img v-if="this.$i18n.locale === 'fr'" class="country" src="../assets/img/france.svg">
-        <img v-if="this.$i18n.locale === 'en'" class="country" src="../assets/img/united-kingdom.svg">
+        <img v-if="this.$i18n.locale === 'fr'" class="country" src="../assets/img/flags/french.svg">
+        <img v-if="this.$i18n.locale === 'en'" class="country" src="../assets/img/flags/english.svg">
         ▼</div>
       <div v-if="showLang === true"
            v-closable="{ exclude: ['button'], handler: 'onClose'}"
            onclick="showLang = false" class="language-pop-in">
         <div @click="selectLanguage('fr')" class="d-flex language-row">
-          <img class="country" src="../assets/img/france.svg">
+          <img class="country" src="../assets/img/flags/french.svg">
           <span class="ml-2 text-dark">{{ $t('lang.fr') }}</span>
         </div>
         <div @click="selectLanguage('en')" class="d-flex language-row">
-          <img class="country" src="../assets/img/united-kingdom.svg">
+          <img class="country" src="../assets/img/flags/english.svg">
           <span class="ml-2 text-dark">{{ $t('lang.en') }}</span>
         </div>
       </div>

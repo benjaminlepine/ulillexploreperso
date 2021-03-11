@@ -46,6 +46,21 @@
           <label class="mb-0" for="languagesSpoken">{{ $t('godfather.whatLanguageSpeak')}}</label>
           <input class="form-control mb-3" id="languagesSpoken" v-model="languagesSpoken" type="text" name="languagesSpoken">
         </div>
+        <!-- Language selection section -->
+        <div class="text-left mb-3">
+          <label class="mb-0">{{ $t('godfather.whatLanguageSpeak')}}</label>
+          <ul class="lang-ctn">
+            <label :for=language v-for="(language, index) in languages" class="lang-card d-flex text-left mb-0">
+              <div class="lang-inside d-flex justify-content-between">
+                <div>
+                  <input :id=language v-model="languagesSpokenElement[index]" type="checkbox" class="mt-1" name="languagesSpoken">
+                  <span class="mb-0 w-100 ml-2">{{ $t('lang.'+language)}}</span>
+                </div>
+                <img :alt="language" class="lang-flag" :src="require(`@/assets/img/flags/${language}.svg`)">
+              </div>
+            </label>
+          </ul>
+        </div>
         <div class="text-left">
           <label class="mb-0" for="subjectStudying">{{ $t('godfather.whatYouStudying')}}</label>
           <input class="form-control mb-3" id="subjectStudying" v-model="subjectStudying" type="text" name="subjectStudying">
@@ -73,21 +88,24 @@
         <button class="btn mt-3 explorebtn" type="submit" value="Submit">{{ $t('godfather.validate')}}</button>
       </form>
     </div>
-
   </div>
 </template>
 
 <script>
   export default {
+    components: {},
     props: {},
     data: function ()  {
       return {
+        languages:["french", "english", "spanish", "portuguese", "chinese", "japanese", "korean", "russian", "arabic", "italian", "dutch", "german", "swedish", "polish", "turkish", "romanian", "czech", "greek",],
+        active_el:0,
         errors: [],
         nationality: null,
         department: null,
         faculty: null,
         subjectStudying: null,
         languagesSpoken: null,
+        languagesSpokenElement: [],
         hobbies: null,
         availability: null,
         godchildNumber: null,
@@ -113,6 +131,9 @@
       submitGodchild: function (e) {
         this.checkForm(e);
         console.log("POST FORM")
+      },
+      activate:function(el){
+        this.active_el = el;
       }
     }
   }
@@ -142,4 +163,37 @@
     color: $clear-main-color;
   }
 
+
+  ul,li{
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    text-align: center;
+    flex: 1 0 calc(33.333% - 20px); // 20px is gutter size -- can set to any value
+    max-width: calc(33.333% - 20px); // 20px is gutter size -- can set to any value
+  }
+
+  .lang{
+    &-ctn{
+      display: flex;
+      flex-flow: row wrap;
+    }
+    &-card{
+      width: 33%;
+      & > label, input{cursor: pointer}
+    }
+    &-inside{
+      margin: 3px;
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+    }
+    &-flag{
+      height: 32px;
+    }
+  }
+  @media screen and (max-width: 600px) { .lang-card { width: 50%; }}
+  @media screen and (max-width: 450px) { .lang-card { width: 100%; }}
 </style>

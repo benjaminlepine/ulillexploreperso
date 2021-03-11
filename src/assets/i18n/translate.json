@@ -11,7 +11,25 @@
     },
     "lang": {
       "fr": "Français",
-      "en": "Anglais"
+      "en": "Anglais",
+      "french": "Français",
+      "english": "Anglais",
+      "spanish": "Espagnol",
+      "portuguese": "Portugais",
+      "chinese": "Chinois",
+      "japanese": "Japonais",
+      "korean": "Coréen",
+      "russian": "Russe",
+      "arabic": "Arabe",
+      "italian": "Italien",
+      "dutch": "Néerlandais",
+      "german": "Allemand",
+      "swedish": "Suédois",
+      "polish": "Polonais",
+      "turkish": "Turc",
+      "romanian": "Roumain",
+      "czech": "Tchèque",
+      "greek": "Grec"
     },
     "sideMenu": {
       "home": "Accueil",
@@ -99,13 +117,6 @@
 
 
 
-
-
-
-
-
-
-
   "en": {
     "home": {
       "ulillexplore": "UlillExplore",
@@ -118,7 +129,25 @@
     },
     "lang": {
       "fr": "French",
-      "en": "English"
+      "en": "English",
+      "french": "French",
+      "english": "English",
+      "spanish": "Spanish",
+      "portuguese": "Portuguese",
+      "chinese": "Chinese",
+      "japanese": "Japanese",
+      "korean": "Korean",
+      "russian": "Russian",
+      "arabic": "Arabic",
+      "italian": "Italian",
+      "dutch": "Dutch",
+      "german": "German",
+      "swedish": "Swedish",
+      "polish": "Polish",
+      "turkish": "Turkish",
+      "romanian": "Romanian",
+      "czech": "Czech",
+      "greek": "Greek"
     },
     "sideMenu": {
       "home": "Home",
