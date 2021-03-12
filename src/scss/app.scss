@@ -70,3 +70,14 @@
   }
 
 }
+
+.errors{
+  &-ctn{
+    border: solid 1px red;
+    padding: 15px;
+    border-radius: 20px;
+  }
+  &-list{
+    list-style-type: none;
+  }
+}

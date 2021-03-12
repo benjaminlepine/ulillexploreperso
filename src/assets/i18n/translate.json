@@ -7,7 +7,9 @@
       "buddySystem": "Buddy Système",
       "findYourGodfather": "Trouver votre parrain/filleul",
       "ambassador": "Ambassadeur",
-      "shareYourExperience": "Partager votre expérience"
+      "shareYourExperience": "Partager votre expérience",
+      "correctErrors": "Veuillez corriger les erreurs suivantes :",
+      "required": "requis"
     },
     "lang": {
       "fr": "Français",
@@ -30,6 +32,20 @@
       "romanian": "Roumain",
       "czech": "Tchèque",
       "greek": "Grec"
+    },
+    "months": {
+      "january": "Janvier",
+      "february":"Fevrier",
+      "march": "Mars",
+      "april":"Avril",
+      "may": "Mai",
+      "june":"Juin",
+      "july": "Juillet",
+      "august":"Aôut",
+      "september":"Septembre",
+      "october":"Octobre",
+      "november": "Novembre",
+      "december":"Decembre"
     },
     "sideMenu": {
       "home": "Accueil",
@@ -116,7 +132,6 @@
 
 
 
-
   "en": {
     "home": {
       "ulillexplore": "UlillExplore",
@@ -125,7 +140,9 @@
       "buddySystem": "Buddy System",
       "findYourGodfather": "Find your godfather/godchild",
       "ambassador": "Ambassador",
-      "shareYourExperience": "Share your experience"
+      "shareYourExperience": "Share your experience",
+      "correctErrors": "Please correct the following error(s):",
+      "required": "required"
     },
     "lang": {
       "fr": "French",
@@ -148,6 +165,20 @@
       "romanian": "Romanian",
       "czech": "Czech",
       "greek": "Greek"
+    },
+    "months": {
+      "january": "january",
+      "february":"february",
+      "march": "march",
+      "april":"april",
+      "may": "may",
+      "june":"june",
+      "july": "july",
+      "august":"august",
+      "september":"september",
+      "october":"october",
+      "november": "november",
+      "december":"december"
     },
     "sideMenu": {
       "home": "Home",

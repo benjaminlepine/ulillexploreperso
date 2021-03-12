@@ -5,10 +5,7 @@
 
     <div class="mainctn">
       <form @submit="submitGodchild">
-        <p v-if="errors.length"><b>Please correct the following error(s):</b>
-        <ul>
-          <li v-for="error in errors">{{ error }}</li>
-        </ul>
+
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godfather.nationality')}}</label>
           <input class="form-control mb-3" id="nationality" v-model="nationality" type="text" name="nationality">
@@ -20,31 +17,25 @@
         <div class="text-left">
           <p class="mb-0" >{{ $t('godfather.howManyGodchild')}}</p>
           <div class="d-flex justify-content-between">
-            <div >
-              <input type="radio" id="1" name="godchildNumber" value="huey" checked>
-              <label class="pl-2" for="1">1</label>
-            </div>
-            <div>
-              <input type="radio" id="2" name="godchildNumber" value="dewey">
-              <label class="pl-2" for="2">2</label>
-            </div>
-            <div>
-              <input type="radio" id="3" name="godchildNumber" value="louie">
-              <label class="pl-2" for="3">3</label>
-            </div>
-            <div>
-              <input type="radio" id="4" name="godchildNumber" value="louie">
-              <label class="pl-2" for="4">4</label>
-            </div>
+            <div><input type="radio" id="1" name="godchildNumber" checked><label class="pl-2" for="1">1</label></div>
+            <div><input type="radio" id="2" name="godchildNumber"><label class="pl-2" for="2">2</label></div>
+            <div><input type="radio" id="3" name="godchildNumber"><label class="pl-2" for="3">3</label></div>
+            <div><input type="radio" id="4" name="godchildNumber"><label class="pl-2" for="4">4</label></div>
           </div>
         </div>
-        <div class="text-left">
-          <label class="mb-0" for="availability">{{ $t('godfather.whenAreYouAvailable')}}</label>
-          <input class="form-control mb-3" id="availability" v-model="availability" type="text" name="availability">
-        </div>
-        <div class="text-left">
-          <label class="mb-0" for="languagesSpoken">{{ $t('godfather.whatLanguageSpeak')}}</label>
-          <input class="form-control mb-3" id="languagesSpoken" v-model="languagesSpoken" type="text" name="languagesSpoken">
+        <!-- Select month availability section -->
+        <div class="text-left mb-3">
+          <label class="mb-0">{{ $t('godfather.whenAreYouAvailable')}}</label>
+          <ul class="lang-ctn">
+            <label :for=month.monthliteral v-for="(month, index) in nextMonths" class="lang-card d-flex text-left mb-0">
+              <div class="lang-inside d-flex justify-content-between">
+                <div>
+                  <input :id=month.monthliteral v-model="availability[index]" type="checkbox" class="mt-1" name="availability">
+                  <span class="mb-0 w-100 ml-2">{{ $t('months.'+month.monthliteral)}} {{month.tmpYear}}</span>
+                </div>
+              </div>
+            </label>
+          </ul>
         </div>
         <!-- Language selection section -->
         <div class="text-left mb-3">
@@ -53,7 +44,7 @@
             <label :for=language v-for="(language, index) in languages" class="lang-card d-flex text-left mb-0">
               <div class="lang-inside d-flex justify-content-between">
                 <div>
-                  <input :id=language v-model="languagesSpokenElement[index]" type="checkbox" class="mt-1" name="languagesSpoken">
+                  <input :id=language v-model="languagesSpoken[index]" type="checkbox" class="mt-1" name="languagesSpoken">
                   <span class="mb-0 w-100 ml-2">{{ $t('lang.'+language)}}</span>
                 </div>
                 <img :alt="language" class="lang-flag" :src="require(`@/assets/img/flags/${language}.svg`)">
@@ -85,7 +76,14 @@
           <input type="checkbox" class="largerCheckbox">
           <p class="rgpd-text">{{ $t('signup.rgpd')}}</p>
         </div>
+        <div class="errors-ctn mt-3" v-if="errors.length > 0 ">
+          <p class="text-danger" v-if="errors.length"><b>{{ $t('home.correctErrors')}}</b></p>
+          <ul>
+            <li class="text-danger errors-list" v-for="error in errors">{{ error }}</li>
+          </ul>
+        </div>
         <button class="btn mt-3 explorebtn" type="submit" value="Submit">{{ $t('godfather.validate')}}</button>
+
       </form>
     </div>
   </div>
@@ -98,20 +96,25 @@
     data: function ()  {
       return {
         languages:["french", "english", "spanish", "portuguese", "chinese", "japanese", "korean", "russian", "arabic", "italian", "dutch", "german", "swedish", "polish", "turkish", "romanian", "czech", "greek",],
+        months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+        nextMonths: [],
         active_el:0,
         errors: [],
         nationality: null,
         department: null,
         faculty: null,
         subjectStudying: null,
-        languagesSpoken: null,
-        languagesSpokenElement: [],
+        languagesSpoken: [],
         hobbies: null,
-        availability: null,
+        availability: [],
         godchildNumber: null,
         startDate: null,
         outsideCourses: null,
       }
+    },
+
+    mounted(){
+      this.DateUtilFunctions()
     },
 
     methods:{
@@ -120,21 +123,44 @@
           return true;
         }
         this.errors = [];
-        if (!this.nationality) {
-          this.errors.push('Nationality required.');
-        }
-        if (!this.department) {
-          this.errors.push('Department required.');
-        }
+        if (!this.nationality) { this.errors.push('Nationality required.'); }
+        if (!this.department) { this.errors.push('Department required.'); }
         e.preventDefault();
       },
       submitGodchild: function (e) {
         this.checkForm(e);
-        console.log("POST FORM")
+        this.DateUtilFunctions();
+        console.log("languagesSpokenElement = ", this.languagesSpoken);
+        console.log("this.DateUtilFunctions = ", this.DateUtilFunctions())
+
       },
       activate:function(el){
         this.active_el = el;
+      },
+
+      DateUtilFunctions() {
+        var months = [];
+        var tmpDate = new Date();
+        var tmpYear = tmpDate.getFullYear();
+        var tmpMonth = tmpDate.getMonth();
+        var monthLiteral;
+        for (var i = 0 ; i < 12 ; i++) {
+          tmpDate.setMonth(tmpMonth + i);
+          tmpDate.setFullYear(tmpYear);
+          monthLiteral = this.months[tmpMonth];
+          months.push({monthliteral: monthLiteral, tmpYear: tmpYear });
+          //months.push(monthLiteral + ' ' + tmpYear);
+          if (tmpMonth === 11){
+            tmpMonth = 0;
+            tmpYear++
+          }
+          else {tmpMonth++}
+        }
+        this.nextMonths = months;
+        console.log("this.nextMonths = ", this.nextMonths);
+
       }
+
     }
   }
 </script>
