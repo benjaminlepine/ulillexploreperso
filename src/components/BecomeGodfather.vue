@@ -2,17 +2,15 @@
   <div>
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <p class="mb-0 mainTitle">{{ $t('godfather.createMyProfil')}}</p>
-
     <div class="mainctn">
       <form @submit="submitGodchild">
-
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godfather.nationality')}}</label>
           <input class="form-control mb-3" id="nationality" v-model="nationality" type="text" name="nationality">
         </div>
         <div class="text-left">
           <label class="mb-0" for="startDate">{{ $t('godfather.whenYouStarted')}}</label>
-          <input class="form-control mb-3" id="startDate" v-model="startDate" type="text" name="startDate">
+          <input class="form-control mb-3 datepicker" id="startDate" v-model="startDate" type="date" name="startDate">
         </div>
         <div class="text-left">
           <p class="mb-0" >{{ $t('godfather.howManyGodchild')}}</p>
@@ -54,23 +52,43 @@
         </div>
         <div class="text-left">
           <label class="mb-0" for="subjectStudying">{{ $t('godfather.whatYouStudying')}}</label>
-          <input class="form-control mb-3" id="subjectStudying" v-model="subjectStudying" type="text" name="subjectStudying">
+          <select class="form-control mb-3" id="subjectStudying" v-model="subjectStudying">
+            <option value="volvo" v-for="subjectStudying in subjectStudyingList">{{subjectStudying}}</option>
+          </select>
         </div>
         <div class="text-left">
           <label class="mb-0" for="faculty">{{ $t('godfather.whatFaculty')}}</label>
-          <input class="form-control mb-3" id="faculty" v-model="faculty" type="text" name="faculty">
+          <select class="form-control mb-3" id="faculty" v-model="faculty">
+            <option value="volvo" v-for="faculty in facultyList">{{faculty}}</option>
+          </select>
         </div>
         <div class="text-left">
           <label class="mb-0" for="department">{{ $t('godfather.whatDepartment')}}</label>
-          <input class="form-control mb-3" id="department" v-model="department" type="text" name="department">
+          <select class="form-control mb-3" id="department" v-model="department">
+            <option value="volvo" v-for="department in departmentList">{{department}}</option>
+          </select>
         </div>
-        <div class="text-left">
-          <label class="mb-0" for="outsideCourses">{{ $t('godfather.outsideCourses')}}</label>
-          <input class="form-control mb-3" id="outsideCourses" v-model="outsideCourses" type="text" name="outsideCourses">
+        <div class="text-left mb-3">
+          <label class="mb-0">{{ $t('godfather.outsideCourses')}}</label>
+          <ul class="lang-ctn">
+            <label :for=activitie v-for="(activitie, index) in activitiesList" class="lang-card d-flex text-left mb-0 w-100">
+              <div class="hobbie-inside d-flex justify-content-between">
+                <input :id=activitie v-model="activities[index]" type="checkbox" class="mt-1" name="activities">
+                <span class="mb-0 w-100 ml-2">{{activitie}}</span>
+              </div>
+            </label>
+          </ul>
         </div>
-        <div class="text-left">
-          <label class="mb-0" for="hobbies">{{ $t('godfather.whatHobbies')}}</label>
-          <input class="form-control mb-3" id="hobbies" v-model="hobbies" type="text" name="hobbies">
+        <div class="text-left mb-3">
+          <label class="mb-0">{{ $t('godfather.whatHobbies')}}</label>
+          <ul class="lang-ctn">
+            <label :for=hobbie v-for="(hobbie, index) in hobbiesList" class="lang-card d-flex text-left mb-0 w-100">
+              <div class="hobbie-inside d-flex justify-content-between">
+                <input :id=hobbie v-model="hobbies[index]" type="checkbox" class="mt-1" name="availability">
+                <span class="mb-0 w-100 ml-2">{{hobbie}}</span>
+              </div>
+            </label>
+          </ul>
         </div>
         <div class="d-flex text-left">
           <input type="checkbox" class="largerCheckbox">
@@ -83,7 +101,6 @@
           </ul>
         </div>
         <button class="btn mt-3 explorebtn" type="submit" value="Submit">{{ $t('godfather.validate')}}</button>
-
       </form>
     </div>
   </div>
@@ -105,11 +122,16 @@
         faculty: null,
         subjectStudying: null,
         languagesSpoken: [],
-        hobbies: null,
+        hobbiesList: ["tennis", "cinema", "music"],
+        hobbies: [],
         availability: [],
         godchildNumber: null,
         startDate: null,
-        outsideCourses: null,
+        activitiesList: ["chasser des moules", "aller au cinema", "faire du dessin"],
+        activities: [],
+        facultyList: ["Lille", "Rouen", "Paris"],
+        departmentList: ["Physique", "Histoire", "Chimie", "Français"],
+        subjectStudyingList: ["Sapiens", "Indiens", "Revolution française"]
       }
     },
 
@@ -130,9 +152,8 @@
       submitGodchild: function (e) {
         this.checkForm(e);
         this.DateUtilFunctions();
-        console.log("languagesSpokenElement = ", this.languagesSpoken);
-        console.log("this.DateUtilFunctions = ", this.DateUtilFunctions())
-
+        //console.log("languagesSpokenElement = ", this.languagesSpoken);
+        //console.log("this.DateUtilFunctions = ", this.DateUtilFunctions())
       },
       activate:function(el){
         this.active_el = el;
@@ -157,10 +178,8 @@
           else {tmpMonth++}
         }
         this.nextMonths = months;
-        console.log("this.nextMonths = ", this.nextMonths);
-
+        //console.log("this.nextMonths = ", this.nextMonths);
       }
-
     }
   }
 </script>
@@ -220,6 +239,13 @@
       height: 32px;
     }
   }
+
+  .hobbie-inside{
+    margin: 3px;
+    width: 100%;
+    padding: 0.3rem 0;
+  }
+
   @media screen and (max-width: 600px) { .lang-card { width: 50%; }}
   @media screen and (max-width: 450px) { .lang-card { width: 100%; }}
 </style>
