@@ -63,6 +63,9 @@
       "email": "Adresse Email (pas en @univ-lille)",
       "password": "Mot de passe",
       "forgotPassword": "Mot de passe oublié",
+      "getYourAccount": "Merci de renseigner votre adresse email afin de reinitialiser vôtre mot de passe",
+      "validate": "Valider",
+      "alreadyRegister": "Vous avez déjà un compte",
       "signUp": "Inscription"
     },
     "signup": {
@@ -196,6 +199,9 @@
       "email": "Email Adress (not in @univ-lille)",
       "password": "Password",
       "forgotPassword": "Forgot your password",
+      "getYourAccount": "Please enter your email address to reset your password",
+      "validate": "Validate",
+      "alreadyRegister": "You are already registered",
       "signUp": "Sign Up"
     },
     "signup": {

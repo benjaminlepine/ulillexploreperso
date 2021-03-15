@@ -5,6 +5,7 @@ import Buddy from '../components/Buddy.vue'
 import Home from '../components/Home.vue'
 import SignIn from '../components/SignIn.vue'
 import SignUp from '../components/SignUp.vue'
+import ForgotPassword from '../components/ForgotPassword.vue'
 import BecomeGodchild from '../components/BecomeGodchild.vue'
 import BecomeGodfather from '../components/BecomeGodfather.vue'
 import Wait from '../components/Wait.vue'
@@ -22,6 +23,7 @@ const routes = [
   {path: '/becomegodfather', name: 'BecomeGodfather', component: BecomeGodfather},
   {path: '/signin', name: 'SignIn', component: SignIn},
   {path: '/signup', name: 'SignUp', component: SignUp},
+  {path: '/forgotpassword', name: 'ForgotPassword', component: ForgotPassword},
   {path: '/wait', name: 'Wait', component: Wait},
   {path: '/matching', name: 'Matching', component: Matching},
   {path: '/problem', name: 'Problem', component: Problem},

@@ -11,12 +11,14 @@ import VueI18n from "vue-i18n";
 import messages from './assets/i18n/translate'
 // import { library } from '@fortawesome/fontawesome-svg-core'
 // import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import ApiServices from './services/ApiServices'
 
 Vue.use(VueI18n);
 const i18n = new VueI18n({ locale: 'fr', fallbackLocale: 'en', messages});
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
+Vue.prototype.$apiService = new ApiServices();
 
 new Vue({
   router,

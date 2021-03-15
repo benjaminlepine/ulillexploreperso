@@ -9,17 +9,30 @@
         <p class="mb-0 text-white mt-2">{{ $t('login.noteAboutUnivlille')}}</p>
         <hr class="separator-line">
         <p class="mb-0 text-white mt-4 mb-3"><b>{{ $t('login.iDontHaveAddress')}}</b></p>
-        <input class="form-control mb-3" :placeholder="$t('login.email')" id="name" type="text">
-        <input class="form-control mb-3" :placeholder="$t('login.password')" id="password" type="password">
-        <button class="btn explorebtn" disabled>{{ $t('login.login')}}<br></button>
-        <p class="mt-4 mb-2 forgot">{{ $t('login.forgotPassword')}}</p>
-        <button class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.signUp')}}<br></button>
+        <form @submit="signIn">
+            <input v-model="email" class="form-control mb-3" :placeholder="$t('login.email')" id="name" type="text" required>
+            <input v-model="password" class="form-control mb-3" :placeholder="$t('login.password')" id="password" type="password" required>
+            <button type="submit" class="btn explorebtn">{{ $t('login.login')}}<br></button>
+        </form>
+        <router-link to="/forgotpassword" ><p class="mt-4 mb-2 forgot">{{ $t('login.forgotPassword')}}</p></router-link>
+        <router-link to="/signup" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.signUp')}}<br></router-link>
     </div>
 </template>
 
 <script>
     export default {
-        props: {}
+        props: {},
+        data: function ()  {
+            return {
+                email: null,
+                password: null,
+            }
+        },
+        methods:{
+            signIn: function() {
+                this.$apiService.signin(this.email, this.password);
+            }
+        }
     }
 </script>
 

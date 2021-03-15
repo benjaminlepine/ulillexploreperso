@@ -35,6 +35,8 @@
         store: store
       }
     },
+    created() {
+    }
   }
 </script>
 
