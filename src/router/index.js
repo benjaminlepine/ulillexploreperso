@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Ambassador from '../components/Ambassador.vue'
+import BecomeAmbassador from '../components/AmbassadorForm.vue'
 import Buddy from '../components/Buddy.vue'
 import Home from '../components/Home.vue'
 import SignIn from '../components/SignIn.vue'
@@ -18,6 +19,7 @@ Vue.use(VueRouter);
 const routes = [
   {path: '/', name: 'Home', component: Home},
   {path: '/ambassador', name: 'Ambassador', component: Ambassador},
+  {path: '/becomeAmbassador', name: 'BecomeAmbassador', component: BecomeAmbassador},
   {path: '/buddy', name: 'Buddy', component: Buddy},
   {path: '/becomegodchild', name: 'BecomeGodchild', component: BecomeGodchild},
   {path: '/becomegodfather', name: 'BecomeGodfather', component: BecomeGodfather},
