@@ -14,19 +14,19 @@
                     </li>
                     <li >
                         <i class="fas fa-user-graduate fa-2x sidebar-panel-nav--icon"></i>
-                        <router-link to="/IncomingStudents">{{ $t('sideMenu.becomeGodfather')}}</router-link>
+                        <router-link to="/becomeGodfather">{{ $t('sideMenu.becomeGodfather')}}</router-link>
                     </li>
                     <li >
                         <i class="fas fa-user fa-2x sidebar-panel-nav--icon"></i>
-                        <router-link to="/OutgoingStudents">{{ $t('sideMenu.becomeGodchild')}}</router-link>
+                        <router-link to="/becomeGodchild">{{ $t('sideMenu.becomeGodchild')}}</router-link>
                     </li>
                     <li >
                         <i class="fas fa-globe fa-2x sidebar-panel-nav--icon"></i>
-                        <router-link to="/AccountOfMobility">{{ $t('sideMenu.ambassador')}}</router-link>
+                        <router-link to="/ambassador">{{ $t('sideMenu.ambassador')}}</router-link>
                     </li>
                     <li >
                         <i class="fas fa-sign-out-alt fa-2x sidebar-panel-nav--icon"></i>
-                        <router-link to="/AccountOfMobility">{{ $t('sideMenu.logout')}}</router-link>
+                        <router-link to="/">{{ $t('sideMenu.logout')}}</router-link>
                     </li>
                 </ul>
             </div>

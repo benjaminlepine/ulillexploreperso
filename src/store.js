@@ -13,7 +13,7 @@ export default new Vuex.Store({
         setIsNavOpen(yesno) {
             this.state.isNavOpen = yesno;
         },
-        toggleNav() {ma
+        toggleNav() {
             this.state.isNavOpen = !this.state.isNavOpen;
         },
         // setShowLogin(state, showLogin){
