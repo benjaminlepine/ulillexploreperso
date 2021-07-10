@@ -4,13 +4,20 @@
     <p class="mb-0 mainTitle">{{ $t('godfather.createMyProfil')}}</p>
     <div class="mainctn">
       <form @submit="submitGodchild">
+
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godfather.nationality')}}</label>
-          <input class="form-control mb-3" id="nationality" v-model="nationality" type="text" name="nationality">
+          <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="nationality" name="nationality"/>
+          <datalist id="nationality" ref="nationality" v-model="nationality" name="nationality">
+            <option class="form-control" v-for="cntry in country">{{cntry.name}}</option>
+          </datalist>
+<!--          <input class="form-control mb-3" id="nationality" ref="nationality" v-model="nationality" name="nationality" type="text"  required>-->
+<!--          <select-country class="form-control mb-3" v-model="nationality" name="nationality"></select-country>-->
         </div>
+
         <div class="text-left">
           <label class="mb-0" for="startDate">{{ $t('godfather.whenYouStarted')}}</label>
-          <input class="form-control mb-3 datepicker" id="startDate" v-model="startDate" type="date" name="startDate">
+          <input class="form-control mb-3 datepicker" id="startDate" v-model="startDate" ref="startDate" type="date" name="startDate" @change="checkSeniorityDate">
         </div>
         <div class="text-left">
           <p class="mb-0" >{{ $t('godfather.howManyGodchild')}}</p>
@@ -107,6 +114,7 @@
 </template>
 
 <script>
+  import country from '../assets/i18n/country.json'
   export default {
     components: {},
     props: {},
@@ -131,7 +139,8 @@
         activities: [],
         facultyList: ["Lille", "Rouen", "Paris"],
         departmentList: ["Physique", "Histoire", "Chimie", "Français"],
-        subjectStudyingList: ["Sapiens", "Indiens", "Revolution française"]
+        subjectStudyingList: ["Sapiens", "Indiens", "Revolution française"],
+        country: country
       }
     },
 
@@ -152,13 +161,11 @@
       submitGodchild: function (e) {
         this.checkForm(e);
         this.DateUtilFunctions();
-        //console.log("languagesSpokenElement = ", this.languagesSpoken);
-        //console.log("this.DateUtilFunctions = ", this.DateUtilFunctions())
+        console.log("nationality 2 = ", this.nationality)
       },
       activate:function(el){
         this.active_el = el;
       },
-
       DateUtilFunctions() {
         var months = [];
         var tmpDate = new Date();
@@ -179,7 +186,14 @@
         }
         this.nextMonths = months;
         //console.log("this.nextMonths = ", this.nextMonths);
-      }
+      },
+      checkSeniorityDate() {
+        if(Date.now() - this.$refs['startDate'].valueAsNumber > (24 * 3600000 * 100)){
+          console.log("100 JOURS")
+        } else {
+          console.log("FUCK")
+        }
+      },
     }
   }
 </script>
