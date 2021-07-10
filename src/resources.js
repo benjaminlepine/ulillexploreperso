@@ -1,6 +1,6 @@
 const R = {
     endpoint: {
-        base: "http://176.132.208.146:9595",
+        base: process.env.VUE_APP_API_ENDPOINT,
         //godfatherSummary(){ return R.endpoint.base+'/api/ulillexplore/godfather/summary/{pageNo}/{pageSize}'; },
         //godfatherSummary(){ return R.endpoint.base+'/api/ulillexplore/godfather/summary/0/5'; },
         //godfatherDetails(){ return R.endpoint.base+'/api/ulillexplore/godfather/{id}'; },
