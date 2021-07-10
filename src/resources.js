@@ -8,7 +8,8 @@ const R = {
         //godchildDetails(){ return R.endpoint.base+'/api/ulillexplore/godchild/{id}'; },
         signup(){ return R.endpoint.base+'/api/auth/signup'; },
         signin(){ return R.endpoint.base+'/api/auth/signin'; },
-        resetPassword(){ return R.endpoint.base+'/api/auth/resetPassword'; },
+        sendEmailPassword(){ return R.endpoint.base+'/api/auth/reset-password'; },
+        changePassword(){ return R.endpoint.base+'/api/auth/change-password'; },
         hobbiesActivities(){ return R.endpoint.base+'/api/ulillexplore/hobbies-activities/fr'; },
     }
 };

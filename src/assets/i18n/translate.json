@@ -64,6 +64,10 @@
       "password": "Mot de passe",
       "forgotPassword": "Mot de passe oublié",
       "getYourAccount": "Merci de renseigner votre adresse email afin de reinitialiser vôtre mot de passe",
+      "createNewPassword": "Reinitialisation de votre mot de passe",
+      "enterNewPassword": "Inscrivez votre nouveau mot de passe",
+      "repeatNewPassword": "Répéter votre nouveau mot de passe",
+      "samePassword": "Les mots de passe doivent être identiques et contenir au moins 6 caractères",
       "validate": "Valider",
       "alreadyRegister": "Vous avez déjà un compte",
       "signUp": "Inscription"
@@ -247,6 +251,10 @@
       "password": "Password",
       "forgotPassword": "Forgot your password",
       "getYourAccount": "Please enter your email address to reset your password",
+      "createNewPassword": "Reset your password",
+      "enterNewPassword": "Please enter your new password",
+      "repeatNewPassword": "Repeat your new password",
+      "samePassword": "Passwords must be identical and contain minimum 6 characters",
       "validate": "Validate",
       "alreadyRegister": "You are already registered",
       "signUp": "Sign Up"

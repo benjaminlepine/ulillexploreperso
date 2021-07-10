@@ -36,9 +36,20 @@ export default class ApiServices {
             }).catch(error => {});
     }
 
-    resetPassword(email){
-        this.$http.post(R.endpoint.resetPassword(), {email: email})
+    sendEmailPassword(email){
+        this.$http.post(R.endpoint.sendEmailPassword(), {email: email})
             .then(response => {
+                if (response.data){
+                    console.log("response.data = ", response.data);
+                }
+            }).catch(error => {});
+    }
+
+    changePassword(password, token){
+        this.$http.post(R.endpoint.changePassword(), {
+            password: password,
+            token: token
+        }).then(response => {
                 if (response.data){
                     console.log("response.data = ", response.data);
                 }
