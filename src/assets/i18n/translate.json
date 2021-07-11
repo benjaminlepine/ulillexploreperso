@@ -47,6 +47,18 @@
       "november": "Novembre",
       "december":"Decembre"
     },
+    "errorsMsg": {
+      "nationalityRequired": "Nationalité requise",
+      "startDateRequired":"Date de début requise",
+      "godChildNumberRequired": "Nombre de filleul requis",
+      "availabilityRequired":"Disponibilité requise",
+      "languagesSpokenRequired": "Langues parlées requises",
+      "cycleOfStudiesRequired":"Cycle d'étude requis",
+      "departmentRequired": "Département requis",
+      "facultyRequired":"Faculté requise",
+      "activitiesRequired": "Activités requises",
+      "hobbiesRequired":"Loisirs requis"
+    },
     "sideMenu": {
       "home": "Accueil",
       "becomeGodfather": "Devenir parrain",
@@ -233,6 +245,18 @@
       "october":"october",
       "november": "november",
       "december":"december"
+    },
+    "errorsMsg": {
+      "nationalityRequired": "Nationality required",
+      "startDateRequired":"Start Date required",
+      "godChildNumberRequired": "Number of godchild required",
+      "availabilityRequired":"Availability required",
+      "languagesSpokenRequired": "Languages spoken required",
+      "cycleOfStudiesRequired":"Cycle of studies required",
+      "departmentRequired": "Department required",
+      "facultyRequired":"Faculty required",
+      "activitiesRequired": "Activities required",
+      "hobbiesRequired":"Hobbies required"
     },
     "sideMenu": {
       "home": "Home",

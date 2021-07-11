@@ -3,18 +3,14 @@
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <p class="mb-0 mainTitle">{{ $t('godfather.createMyProfil')}}</p>
     <div class="mainctn">
-      <form @submit="submitGodchild">
-
+      <form @submit="submitGodFather">
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godfather.nationality')}}</label>
           <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="nationality" name="nationality"/>
           <datalist id="nationality" ref="nationality" v-model="nationality" name="nationality">
-            <option class="form-control" v-for="cntry in country">{{cntry.name}}</option>
+            <option class="form-control" v-for="country in countrys">{{country.name}}</option>
           </datalist>
-<!--          <input class="form-control mb-3" id="nationality" ref="nationality" v-model="nationality" name="nationality" type="text"  required>-->
-<!--          <select-country class="form-control mb-3" v-model="nationality" name="nationality"></select-country>-->
         </div>
-
         <div class="text-left">
           <label class="mb-0" for="startDate">{{ $t('godfather.whenYouStarted')}}</label>
           <input class="form-control mb-3 datepicker" id="startDate" v-model="startDate" ref="startDate" type="date" name="startDate" @change="checkSeniorityDate">
@@ -22,10 +18,10 @@
         <div class="text-left">
           <p class="mb-0" >{{ $t('godfather.howManyGodchild')}}</p>
           <div class="d-flex justify-content-between">
-            <div><input type="radio" id="1" name="godchildNumber" checked><label class="pl-2" for="1">1</label></div>
-            <div><input type="radio" id="2" name="godchildNumber"><label class="pl-2" for="2">2</label></div>
-            <div><input type="radio" id="3" name="godchildNumber"><label class="pl-2" for="3">3</label></div>
-            <div><input type="radio" id="4" name="godchildNumber"><label class="pl-2" for="4">4</label></div>
+            <div><input v-model="godChildNumber" value="1" type="radio" id="1" name="godchildNumber" checked><label class="pl-2" for="1">1</label></div>
+            <div><input v-model="godChildNumber" value="2" type="radio" id="2" name="godchildNumber"><label class="pl-2" for="2">2</label></div>
+            <div><input v-model="godChildNumber" value="3" type="radio" id="3" name="godchildNumber"><label class="pl-2" for="3">3</label></div>
+            <div><input v-model="godChildNumber" value="4" type="radio" id="4" name="godchildNumber"><label class="pl-2" for="4">4</label></div>
           </div>
         </div>
         <!-- Select month availability section -->
@@ -58,9 +54,9 @@
           </ul>
         </div>
         <div class="text-left">
-          <label class="mb-0" for="subjectStudying">{{ $t('godfather.whatYouStudying')}}</label>
-          <select class="form-control mb-3" id="subjectStudying" v-model="subjectStudying">
-            <option value="volvo" v-for="subjectStudying in subjectStudyingList">{{subjectStudying}}</option>
+          <label class="mb-0" for="cycleOfStudies">{{ $t('godfather.whatYouStudying')}}</label>
+          <select class="form-control mb-3" id="cycleOfStudies" v-model="cycleOfStudies">
+            <option value="volvo" v-for="cycleOfStudies in cycleOfStudiesList">{{cycleOfStudies}}</option>
           </select>
         </div>
         <div class="text-left">
@@ -104,7 +100,7 @@
         <div class="errors-ctn mt-3" v-if="errors.length > 0 ">
           <p class="text-danger" v-if="errors.length"><b>{{ $t('home.correctErrors')}}</b></p>
           <ul>
-            <li class="text-danger errors-list" v-for="error in errors">{{ error }}</li>
+            <p class="text-danger errors-list mb-0" v-for="error in errors">• {{ error }}</p>
           </ul>
         </div>
         <button class="btn mt-3 explorebtn" type="submit" value="Submit">{{ $t('godfather.validate')}}</button>
@@ -114,38 +110,43 @@
 </template>
 
 <script>
-  import country from '../assets/i18n/country.json'
+  import countrys from '../assets/i18n/country.json'
+  import formInfos from '../assets/i18n/formInfos.json'
   export default {
     components: {},
     props: {},
     data: function ()  {
       return {
-        languages:["french", "english", "spanish", "portuguese", "chinese", "japanese", "korean", "russian", "arabic", "italian", "dutch", "german", "swedish", "polish", "turkish", "romanian", "czech", "greek",],
-        months: ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+        languages: formInfos.languages,
+        months: formInfos.months,
         nextMonths: [],
         active_el:0,
         errors: [],
         nationality: null,
         department: null,
         faculty: null,
-        subjectStudying: null,
+        cycleOfStudies: null,
         languagesSpoken: [],
-        hobbiesList: ["tennis", "cinema", "music"],
         hobbies: [],
         availability: [],
         godchildNumber: null,
         startDate: null,
-        activitiesList: ["chasser des moules", "aller au cinema", "faire du dessin"],
+        godChildNumber: null,
         activities: [],
         facultyList: ["Lille", "Rouen", "Paris"],
         departmentList: ["Physique", "Histoire", "Chimie", "Français"],
-        subjectStudyingList: ["Sapiens", "Indiens", "Revolution française"],
-        country: country
+        countrys: countrys
       }
+    },
+    computed: {
+      activitiesList: function (){return formInfos.activitiesList[this.$i18n.locale]},
+      cycleOfStudiesList: function (){return formInfos.cycleOfStudiesList[this.$i18n.locale]},
+      hobbiesList: function (){return formInfos.hobbiesList[this.$i18n.locale]}
     },
 
     mounted(){
       this.DateUtilFunctions()
+      console.log("this.$i18n.locale = ", this.$i18n.locale)
     },
 
     methods:{
@@ -154,24 +155,27 @@
           return true;
         }
         this.errors = [];
-        if (!this.nationality) { this.errors.push('Nationality required.'); }
-        if (!this.department) { this.errors.push('Department required.'); }
+        if (!this.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
+        if (!this.startDate) { this.errors.push(this.$t("errorsMsg.startDateRequired")); }
+        if (!this.godChildNumber) { this.errors.push(this.$t("errorsMsg.godChildNumberRequired")); }
+        if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
+        if (this.languagesSpoken.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
+        if (!this.cycleOfStudies) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
+        if (!this.faculty) { this.errors.push(this.$t("errorsMsg.facultyRequired")); }
+        if (!this.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
+        if (this.activities.length === 0) { this.errors.push(this.$t("errorsMsg.activitiesRequired")); }
+        if (this.hobbies.length === 0) { this.errors.push(this.$t("errorsMsg.hobbiesRequired")); }
         e.preventDefault();
       },
-      submitGodchild: function (e) {
+      submitGodFather: function (e) {
         this.checkForm(e);
         this.DateUtilFunctions();
-        console.log("nationality 2 = ", this.nationality)
       },
       activate:function(el){
         this.active_el = el;
       },
       DateUtilFunctions() {
-        var months = [];
-        var tmpDate = new Date();
-        var tmpYear = tmpDate.getFullYear();
-        var tmpMonth = tmpDate.getMonth();
-        var monthLiteral;
+        var months = [], tmpDate = new Date(), tmpYear = tmpDate.getFullYear(), tmpMonth = tmpDate.getMonth(), monthLiteral;
         for (var i = 0 ; i < 12 ; i++) {
           tmpDate.setMonth(tmpMonth + i);
           tmpDate.setFullYear(tmpYear);
@@ -185,7 +189,6 @@
           else {tmpMonth++}
         }
         this.nextMonths = months;
-        //console.log("this.nextMonths = ", this.nextMonths);
       },
       checkSeniorityDate() {
         if(Date.now() - this.$refs['startDate'].valueAsNumber > (24 * 3600000 * 100)){
