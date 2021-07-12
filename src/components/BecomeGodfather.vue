@@ -15,6 +15,9 @@
           <label class="mb-0" for="startDate">{{ $t('godfather.whenYouStarted')}}</label>
           <input class="form-control mb-3 datepicker" id="startDate" v-model="startDate" ref="startDate" type="date" name="startDate" @change="checkSeniorityDate">
         </div>
+        <div class="errors-ctn mt-3 mb-3" v-if="isOlderSubscribed">
+          <p class="text-danger mb-0" v-if="isOlderSubscribed"><b>{{ $t('wait.oneUndredDay')}}</b></p>
+        </div>
         <div class="text-left">
           <p class="mb-0" >{{ $t('godfather.howManyGodchild')}}</p>
           <div class="d-flex justify-content-between">
@@ -103,7 +106,7 @@
             <p class="text-danger errors-list mb-0" v-for="error in errors">• {{ error }}</p>
           </ul>
         </div>
-        <button class="btn mt-3 explorebtn" type="submit" value="Submit">{{ $t('godfather.validate')}}</button>
+        <button class="btn mt-3 explorebtn" type="submit" value="Submit" :disabled="isOlderSubscribed">{{ $t('godfather.validate')}}</button>
       </form>
     </div>
   </div>
@@ -121,6 +124,7 @@
         months: formInfos.months,
         nextMonths: [],
         active_el:0,
+        isOlderSubscribed: false,
         errors: [],
         nationality: null,
         department: null,
@@ -151,9 +155,9 @@
 
     methods:{
       checkForm: function (e) {
-        if (this.nationality && this.department) {
-          return true;
-        }
+        // if (this.nationality && this.department) {
+        //   return true;
+        // }
         this.errors = [];
         if (!this.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
         if (!this.startDate) { this.errors.push(this.$t("errorsMsg.startDateRequired")); }
@@ -192,9 +196,9 @@
       },
       checkSeniorityDate() {
         if(Date.now() - this.$refs['startDate'].valueAsNumber > (24 * 3600000 * 100)){
-          console.log("100 JOURS")
+          this.isOlderSubscribed = false;
         } else {
-          console.log("FUCK")
+          this.isOlderSubscribed = true;
         }
       },
     }
