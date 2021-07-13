@@ -56,16 +56,15 @@ export default class ApiServices {
             }).catch(error => {});
     }
 
-    hobbiesActivities(){
-        console.log("hobbiesActivities WORKS");
-        this.$http.get(R.endpoint.hobbiesActivities())
-            .then(response => {
-                if (response.data){
-                    console.log("response.data = ", response.data);
-                    //localStorage.setItem("godfatherSummary", JSON.stringify(response.data));
-                }
-            }).catch(error => {});
+    hobbies(lang){
+        return this.$http.get(R.endpoint.hobbies(lang));
     }
-
-
+    activities(lang){
+        this.$http.get(R.endpoint.activities(lang))
+    }
+    
+    hobbiesActivities(lang){
+        console.log("hobbiesActivities WORKS");
+        return this.$http.get(R.endpoint.hobbiesActivities(lang))
+    }
 }

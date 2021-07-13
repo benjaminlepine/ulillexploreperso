@@ -7,8 +7,8 @@
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godfather.nationality')}}</label>
           <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="nationality" name="nationality"/>
-          <datalist id="nationality" ref="nationality" v-model="nationality" name="nationality">
-            <option class="form-control" v-for="country in countrys">{{country.name}}</option>
+          <datalist id="nationality" ref="nationality" name="nationality">
+            <option class="form-control" v-for="(country, index) in countrys" :key="index">{{country.name}}</option>
           </datalist>
         </div>
         <div class="text-left">
@@ -31,7 +31,7 @@
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godfather.whenAreYouAvailable')}}</label>
           <ul class="lang-ctn">
-            <label :for=month.monthliteral v-for="(month, index) in nextMonths" class="lang-card d-flex text-left mb-0">
+            <label :for=month.monthliteral v-for="(month, index) in nextMonths" :key="index" class="lang-card d-flex text-left mb-0">
               <div class="lang-inside d-flex justify-content-between">
                 <div>
                   <input :id=month.monthliteral v-model="availability[index]" type="checkbox" class="mt-1" name="availability">
@@ -45,7 +45,7 @@
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godfather.whatLanguageSpeak')}}</label>
           <ul class="lang-ctn">
-            <label :for=language v-for="(language, index) in languages" class="lang-card d-flex text-left mb-0">
+            <label :for=language v-for="(language, index) in languages" :key="index" class="lang-card d-flex text-left mb-0">
               <div class="lang-inside d-flex justify-content-between">
                 <div>
                   <input :id=language v-model="languagesSpoken[index]" type="checkbox" class="mt-1" name="languagesSpoken">
@@ -59,28 +59,28 @@
         <div class="text-left">
           <label class="mb-0" for="cycleOfStudies">{{ $t('godfather.whatYouStudying')}}</label>
           <select class="form-control mb-3" id="cycleOfStudies" v-model="cycleOfStudies">
-            <option value="volvo" v-for="cycleOfStudies in cycleOfStudiesList">{{cycleOfStudies}}</option>
+            <option value="volvo" v-for="(cycleOfStudies, index) in cycleOfStudiesList" :key="index">{{cycleOfStudies}}</option>
           </select>
         </div>
         <div class="text-left">
           <label class="mb-0" for="faculty">{{ $t('godfather.whatFaculty')}}</label>
           <select class="form-control mb-3" id="faculty" v-model="faculty">
-            <option value="volvo" v-for="faculty in facultyList">{{faculty}}</option>
+            <option value="volvo" v-for="(faculty, index) in facultyList" :key="index">{{faculty}}</option>
           </select>
         </div>
         <div class="text-left">
           <label class="mb-0" for="department">{{ $t('godfather.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="department">
-            <option value="volvo" v-for="department in departmentList">{{department}}</option>
+            <option value="volvo" v-for="(departmentm, index) in departmentList" :key="index">{{department}}</option>
           </select>
         </div>
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godfather.outsideCourses')}}</label>
           <ul class="lang-ctn">
-            <label :for=activitie v-for="(activitie, index) in activitiesList" class="lang-card d-flex text-left mb-0 w-100">
+            <label v-for="(activity, index) in activities" :key="index" class="lang-card d-flex text-left mb-0 w-100">
               <div class="hobbie-inside d-flex justify-content-between">
-                <input :id=activitie v-model="activities[index]" type="checkbox" class="mt-1" name="activities">
-                <span class="mb-0 w-100 ml-2">{{activitie}}</span>
+                <input :id="activity.name" v-model="activity.checked" type="checkbox" class="mt-1">
+                <span :for="activity.name" class="mb-0 w-100 ml-2">{{activity.name}}</span>
               </div>
             </label>
           </ul>
@@ -88,10 +88,10 @@
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godfather.whatHobbies')}}</label>
           <ul class="lang-ctn">
-            <label :for=hobbie v-for="(hobbie, index) in hobbiesList" class="lang-card d-flex text-left mb-0 w-100">
+            <label  v-for="(hobby, index) in hobbies" :key="index" class="lang-card d-flex text-left mb-0 w-100">
               <div class="hobbie-inside d-flex justify-content-between">
-                <input :id=hobbie v-model="hobbies[index]" type="checkbox" class="mt-1" name="availability">
-                <span class="mb-0 w-100 ml-2">{{hobbie}}</span>
+                <input :id="hobby.name" v-model="hobby.checked" type="checkbox" class="mt-1">
+                <span for="hobby.name" class="mb-0 w-100 ml-2">{{hobby.name}}</span>
               </div>
             </label>
           </ul>
@@ -103,7 +103,7 @@
         <div class="errors-ctn mt-3" v-if="errors.length > 0 ">
           <p class="text-danger" v-if="errors.length"><b>{{ $t('home.correctErrors')}}</b></p>
           <ul>
-            <p class="text-danger errors-list mb-0" v-for="error in errors">• {{ error }}</p>
+            <p class="text-danger errors-list mb-0" v-for="(error, index) in errors" :key="index">• {{ error }}</p>
           </ul>
         </div>
         <button class="btn mt-3 explorebtn" type="submit" value="Submit" :disabled="isOlderSubscribed">{{ $t('godfather.validate')}}</button>
@@ -121,6 +121,7 @@
     data: function ()  {
       return {
         languages: formInfos.languages,
+        lang: this.$i18n.locale,
         months: formInfos.months,
         nextMonths: [],
         active_el:0,
@@ -131,29 +132,68 @@
         faculty: null,
         cycleOfStudies: null,
         languagesSpoken: [],
-        hobbies: [],
         availability: [],
         godchildNumber: null,
         startDate: null,
         godChildNumber: null,
+        hobbies: [],
         activities: [],
         facultyList: ["Lille", "Rouen", "Paris"],
         departmentList: ["Physique", "Histoire", "Chimie", "Français"],
         countrys: countrys
       }
     },
-    computed: {
-      activitiesList: function (){return formInfos.activitiesList[this.$i18n.locale]},
-      cycleOfStudiesList: function (){return formInfos.cycleOfStudiesList[this.$i18n.locale]},
-      hobbiesList: function (){return formInfos.hobbiesList[this.$i18n.locale]}
-    },
 
+    watch:{
+      lang: function(val){
+        this.getHobbiesAndActivities();
+      }
+    },
+    computed: {
+      cycleOfStudiesList: function (){return formInfos.cycleOfStudiesList[this.$i18n.locale]},
+      hobbyList: function (){
+        if (this.lang != this.$i18n.locale){
+          // this.getHobbiesAndActivities();
+        }
+        return this.hobbies;
+      },
+      activityList: function (){
+        if (this.lang != this.$i18n.locale){
+          this.getHobbiesAndActivities();
+        }
+        
+        return this.activities;
+      },
+    },
     mounted(){
-      this.DateUtilFunctions()
-      console.log("this.$i18n.locale = ", this.$i18n.locale)
+      this.getHobbiesAndActivities();
+      this.DateUtilFunctions();
+      console.log("this.$i18n.locale = ", this.$i18n.locale);
     },
 
     methods:{
+      getHobbiesAndActivities(){
+        this.$apiService.hobbiesActivities(this.$i18n.locale)
+        .then((res) => {
+          const hobbies = []
+          res.data.hobbies.forEach((name, index) => {
+            const checked = this.hobbies[index] && this.hobbies[index].checked;
+            hobbies.push({name, index, checked: false});
+          });
+          const activities = [];
+          res.data.activities.forEach((name, index) => {
+            const checked = this.activities[index] && this.activities[index];
+            activities.push({name, index, checked});
+          });
+
+          this.hobbies = hobbies;
+          this.activities = activities;
+          this.lang = this.$i18n.locale
+        })
+        .catch((err) => {
+          // TODO message error
+        });
+      },
       checkForm: function (e) {
         // if (this.nationality && this.department) {
         //   return true;

@@ -5,7 +5,7 @@ import router from './router'
 import store from './store.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import '@fortawesome/fontawesome-free/css/all.css'
-import '@fortawesome/fontawesome-free/js/all.js'
+import '@fortawesome/fontawesome-free/js/all.js' // FIXME remove this import
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueI18n from "vue-i18n";
 import messages from './assets/i18n/translate'

@@ -10,7 +10,16 @@ const R = {
         signin(){ return R.endpoint.base+'/api/auth/signin'; },
         sendEmailPassword(){ return R.endpoint.base+'/api/auth/reset-password'; },
         changePassword(){ return R.endpoint.base+'/api/auth/change-password'; },
-        hobbiesActivities(){ return R.endpoint.base+'/api/ulillexplore/hobbies-activities/fr'; },
+        
+        hobbies(lang){
+            return R.endpoint.base+'/api/ulillexplore/hobbies/'+lang;
+        },
+        activities(lang){
+            return R.endpoint.base+'/api/ulillexplore/activities/'+lang;
+        },
+        hobbiesActivities(lang){
+            return R.endpoint.base+'/api/ulillexplore/hobbies-activities/'+lang;
+        },
     }
 };
 export default R;
