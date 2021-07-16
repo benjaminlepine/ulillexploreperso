@@ -98,8 +98,14 @@
         </div>
         <div class="d-flex text-left">
           <input type="checkbox" class="largerCheckbox">
+          <div>
           <p class="rgpd-text">{{ $t('signup.rgpd')}}</p>
+          <button @click="showModal = true" id="show-modal" class="rgpd-text rgpd-text-link">{{ $t('signup.rgpdPopUpLink')}}</button>
+          </div>
         </div>
+        <Popup v-if="showModal" @close="showModal = false">
+          <div slot="body"><RGPDGodfather></RGPDGodfather></div>
+        </Popup>
         <div class="errors-ctn mt-3" v-if="errors.length > 0 ">
           <p class="text-danger" v-if="errors.length"><b>{{ $t('home.correctErrors')}}</b></p>
           <ul>
@@ -115,8 +121,10 @@
 <script>
   import countrys from '../assets/i18n/country.json'
   import formInfos from '../assets/i18n/formInfos.json'
+  import Popup from "@/components/Popup";
+  import RGPDGodfather from "@/views/RGPDGodfather";
   export default {
-    components: {},
+    components: {RGPDGodfather, Popup},
     props: {},
     data: function ()  {
       return {
@@ -161,7 +169,7 @@
         if (this.lang != this.$i18n.locale){
           this.getHobbiesAndActivities();
         }
-        
+
         return this.activities;
       },
     },
@@ -267,8 +275,14 @@
     padding-top: 8px;
     font-size: 14px;
     color: $clear-main-color;
+    &-link{
+      background-color: white;
+      border: none;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
   }
-
 
   ul,li{
     margin: 0;
