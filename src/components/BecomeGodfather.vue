@@ -59,19 +59,19 @@
         <div class="text-left">
           <label class="mb-0" for="cycleOfStudies">{{ $t('godfather.whatYouStudying')}}</label>
           <select class="form-control mb-3" id="cycleOfStudies" v-model="cycleOfStudies">
-            <option value="volvo" v-for="(cycleOfStudies, index) in cycleOfStudiesList" :key="index">{{cycleOfStudies}}</option>
+            <option v-for="(cycleOfStudies, index) in cycleOfStudiesList" :key="index">{{cycleOfStudies}}</option>
           </select>
         </div>
         <div class="text-left">
           <label class="mb-0" for="faculty">{{ $t('godfather.whatFaculty')}}</label>
-          <select class="form-control mb-3" id="faculty" v-model="faculty">
-            <option value="volvo" v-for="(faculty, index) in facultyList" :key="index">{{faculty}}</option>
+            <select class="form-control mb-3" id="faculty" v-model="faculty">
+            <option v-for="(faculty, index) in facultyList" :key="index">{{faculty}}</option>
           </select>
         </div>
         <div class="text-left">
           <label class="mb-0" for="department">{{ $t('godfather.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="department">
-            <option value="volvo" v-for="(departmentm, index) in departmentList" :key="index">{{department}}</option>
+            <option v-for="(department, index) in departmentList" :key="index">{{department}}</option>
           </select>
         </div>
         <div class="text-left mb-3">
@@ -100,10 +100,10 @@
           <input type="checkbox" class="largerCheckbox">
           <div>
           <p class="rgpd-text">{{ $t('signup.rgpd')}}</p>
-          <button @click="showModal = true" id="show-modal" class="rgpd-text rgpd-text-link">{{ $t('signup.rgpdPopUpLink')}}</button>
+          <button @click="showModal=true" id="show-modal" class="rgpd-text rgpd-text-link">{{ $t('signup.rgpdPopUpLink')}}</button>
           </div>
         </div>
-        <Popup v-if="showModal" @close="showModal = false">
+        <Popup v-if="showModal" @close="showModal=false">
           <div slot="body"><RGPDGodfather></RGPDGodfather></div>
         </Popup>
         <div class="errors-ctn mt-3" v-if="errors.length > 0 ">
@@ -142,8 +142,10 @@
         languagesSpoken: [],
         availability: [],
         godchildNumber: null,
+        showModal: false,
         startDate: null,
         godChildNumber: null,
+        formResult: null,
         hobbies: [],
         activities: [],
         facultyList: ["Lille", "Rouen", "Paris"],
@@ -222,6 +224,19 @@
       submitGodFather: function (e) {
         this.checkForm(e);
         this.DateUtilFunctions();
+        this.formResult = {
+          nationality: this.nationality,
+          startDate:this.startDate,
+          godChildNumber: this.godChildNumber,
+          availability: this.availability,
+          languagesSpoken: this.languagesSpoken,
+          cycleOfStudies: this.cycleOfStudies,
+          faculty: this.faculty,
+          department: this.department,
+          activity: this.activity,
+          hobby:this.hobby
+        }
+        console.log("formResult = ", this.formResult)
       },
       activate:function(el){
         this.active_el = el;
