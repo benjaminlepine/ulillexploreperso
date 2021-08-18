@@ -1,0 +1,10 @@
+<svg id="user" xmlns="http://www.w3.org/2000/svg" width="50.293" height="50.293" viewBox="0 0 50.293 50.293">
+  <g id="Groupe_4259" data-name="Groupe 4259">
+    <path id="Tracé_217" data-name="Tracé 217" d="M111.358,0,95.6,25.146l15.756,25.146a25.146,25.146,0,0,0,0-50.293Z" transform="translate(-86.211)" fill="#820b4a"/>
+    <path id="Tracé_218" data-name="Tracé 218" d="M0,25.146A25.146,25.146,0,0,0,25.146,50.293V0A25.146,25.146,0,0,0,0,25.146Z" fill="#b8166b"/>
+    <path id="Tracé_219" data-name="Tracé 219" d="M196.674,60l-6.462,10.314,6.462,10.314a10.314,10.314,0,0,0,0-20.628Z" transform="translate(-171.528 -54.106)" fill="#b5a608"/>
+    <path id="Tracé_220" data-name="Tracé 220" d="M151,70.314a10.314,10.314,0,0,0,10.314,10.314V60A10.314,10.314,0,0,0,151,70.314Z" transform="translate(-136.168 -54.106)" fill="#faeb49"/>
+    <path id="Tracé_221" data-name="Tracé 221" d="M218.46,303.481A10.323,10.323,0,0,0,210.734,300h-8.84L196,307.465l5.894,7.465a19.305,19.305,0,0,0,16.743-9.744l.521-.916Z" transform="translate(-176.747 -270.532)" fill="#b5a608"/>
+    <path id="Tracé_222" data-name="Tracé 222" d="M88.665,300a10.323,10.323,0,0,0-7.726,3.481l-.7.789.521.916a19.3,19.3,0,0,0,16.743,9.744V300Z" transform="translate(-72.359 -270.532)" fill="#faeb49"/>
+  </g>
+</svg>

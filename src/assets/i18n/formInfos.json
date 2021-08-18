@@ -1,0 +1,17 @@
+{
+  "months": ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
+  "languages": ["french", "english", "spanish", "portuguese", "chinese", "japanese", "korean", "russian", "arabic", "italian", "dutch", "german", "swedish", "polish", "turkish", "romanian", "czech", "greek"],
+  "cycleOfStudiesList": {
+    "fr": ["License", "Master", "Doctorat"],
+    "en": ["Licence ou équivalent", "Master ou équivalent", "Doctorat"]
+  },
+  "activitiesList": {
+    "fr":["Cinéma","Musique","Sport","Littérature","Séries","Cuisine","Arts plastiques","Mode","Nature","Jeux"],
+    "en": ["Cinema","Music","Sports","Literature","Cooking","Fashion","Nature"]
+  },
+  "hobbiesList": {
+    "fr":["Faire découvrir la ville et la région","Soutien dans la progression académique","Aide dans les procédures administratives","Progression linguistique","Rencontre de nouvelles personnes","Partage de moments (soirées, voyages, etc.),"],
+    "en":["Visiting the city and the area","Academic support", "Administrative support", "Meeting new people", "Language support","Sharing nice moments (parties, trips, etc.)"]
+  }
+}
+

@@ -1,0 +1,123 @@
+.homecard{
+  padding: 18px;
+  margin: 12px 2%;
+  min-height: 110px;
+  background-color: white;
+  border-radius: 12px;
+  display: flex !important;
+  justify-content: space-between;
+  box-shadow: 1px 2px 5px #888888;
+  transition: background-color 180ms, color 300ms;
+  flex-direction: row;
+  border: none !important;
+  text-decoration: none;
+  &:hover{
+    background-color: #093943;
+    box-shadow: none;
+    & .homecard-text  {
+      .homecard-text--title{color: white;}
+      .homecard-text--subtitle{color: lighten($clear-main-color, 45%);}
+    }
+  }
+  &-text{
+    padding-top: 10px;
+    transition: color 300ms;
+    text-align: left;
+    &--title{font-size: 22px;}
+    &--subtitle{color: $clear-main-color;}
+  }
+  &-picto{
+    max-width: 75px;
+  }
+}
+
+.mainctn{
+  padding: 18px;
+  margin: 12px 2%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 1px 2px 5px #888888;
+}
+
+.mainTitle{
+  color: white;
+  font-size: 28px;
+  font-weight: lighter;
+}
+
+.uptitle{
+  color: $third-color;
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.text-yellow{
+  color: $third-color;
+}
+
+.explorebtn{
+  background-color: $main-color;
+  border-radius: 40px;
+  padding: 14px 25px;
+  color: white;
+  width: 100%;
+  font-weight: bolder;
+  &:hover{
+    color: white;
+    background-color: darken($main-color, 5%);
+  }
+  &:disabled{
+    background-color: #707070;
+    color: white;
+    opacity: 1;
+  }
+}
+.explorebtnsecondary{
+  border: 2px solid $clear-main-color;
+  background-color: white;
+  border-radius: 40px;
+  padding: 14px 25px;
+  color: $clear-main-color;
+  width: 100%;
+  font-weight: bolder;
+  &:hover{
+    color: white;
+    background-color: darken($clear-main-color, 5%);
+  }
+  &:disabled{
+    background-color: #707070;
+    color: white;
+    opacity: 1;
+  }
+}
+
+.montserrat{
+  font-family: Montserrat;
+}
+
+
+.errors{
+  &-ctn{
+    border: solid 1px red;
+    padding: 15px;
+    border-radius: 20px;
+  }
+  &-list{
+    text-align: left;
+    margin-left: 8px;
+  }
+}
+
+.datepicker{
+  padding: 20px;
+}
+
+.rgpd-paragraph > p,
+.rgpd-paragraph > ul > li{
+  text-align: justify;
+  font-family: $ulill-font;
+  color: $text-color;
+}
+
+
+
