@@ -229,7 +229,7 @@
         "amQuestionnaire": "Répondre au questionnaire avant et après la mobilité sous forme de réponses écrites ou d’un entretien vidéo.",
         "amDoPhoto": "Faire une séance photo pour présenter un objet que j’ai acquis pendant ma mobilité et ce qu’il évoque pour moi. (photos + texte)",
         "amDoPubli": "Faire des publications sur les réseaux sociaux concernant ma mobilité et ajouter le @international_univlille. J’accompagne mes photos d’une description (au moins détails de lieu et date).  (lien publication)",
-        "amProposition": "Propositions de photos à prendre : •Campus / Amphi / journée d’intégration •Visites •Selfie avec des ami.e.s dans l’Université d’accueil •Un coucher ou lever de soleil •Evénement de la ville, pays, université •Plat typique…",
+        "amProposition": "Propositions de photos à prendre : Campus / Amphi / journée d’intégration / Visites / Selfie avec des ami.e.s dans l’Université d’accueil / Un coucher ou lever de soleil / Evénement de la ville, pays, université / Plat typique…",
         "amDoPostal": "Envoyer une carte postale à l’Université à l’adresse : (photo de la carte postale)",
         "amAdress": "Université de Lille - Direction Mobilités Internationales Bât. A3, Cité Scientifique Villeneuve d’Ascq, 59650 - France",
         "amFizer": "*Il est possible d’utiliser l’application Fizzer pour créer la carte avec vos photos. Voir : www.fizzer.com",
@@ -238,10 +238,13 @@
         "amCarnet": "Faire un carnet de bord, écrit, dessin, peinture, etc… Je le présenterai si je le souhaite à l’Université lors d’une exposition ou lors d’un l’événement international. (photos)",
         "amPlan": "J’écris un recueil de bons plans: université d’accueil, ville ou pays de ma mobilité, itiné-raires, lieux, restos, astuces. Nous pourrons les publier sur le site international de l’Université de Lille. (document texte, document PDF, lien)",
         "amPromotion": "Faire la promotion de l’Université de Lille et/ou de la culture française auprès de mes nouvelles connaissances, par exemple : (Upload de photos/ Case pour insérer lien vers vidéos)",
-        "amPromotionList": "•\tJe fais goûter une spécialité française \n•\tJ’enseigne des mots de français (et pas seulement des gros mots \uF04A) \n•\tJe trouve un commerce français ou portant un nom français dans la ville de mon séjour \n•\tJe porte les couleurs de l’Université de Lille pendant une course à pied, ou autre manifestation dans l’université ou la ville d’accueil\n•\tJe fais porter un t-shirt ou un pull de l’Université de Lille à un étudiant de mon université d’accueil",
+        "amPromotionList": "Je fais goûter une spécialité française / J’enseigne des mots de français (et pas seulement des gros mots) / Je trouve un commerce français ou portant un nom français dans la ville de mon séjour / Je porte les couleurs de l’Université de Lille pendant une course à pied, ou autre manifestation dans l’université ou la ville d’accueil / Je fais porter un t-shirt ou un pull de l’Université de Lille à un étudiant de mon université d’accueil",
         "amPhotoDefi": "Je participe avec mes nouvelles connaissances au défi photo/vidéo (date à préciser) : •Je fais goûter une spécialité française •J’enseigne des mots de français (et pas de gros mots) •Je trouve un commerce français ou portant un nom français dans la ville de mon séjour •Je porte les couleurs de l’Université de Lille pendant une course à pied, ou autre manifestation dans l’université ou la ville d’accueil. •Je fais porter un t-shirt de l’Université de Lille à un étudiant de mon université d’accueil (photo ou vidéo).",
         "amIdea": "Des idées pour mon retour de mobilité : (rien à cocher)",
-        "amParticipate": "Participer à l’organisation de l’International Student Week en tant que bénévole -Devenir parrain pour un/des étudiants internationaux -Participer à un CafÉrasmus organisé sur l’un des Campus de L’Université de Lille"
+        "amParticipate": "Participer à l’organisation de l’International Student Week en tant que bénévole / Devenir parrain pour un/des étudiants internationaux  / Participer à un CafÉrasmus organisé sur l’un des Campus de L’Université de Lille",
+        "UEInter": "Dans le cadre de l’UE International",
+        "amRecueil": "Ecrire un recueil de bons plans, trucs & astuces sur ma ville d’accueil (restaurants, bars, informations culturelles). Il pourra être publié dans la section Internationale du site de l’Université de Lille. (Upload de document texte, document PDF/ Case pour insérer lien)",
+        "amRapport": "Rédiger un rapport de 4 pages retraçant mon expérience."
       }
     },
     "matching": {

@@ -23,9 +23,12 @@
         <label class="mb-0" for="amDoInterview">{{ $t('ambassador.form.amDoInterview')}}</label>
         <p class="mb-0"><b>{{ $t('ambassador.form.amChooseInterview')}}</b></p>
         <input class="form-control mb-3" v-model="amDoInterview" id="amDoInterview" type="date">
-
-        <label class="mb-0" for="amDoPhoto">{{ $t('ambassador.form.amDoPhoto')}}</label>
-        <input class="form-control mb-3" v-on="amDoPhoto" id="amDoPhoto" type="file">
+        <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amDoPhoto1" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amDoPhoto2" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amDoPhoto3" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amDoPhoto4" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amDoPhoto5" type="file">
 
         <label class="mb-0" for="amDoPubli">{{ $t('ambassador.form.amDoPubli')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amProposition')}}</p>
@@ -34,49 +37,47 @@
         <label class="mb-0" for="amDoPostal">{{ $t('ambassador.form.amDoPostal')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
         <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
-        <input class="form-control mb-3" v-on="amDoPostal" id="amDoPostal" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amDoPostal" id="amDoPostal" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amDoPostal2" type="file">
 
         <label class="mb-0" for="amRepresent">{{ $t('ambassador.form.amRepresent')}}</label>
-        <input class="form-control mb-3" v-on="amRepresent" id="amRepresent" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amRepresent1" id="amRepresent" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amRepresent2" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amRepresent3" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amRepresent4" type="file">
 
         <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
         <textarea class="form-control mb-3" v-model="amBlog" id="amBlog" ></textarea>
 
         <label class="mb-0" for="amCarnet">{{ $t('ambassador.form.amCarnet')}}</label>
-        <input class="form-control mb-3" v-on="amCarnet" id="amCarnet" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amCarnet1" id="amCarnet" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amCarnet2" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amCarnet3" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amCarnet4" type="file">
 
         <label class="mb-0" for="amPlan">{{ $t('ambassador.form.amPlan')}}</label>
-        <input class="form-control mb-3" v-on="amPlan" id="amPlan" type="file">
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amPlan" id="amPlan" type="file">
 
         <label class="mb-0" for="amPromotion">{{ $t('ambassador.form.amPromotion')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
-        <input class="form-control mb-3" v-on="amPromotion" id="amPromotion" type="file">
-
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amPromotion" id="amPromotion" type="file">
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.amIdea')}}</p>
         <p class="mb-0">{{ $t('ambassador.form.amParticipate')}}</p>
 
+        <!-- UE Module Only-->
+        <hr>
+        <p class="mb-0">{{ $t('ambassador.form.UEInter')}}</p>
+        <hr>
 
+        <label class="mb-0" for="amRecueil">{{ $t('ambassador.form.amRecueil')}}</label>
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amRecueil" id="amRecueil" type="file">
 
-        <!--        "amDoInterview": "- Faire un entretien Skype dans le mois d’arrivée et / ou pendant la mobilité (date de l’entretien)",-->
-        <!--        "amQuestionnaire": "- Répondre au questionnaire avant et après la mobilité sous forme de réponses écrites ou d’un entretien vidéo.",-->
-        <!--        "amDoPhoto": "- Faire une séance photo pour présenter un objet que j’ai acquis pendant ma mobilité et ce qu’il évoque pour moi. (photos + texte)",-->
-        <!--        "amDoPubli": "- Faire des publications sur les réseaux sociaux concernant ma mobilité et ajouter le @international_univlille. J’accompagne mes photos d’une description (au moins détails de lieu et date).  (lien publication)",-->
-        <!--        "amProposition": "Propositions de photos à prendre : •Campus / Amphi / journée d’intégration •Visites •Selfie avec des ami.e.s dans l’Université d’accueil •Un coucher ou lever de soleil •Evénement de la ville, pays, université •Plat typique…",-->
-        <!--        "amDoPostal": "- Envoyer une carte postale à l’Université à l’adresse : (photo de la carte postale)",-->
-        <!--        "amAdress": "Université de Lille - Direction Mobilités Internationales Bât. A3, Cité Scientifique Villeneuve d’Ascq, 59650 - France",-->
-        <!--        "amFizer": "*Il est possible d’utiliser l’application Fizzer pour créer la carte avec vos photos. Voir : www.fizzer.com",-->
-        <!--        "amRepresent": "- Représenter et / ou promouvoir l’Université de Lille pendant un événement international à l’université d’accueil. Je contacte l’université de Lille en avance pour recevoir le matériel nécessaire (goodies, prospectus, affiches…). (photo)",-->
-        <!--        "amBlog": "- Je suis auteur d’un blog, d’une chaîne vidéo ou un créateur, et je partage le lien vers mon/mes articles qui concernent ma mobilité. (lien, possibilité plusieurs liens)",-->
-        <!--        "amCarnet": "- Faire un carnet de bord, écrit, dessin, peinture, etc… Je le présenterai si je le souhaite à l’Université lors d’une exposition ou lors d’un l’événement international. (photos)",-->
-        <!--        "amPlan": "- J’écris un recueil de bons plans: université d’accueil, ville ou pays de ma mobilité, itiné-raires, lieux, restos, astuces. Nous pourrons les publier sur le site international de l’Université de Lille. (document texte, document PDF, lien)",-->
+        <label class="mb-0" for="amRapport">{{ $t('ambassador.form.amRapport')}}</label>
+        <input class="form-control mb-3 pb-5 pt-3" v-on="amRapport" id="amRapport" type="file">
 
-        <!--        "amPhotoDefi": "-Je participe avec mes nouvelles connaissances au défi photo/vidéo (date à préciser) : •Je fais goûter une spécialité française •J’enseigne des mots de français (et pas de gros mots) •Je trouve un commerce français ou portant un nom français dans la ville de mon séjour •Je porte les couleurs de l’Université de Lille pendant une course à pied, ou autre manifestation dans l’université ou la ville d’accueil. •Je fais porter un t-shirt de l’Université de Lille à un étudiant de mon université d’accueil (photo ou vidéo).",-->
-        <!--        "amIdea": "Des idées pour mon retour de mobilité : (rien à cocher)",-->
-        <!--        "amParticipate": "-Participer à l’organisation de l’International Student Week en tant que bénévole -Devenir parrain pour un/des étudiants internationaux -Participer à un CafÉrasmus organisé sur l’un des Campus de L’Université de Lille"-->
-
-        <input v-model="acceptCB" id="ambassadorCG" class="cbAmbassador" type="checkbox" required>
-        <label for="ambassadorCG" class="ml-3">{{ $t('ambassador.charte.cgAccept')}}</label>
+<!--        <input v-model="acceptCB" id="ambassadorCG" class="cbAmbassador" type="checkbox" required>-->
+<!--        <label for="ambassadorCG" class="ml-3">{{ $t('ambassador.charte.cgAccept')}}</label>-->
         <button type="submit" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.validate')}}<br></button>
       </form>
 
@@ -98,19 +99,25 @@ export default {
     amComposante:null,
     amDoPortrait:null,
     amDoInterview:null,
-    amDoPhoto: null,
+    amDoPhoto1: null, amDoPhoto2: null, amDoPhoto3: null, amDoPhoto4: null, amDoPhoto5: null,
     amDoPubli:null,
-    amDoPostal:null,
-    amRepresent:null,
+    amDoPostal:null, amDoPostal2:null,
+    amRepresent1:null, amRepresent2:null, amRepresent3:null, amRepresent4:null,
     amBlog:null,
-    amCarnet:null,
+    amCarnet1:null, amCarnet2:null, amCarnet3:null, amCarnet4:null,
     amPlan:null,
     amPromotion:null,
-
+    amRecueil:null,
+    amRapport:null
   },
   data: function ()  {
     return {
-      acceptCB: false
+      acceptCB: false,
+      amDoPhotosg: [],
+      items: [
+        { message: 'Foo' },
+        { message: 'Bar' }
+      ]
     }
   },
   methods:{
@@ -137,7 +144,6 @@ export default {
   background-color: #f0f0f0;
   padding: 15px;
 }
-
 
 </style>
 
