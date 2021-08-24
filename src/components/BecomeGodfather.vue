@@ -155,7 +155,7 @@
 
     watch:{
       lang(){
-        this.$store.state.language.lang;
+        this.$store.state.header.lang;
         this.getHobbiesAndActivities();
       }
     },
