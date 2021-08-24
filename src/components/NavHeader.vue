@@ -28,14 +28,12 @@
 </template>
 
 <script>
-  import store from '../store.js';
   let handleOutsideClick;
   export default {
     name: 'Header',
     data: function () {
       return {
         showLang: false,
-        store: store
       }
     },
     directives: {
@@ -66,12 +64,11 @@
     },
     methods: {
       openNav(){
-        this.store.commit('toggleNav');
+        this.$store.commit('header/toggleNav');
       },
       selectLanguage(lang) {
-        localStorage.setItem('language', lang);
         this.$i18n.locale = lang;
-        this.store.commit('setLanguage', lang);
+        this.$store.commit('header/setLanguage', lang);
         this.showLang = false;
       },
       onClose () {

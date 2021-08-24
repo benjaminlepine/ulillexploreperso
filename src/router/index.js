@@ -22,6 +22,7 @@ Vue.use(VueRouter);
 
 const routes = [
   {path: '/', name: 'Home', component: Home},
+  {path: '/home', component: Home},
   {path: '/ambassador', name: 'Ambassador', component: Ambassador},
   {path: '/becomeAmbassador', name: 'BecomeAmbassador', component: BecomeAmbassador},
   {path: '/buddy', name: 'Buddy', component: Buddy},
@@ -41,11 +42,22 @@ const routes = [
   {path: '*', component: Home }
 ];
 
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
 
-export default router
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/','/home','/signup','/signin', '/forgotpassword', '/resetpassword'];
+  const authRequiest = !publicPages.includes(to.path);
+  const signedIn = localStorage.getItem('user');
+  
+  if (authRequiest && !signedIn){
+    next('/signin');
+  }else {
+    next();
+  }
+});
+
+export default router;

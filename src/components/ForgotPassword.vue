@@ -22,9 +22,24 @@
                 email: null,
             }
         },
+        computed:{
+            loading(){
+                return this.$store.auth.getters.loading;
+            }
+        },
         methods:{
-            sendEmailPassword: function() {
-                this.$apiService.sendEmailPassword(this.email);
+            sendEmailPassword: function(e) {
+                // FIXME check if email is valid
+                e.preventDefault();
+                this.$store.dispatch('auth/resetUserPassword', this.email).then(
+
+                    () => {
+                        // FIXME success message
+                    },
+                    (err) => {
+                        // FIXME error message
+                    }
+                );
             }
         }
     }
@@ -33,5 +48,4 @@
 <style scoped lang="scss">
     @import "../scss/_app-variables.scss";
     @import "../scss/app.scss";
-
 </style>
