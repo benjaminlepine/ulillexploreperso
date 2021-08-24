@@ -32,7 +32,17 @@
         },
         methods:{
             signUp: function() {
-                this.$apiService.signup(this.firstname, this.lastname, this.email, this.password);
+                const user = {firstname: this.firstname, lastname: this.lastname, email: this.email , password: this.password};
+                this.store.dispatch('aut/signup', user).then(
+                    () => {
+                        // FIXME signup success, maybe we need to show some message
+                        this.$router.push('/signin');
+                    },
+                    (err) => {
+                        // FIXME something went wrong, add message to describe this error than try again
+                        console.log('singup error', err);
+                    }
+                );
             }
         }
     }
@@ -61,7 +71,5 @@
         font-size: 14px;
         color: $clear-main-color;
     }
-
-
 
 </style>

@@ -63,6 +63,4 @@
         font-size: 14px;
         color: $clear-main-color;
     }
-
-
 </style>

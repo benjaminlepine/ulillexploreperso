@@ -9,9 +9,9 @@
         <p class="mb-0 text-white mt-2">{{ $t('login.noteAboutUnivlille')}}</p>
         <hr class="separator-line">
         <p class="mb-0 text-white mt-4 mb-3"><b>{{ $t('login.iDontHaveAddress')}}</b></p>
-        <form @submit="signIn">
-            <input v-model="email" class="form-control mb-3" :placeholder="$t('login.email')" id="name" type="text" required>
-            <input v-model="password" class="form-control mb-3" :placeholder="$t('login.password')" id="password" type="password" required>
+        <form @submit.prevent="handleSignIn">
+            <input v-model="user.email" class="form-control mb-3" :placeholder="$t('login.email')" id="name" type="text" required>
+            <input v-model="user.password" class="form-control mb-3" :placeholder="$t('login.password')" id="password" type="password" required>
             <button type="submit" class="btn explorebtn">{{ $t('login.login')}}<br></button>
         </form>
         <router-link to="/forgotpassword" ><p class="mt-4 mb-2 forgot">{{ $t('login.forgotPassword')}}</p></router-link>
@@ -20,17 +20,49 @@
 </template>
 
 <script>
+    import User from '../models/user';
+
     export default {
         props: {},
         data: function ()  {
             return {
+                user: new User('', ''),
+                loading: false,
+                message: '',
+
                 email: null,
                 password: null,
+            };
+        },
+        compute: {
+            loading(){
+                return this.$store.auth.getters.loading;
+            },
+            signIn(){
+                return this.$store.auth.getters.signIn;
+            },
+            create(){
+                if (this.signIn){
+                    this.$router.push('/'); // FIXME go to profile page
+                }
             }
         },
         methods:{
-            signIn: function() {
-                this.$apiService.signin(this.email, this.password);
+            handleSignIn: function(){
+                this.loading = true;
+                // formulaire validate
+                if (this.user.email && this.user.password){
+                    this.$store.dispatch('auth/signin', this.user).then(
+                        () => {
+                            this.$router.push('/');
+                        },
+                        error => {
+                            this.loading = false;
+                            this.message = (error.response && error.response.data) || error.message || error.toString();
+                            console.log(this.message);
+                        }
+                    );
+                }
             }
         }
     }
@@ -74,5 +106,4 @@
         transition: background-color 300ms;
         &:hover{background-color: transparent; color: $third-color; opacity: 0.8}
     }
-
 </style>

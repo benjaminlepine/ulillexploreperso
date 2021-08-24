@@ -31,14 +31,28 @@
 
         // https://example.com/?product=shirt&color=blue&newuser&size=m
         // http://localhost:8080/resetpassword?
-
+        computed:{
+            loading(){
+                return this.$store.state.auth.getters.loading;
+            },
+        },
         methods:{
             changePassword: function() {
-                if(this.password !== this.passwordConfirm || this.password === null|| this.password.length < 6){
+                if(this.password !== this.passwordConfirm || this.password === null || this.password.length < 6){
                     this.samePassword = false;
+
                 } else{
                     this.samePassword = true;
-                    this.$apiService.changePassword(this.password, this.token);
+                    this.$store.dispatch('auth/changeUserPassword', { password: this.password, token: this.token}).then(
+                       () => {
+                            // FIXME success message 
+                            // this.$router.push('/');
+                        },
+                        error => {
+                            this.message = (error.response && error.response.data) || error.message || error.toString();
+                            console.log(this.message);
+                        }
+                    );
                 }
             },
         }

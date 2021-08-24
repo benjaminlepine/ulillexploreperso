@@ -19,9 +19,7 @@
       }
     },
     mounted(){
-      if(localStorage.getItem('language')){
-        this.$i18n.locale = localStorage.getItem('language');
-      }
+        this.$i18n.locale = this.$store.getters['header/language'];
     },
   }
 

@@ -129,7 +129,6 @@
     data: function ()  {
       return {
         languages: formInfos.languages,
-        lang: this.$i18n.locale,
         months: formInfos.months,
         nextMonths: [],
         active_el:0,
@@ -155,54 +154,42 @@
     },
 
     watch:{
-      lang: function(val){
+      lang(){
+        this.$store.state.language.lang;
         this.getHobbiesAndActivities();
       }
     },
     computed: {
-      cycleOfStudiesList: function (){return formInfos.cycleOfStudiesList[this.$i18n.locale]},
-      hobbyList: function (){
-        if (this.lang != this.$i18n.locale){
-          // this.getHobbiesAndActivities();
-        }
-        return this.hobbies;
+      lang(){
+        return this.$store.getters['header/language'];
       },
-      activityList: function (){
-        if (this.lang != this.$i18n.locale){
-          this.getHobbiesAndActivities();
-        }
-
-        return this.activities;
+      cycleOfStudiesList(){
+        return formInfos.cycleOfStudiesList[this.$i18n.locale]
       },
     },
     mounted(){
       this.getHobbiesAndActivities();
       this.DateUtilFunctions();
-      console.log("this.$i18n.locale = ", this.$i18n.locale);
     },
 
     methods:{
       getHobbiesAndActivities(){
-        this.$apiService.hobbiesActivities(this.$i18n.locale)
-        .then((res) => {
-          const hobbies = []
-          res.data.hobbies.forEach((name, index) => {
-            const checked = this.hobbies[index] && this.hobbies[index].checked;
-            hobbies.push({name, index, checked: false});
-          });
-          const activities = [];
-          res.data.activities.forEach((name, index) => {
-            const checked = this.activities[index] && this.activities[index];
-            activities.push({name, index, checked});
-          });
-
-          this.hobbies = hobbies;
-          this.activities = activities;
-          this.lang = this.$i18n.locale
-        })
-        .catch((err) => {
-          // TODO message error
-        });
+        this.$store.dispatch("user/fetchHobbiesAndActivities").then(
+          payload => {
+            payload.hobbies.forEach((name, index) => {
+                const checked = this.hobbies[index] && this.hobbies[index].checked;
+                this.$set(this.hobbies, index, {name, checked});
+            });
+            payload.activities.forEach((name, index) => {
+                const checked = this.activities[index] && this.activities[index].checked;
+                this.$set(this.activities, index, {name, checked});
+            });
+          },
+          err => {
+            // FIXME something went wrong show message
+            console.log("Error went we try to get the hobbies and activities data", err);
+          }
+        );
       },
       checkForm: function (e) {
         // if (this.nationality && this.department) {
@@ -236,6 +223,16 @@
           activity: this.activity,
           hobby:this.hobby
         }
+        this.$store.dispatch("", ).then(
+          (resp) => { 
+            // FXIME form submit with succes
+            console.log("FIXME form submit with succes");
+          },
+          err => {
+            // FIXME something went wrong show message
+            console.log("FIXME Error went we try to submit godfather form", err);
+          }
+        )
         console.log("formResult = ", this.formResult)
       },
       activate:function(el){

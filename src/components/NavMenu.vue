@@ -24,9 +24,9 @@
                         <i class="fas fa-globe fa-2x sidebar-panel-nav--icon"></i>
                         <router-link to="/ambassador">{{ $t('sideMenu.ambassador')}}</router-link>
                     </li>
-                    <li >
+                    <li @click="logout">
                         <i class="fas fa-sign-out-alt fa-2x sidebar-panel-nav--icon"></i>
-                        <router-link to="/">{{ $t('sideMenu.logout')}}</router-link>
+                        <span>{{ $t('sideMenu.logout')}}</span>
                     </li>
                 </ul>
             </div>
@@ -34,36 +34,33 @@
     </div>
 </template>
 <script>
-    import store from '../store.js';
     export default {
         data: function ()  {
-            return {
-                store: store
-            }
-        },
-        methods: {
-            closeSidebarPanel(){
-                this.store.commit('toggleNav');
-            },
-            // logout(){
-            //   axios
-            //           .get(R.endpoint.logout(), {withCredentials: true})
-            //           .then(function (response) {
-            //             // console.log(response);
-            //           })
-            //           .catch((error) =>  {
-            //             // console.log(error);
-            //           })
-            //           .then(() => {
-            //             window.location.href = R.endpoint.logoutSuccess();
-            //           });
-            // }
+            return {}
         },
         computed: {
             isPanelOpen() {
-                return this.store.state.isNavOpen;
+                return this.$store.getters['header/isNavOpen'];
             },
-        }
+        },
+        methods: {
+            closeSidebarPanel(){
+                this.$store.commit('header/setIsNavOpen', false);
+            },
+            logout(){
+                this.$store.dispatch('auth/signout').then(
+                    () => {
+                        // FIXME Success message
+                        if (this.$router.history.current.fullPath != "/signin"){
+                            this.$router.push('/signin');
+                        }
+                    },
+                    () => {
+                        // FIXME Error message
+                    }
+                );
+            }
+        },
     }
 </script>
 <style lang="scss">
