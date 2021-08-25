@@ -68,6 +68,7 @@
       "becomeGodfather": "Devenir parrain",
       "becomeGodchild": "Etre parrainé",
       "ambassador": "Ambassadeurs",
+      "profil": "Profil",
       "logout": "Deconnexion"
     },
     "login": {
@@ -335,6 +336,7 @@
       "becomeGodfather": "Become godfather",
       "becomeGodchild": "To be sponsored",
       "ambassador": "Ambassador",
+      "profil": "Profil",
       "logout": "Logout"
     },
     "login": {

@@ -12,12 +12,16 @@
                         <i class="fas fa-home fa-2x sidebar-panel-nav--icon"></i>
                         <router-link to="/">{{ $t('sideMenu.home')}}</router-link>
                     </li>
+                  <li >
+                    <i class="fas fa-user fa-2x sidebar-panel-nav--icon"></i>
+                    <router-link to="/ambassador">{{ $t('sideMenu.profil')}}</router-link>
+                  </li>
                     <li >
                         <i class="fas fa-user-graduate fa-2x sidebar-panel-nav--icon"></i>
                         <router-link to="/becomeGodfather">{{ $t('sideMenu.becomeGodfather')}}</router-link>
                     </li>
                     <li >
-                        <i class="fas fa-user fa-2x sidebar-panel-nav--icon"></i>
+                        <i class="fas fa-users fa-2x sidebar-panel-nav--icon"></i>
                         <router-link to="/becomeGodchild">{{ $t('sideMenu.becomeGodchild')}}</router-link>
                     </li>
                     <li >

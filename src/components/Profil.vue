@@ -28,7 +28,6 @@
           <div>
             <p class="text-left mb-0 text-white">{{godchfa.name}}</p>
             <p class="text-left mb-0 profil-godcard-link-color">{{godchfa.email}}</p>
-            <p class="text-left mb-0 profil-godcard-link-color montserrat">{{godchfa.phone}}</p>
           </div>
           <img src="../assets/img/user2.svg">
         </div>
@@ -54,7 +53,7 @@ export default {
   data: function () {
     return {
       store: store,
-      godchfas: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr', phone:'+33627798426'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr', phone:'+33137798826'}]
+      godchfas: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr'}]
     }
   },
   methods: {
