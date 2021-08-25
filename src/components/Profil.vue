@@ -13,11 +13,8 @@
       <div>
         <p class="text-left mb-0">{{ $t('profil.contactEmail')}}</p>
         <p class="mb-2 text-left mb-0 profil-info">{{userEmail}}</p>
-        <p class="text-left mb-0">{{ $t('profil.cycleStudies')}}</p>
-        <p class="mb-2 text-left mb-0 profil-info">Master - Droit du travail</p>
         <p class="text-left mb-0">{{ $t('profil.subscribedFrom')}}</p>
         <p class="mb-2 text-left mb-0 profil-info montserrat">{{registrationDate}}</p>
-        <router-link to="/updatepassword" class="btn explorebtnsecondary">{{ $t('profil.updatePassword')}}</router-link>
       </div>
       <hr>
       <!-- Parrain / Filleuls section -->

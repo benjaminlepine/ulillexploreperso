@@ -50,18 +50,22 @@
             <option v-for="(cycleOfStudies, index) in cycleOfStudiesList" :key="index">{{cycleOfStudies}}</option>
           </select>
         </div>
+
         <div class="text-left">
           <label class="mb-0" for="faculty">{{ $t('godchild.whatFaculty')}}</label>
-          <select class="form-control mb-3" id="faculty" v-model="faculty">
-            <option v-for="(faculty, index) in facultyList" :key="index">{{faculty}}</option>
+          <select class="form-control mb-3" id="faculty" v-model="facultyIndex">
+            <option v-for="(faculty, index) in faculties" :key="index" :value="index">{{faculty.name}}</option>
           </select>
         </div>
-        <div class="text-left">
+        <div v-if="facultyIndex" class="text-left">
           <label class="mb-0" for="department">{{ $t('godchild.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="department">
-            <option v-for="(department, index) in departmentList" :key="index">{{department}}</option>
+            <option v-for="(department, index) in faculties[facultyIndex].departments" :key="index">{{department}}</option>
           </select>
         </div>
+
+
+
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godchild.outsideCourses')}}</label>
           <ul class="lang-ctn">
@@ -122,9 +126,12 @@ export default {
       active_el:0,
       errors: [],
       nationality: null,
+
+      faculties: [],
       department: null,
-      faculty: null,
+      facultyIndex: null,
       cycleOfStudies: null,
+
       languagesSpoken: [],
       availability: [],
       showModal: false,
@@ -132,8 +139,6 @@ export default {
       formResult: null,
       hobbies: [],
       activities: [],
-      facultyList: ["Lille", "Rouen", "Paris"],
-      departmentList: ["Physique", "Histoire", "Chimie", "Français"],
       countrys: countrys
     }
   },
@@ -153,11 +158,22 @@ export default {
     },
   },
   mounted(){
+    this.getFaculties();
     this.getHobbiesAndActivities();
     this.DateUtilFunctions();
   },
 
   methods:{
+    getFaculties(){
+      this.$store.dispatch("user/fetchFaculties").then(
+        faculties => {
+          this.faculties = faculties;
+        },
+        err => {
+          // FIXME error message
+        }
+      );
+    },
     getHobbiesAndActivities(){
       this.$store.dispatch("user/fetchHobbiesAndActivities").then(
           payload => {
@@ -186,7 +202,7 @@ export default {
       if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
       if (this.languagesSpoken.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
       if (!this.cycleOfStudies) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
-      if (!this.faculty) { this.errors.push(this.$t("errorsMsg.facultyRequired")); }
+      if (this.facultyIndex > -1 && !this.faculties[this.facultyIndex].name) { this.errors.push(this.$t("errorsMsg.facultyRequired")); }
       if (!this.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
       if (this.activities.length === 0) { this.errors.push(this.$t("errorsMsg.activitiesRequired")); }
       if (this.hobbies.length === 0) { this.errors.push(this.$t("errorsMsg.hobbiesRequired")); }
@@ -201,7 +217,7 @@ export default {
         availability: this.availability,
         languagesSpoken: this.languagesSpoken,
         cycleOfStudies: this.cycleOfStudies,
-        faculty: this.faculty,
+        faculty: this.faculties[this.facultyIndex].name,
         department: this.department,
         activity: this.activity,
         hobby:this.hobby

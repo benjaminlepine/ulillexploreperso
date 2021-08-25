@@ -10,6 +10,9 @@ const R = {
         signin(){ return R.endpoint.base+'/api/auth/signin'; },
         resetUserPassword(){ return R.endpoint.base+'/api/auth/reset-password'; },
         changeUserPassword(){ return R.endpoint.base+'/api/auth/change-password'; },
+        faculties(){
+            return R.endpoint.base+"/api/ulillexplore/faculties/";
+        },
         hobbies(lang){
             return R.endpoint.base+'/api/ulillexplore/hobbies/'+lang;
         },
