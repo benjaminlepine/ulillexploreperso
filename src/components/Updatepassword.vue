@@ -3,7 +3,7 @@
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <p class="mb-0 mainTitle">{{ $t('login.createNewPassword')}}</p>
     <div class="mainctn">
-      <form @submit="updatePassword">
+      <form @submit.prevent="updatePassword">
         <div class="text-left">
           <label class="mb-0" for="oldPassword">{{ $t('login.enterOldPassword')}}</label>
           <input class="form-control mb-3" id="oldPassword" v-model="oldPassword" ref="oldPassword" type="password" name="oldPassword">
@@ -38,7 +38,6 @@ export default {
       newPassword: null,
       repeatNewPassword: null,
       errors: [],
-      formResult: null,
     }
   },
   methods:{
@@ -50,11 +49,12 @@ export default {
     },
     updatePassword: function (e) {
       this.checkForm(e);
-      this.formResult = {
+      const payloader = {
+        email: this.$store.getters["auth/user"].email,
         oldPassword: this.oldPassword,
         newPassword:this.newPassword,
-      }
-      //console.log("formResult = ", this.formResult)
+      };
+      console.log("payloader = ", this.payloader)
     },
   }
 }

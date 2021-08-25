@@ -5,18 +5,18 @@
     <div class="mainctn">
       <!-- Name section -->
       <div class="d-flex justify-content-between">
-        <span class="profil-name">Audrey DUMONTIER</span>
+        <span class="profil-name">{{userFullName}}</span>
         <img :alt="$t('wait.oneUndredDay')" class="profil-picto" src="../assets/img/user.svg">
       </div>
       <hr>
       <!-- Infos & update password section -->
       <div>
         <p class="text-left mb-0">{{ $t('profil.contactEmail')}}</p>
-        <p class="mb-2 text-left mb-0 profil-info">Audrey.dumontier@univ-lille.fr</p>
+        <p class="mb-2 text-left mb-0 profil-info">{{userEmail}}</p>
         <p class="text-left mb-0">{{ $t('profil.cycleStudies')}}</p>
         <p class="mb-2 text-left mb-0 profil-info">Master - Droit du travail</p>
         <p class="text-left mb-0">{{ $t('profil.subscribedFrom')}}</p>
-        <p class="mb-2 text-left mb-0 profil-info montserrat">01/09/2019</p>
+        <p class="mb-2 text-left mb-0 profil-info montserrat">{{registrationDate}}</p>
         <router-link to="/updatepassword" class="btn explorebtnsecondary">{{ $t('profil.updatePassword')}}</router-link>
       </div>
       <hr>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { faSubscript } from '@fortawesome/free-solid-svg-icons';
 import store from '../store.js';
 export default {
   name: 'Profil',
@@ -57,7 +58,40 @@ export default {
       godchfas: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr', phone:'+33627798426'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr', phone:'+33137798826'}]
     }
   },
+  computed:{
+    userFullName(){
+      const user = this.$store.getters['auth/user'];
+      if (user){
+        if (user.firstname && user.lastname){
+          return user.firstname + ' ' + user.lastname;
+        }else if ( user.firstname){
+          return user.firstname;
+        }else if (user.lastname){
+          return user.lastname;
+        }
+      }
+      return "N/A"
+    },
+    userEmail(){
+      const user = this.$store.getters['auth/user'];
+      if (user && user.email){
+        return user.email;
+      }
+      return "N/A"
+    },
+    registrationDate(){
+      const user = this.$store.getters['auth/user'];
+      if (user && user.createAt){
+        const date = new Date(user.createAt);
+        return [this.pad(date.getDate()), this.pad(date.getMonth()), this.pad(date.getFullYear())].join('/');
+      }
+      return "N/A"
+    },
+  },
   methods: {
+    pad(n){
+      return n < 10 ? '0'+ n : n;
+    },
     unsubscribe(){
       console.log("unsubscribe")
     }

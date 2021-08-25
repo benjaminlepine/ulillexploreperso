@@ -3,7 +3,7 @@
         <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
         <p class="mb-0 mainTitle">{{ $t('signup.signup')}}</p>
         <div class="mainctn">
-            <form @submit="signUp">
+            <form @submit.prevent="signUp">
                 <input v-model="lastname" class="form-control mb-3" :placeholder="$t('signup.lastname')" id="lastname" type="text" required>
                 <input v-model="firstname" class="form-control mb-3" :placeholder="$t('signup.firstname')" id="firstname" type="text" required>
                 <input v-model="email" class="form-control mb-3" :placeholder="$t('signup.email')" id="email" type="text" required>
@@ -33,7 +33,8 @@
         methods:{
             signUp: function() {
                 const user = {firstname: this.firstname, lastname: this.lastname, email: this.email , password: this.password};
-                this.store.dispatch('aut/signup', user).then(
+                console.log("before dispatch ",user);
+                this.$store.dispatch('auth/signup', user).then(
                     () => {
                         // FIXME signup success, maybe we need to show some message
                         this.$router.push('/signin');
