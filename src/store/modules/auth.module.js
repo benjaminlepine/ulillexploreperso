@@ -16,6 +16,7 @@ export const auth = {
   actions: {
     signup({ commit }, user){
       commit('REQUEST_SIGNUP');
+      console.log("in dispatch ", user);
       return AuthService
         .signup(user).then(
           resp => {
@@ -153,5 +154,6 @@ export const auth = {
   getters: {
     loading: state => state.status.loading,
     signIn: state => state.status.signIn,
+    user: state => state.user,
   }
 };

@@ -1,0 +1,113 @@
+[
+    {
+        "name": "Humanités",
+        "departments":[
+            "Arts",
+            "Histoire",
+            "Histoire de l'art et Archéologie",
+            "Langues et cultures antiques",
+            "Lettres modernes",
+            "Philosophie",
+            "Sciences du langage"
+        ]
+    },
+    {
+        "name": "Langues, cultures et sociétés",
+        "departments":[
+            "Etudes anglophones - Angellier",
+            "Etudes romanes, slaves et orientales - ERSO",
+            "Etudes germaniques, néerlandaises et scandinaves",
+            "Langues étrangères appliquées - LEA"
+        ]
+    },
+    {
+        "name": "Psychologie, sciences de l’éducation et de la formation",
+        "departments":[
+            "Psychologie",
+            "Sciences de l'éducation"
+        ]
+    },
+    {
+        "name": "DECCID",
+        "departments":[
+            "Infocom",
+            "Sciences de l'information et du document"
+        ]
+    },
+    {
+        "name": "Sciences économiques, sociales et des territoires",
+        "departments":[
+            "Institut des sciences économiques et du management",
+            "Département des sciences sociales",
+            "Département de géographie, d’urbanisme et d’aménagement"
+        ]
+    },
+    {
+        "name": "Sciences juridiques, politiques et sociales",
+        "departments":[
+            "Droit",
+            "Sciences politiques",
+            "Administration et économie sociale"
+            
+        ]
+    },
+    {
+        "name": "Sciences et technologies",
+        "departments":[
+            "Biologie",
+            "Chimie",
+            "Mathématiques",
+            "Sciences de la Terre",
+            "Mécanique",
+            "Electronique, énergie éléctrique, automatique - EEA",
+            "Informatique",
+            "Physique"
+        ]
+    },
+    {
+        "name": "Sciences de santé et du sport (« UFR 3S »)",
+        "departments":[   
+            "Médecine",
+            "Pharmacie",
+            "Chirurgie dentaire",
+            "Ingéniérie et management de la santé - ILIS",
+            "Sciences du sport et de l'éducation physique"
+        ]
+    },
+    {
+        "name": "IAE Lille University School of Management",
+        "departments":[
+            "IAE Lille University School of Management"
+        ]
+    },
+    {
+        "name": "Polytech’Lille",
+        "departments":[
+            "Polytech’Lille"
+        ]
+    },
+    {
+        "name": "Inspé",
+        "departments":[
+            "Inspé"
+        ]
+    },
+    {
+        "name": "IUT",
+        "departments":[
+            "IUT A Chimie",
+            "IUT A Génie biologique",
+            "IUT A Génie éléctrique et informatique industrielle",
+            "IUT A Génie mécanique et productique",
+            "IUT A Gestion des entreprises et des administrations",
+            "IUT A Informatique",
+            "IUT A Mesures physiques",
+            "IUT B Carrières sociales",
+            "IUT B Gestion logistique et transport",
+            "IUT B InfoCom",
+            "IUT C Carrières juridiques",
+            "IUT C Statistique et informatique décisionnelle",
+            "IUT C Techniques de commercialisation"
+        ]
+    }
+]

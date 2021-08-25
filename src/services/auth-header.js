@@ -3,8 +3,8 @@ export default function authHeader(){
     let user = JSON.parse(localStorage.getItem('user'));
      
     if (user){
-        if (user.fullToken){ // student extern
-            return  {Authorization: user.fullToken};
+        if (user.token){ // student extern
+            return  {Authorization: 'Bearer ' + user.token};
         }else {
             // FIXME use cas cookie
             return {};

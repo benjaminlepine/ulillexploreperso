@@ -8,15 +8,20 @@ export default new class UserService {
         return resp.data;
     }
     async fetchHobbies(lang){
-        const resp = await axios.get(R.endpoint.hobbies(lang));
+        const resp = await axios.get(R.endpoint.hobbies(lang), { headers: authHeader() });
         return resp.data;
     }
     async fetchActivities(lang){
-        const resp = await axios.get(R.endpoint.activities(lang));
+        const resp = await axios.get(R.endpoint.activities(lang), { headers: authHeader() });
         return resp.data;
     }
     async fetchHobbiesAndActivities(lang){
-        const resp = await axios.get(R.endpoint.hobbiesActivities(lang));
+        const resp = await axios.get(R.endpoint.hobbiesActivities(lang), { headers: authHeader() });
+        return resp.data;
+    }
+
+    async fetchFaculties(){
+        const resp = await axios.get(R.endpoint.faculties(), { headers: authHeader() });
         return resp.data;
     }
 };

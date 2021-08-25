@@ -50,18 +50,22 @@
             <option v-for="(cycleOfStudies, index) in cycleOfStudiesList" :key="index">{{cycleOfStudies}}</option>
           </select>
         </div>
+
         <div class="text-left">
           <label class="mb-0" for="faculty">{{ $t('godchild.whatFaculty')}}</label>
-          <select class="form-control mb-3" id="faculty" v-model="faculty">
-            <option v-for="(faculty, index) in facultyList" :key="index">{{faculty}}</option>
+          <select class="form-control mb-3" id="faculty" v-model="facultyIndex">
+            <option v-for="(faculty, index) in faculties" :key="index" :value="index">{{faculty.name}}</option>
           </select>
         </div>
-        <div class="text-left">
+        <div v-if="facultyIndex" class="text-left">
           <label class="mb-0" for="department">{{ $t('godchild.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="department">
-            <option v-for="(department, index) in departmentList" :key="index">{{department}}</option>
+            <option v-for="(department, index) in faculties[facultyIndex].departments" :key="index">{{department}}</option>
           </select>
         </div>
+
+
+
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godchild.outsideCourses')}}</label>
           <ul class="lang-ctn">
@@ -117,15 +121,17 @@ export default {
   data: function ()  {
     return {
       languages: formInfos.languages,
-      lang: this.$i18n.locale,
       months: formInfos.months,
       nextMonths: [],
       active_el:0,
       errors: [],
       nationality: null,
+
+      faculties: [],
       department: null,
-      faculty: null,
+      facultyIndex: null,
       cycleOfStudies: null,
+
       languagesSpoken: [],
       availability: [],
       showModal: false,
@@ -133,61 +139,58 @@ export default {
       formResult: null,
       hobbies: [],
       activities: [],
-      facultyList: ["Lille", "Rouen", "Paris"],
-      departmentList: ["Physique", "Histoire", "Chimie", "Français"],
       countrys: countrys
     }
   },
 
   watch:{
-    lang: function(val){
+    lang(){
+      this.$store.state.header.lang;
       this.getHobbiesAndActivities();
     }
   },
   computed: {
-    cycleOfStudiesList: function (){return formInfos.cycleOfStudiesList[this.$i18n.locale]},
-    hobbyList: function (){
-      if (this.lang != this.$i18n.locale){
-        // this.getHobbiesAndActivities();
-      }
-      return this.hobbies;
+    lang(){
+      return this.$store.getters['header/language'];
     },
-    activityList: function (){
-      if (this.lang != this.$i18n.locale){
-        this.getHobbiesAndActivities();
-      }
-
-      return this.activities;
+    cycleOfStudiesList(){
+      return formInfos.cycleOfStudiesList[this.$i18n.locale]
     },
   },
   mounted(){
+    this.getFaculties();
     this.getHobbiesAndActivities();
     this.DateUtilFunctions();
-    console.log("this.$i18n.locale = ", this.$i18n.locale);
   },
 
   methods:{
+    getFaculties(){
+      this.$store.dispatch("user/fetchFaculties").then(
+        faculties => {
+          this.faculties = faculties;
+        },
+        err => {
+          // FIXME error message
+        }
+      );
+    },
     getHobbiesAndActivities(){
-      this.$apiService.hobbiesActivities(this.$i18n.locale)
-          .then((res) => {
-            const hobbies = []
-            res.data.hobbies.forEach((name, index) => {
-              const checked = this.hobbies[index] && this.hobbies[index].checked;
-              hobbies.push({name, index, checked: false});
+      this.$store.dispatch("user/fetchHobbiesAndActivities").then(
+          payload => {
+            payload.hobbies.forEach((name, index) => {
+                const checked = this.hobbies[index] && this.hobbies[index].checked;
+                this.$set(this.hobbies, index, {name, checked});
             });
-            const activities = [];
-            res.data.activities.forEach((name, index) => {
-              const checked = this.activities[index] && this.activities[index];
-              activities.push({name, index, checked});
+            payload.activities.forEach((name, index) => {
+                const checked = this.activities[index] && this.activities[index].checked;
+                this.$set(this.activities, index, {name, checked});
             });
-
-            this.hobbies = hobbies;
-            this.activities = activities;
-            this.lang = this.$i18n.locale
-          })
-          .catch((err) => {
-            // TODO message error
-          });
+          },
+          err => {
+            // FIXME something went wrong show message
+            console.log("Error went we try to get the hobbies and activities data", err);
+          }
+        );
     },
     checkForm: function (e) {
       // if (this.nationality && this.department) {
@@ -199,7 +202,7 @@ export default {
       if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
       if (this.languagesSpoken.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
       if (!this.cycleOfStudies) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
-      if (!this.faculty) { this.errors.push(this.$t("errorsMsg.facultyRequired")); }
+      if (this.facultyIndex > -1 && !this.faculties[this.facultyIndex].name) { this.errors.push(this.$t("errorsMsg.facultyRequired")); }
       if (!this.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
       if (this.activities.length === 0) { this.errors.push(this.$t("errorsMsg.activitiesRequired")); }
       if (this.hobbies.length === 0) { this.errors.push(this.$t("errorsMsg.hobbiesRequired")); }
@@ -214,7 +217,7 @@ export default {
         availability: this.availability,
         languagesSpoken: this.languagesSpoken,
         cycleOfStudies: this.cycleOfStudies,
-        faculty: this.faculty,
+        faculty: this.faculties[this.facultyIndex].name,
         department: this.department,
         activity: this.activity,
         hobby:this.hobby
