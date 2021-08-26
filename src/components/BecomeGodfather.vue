@@ -3,7 +3,7 @@
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <p class="mb-0 mainTitle">{{ $t('godfather.createMyProfil')}}</p>
     <div class="mainctn">
-      <form @submit="submitGodFather">
+      <form @submit.prevent="submitGodFather">
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godfather.nationality')}}</label>
           <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="nationality" name="nationality"/>
@@ -31,11 +31,11 @@
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godfather.whenAreYouAvailable')}}</label>
           <ul class="lang-ctn">
-            <label :for=month.monthliteral v-for="(month, index) in nextMonths" :key="index" class="lang-card d-flex text-left mb-0">
+            <label :for=month.monthlitera v-for="(month, index) in nextMonths" :key="index" class="lang-card d-flex text-left mb-0">
               <div class="lang-inside d-flex justify-content-between">
                 <div>
-                  <input :id=month.monthliteral v-model="availability[index]" type="checkbox" class="mt-1" name="availability">
-                  <span class="mb-0 w-100 ml-2">{{ $t('months.'+month.monthliteral)}} {{month.tmpYear}}</span>
+                  <input :id=month.monthName v-model="availability[index]" type="checkbox" class="mt-1" name="availability">
+                  <span class="mb-0 w-100 ml-2">{{ $t('months.'+month.monthName)}} {{month.year}}</span>
                 </div>
               </div>
             </label>
@@ -126,13 +126,13 @@
   import formInfos from '../assets/i18n/formInfos.json'
   import Popup from "@/components/Popup";
   import RGPDGodfather from "@/views/RGPDGodfather";
+  import GetNextMonths from "@/utils";
   export default {
     components: {RGPDGodfather, Popup},
     props: {},
     data: function ()  {
       return {
         languages: formInfos.languages,
-        months: formInfos.months,
         nextMonths: [],
         active_el:0,
         isOlderSubscribed: false,
@@ -150,7 +150,6 @@
         showModal: false,
         startDate: null,
         godChildNumber: null,
-        formResult: null,
         hobbies: [],
         activities: [],
         countrys: countrys
@@ -207,9 +206,6 @@
         );
       },
       checkForm: function (e) {
-        // if (this.nationality && this.department) {
-        //   return true;
-        // }
         this.errors = [];
         if (!this.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
         if (!this.startDate) { this.errors.push(this.$t("errorsMsg.startDateRequired")); }
@@ -217,16 +213,17 @@
         if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
         if (this.languagesSpoken.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
         if (!this.cycleOfStudies) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
-        if (this.facultyIndex > -1 && !this.faculties[this.facultyIndex].name) { this.errors.push(this.$t("errorsMsg.facultyRequired")); }
+        if (this.facultyIndex < 0 || !this.faculties[this.facultyIndex] || !this.faculties[this.facultyIndex].name) { this.errors.push(this.$t("errorsMsg.facultyRequired")); }
         if (!this.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
         if (this.activities.length === 0) { this.errors.push(this.$t("errorsMsg.activitiesRequired")); }
         if (this.hobbies.length === 0) { this.errors.push(this.$t("errorsMsg.hobbiesRequired")); }
-        e.preventDefault();
+        
+        return this.errors.length == 0;
       },
       submitGodFather: function (e) {
-        this.checkForm(e);
+        if (!this.checkForm(e)){ return; }
         this.DateUtilFunctions();
-        this.formResult = {
+        const formResult = {
           nationality: this.nationality,
           startDate:this.startDate,
           godChildNumber: this.godChildNumber,
@@ -238,7 +235,7 @@
           activity: this.activity,
           hobby:this.hobby
         }
-        this.$store.dispatch("", ).then(
+        this.$store.dispatch("user/createGodfatherProfil", ).then(
           (resp) => { 
             // FXIME form submit with succes
             console.log("FIXME form submit with succes");
@@ -248,26 +245,13 @@
             console.log("FIXME Error went we try to submit godfather form", err);
           }
         )
-        console.log("formResult = ", this.formResult)
+        console.log("formResult = ", formResult)
       },
       activate:function(el){
         this.active_el = el;
       },
       DateUtilFunctions() {
-        var months = [], tmpDate = new Date(), tmpYear = tmpDate.getFullYear(), tmpMonth = tmpDate.getMonth(), monthLiteral;
-        for (var i = 0 ; i < 12 ; i++) {
-          tmpDate.setMonth(tmpMonth + i);
-          tmpDate.setFullYear(tmpYear);
-          monthLiteral = this.months[tmpMonth];
-          months.push({monthliteral: monthLiteral, tmpYear: tmpYear });
-          //months.push(monthLiteral + ' ' + tmpYear);
-          if (tmpMonth === 11){
-            tmpMonth = 0;
-            tmpYear++
-          }
-          else {tmpMonth++}
-        }
-        this.nextMonths = months;
+        this.nextMonths =  GetNextMonths();
       },
       checkSeniorityDate() {
         if(Date.now() - this.$refs['startDate'].valueAsNumber > (24 * 3600000 * 100)){

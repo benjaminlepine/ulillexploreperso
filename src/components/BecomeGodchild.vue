@@ -111,13 +111,14 @@ import countrys from '../assets/i18n/country.json'
 import formInfos from '../assets/i18n/formInfos.json'
 import Popup from "@/components/Popup";
 import RGPDGodchild from "@/views/RGPDGodchild";
+import GetNextMonths from "@/utils";
+
 export default {
   components: {RGPDGodchild, Popup},
   props: {},
   data: function ()  {
     return {
       languages: formInfos.languages,
-      months: formInfos.months,
       nextMonths: [],
       active_el:0,
       errors: [],
@@ -251,19 +252,7 @@ export default {
       this.active_el = el;
     },
     DateUtilFunctions() {
-      var months = [], date = new Date(), year = date.getFullYear(), currentMonth = date.getMonth();
-      for (var i = 0 ; i < 12 ; i++) {
-        date.setMonth(currentMonth + i);
-        date.setFullYear(year);
-        months.push({monthName: this.months[currentMonth], year: year , mmyyyy: ((currentMonth+1)*10000+year)});
-        if (currentMonth === 11){
-          currentMonth = 0;
-          year++;
-        }else {
-          currentMonth++;
-        }
-      }
-      this.nextMonths = months;
+      this.nextMonths =  GetNextMonths();
     },
   }
 }

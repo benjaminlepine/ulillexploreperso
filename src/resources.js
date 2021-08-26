@@ -26,6 +26,9 @@ const R = {
         createGodchildProfil(){
             return R.endpoint.base+'/api/ulillexplore/godchild/profile';
         },
+        createGodfatherProfil(){
+            return R.endpoint.base+'/api/ulillexplore/godfather/profile/';
+        }
     }
 };
 export default R;
