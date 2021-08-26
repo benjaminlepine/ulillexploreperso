@@ -245,7 +245,11 @@
         "amParticipate": "Participer à l’organisation de l’International Student Week en tant que bénévole / Devenir parrain pour un/des étudiants internationaux  / Participer à un CafÉrasmus organisé sur l’un des Campus de L’Université de Lille",
         "UEInter": "Dans le cadre de l’UE International",
         "amRecueil": "Ecrire un recueil de bons plans, trucs & astuces sur ma ville d’accueil (restaurants, bars, informations culturelles). Il pourra être publié dans la section Internationale du site de l’Université de Lille. (Upload de document texte, document PDF/ Case pour insérer lien)",
-        "amRapport": "Rédiger un rapport de 4 pages retraçant mon expérience."
+        "amRapport": "Rédiger un rapport de 4 pages retraçant mon expérience.",
+        "errorFiles": "Un ou plusieurs fichier(s) chargé(s) ne corespond pas aux spécification suivantes : ",
+        "errorFilesFormat": "- Format acceptés: png, jpg, jpeg, pdf",
+        "errorFilesSize": "- Taille maximale par fichier: 1,5mo",
+        "maxFiles": "Fichiers maximum"
       }
     },
     "matching": {
