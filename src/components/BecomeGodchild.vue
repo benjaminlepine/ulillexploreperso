@@ -3,7 +3,7 @@
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <p class="mb-0 mainTitle">{{ $t('godchild.createMyProfil')}}</p>
     <div class="mainctn">
-      <form @submit="submitGodchild">
+      <form @submit.prevent="submitGodchild">
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godchild.nationality')}}</label>
           <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="nationality" name="nationality"/>
@@ -11,19 +11,15 @@
             <option class="form-control" v-for="(country, index) in countrys" :key="index">{{country.name}}</option>
           </datalist>
         </div>
-        <div class="text-left">
-          <label class="mb-0" for="startDate">{{ $t('godchild.whenYouStarted')}}</label>
-          <input class="form-control mb-3 datepicker" id="startDate" v-model="startDate" ref="startDate" type="date" name="startDate">
-        </div>
         <!-- Select month availability section -->
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godchild.whenAreYouAvailable')}}</label>
           <ul class="lang-ctn">
-            <label :for=month.monthliteral v-for="(month, index) in nextMonths" :key="index" class="lang-card d-flex text-left mb-0">
+            <label :for=month.monthName v-for="(month, index) in nextMonths" :key="index" class="lang-card d-flex text-left mb-0">
               <div class="lang-inside d-flex justify-content-between">
                 <div>
-                  <input :id=month.monthliteral v-model="availability[index]" type="checkbox" class="mt-1" name="availability">
-                  <span class="mb-0 w-100 ml-2">{{ $t('months.'+month.monthliteral)}} {{month.tmpYear}}</span>
+                  <input :id=month.monthName v-model="availability[index]" type="checkbox" class="mt-1" name="availability">
+                  <span class="mb-0 w-100 ml-2">{{ $t('months.'+month.monthName)}} {{month.year}}</span>
                 </div>
               </div>
             </label>
@@ -57,7 +53,7 @@
             <option v-for="(faculty, index) in faculties" :key="index" :value="index">{{faculty.name}}</option>
           </select>
         </div>
-        <div v-if="facultyIndex" class="text-left">
+        <div v-if="facultyIndex > -1" class="text-left">
           <label class="mb-0" for="department">{{ $t('godchild.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="department">
             <option v-for="(department, index) in faculties[facultyIndex].departments" :key="index">{{department}}</option>
@@ -129,14 +125,12 @@ export default {
 
       faculties: [],
       department: null,
-      facultyIndex: null,
+      facultyIndex: -1,
       cycleOfStudies: null,
 
       languagesSpoken: [],
       availability: [],
       showModal: false,
-      startDate: null,
-      formResult: null,
       hobbies: [],
       activities: [],
       countrys: countrys
@@ -192,55 +186,82 @@ export default {
           }
         );
     },
-    checkForm: function (e) {
-      // if (this.nationality && this.department) {
-      //   return true;
-      // }
+    checkForm(e) {
       this.errors = [];
       if (!this.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
-      if (!this.startDate) { this.errors.push(this.$t("errorsMsg.startDateRequired")); }
       if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
       if (this.languagesSpoken.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
       if (!this.cycleOfStudies) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
-      if (this.facultyIndex > -1 && !this.faculties[this.facultyIndex].name) { this.errors.push(this.$t("errorsMsg.facultyRequired")); }
+      if (this.facultyIndex < 0 || !this.faculties[this.facultyIndex] || !this.faculties[this.facultyIndex].name) {
+        this.errors.push(this.$t("errorsMsg.facultyRequired"));
+      }
       if (!this.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
       if (this.activities.length === 0) { this.errors.push(this.$t("errorsMsg.activitiesRequired")); }
       if (this.hobbies.length === 0) { this.errors.push(this.$t("errorsMsg.hobbiesRequired")); }
-      e.preventDefault();
+      
+      return this.errors.length == 0;
     },
     submitGodchild: function (e) {
-      this.checkForm(e);
-      this.DateUtilFunctions();
-      this.formResult = {
+      if (!this.checkForm(e)){ return; }
+      // this.DateUtilFunctions();
+      const availabilities = [], spokenLanguages=[], activities = [], hobbies = [];
+      
+      this.availability.forEach((v, index) => {
+        if (v){
+          availabilities.push(this.nextMonths[index].mmyyyy);
+        }
+      });
+      this.languagesSpoken.forEach((value, index) => {
+        if (value){
+          spokenLanguages.push(index);
+        }
+      });
+      this.activities.forEach((activity, index) => {
+        if (activity.checked){
+          activities.push(index);
+        }
+      });
+      this.hobbies.forEach((hobby, index) => {
+        if (hobby.checked){
+          hobbies.push(index);
+        }
+      });
+      const formResult = {
         nationality: this.nationality,
-        startDate:this.startDate,
-        availability: this.availability,
-        languagesSpoken: this.languagesSpoken,
-        cycleOfStudies: this.cycleOfStudies,
+        disponiblities: availabilities,
+        spokenLanguages: spokenLanguages, // indexes
+        studyCycle: this.cycleOfStudies,
         faculty: this.faculties[this.facultyIndex].name,
         department: this.department,
-        activity: this.activity,
-        hobby:this.hobby
+        activities: activities, // indexes
+        hobbies: hobbies // indexes
       }
-      this.$router.push('/matching')
-      console.log("formResult = ", this.formResult)
+      console.log(formResult)
+      this.$store.dispatch('user/createGodchildProfil', formResult).then(
+        (profile) => {
+          console.log(profile);
+          this.$router.push('/matching');
+        },
+        err => {
+          // FIXME error message
+        }
+      );
     },
     activate:function(el){
       this.active_el = el;
     },
     DateUtilFunctions() {
-      var months = [], tmpDate = new Date(), tmpYear = tmpDate.getFullYear(), tmpMonth = tmpDate.getMonth(), monthLiteral;
+      var months = [], date = new Date(), year = date.getFullYear(), currentMonth = date.getMonth();
       for (var i = 0 ; i < 12 ; i++) {
-        tmpDate.setMonth(tmpMonth + i);
-        tmpDate.setFullYear(tmpYear);
-        monthLiteral = this.months[tmpMonth];
-        months.push({monthliteral: monthLiteral, tmpYear: tmpYear });
-        //months.push(monthLiteral + ' ' + tmpYear);
-        if (tmpMonth === 11){
-          tmpMonth = 0;
-          tmpYear++
+        date.setMonth(currentMonth + i);
+        date.setFullYear(year);
+        months.push({monthName: this.months[currentMonth], year: year , mmyyyy: ((currentMonth+1)*10000+year)});
+        if (currentMonth === 11){
+          currentMonth = 0;
+          year++;
+        }else {
+          currentMonth++;
         }
-        else {tmpMonth++}
       }
       this.nextMonths = months;
     },

@@ -22,6 +22,9 @@ const R = {
         hobbiesActivities(lang){
             return R.endpoint.base+'/api/ulillexplore/hobbies-activities/'+lang;
         },
+        createGodchildProfil(){
+            return R.endpoint.base+'/api/ulillexplore/godchild/profile';
+        },
     }
 };
 export default R;
