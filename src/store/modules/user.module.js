@@ -8,8 +8,20 @@ Vue.use(Vuex);
 
 export const user = {
     namespaced: true,
-    state: {},
+    state: {godchildProfil: null},
     actions:{
+        createGodchildProfil({}, godchildProfil){
+            return UserService.createGodchildProfil(godchildProfil).then(
+                profil => {
+                    //commit('RECEIVE_GODCHILD_PROFIL_SUCCESS', profil);
+                    console.log("===> ", profil);
+                    return Promise.resolve(profil);
+                },
+                err => {
+                    return Promise.reject(err);
+                }
+            );
+        },
         fetchHobbiesAndActivities({commit, rootGetters }){
             const lang = rootGetters['header/language'];
             commit('REQUEST_HOBBIES_AND_ACTIVITIES');
@@ -39,6 +51,12 @@ export const user = {
         },
     },
     mutations:{
+        REQUEST_GODCHILD_PROFIL(state){},
+        RECEIVE_GODCHILD_PROFIL_SUCCESS(state, godchildProfil){
+            state.godchildProfil = godchildProfil;
+        },
+        RECEIVE_GODCHILD_PROFIL_ERROR(state){},
+        
         REQUEST_FACULTIES(state){},
         RECEIVE_FACULTIES_SUCCESS(state){},
         RECEIVE_FACULTIES_ERROR(state){},
