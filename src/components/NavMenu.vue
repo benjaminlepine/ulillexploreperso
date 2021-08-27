@@ -3,9 +3,15 @@
         <div class="sidebar-backdrop" v-on:click="closeSidebarPanel" v-if="isPanelOpen"></div>
         <transition name="slide">
             <div v-if="isPanelOpen" class="sidebar-panel">
-                <div v-on:click="closeSidebarPanel" class="side-header d-flex">
+                <div v-on:click="closeSidebarPanel" class="side-header">
+                  <div class="d-flex">
                     <img class="side-header--ico" src="../assets/img/cap.svg">
                     <i class="fas fa-arrow-left fa-2x sidebar-panel-arrow"></i>
+                  </div>
+                  <p v-if="!isAuth" class="ml-3 mb-0 mt-2 text-white" >{{ $t('sideMenu.signIn')}}</p>
+                  <p v-if="isAuth" class="ml-3 mb-0 mt-2 text-white">{{ $t('sideMenu.welcome')}}
+                    <span class="sidebar-fullname"><b>{{userFullName}}</b></span>
+                  </p>
                 </div>
                 <ul v-on:click="closeSidebarPanel" class="sidebar-panel-nav">
                     <li >
@@ -14,7 +20,7 @@
                     </li>
                   <li >
                     <i class="fas fa-user fa-2x sidebar-panel-nav--icon"></i>
-                    <router-link to="/ambassador">{{ $t('sideMenu.profil')}}</router-link>
+                    <router-link to="/profil">{{ $t('sideMenu.profil')}}</router-link>
                   </li>
                     <li >
                         <i class="fas fa-user-graduate fa-2x sidebar-panel-nav--icon"></i>
@@ -30,7 +36,8 @@
                     </li>
                     <li @click="logout">
                         <i class="fas fa-sign-out-alt fa-2x sidebar-panel-nav--icon"></i>
-                        <span>{{ $t('sideMenu.logout')}}</span>
+                        <span v-if="isAuth" class="uexplore-link">{{ $t('sideMenu.logout')}}</span>
+                        <span v-if="!isAuth" class="uexplore-link">{{ $t('sideMenu.login')}}</span>
                     </li>
                 </ul>
             </div>
@@ -46,8 +53,15 @@
             isPanelOpen() {
                 return this.$store.getters['header/isNavOpen'];
             },
+            userFullName(){
+              return this.$store.getters['user/fullName'];
+            },
+            isAuth(){
+              return this.$store.getters['auth/isAuth'];
+            },
         },
-        methods: {
+
+      methods: {
             closeSidebarPanel(){
                 this.$store.commit('header/setIsNavOpen', false);
             },
@@ -156,5 +170,14 @@
                 color: $text-color !important;
             }
         }
+    }
+    .uexplore-link{
+      &:hover{
+      text-decoration: underline;
+      cursor: pointer;
+      }
+    }
+    .sidebar-fullname{
+      color: $third-color;
     }
 </style>

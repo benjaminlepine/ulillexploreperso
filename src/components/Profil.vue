@@ -56,17 +56,7 @@ export default {
   },
   computed:{
     userFullName(){
-      const user = this.$store.getters['auth/user'];
-      if (user){
-        if (user.firstname && user.lastname){
-          return user.firstname + ' ' + user.lastname;
-        }else if ( user.firstname){
-          return user.firstname;
-        }else if (user.lastname){
-          return user.lastname;
-        }
-      }
-      return "N/A"
+      return this.$store.getters['user/fullName'];
     },
     userEmail(){
       const user = this.$store.getters['auth/user'];

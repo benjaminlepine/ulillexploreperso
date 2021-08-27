@@ -64,11 +64,14 @@
       "samePasswordRequired":"Les 2 mot de passe doivent corespondre"
     },
     "sideMenu": {
+      "welcome": "Bienvenue",
+      "signIn": "Connectez vous pour plus d'infos",
       "home": "Accueil",
       "becomeGodfather": "Devenir parrain",
       "becomeGodchild": "Etre parrainé",
       "ambassador": "Ambassadeurs",
       "profil": "Profil",
+      "login": "Connexion",
       "logout": "Deconnexion"
     },
     "login": {
@@ -336,6 +339,8 @@
       "samePasswordRequired":"The 2 passwords must match"
     },
     "sideMenu": {
+      "welcome": "Welcome",
+      "signIn": "Sign In for more information",
       "home": "Home",
       "becomeGodfather": "Become godfather",
       "becomeGodchild": "To be sponsored",
