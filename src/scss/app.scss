@@ -118,6 +118,10 @@
   font-family: $ulill-font;
   color: $text-color;
 }
-
+.bg-warning{
+  background-color: rgba(255, 0, 0, 0.2) !important;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
 
 
