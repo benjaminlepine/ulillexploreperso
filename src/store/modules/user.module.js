@@ -61,7 +61,7 @@ export const user = {
                     commit('RECEIVE_FACULTIES_ERROR');
                     return Promise.reject(err);
                 }
-            )
+            );
         },
     },
     mutations:{

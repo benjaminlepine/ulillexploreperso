@@ -64,11 +64,24 @@ export const auth = {
         return Promise.resolve();
       }
     },
-    resetUserPassword({ commit}, email){
-      commit('REQUEST_RESET_PASSWORD')
+    forgotPassword({ commit}, email){
+      commit('REQUEST_PASSWORD_FORGOT')
       console.log(email);
-      AuthService.resetUserPassword(email).then(
+      AuthService.forgotPassword(email).then(
         resp =>{
+          commit('RECEIVE_PASSWORD_FORGOT_SUCCESS');
+          return Promise.resolve(resp);
+        },
+        err => {
+          commit('RECEIVE_PASSWORD_FORGOT_ERROR');
+          return Promise.reject(err);
+        }
+      )
+    },
+    resetPassword({ commit }, form){
+      commit('REQUEST_RESET_PASSWORD');
+      AuthService.resetPassword(form).then(
+        resp => {
           commit('RECEIVE_RESET_PASSWORD_SUCCESS');
           return Promise.resolve(resp);
         },
@@ -76,23 +89,20 @@ export const auth = {
           commit('RECEIVE_RESET_PASSWORD_ERROR');
           return Promise.reject(err);
         }
-      )
-    },
-    changeUserPassword({ commit }, payload){
-      commit('REAQUEST_CHANGE_PASSWORD');
-      AuthService.changeUserPassword(payload).then(
-        resp => {
-          commit('');
-          return Promise.resolve(resp);
-        },
-        err => {
-          commit('');
-          return Promise.reject(err);
-        }
       );
     }
   },
   mutations: {
+    REQUEST_PASSWORD_FORGOT(state){
+      state.status.loading = true;
+    },
+    RECEIVE_PASSWORD_FORGOT_SUCCESS(state){
+      state.status.loading = false;
+    },
+    RECEIVE_PASSWORD_FORGOT_ERROR(state){
+      state.status.loading = false;
+    },
+
     REQUEST_RESET_PASSWORD(state){
       state.status.loading = true;
     },
@@ -100,16 +110,6 @@ export const auth = {
       state.status.loading = false;
     },
     RECEIVE_RESET_PASSWORD_ERROR(state){
-      state.status.loading = false;
-    },
-
-    REQUEST_CHANGE_PASSWORD(state){
-      state.status.loading = true;
-    },
-    RECEIVE_CHANGE_PASSWORD_SUCCESS(state){
-      state.status.loading = false;
-    },
-    RECEIVE_CHANGE_PASSWORD_ERROR(state){
       state.status.loading = false;
     },
 

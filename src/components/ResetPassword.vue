@@ -25,7 +25,6 @@
                 password: null,
                 passwordConfirm: null,
                 samePassword: true,
-                token: null,
                 id: 9,
             }
         },
@@ -38,20 +37,24 @@
             },
         },
         methods:{
-            changePassword: function() {
+            changePassword(e) {
+                e.preventDefault();
                 if(this.password !== this.passwordConfirm || this.password === null || this.password.length < 6){
                     this.samePassword = false;
 
                 } else{
                     this.samePassword = true;
-                    this.$store.dispatch('auth/changeUserPassword', { password: this.password, token: this.token}).then(
-                       () => {
+                    const form = { token: this.$route.query.token, password: this.password, confirmPassword: this.passwordConfirm };
+                    console.log(form);
+                    this.$store.dispatch('auth/resetPassword', form).then(
+                       (data) => {
                             // FIXME success message 
-                            // this.$router.push('/');
+                            this.$router.push('/signin');
                         },
                         error => {
-                            this.message = (error.response && error.response.data) || error.message || error.toString();
-                            console.log(this.message);
+                            console(error);
+                            // this.message = (error.response && error.response.data) || error.message || error.toString();
+                            // console.log(this.message);
                         }
                     );
                 }

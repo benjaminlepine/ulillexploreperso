@@ -4,7 +4,7 @@
             <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
             <div class="mainctn">
                 <h5>{{ $t('login.getYourAccount')}}</h5>
-                <form @submit="sendEmailPassword">
+                <form @submit.prevent="sendEmailPassword">
                     <input v-model="email" class="form-control mb-3" :placeholder="$t('signup.email')" id="email" type="text" required>
                     <button type="submit" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.validate')}}<br></button>
                 </form>
@@ -30,9 +30,7 @@
         methods:{
             sendEmailPassword: function(e) {
                 // FIXME check if email is valid
-                e.preventDefault();
-                this.$store.dispatch('auth/resetUserPassword', this.email).then(
-
+                this.$store.dispatch('auth/forgotPassword', this.email).then(
                     () => {
                         // FIXME success message
                     },

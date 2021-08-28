@@ -24,17 +24,16 @@ export default new class AuthService {
         localStorage.removeItem('user');
     }
 
-    async resetUserPassword(email){
-        console.log(R.endpoint.resetUserPassword());
-        const resp = await axios.post(R.endpoint.resetUserPassword(), {email: email})
+    async forgotPassword(email){
+        const resp = await axios.post(R.endpoint.forgotPassword(), {email: email})
         if (resp.data){
             return resp.data;
         }
         return resp;
     }
 
-    async changeUserPassword(payload){ // password & token
-        const resp = await axios.post(R.endpoint.changeUserPassword(), payload);
+    async resetPassword(form){ // password & token
+        const resp = await axios.post(R.endpoint.resetPassword(), form);
         if (resp.data){
             return resp.data;
         }
