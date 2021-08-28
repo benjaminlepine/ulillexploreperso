@@ -155,5 +155,6 @@ export const auth = {
     loading: state => state.status.loading,
     signIn: state => state.status.signIn,
     user: state => state.user,
+    isAuth: (state)=> !!state.user,
   }
 };

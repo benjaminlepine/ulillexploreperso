@@ -76,14 +76,28 @@ export const user = {
             state.godchildProfil = godchildProfil;
         },
         RECEIVE_GODCHILD_PROFIL_ERROR(state){},
-        
+
         REQUEST_FACULTIES(state){},
         RECEIVE_FACULTIES_SUCCESS(state){},
         RECEIVE_FACULTIES_ERROR(state){},
-        
+
         REQUEST_HOBBIES_AND_ACTIVITIES(state){},
         RECEIVE_HOBBIES_AND_ACTIVITIES_SUCCESS(state){},
         RECEIVE_HOBBIES_AND_ACTIVITIES_ERROR(state){},
     },
-    getters:{}
+    getters:{
+        fullName: (state, getters, rootState, rootGetters)=>{
+            const user = rootGetters['auth/user'];
+            if (user){
+                if (user.firstname && user.lastname){
+                    return user.firstname + ' ' + user.lastname;
+                }else if ( user.firstname){
+                    return user.firstname;
+                }else if (user.lastname){
+                    return user.lastname;
+                }
+            }
+            return "N/A"
+        },
+    }
 };
