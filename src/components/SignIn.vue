@@ -2,7 +2,7 @@
     <div class="login-ctn">
         <p class="mb-0 mainTitle text-yellow">{{ $t('home.ulillexplore')}}</p>
         <p class="mb-0 mainTitle">{{ $t('login.login')}}</p>
-        <button class="btn explorebtn explorebtn--login">
+        <button class="btn explorebtn explorebtn--login" @click="casSignIn()">
             {{ $t('login.iHaveUlillAdress')}}<br>
             {{ $t('login.iClickHere')}}
         </button>
@@ -21,6 +21,7 @@
 
 <script>
     import User from '../models/user';
+    import R from '../resources';
 
     export default {
         props: {},
@@ -29,7 +30,6 @@
                 user: new User('', ''),
                 loading: false,
                 message: '',
-
                 email: null,
                 password: null,
             };
@@ -48,7 +48,10 @@
             }
         },
         methods:{
-            handleSignIn: function(){
+            casSignIn(){
+                window.location.href = R.endpoint.casSignin();
+            },
+            handleSignIn(){
                 this.loading = true;
                 // formulaire validate
                 if (this.user.email && this.user.password){

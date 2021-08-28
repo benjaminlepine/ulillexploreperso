@@ -7,10 +7,11 @@ const R = {
         //godfatherDetails(){ return R.endpoint.base+'/api/ulillexplore/godfather/{id}'; },
         //godchildSummary(){ return R.endpoint.base+'/api/ulillexplore/godchild/summary/{pageNo}/{pageSize}'; },
         //godchildDetails(){ return R.endpoint.base+'/api/ulillexplore/godchild/{id}'; },
+        casSignin() { return process.env.VUE_APP_API_ENDPOINT+'/api/login'; },
         signup(){ return R.endpoint.base+'/api/auth/signup'; },
         signin(){ return R.endpoint.base+'/api/auth/signin'; },
-        resetUserPassword(){ return R.endpoint.base+'/api/auth/reset-password'; },
-        changeUserPassword(){ return R.endpoint.base+'/api/auth/change-password'; },
+        forgotPassword(){ return R.endpoint.base+'/api/auth/forgot-password'; },
+        resetPassword(){ return R.endpoint.base+'/api/auth/reset-password'; },
         faculties(){
             return R.endpoint.base+"/api/ulillexplore/faculties/";
         },
@@ -26,6 +27,9 @@ const R = {
         createGodchildProfil(){
             return R.endpoint.base+'/api/ulillexplore/godchild/profile';
         },
+        createGodfatherProfil(){
+            return R.endpoint.base+'/api/ulillexplore/godfather/profile/';
+        }
     }
 };
 export default R;

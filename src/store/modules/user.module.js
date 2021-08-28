@@ -8,16 +8,30 @@ Vue.use(Vuex);
 
 export const user = {
     namespaced: true,
-    state: {godchildProfil: null},
+    state: {godchildProfil: null, godfatherProfil: null},
     actions:{
-        createGodchildProfil({}, godchildProfil){
-            return UserService.createGodchildProfil(godchildProfil).then(
+        createGodfatherProfil({commit}, godfatherProfil){
+            commit('CREATE_GODFATHER_PROFIL');
+            return UserService.createGodfatherProfil(godfatherProfil).then(
                 profil => {
-                    //commit('RECEIVE_GODCHILD_PROFIL_SUCCESS', profil);
-                    console.log("===> ", profil);
+                    commit('RECEIVE_GODFATHER_PROFIL_SUCCESS', profil);
                     return Promise.resolve(profil);
                 },
                 err => {
+                    commit('RECEIVE_GODFATHER_PROFIL_ERROR');
+                    return Promise.reject(err);
+                }
+            );
+        },
+        createGodchildProfil({commit}, godchildProfil){
+            commit('CREATE_GODCHILD_PROFIL');
+            return UserService.createGodchildProfil(godchildProfil).then(
+                profil => {
+                    commit('RECEIVE_GODCHILD_PROFIL_SUCCESS', profil);
+                    return Promise.resolve(profil);
+                },
+                err => {
+                    commit('RECEIVE_GODCHILD_PROFIL_ERROR');
                     return Promise.reject(err);
                 }
             );
@@ -47,11 +61,17 @@ export const user = {
                     commit('RECEIVE_FACULTIES_ERROR');
                     return Promise.reject(err);
                 }
-            )
+            );
         },
     },
     mutations:{
-        REQUEST_GODCHILD_PROFIL(state){},
+        CREATE_GODFATHER_PROFIL(state){},
+        RECEIVE_GODFATHER_PROFIL_SUCCESS(state, godfatherProfil){
+            state.godfatherProfil = godfatherProfil;
+        },
+        RECEIVE_GODFATHER_PROFIL_ERROR(state){},
+
+        CREATE_GODCHILD_PROFIL(state){},
         RECEIVE_GODCHILD_PROFIL_SUCCESS(state, godchildProfil){
             state.godchildProfil = godchildProfil;
         },

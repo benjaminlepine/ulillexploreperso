@@ -26,8 +26,12 @@ export default new class UserService {
     }
 
     async createGodchildProfil(godchildProfil){
-        console.log("post request");
         const resp = await axios.post(R.endpoint.createGodchildProfil(), godchildProfil, { headers: authHeader() });
+        return resp.data;
+    }
+
+    async createGodfatherProfil(godfatherProfile){
+        const resp = await axios.post(R.endpoint.createGodfatherProfil(), godfatherProfile, { headers: authHeader() });
         return resp.data;
     }
 };
