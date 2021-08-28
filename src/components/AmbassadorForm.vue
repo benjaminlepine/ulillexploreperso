@@ -1,15 +1,11 @@
 <template>
   <div>
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
-    <!--    <p class="mb-0 mainTitle">{{ $t('ambassador.becomeAmbassador')}}</p>-->
     <div class="mainctn">
       <h3>{{ $t('ambassador.form.becomeAmbassador')}}</h3>
-      <form @submit="submitAmbassador" class="text-left">
+      <form @submit.prevent="submitAmbassador" class="text-left">
         <div class="personal_infos">
           <h5>{{ $t('ambassador.form.personalInfos')}}</h5>
-          <input class="form-control mb-3" v-model="ambaLastname" :placeholder="$t('ambassador.form.ambaLastname')">
-          <input class="form-control mb-3" v-model="amFirstname" :placeholder="$t('ambassador.form.amFirstname')">
-          <input class="form-control mb-3" v-model="amMail" :placeholder="$t('ambassador.form.amMail')">
           <input class="form-control mb-3" v-model="amCountry" :placeholder="$t('ambassador.form.amCountry')">
           <input class="form-control mb-3" v-model="amUniversity" :placeholder="$t('ambassador.form.amUniversity')">
           <input class="form-control mb-3" v-model="amExchange" :placeholder="$t('ambassador.form.amExchange')">
@@ -22,8 +18,7 @@
         <p class="mb-0"><b>{{ $t('ambassador.form.amChooseInterview')}}</b></p>
         <input class="form-control mb-3" v-model="amDoInterview" id="amDoInterview" type="date">
         <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
-        <input class="form-control mb-3 pb-5 pt-3" type="file" @change="validateFiles($event, 7)"
-               id="amDoPhoto" v-on="amDoPhoto" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amDoPhoto, 7)" id="amDoPhoto" multiple>
         <p v-if="errorsTab.indexOf('amDoPhoto') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
@@ -35,45 +30,40 @@
         <label class="mb-0" for="amDoPostal">{{ $t('ambassador.form.amDoPostal')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
         <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
-        <input class="form-control mb-3 pb-5 pt-3" type="file" @change="validateFiles($event, 7)"
-               id="amDoPostal" v-on="amDoPostal" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amDoPostal, 7)" id="amDoPostal" multiple>
         <p v-if="errorsTab.indexOf('amDoPostal') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
         <label class="mb-0" for="amRepresent">{{ $t('ambassador.form.amRepresent')}}</label>
-        <input class="form-control mb-3 pb-5 pt-3" type="file" @change="validateFiles($event, 4)"
-               id="amRepresent" v-on="amRepresent" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amRepresent, 4)" id="amRepresent" multiple>
         <p v-if="errorsTab.indexOf('amRepresent') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
+          <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
         <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
         <textarea class="form-control mb-3" v-model="amBlog" id="amBlog" ></textarea>
         <label class="mb-0" for="amCarnet">{{ $t('ambassador.form.amCarnet')}}</label>
-        <input class="form-control mb-3 pb-5 pt-3" type="file" @change="validateFiles($event, 4)"
-               id="amCarnet" v-on="amCarnet" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amCarnet, 4)" id="amCarnet" multiple>
         <p v-if="errorsTab.indexOf('amCarnet') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
+          <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
         <label class="mb-0" for="amPlan">{{ $t('ambassador.form.amPlan')}}</label>
-        <input class="form-control mb-3 pb-5 pt-3" type="file" @change="validateFiles($event, 4)"
-               id="amPlan" v-on="amPlan" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amPlan, 4)" id="amPlan" multiple>
         <p v-if="errorsTab.indexOf('amPlan') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
+          <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
         <label class="mb-0" for="amPromotion">{{ $t('ambassador.form.amPromotion')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
-        <input class="form-control mb-3 pb-5 pt-3" type="file" @change="validateFiles($event, 4)"
-               id="amPromotion" v-on="amPromotion" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amPromotion, 4)" id="amPromotion" multiple>
         <p v-if="errorsTab.indexOf('amPromotion') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
+          <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
@@ -86,15 +76,13 @@
         <p class="mb-0">{{ $t('ambassador.form.UEInter')}}</p>
         <hr>
         <label class="mb-0" for="amRecueil">{{ $t('ambassador.form.amRecueil')}}</label>
-        <input class="form-control mb-3 pb-5 pt-3" type="file" @change="validateFiles($event, 1)"
-               id="amRecueil" v-on="amRecueil">
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amRecueil, 1)" id="amRecueil">
         <p v-if="errorsTab.indexOf('amRecueil') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
         <label class="mb-0" for="amRapport">{{ $t('ambassador.form.amRapport')}}</label>
-        <input class="form-control mb-3 pb-5 pt-3" type="file" @change="validateFiles($event, 1)"
-               id="amRapport" v-on="amRapport">
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amRapport, 1)" id="amRapport">
         <p v-if="errorsTab.indexOf('amRapport') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
@@ -106,81 +94,98 @@
 </template>
 
 <script>
-import router from 'vue'
 export default {
   components: {},
-  props: {
-    ambaLastname:null,
-    amFirstname:null,
-    amMail:null,
-    amCountry:null,
-    amUniversity:null,
-    amExchange:null,
-    amComposante:null,
-    amDoPortrait:null,
-    amDoInterview:null,
-    amDoPhoto: null,
-    amDoPubli:null,
-    amDoPostal:null,
-    amRepresent:null,
-    amBlog:null,
-    amCarnet:null,
-    amPlan:null,
-    amPromotion:null,
-    amRecueil:null,
-    amRapport:null,
-    inputtest:null,
-    inputtestu:null,
-    isDisabled:false,
-    inputtesterrors:false,
-  },
+  props: {},
   data: function ()  {
     return {
       acceptCB: false,
-      amDoPhotosg: [],
-      items: [
-        { message: 'Foo' },
-        { message: 'Bar' }
-      ],
-      errorsTab:[]
+      amCountry:null,
+      amUniversity:null,
+      amExchange:null,
+      amComposante:null,
+      amDoPortrait:null,
+      amDoInterview:null,
+      amDoPhoto: {},
+      amDoPubli:null,
+      amDoPostal:{},
+      amRepresent:{},
+      amBlog:null,
+      amCarnet:{},
+      amPlan:{},
+      amPromotion:{},
+      amRecueil:{},
+      amRapport:{},
+      isDisabled:false,
+      errorsTab:[],
+      selectedFile: null,
     }
   },
   methods:{
     becomeAmbassador(){
       console.log("becomeAmbassador = OK")
     },
-    validateFiles(event, maxFileNumber) {
+    onFileSelected(event, inputRef, maxFileNumber) {
       let elementId = event.target.id
-      let files = event.target.files
-      let filesSize = [];
-      if(files.length > maxFileNumber){
+      if(event.target.files.length > maxFileNumber){
+        // Trop de fichiers - Affiche une erreur
         this.errorsTab.push(elementId)
         this.isDisabled = true;
+        return -1
       } else{
+        // OK - Enlève l'erreur sur cet input
         const idx = this.errorsTab.indexOf(elementId);
         if (idx > -1){
           this.errorsTab.splice(this.errorsTab.indexOf(elementId),1);
         }
       }
-      for (let i = 0; i < files.length; i++) {
-        filesSize.push(files[i].size/ 1024 / 1024)
-      }
-      for (let i = 0; i < filesSize.length; i++) {
-        if (filesSize[i] > 2) {
+      inputRef.selectedFile = []
+      inputRef.fd = []
+      for (let i = 0; i < event.target.files.length; i++) {
+        // Control de la Taille du fichier courant "i"
+        if ((event.target.files[i].size/ 1024 / 1024) > 2) {
+          // Le fichier est trop lourd - Superieur à 2mo
           this.errorsTab.push(elementId)
           this.isDisabled = true
           return(-1);
         } else {
+          // Le fichier est OK - On enlève l'erreur
           const idx = this.errorsTab.indexOf(elementId);
           if (idx > -1){
             this.errorsTab.splice(this.errorsTab.indexOf(elementId),1);
           }
-          this.isDisabled = false
+          if(this.errorsTab.length <= 0){
+            this.isDisabled = false
+          }
         }
+       // Ajout des infos du file necessaire a la creation du FormData
+        inputRef.selectedFile.push(event.target.files[i])
+        // Ajout du FormData (Donnée binaire effective du fichier) dans l'objet corespondant
+        inputRef.fd[i] = new FormData();
+        inputRef.fd[i].append('image', inputRef.selectedFile[i], inputRef.selectedFile[i].name)
       }
     },
     submitAmbassador(){
-      console.log("submit form")
+      let formResult = {
+        amCountry:this.amCountry,
+        amUniversity:this.amUniversity,
+        amExchange:this.amExchange,
+        amComposante:this.amComposante,
+        amDoPortrait:this.amDoPortrait,
+        amDoInterview:this.amDoInterview,
+        amDoPhoto:this.amDoPhoto,
+        amDoPubli:this.amDoPubli,
+        amDoPostal:this.amDoPostal,
+        amRepresent:this.amRepresent,
+        amBlog:this.amBlog,
+        amCarnet:this.amCarnet,
+        amPlan:this.amPlan,
+        amPromotion:this.amPromotion,
+        amRecueil:this.amRecueil,
+        amRapport:this.amRapport,
+        selectedFile:this.selectedFile,
+      }
+      console.log("formResult = ", formResult)
     }
   }
 }
