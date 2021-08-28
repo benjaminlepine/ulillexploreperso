@@ -6,19 +6,19 @@
       <form @submit.prevent="submitAmbassador" class="text-left">
         <div class="personal_infos">
           <h5>{{ $t('ambassador.form.personalInfos')}}</h5>
-          <input class="form-control mb-3" v-model="amCountry" :placeholder="$t('ambassador.form.amCountry')">
-          <input class="form-control mb-3" v-model="amUniversity" :placeholder="$t('ambassador.form.amUniversity')">
-          <input class="form-control mb-3" v-model="amExchange" :placeholder="$t('ambassador.form.amExchange')">
-          <input class="form-control mb-3" v-model="amComposante" :placeholder="$t('ambassador.form.amComposante')">
+          <input class="form-control mb-3" v-model="amCountry" :placeholder="$t('ambassador.form.amCountry')" required>
+          <input class="form-control mb-3" v-model="amUniversity" :placeholder="$t('ambassador.form.amUniversity')" required>
+          <input class="form-control mb-3" v-model="amExchange" :placeholder="$t('ambassador.form.amExchange')" required>
+          <input class="form-control mb-3" v-model="amComposante" :placeholder="$t('ambassador.form.amComposante')" required>
         </div>
         <h5 class="mt-4">{{ $t('ambassador.form.amBefore')}}</h5>
         <label class="mb-0" for="amDoPortrait">{{ $t('ambassador.form.amDoPortrait')}}</label>
         <textarea class="form-control mb-3" id="amDoPortrait" v-model="amDoPortrait" rows="5" cols="33"></textarea>
         <label class="mb-0" for="amDoInterview">{{ $t('ambassador.form.amDoInterview')}}</label>
         <p class="mb-0"><b>{{ $t('ambassador.form.amChooseInterview')}}</b></p>
-        <input class="form-control mb-3" v-model="amDoInterview" id="amDoInterview" type="date">
+        <input class="form-control mb-3" v-model="amDoInterview" id="amDoInterview" type="date" required>
         <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amDoPhoto, 7)" id="amDoPhoto" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amDoPhoto, 7)" id="amDoPhoto" multiple required>
         <p v-if="errorsTab.indexOf('amDoPhoto') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
@@ -30,14 +30,14 @@
         <label class="mb-0" for="amDoPostal">{{ $t('ambassador.form.amDoPostal')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
         <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amDoPostal, 7)" id="amDoPostal" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amDoPostal, 7)" id="amDoPostal" multiple required>
         <p v-if="errorsTab.indexOf('amDoPostal') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
         <label class="mb-0" for="amRepresent">{{ $t('ambassador.form.amRepresent')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amRepresent, 4)" id="amRepresent" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amRepresent, 4)" id="amRepresent" multiple required>
         <p v-if="errorsTab.indexOf('amRepresent') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
@@ -46,14 +46,14 @@
         <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
         <textarea class="form-control mb-3" v-model="amBlog" id="amBlog" ></textarea>
         <label class="mb-0" for="amCarnet">{{ $t('ambassador.form.amCarnet')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amCarnet, 4)" id="amCarnet" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amCarnet, 4)" id="amCarnet" multiple required>
         <p v-if="errorsTab.indexOf('amCarnet') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
         <label class="mb-0" for="amPlan">{{ $t('ambassador.form.amPlan')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amPlan, 4)" id="amPlan" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amPlan, 4)" id="amPlan" multiple required>
         <p v-if="errorsTab.indexOf('amPlan') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
@@ -61,7 +61,7 @@
         </p>
         <label class="mb-0" for="amPromotion">{{ $t('ambassador.form.amPromotion')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amPromotion, 4)" id="amPromotion" multiple>
+        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amPromotion, 4)" id="amPromotion" multiple required>
         <p v-if="errorsTab.indexOf('amPromotion') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
           <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
