@@ -160,7 +160,7 @@ export default {
         }
        // Ajout des infos du file necessaire a la creation du FormData
         inputRef.selectedFile.push(event.target.files[i])
-        // Ajout du FormData (Donnée binaire effective du fichier) dans l'objet corespondant
+        // Ajout du FormData (Données binaires effective du fichier) dans l'objet corespondant
         inputRef.fd[i] = new FormData();
         inputRef.fd[i].append('image', inputRef.selectedFile[i], inputRef.selectedFile[i].name)
       }

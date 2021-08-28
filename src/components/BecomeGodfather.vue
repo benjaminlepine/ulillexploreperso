@@ -76,7 +76,7 @@
             <option v-for="(department, index) in faculties[facultyIndex].departments" :key="index">{{department}}</option>
           </select>
         </div>
-        
+
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godfather.outsideCourses')}}</label>
           <ul class="lang-ctn">
@@ -143,7 +143,7 @@
         faculties: [],
         facultyIndex: null,
         cycleOfStudies: null,
-        
+
         languagesSpoken: [],
         availability: [],
         godchildNumber: null,
@@ -217,10 +217,11 @@
         if (!this.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
         if (this.activities.length === 0) { this.errors.push(this.$t("errorsMsg.activitiesRequired")); }
         if (this.hobbies.length === 0) { this.errors.push(this.$t("errorsMsg.hobbiesRequired")); }
-        
+
         return this.errors.length == 0;
       },
       submitGodFather: function (e) {
+        console.log("SUBMIT OK")
         if (!this.checkForm(e)){ return; }
         this.DateUtilFunctions();
         const formResult = {
@@ -236,7 +237,7 @@
           hobby:this.hobby
         }
         this.$store.dispatch("user/createGodfatherProfil", ).then(
-          (resp) => { 
+          (resp) => {
             // FXIME form submit with succes
             console.log("FIXME form submit with succes");
           },
