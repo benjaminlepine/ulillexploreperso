@@ -21,10 +21,10 @@
         <div class="text-left">
           <p class="mb-0" >{{ $t('godfather.howManyGodchild')}}</p>
           <div class="d-flex justify-content-between">
-            <div><input v-model="godChildNumber" value="1" type="radio" id="1" name="godchildNumber" checked><label class="pl-2" for="1">1</label></div>
-            <div><input v-model="godChildNumber" value="2" type="radio" id="2" name="godchildNumber"><label class="pl-2" for="2">2</label></div>
-            <div><input v-model="godChildNumber" value="3" type="radio" id="3" name="godchildNumber"><label class="pl-2" for="3">3</label></div>
-            <div><input v-model="godChildNumber" value="4" type="radio" id="4" name="godchildNumber"><label class="pl-2" for="4">4</label></div>
+            <div><input v-model="godChildNumber" value=1 type="radio" id="1" name="godchildNumber" checked><label class="pl-2" for="1">1</label></div>
+            <div><input v-model="godChildNumber" value=2 type="radio" id="2" name="godchildNumber"><label class="pl-2" for="2">2</label></div>
+            <div><input v-model="godChildNumber" value=3 type="radio" id="3" name="godchildNumber"><label class="pl-2" for="3">3</label></div>
+            <div><input v-model="godChildNumber" value=4 type="radio" id="4" name="godchildNumber"><label class="pl-2" for="4">4</label></div>
           </div>
         </div>
         <!-- Select month availability section -->
@@ -62,8 +62,6 @@
             <option v-for="(cycleOfStudies, index) in cycleOfStudiesList" :key="index">{{cycleOfStudies}}</option>
           </select>
         </div>
-
-
         <div class="text-left">
           <label class="mb-0" for="faculty">{{ $t('godfather.whatFaculty')}}</label>
             <select class="form-control mb-3" id="faculty" v-model="facultyIndex">
@@ -126,7 +124,7 @@
   import formInfos from '../assets/i18n/formInfos.json'
   import Popup from "@/components/Popup";
   import RGPDGodfather from "@/views/RGPDGodfather";
-  import GetNextMonths from "@/utils";
+  import { utils } from "@/utils";
   export default {
     components: {RGPDGodfather, Popup},
     props: {},
@@ -222,36 +220,43 @@
       },
       submitGodFather: function (e) {
         if (!this.checkForm(e)){ return; }
-        this.DateUtilFunctions();
-        const formResult = {
+        const availabilities = [];
+        this.availability.forEach((v, index) => {
+          if (v){
+            availabilities.push(this.nextMonths[index].mmyyyy);
+          }
+        });
+
+        const form = {
           nationality: this.nationality,
-          startDate:this.startDate,
-          godChildNumber: this.godChildNumber,
-          availability: this.availability,
-          languagesSpoken: this.languagesSpoken,
-          cycleOfStudies: this.cycleOfStudies,
+          // startDate:this.startDate,
+          maxGodchildren: parseInt(this.godChildNumber, 10),
+          availabilities: availabilities,
+          spokenLanguages: utils.getArrayIndexesFrom(this.languagesSpoken),
+          studyCycle: this.cycleOfStudies,
           faculty: this.faculties[this.facultyIndex].name,
           department: this.department,
-          activity: this.activity,
-          hobby:this.hobby
-        }
-        this.$store.dispatch("user/createGodfatherProfil", ).then(
-          (resp) => { 
+          activities: utils.getArrayIndexesFrom(this.activities, function(value){ return value.checked}),
+          hobbies: utils.getArrayIndexesFrom(this.hobbies,function(value){ return value.checked})
+        };
+        console.log(form)
+        this.$store.dispatch("user/createGodfatherProfil", form).then(
+          (profile) => { 
             // FXIME form submit with succes
-            console.log("FIXME form submit with succes");
+            console.log(profile);
+            this.$router.push('/matching');
           },
           err => {
             // FIXME something went wrong show message
             console.log("FIXME Error went we try to submit godfather form", err);
           }
         )
-        console.log("formResult = ", formResult)
       },
       activate:function(el){
         this.active_el = el;
       },
       DateUtilFunctions() {
-        this.nextMonths =  GetNextMonths();
+        this.nextMonths =  utils.getNextMonths();
       },
       checkSeniorityDate() {
         if(Date.now() - this.$refs['startDate'].valueAsNumber > (24 * 3600000 * 100)){

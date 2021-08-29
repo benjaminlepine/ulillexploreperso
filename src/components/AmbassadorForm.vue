@@ -118,7 +118,6 @@ export default {
       amRapport:{},
       isDisabled:false,
       errorsTab:[],
-      selectedFile: null,
     }
   },
   methods:{
@@ -166,26 +165,29 @@ export default {
       }
     },
     submitAmbassador(){
-      let formResult = {
-        amCountry:this.amCountry,
-        amUniversity:this.amUniversity,
-        amExchange:this.amExchange,
-        amComposante:this.amComposante,
-        amDoPortrait:this.amDoPortrait,
-        amDoInterview:this.amDoInterview,
-        amDoPhoto:this.amDoPhoto,
-        amDoPubli:this.amDoPubli,
-        amDoPostal:this.amDoPostal,
-        amRepresent:this.amRepresent,
-        amBlog:this.amBlog,
-        amCarnet:this.amCarnet,
-        amPlan:this.amPlan,
-        amPromotion:this.amPromotion,
-        amRecueil:this.amRecueil,
-        amRapport:this.amRapport,
-        selectedFile:this.selectedFile,
-      }
-      console.log("formResult = ", formResult)
+      const form = {
+        // string
+        country:this.amCountry,
+        univesity:this.amUniversity,
+        exchange:this.amExchange,
+        composante:this.amComposante,
+        portrait:this.amDoPortrait,
+        // date
+        interviewDate:this.amDoInterview,
+
+        photo:this.amDoPhoto,
+        publications:this.amDoPubli,
+        postcard:this.amDoPostal,
+        represent:this.amRepresent,
+        blog:this.amBlog,
+        logbook:this.amCarnet,
+        goodPlans:this.amPlan,
+        promotion:this.amPromotion,
+        uegoodPlans:this.amRecueil,
+        ueRapport:this.amRapport,
+      };
+      console.log(form);
+      
     }
   }
 }

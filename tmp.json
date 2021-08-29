@@ -1,0 +1,26 @@
+{
+    "GodProfile": {
+        "active": false,
+        "email":"djenaba.bah@gmail.com",
+        "firstname":"Djenaba",
+        "lastname":"BAH",
+        "nationality":"Albania",
+        "availabilities":[ 82021, 92021,102021,112021],
+        "spokenLanguages":null,
+        "studyCycle": "Master ou équivalent",
+        "faculty": "Psychologie, sciences de l’éducation et de la formation",
+        "department": "Sciences de l'éducation",
+        "hobbies": [0,1,2,3],
+        "activities":[0,1,2]
+    },
+    "User": {
+        "id": 3,
+        "firstname": "Djenaba",
+        "lastname": "BAH",
+        "email": "djenaba.bah@gmail.com",
+        "password": "$2a$10$g.BxoQe8etp.a10rSH.TwOndwsRQuSQbYnwtbyPdEjaV6.1HObclm",
+        "roles": [fr.univlille.ri.model.ulillexplore.Role@7d7680e6],
+        "admin":false,
+        "canBeGodfather": false
+    }
+}

@@ -111,7 +111,7 @@ import countrys from '../assets/i18n/country.json'
 import formInfos from '../assets/i18n/formInfos.json'
 import Popup from "@/components/Popup";
 import RGPDGodchild from "@/views/RGPDGodchild";
-import GetNextMonths from "@/utils";
+import { utils } from "@/utils";
 
 export default {
   components: {RGPDGodchild, Popup},
@@ -204,43 +204,28 @@ export default {
     },
     submitGodchild: function (e) {
       if (!this.checkForm(e)){ return; }
-      // this.DateUtilFunctions();
-      const availabilities = [], spokenLanguages=[], activities = [], hobbies = [];
-      
+
+      const availabilities = [];
       this.availability.forEach((v, index) => {
         if (v){
           availabilities.push(this.nextMonths[index].mmyyyy);
         }
       });
-      this.languagesSpoken.forEach((value, index) => {
-        if (value){
-          spokenLanguages.push(index);
-        }
-      });
-      this.activities.forEach((activity, index) => {
-        if (activity.checked){
-          activities.push(index);
-        }
-      });
-      this.hobbies.forEach((hobby, index) => {
-        if (hobby.checked){
-          hobbies.push(index);
-        }
-      });
-      const formResult = {
+      const form = {
         nationality: this.nationality,
-        disponiblities: availabilities,
-        spokenLanguages: spokenLanguages, // indexes
+        availabilities: availabilities,
+        spokenLanguages: utils.getArrayIndexesFrom(this.languagesSpoken), // indexes
         studyCycle: this.cycleOfStudies,
         faculty: this.faculties[this.facultyIndex].name,
         department: this.department,
-        activities: activities, // indexes
-        hobbies: hobbies // indexes
+        activities: utils.getArrayIndexesFrom(this.activities, function(value){ return value.checked}), // indexes
+        hobbies: utils.getArrayIndexesFrom(this.hobbies, function(value){ return value.checked}) // indexes
       }
-      console.log(formResult)
-      this.$store.dispatch('user/createGodchildProfil', formResult).then(
+      console.log(form)
+      this.$store.dispatch('user/createGodchildProfil', form).then(
         (profile) => {
           console.log(profile);
+            // FXIME form submit with succes
           this.$router.push('/matching');
         },
         err => {
@@ -252,7 +237,7 @@ export default {
       this.active_el = el;
     },
     DateUtilFunctions() {
-      this.nextMonths =  GetNextMonths();
+      this.nextMonths =  utils.getNextMonths();
     },
   }
 }
