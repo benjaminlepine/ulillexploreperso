@@ -129,9 +129,6 @@ export default {
       amRapport:{},
       isDisabled:false,
       errorsTab:[],
-      selectedFile: null,
-      imagesObject: []
-
     }
   },
 
@@ -186,35 +183,30 @@ export default {
         inputRef.fd[i].append('image', inputRef.selectedFile[i], inputRef.selectedFile[i].name)
       }
     },
-    submitAmbassador() {
+    saveForm(){
+
       let formResult = {
-        amCountry: this.amCountry,
-        amUniversity: this.amUniversity,
-        amExchange: this.amExchange,
-        amComposante: this.amComposante,
-        amDoPortrait: this.amDoPortrait,
-        amDoInterview: this.amDoInterview,
-        amDoPhoto: this.amDoPhoto,
-        amDoPubli: this.amDoPubli,
-        amDoPostal: this.amDoPostal,
-        amRepresent: this.amRepresent,
-        amBlog: this.amBlog,
-        amCarnet: this.amCarnet,
-        amPlan: this.amPlan,
-        amPromotion: this.amPromotion,
-        amRecueil: this.amRecueil,
-        amRapport: this.amRapport,
-        selectedFile: this.selectedFile,
+        amCountry:this.amCountry,
+        amUniversity:this.amUniversity,
+        amExchange:this.amExchange,
+        amComposante:this.amComposante,
+        amDoPortrait:this.amDoPortrait,
+        amDoInterview:this.amDoInterview,
+        amDoPhoto:this.amDoPhoto,
+        amDoPubli:this.amDoPubli,
+        amDoPostal:this.amDoPostal,
+        amRepresent:this.amRepresent,
+        amBlog:this.amBlog,
+        amCarnet:this.amCarnet,
+        amPlan:this.amPlan,
+        amPromotion:this.amPromotion,
+        amRecueil:this.amRecueil,
+        amRapport:this.amRapport,
+        selectedFile:this.selectedFile,
       }
-      console.log("formResult = ", formResult)
-    },
-
-    saveForm(e) {
-      console.log("Event = ", e)
       localStorage.setItem("form", JSON.stringify(this.form));
-    },
-
-
+      console.log("formResult = ", formResult)
+    }
   }
 }
 </script>
