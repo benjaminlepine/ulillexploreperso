@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Ambassador from '../components/Ambassador.vue'
 import BecomeAmbassador from '../components/AmbassadorForm.vue'
+import BecomeAmbassadoraa from '../components/UploadFiles.vue'
 import Buddy from '../components/Buddy.vue'
 import Home from '../components/Home.vue'
 import SignIn from '../components/SignIn.vue'
@@ -25,6 +26,7 @@ const routes = [
   {path: '/home', component: Home},
   {path: '/ambassador', name: 'Ambassador', component: Ambassador},
   {path: '/becomeAmbassador', name: 'BecomeAmbassador', component: BecomeAmbassador},
+  {path: '/becomeAmbassadoraa', name: 'BecomeAmbassadoraa', component: BecomeAmbassadoraa},
   {path: '/buddy', name: 'Buddy', component: Buddy},
   {path: '/profil', name: 'Profil', component: Profil},
   {path: '/becomegodchild', name: 'BecomeGodchild', component: BecomeGodchild},

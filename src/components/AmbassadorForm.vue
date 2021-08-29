@@ -2,6 +2,10 @@
   <div>
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <div class="mainctn">
+      <!-- TEST Upload Image in local storage-->
+      <upload-files :files="form.array1" @save="saveForm"></upload-files>
+      <upload-files :files="form.array2" @save="saveForm"></upload-files>
+      <!-- TEST Upload Image in local storage-->
       <h3>{{ $t('ambassador.form.becomeAmbassador')}}</h3>
       <form @submit.prevent="submitAmbassador" class="text-left">
         <div class="personal_infos">
@@ -87,18 +91,25 @@
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
           <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
         </p>
-        <button type="submit" :disabled="isDisabled" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.validate')}}<br></button>
+        <div class="d-flex"></div>
+        <button type="submit" :disabled="isDisabled" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('ambassador.form.sendForm')}}<br></button>
       </form>
+      <button class="btn explorebtnsecondary" @click="saveForm()">{{ $t('ambassador.form.saveForm')}}<br></button>
     </div>
   </div>
 </template>
 
 <script>
+import UploadFiles from "./UploadFiles";
 export default {
-  components: {},
+  components: {UploadFiles},
   props: {},
   data: function ()  {
     return {
+      form: {
+        array1:[],
+        array2:[],
+      },
       acceptCB: false,
       amCountry:null,
       amUniversity:null,
@@ -119,74 +130,91 @@ export default {
       isDisabled:false,
       errorsTab:[],
       selectedFile: null,
+      imagesObject: []
+
     }
   },
-  methods:{
-    becomeAmbassador(){
+
+  beforeMount() {
+    this.form = JSON.parse(localStorage.getItem("form"));
+    if(!this.form){
+      this.form = {array1: [], array2: []};
+    }
+  },
+
+  methods: {
+    becomeAmbassador() {
       console.log("becomeAmbassador = OK")
     },
     onFileSelected(event, inputRef, maxFileNumber) {
       let elementId = event.target.id
-      if(event.target.files.length > maxFileNumber){
+      if (event.target.files.length > maxFileNumber) {
         // Trop de fichiers - Affiche une erreur
         this.errorsTab.push(elementId)
         this.isDisabled = true;
         return -1
-      } else{
+      } else {
         // OK - Enlève l'erreur sur cet input
         const idx = this.errorsTab.indexOf(elementId);
-        if (idx > -1){
-          this.errorsTab.splice(this.errorsTab.indexOf(elementId),1);
+        if (idx > -1) {
+          this.errorsTab.splice(this.errorsTab.indexOf(elementId), 1);
         }
       }
       inputRef.selectedFile = []
       inputRef.fd = []
       for (let i = 0; i < event.target.files.length; i++) {
         // Control de la Taille du fichier courant "i"
-        if ((event.target.files[i].size/ 1024 / 1024) > 2) {
+        if ((event.target.files[i].size / 1024 / 1024) > 2) {
           // Le fichier est trop lourd - Superieur à 2mo
           this.errorsTab.push(elementId)
           this.isDisabled = true
-          return(-1);
+          return (-1);
         } else {
           // Le fichier est OK - On enlève l'erreur
           const idx = this.errorsTab.indexOf(elementId);
-          if (idx > -1){
-            this.errorsTab.splice(this.errorsTab.indexOf(elementId),1);
+          if (idx > -1) {
+            this.errorsTab.splice(this.errorsTab.indexOf(elementId), 1);
           }
-          if(this.errorsTab.length <= 0){
+          if (this.errorsTab.length <= 0) {
             this.isDisabled = false
           }
         }
-       // Ajout des infos du file necessaire a la creation du FormData
+        // Ajout des infos du file necessaire a la creation du FormData
         inputRef.selectedFile.push(event.target.files[i])
         // Ajout du FormData (Données binaires effective du fichier) dans l'objet corespondant
         inputRef.fd[i] = new FormData();
         inputRef.fd[i].append('image', inputRef.selectedFile[i], inputRef.selectedFile[i].name)
       }
     },
-    submitAmbassador(){
+    submitAmbassador() {
       let formResult = {
-        amCountry:this.amCountry,
-        amUniversity:this.amUniversity,
-        amExchange:this.amExchange,
-        amComposante:this.amComposante,
-        amDoPortrait:this.amDoPortrait,
-        amDoInterview:this.amDoInterview,
-        amDoPhoto:this.amDoPhoto,
-        amDoPubli:this.amDoPubli,
-        amDoPostal:this.amDoPostal,
-        amRepresent:this.amRepresent,
-        amBlog:this.amBlog,
-        amCarnet:this.amCarnet,
-        amPlan:this.amPlan,
-        amPromotion:this.amPromotion,
-        amRecueil:this.amRecueil,
-        amRapport:this.amRapport,
-        selectedFile:this.selectedFile,
+        amCountry: this.amCountry,
+        amUniversity: this.amUniversity,
+        amExchange: this.amExchange,
+        amComposante: this.amComposante,
+        amDoPortrait: this.amDoPortrait,
+        amDoInterview: this.amDoInterview,
+        amDoPhoto: this.amDoPhoto,
+        amDoPubli: this.amDoPubli,
+        amDoPostal: this.amDoPostal,
+        amRepresent: this.amRepresent,
+        amBlog: this.amBlog,
+        amCarnet: this.amCarnet,
+        amPlan: this.amPlan,
+        amPromotion: this.amPromotion,
+        amRecueil: this.amRecueil,
+        amRapport: this.amRapport,
+        selectedFile: this.selectedFile,
       }
       console.log("formResult = ", formResult)
-    }
+    },
+
+    saveForm(e) {
+      console.log("Event = ", e)
+      localStorage.setItem("form", JSON.stringify(this.form));
+    },
+
+
   }
 }
 </script>
@@ -207,6 +235,11 @@ export default {
   background-color: #f0f0f0;
   padding: 15px;
 }
+
+// TEST Upload Image in local storage
+#list img {max-width: 300px;}
+#deleteImgs {display: none;}
+
 
 </style>
 

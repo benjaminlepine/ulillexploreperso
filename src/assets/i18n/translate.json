@@ -251,7 +251,11 @@
         "errorFiles": "Un ou plusieurs fichier(s) chargé(s) ne corespond pas aux spécification suivantes : ",
         "errorFilesFormat": "- Format acceptés: png, jpg, jpeg, pdf",
         "errorFilesSize": "- Taille maximale par fichier: 1,5mo",
-        "maxFiles": "Fichiers maximum"
+        "maxFiles": "Fichiers maximum",
+        "sendForm": "Envoyer mon formulaire",
+        "saveForm": "Sauvegarder mon formulaire",
+        "noImage": "Pas d'image(s) selectionnée(s) ou sauvegardé(s)",
+        "deleteImages": "Supprimer les images"
       }
     },
     "matching": {
@@ -524,7 +528,12 @@
         "errorFiles": "One or more uploaded file(s) do not meet the following specifications:",
         "errorFilesFormat": "- Accepted formats: png, jpg, jpeg, pdf",
         "errorFilesSize": "- Maximum size per file: 1,5mo",
-        "maxFiles": "Maximum files"
+        "maxFiles": "Maximum files",
+        "sendForm": "Send my form",
+        "saveForm": "Save my form",
+        "noImage": "No images stored in your browser.",
+        "deleteImages": "Delete images"
+
       }
     },
     "matching": {
