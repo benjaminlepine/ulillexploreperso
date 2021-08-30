@@ -3,9 +3,20 @@
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <div class="mainctn">
       <!-- TEST Upload Image in local storage-->
-      <upload-files :files="form.array1" @save="saveForm"></upload-files>
-      <upload-files :files="form.array2" @save="saveForm"></upload-files>
+      <upload-files :files="form.array1" :maxImages="5" @disabled="disableForm"></upload-files>
+      <upload-files :files="form.array2" :maxImages="3" @disabled="disableForm"></upload-files>
       <!-- TEST Upload Image in local storage-->
+      <!-- TEST Compress Image-->
+      <div class="text-center" v-if="img">
+        <img v-if="img" src="" alt="" :src="img">
+      </div>
+      <button @click="upload">Upload</button>
+      <image-compressor
+          :done="getFiles"
+          :scale="scale"
+          :quality="quality">
+      </image-compressor>
+      <!-- TEST Compress Image-->
       <h3>{{ $t('ambassador.form.becomeAmbassador')}}</h3>
       <form @submit.prevent="submitAmbassador" class="text-left">
         <div class="personal_infos">
@@ -101,8 +112,10 @@
 
 <script>
 import UploadFiles from "./UploadFiles";
+import imageCompressor from 'vue-image-compressor'
+
 export default {
-  components: {UploadFiles},
+  components: {UploadFiles, imageCompressor},
   props: {},
   data: function ()  {
     return {
@@ -129,6 +142,11 @@ export default {
       amRapport:{},
       isDisabled:false,
       errorsTab:[],
+      img: "e",
+      scale: 50,
+      quality: 30,
+      originalSize: true,
+      original: {},
     }
   },
 
@@ -137,6 +155,10 @@ export default {
     if(!this.form){
       this.form = {array1: [], array2: []};
     }
+  },
+
+  updated() {
+    console.log("YES form.array1 = ", this.form.array1)
   },
 
   methods: {
@@ -184,7 +206,6 @@ export default {
       }
     },
     saveForm(){
-
       let formResult = {
         amCountry:this.amCountry,
         amUniversity:this.amUniversity,
@@ -204,9 +225,25 @@ export default {
         amRapport:this.amRapport,
         selectedFile:this.selectedFile,
       }
-      localStorage.setItem("form", JSON.stringify(this.form));
+      //localStorage.setItem("form", JSON.stringify(this.form));
       console.log("formResult = ", formResult)
-    }
+    },
+    submitAmbassador(){
+      console.log("SubmitForm")
+    },
+    upload () {
+      let compressor = this.$refs.compressor.$el
+      compressor.click()
+    },
+    getFiles(obj){
+      this.img = obj.compressed.blob
+      this.original = obj.original
+      this.compressed = obj.compressed
+    },
+    disableForm(isDisabled){
+      console.log("db = ", isDisabled)
+      this.isDisabled = isDisabled
+    },
   }
 }
 </script>
