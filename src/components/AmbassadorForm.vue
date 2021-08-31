@@ -2,246 +2,120 @@
   <div>
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <div class="mainctn">
-      <!-- TEST Upload Image in local storage-->
-      <upload-files :files="form.array1" :maxImages="5" @disabled="disableForm"></upload-files>
-      <upload-files :files="form.array2" :maxImages="3" @disabled="disableForm"></upload-files>
-      <!-- TEST Upload Image in local storage-->
-      <!-- TEST Compress Image-->
-      <div class="text-center" v-if="img">
-        <img v-if="img" src="" alt="" :src="img">
-      </div>
-      <button @click="upload">Upload</button>
-      <image-compressor
-          :done="getFiles"
-          :scale="scale"
-          :quality="quality">
-      </image-compressor>
-      <!-- TEST Compress Image-->
       <h3>{{ $t('ambassador.form.becomeAmbassador')}}</h3>
       <form @submit.prevent="submitAmbassador" class="text-left">
         <div class="personal_infos">
           <h5>{{ $t('ambassador.form.personalInfos')}}</h5>
-          <input class="form-control mb-3" v-model="amCountry" :placeholder="$t('ambassador.form.amCountry')" required>
-          <input class="form-control mb-3" v-model="amUniversity" :placeholder="$t('ambassador.form.amUniversity')" required>
-          <input class="form-control mb-3" v-model="amExchange" :placeholder="$t('ambassador.form.amExchange')" required>
-          <input class="form-control mb-3" v-model="amComposante" :placeholder="$t('ambassador.form.amComposante')" required>
+          <input class="form-control mb-3" v-model="formFinal.texts.amCountry" :placeholder="$t('ambassador.form.amCountry')" required>
+          <input class="form-control mb-3" v-model="formFinal.texts.amUniversity" :placeholder="$t('ambassador.form.amUniversity')" required>
+          <input class="form-control mb-3" v-model="formFinal.texts.amExchange" :placeholder="$t('ambassador.form.amExchange')" required>
+          <input class="form-control mb-3" v-model="formFinal.texts.amComposante" :placeholder="$t('ambassador.form.amComposante')" required>
         </div>
         <h5 class="mt-4">{{ $t('ambassador.form.amBefore')}}</h5>
         <label class="mb-0" for="amDoPortrait">{{ $t('ambassador.form.amDoPortrait')}}</label>
-        <textarea class="form-control mb-3" id="amDoPortrait" v-model="amDoPortrait" rows="5" cols="33"></textarea>
+        <textarea class="form-control mb-3" id="amDoPortrait" v-model="formFinal.texts.amDoPortrait" rows="5" cols="33"></textarea>
         <label class="mb-0" for="amDoInterview">{{ $t('ambassador.form.amDoInterview')}}</label>
         <p class="mb-0"><b>{{ $t('ambassador.form.amChooseInterview')}}</b></p>
-        <input class="form-control mb-3" v-model="amDoInterview" id="amDoInterview" type="date" required>
+        <input class="form-control mb-3" v-model="formFinal.texts.amDoInterview" id="amDoInterview" type="date" required>
         <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amDoPhoto, 7)" id="amDoPhoto" multiple required>
-        <p v-if="errorsTab.indexOf('amDoPhoto') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
-        </p>
+        <upload-files :files="formFinal.images.amDoPhoto" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         <label class="mb-0" for="amDoPubli">{{ $t('ambassador.form.amDoPubli')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amProposition')}}</p>
-        <textarea class="form-control mb-3" v-model="amDoPubli" id="amDoPubli"></textarea>
-        <label class="mb-0" for="amDoPostal">{{ $t('ambassador.form.amDoPostal')}}</label>
+        <textarea class="form-control mb-3" v-model="formFinal.texts.amDoPubli" id="amDoPubli"></textarea>
+        <label class="mb-0">{{ $t('ambassador.form.amDoPostal')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
         <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amDoPostal, 7)" id="amDoPostal" multiple required>
-        <p v-if="errorsTab.indexOf('amDoPostal') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 7 {{ $t('ambassador.form.maxFiles')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
-        </p>
-        <label class="mb-0" for="amRepresent">{{ $t('ambassador.form.amRepresent')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amRepresent, 4)" id="amRepresent" multiple required>
-        <p v-if="errorsTab.indexOf('amRepresent') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
-        </p>
+        <upload-files :files="formFinal.images.amDoPostal" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        <label class="mb-0">{{ $t('ambassador.form.amRepresent')}}</label>
+        <upload-files :files="formFinal.images.amRepresent" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
-        <textarea class="form-control mb-3" v-model="amBlog" id="amBlog" ></textarea>
-        <label class="mb-0" for="amCarnet">{{ $t('ambassador.form.amCarnet')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amCarnet, 4)" id="amCarnet" multiple required>
-        <p v-if="errorsTab.indexOf('amCarnet') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
-        </p>
-        <label class="mb-0" for="amPlan">{{ $t('ambassador.form.amPlan')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amPlan, 4)" id="amPlan" multiple required>
-        <p v-if="errorsTab.indexOf('amPlan') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
-        </p>
-        <label class="mb-0" for="amPromotion">{{ $t('ambassador.form.amPromotion')}}</label>
+        <textarea class="form-control mb-3" v-model="formFinal.texts.amBlog" id="amBlog" ></textarea>
+        <label class="mb-0">{{ $t('ambassador.form.amCarnet')}}</label>
+        <upload-files :files="formFinal.images.amCarnet" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        <label class="mb-0">{{ $t('ambassador.form.amPlan')}}</label>
+        <upload-files :files="formFinal.images.amPlan" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        <label class="mb-0">{{ $t('ambassador.form.amPromotion')}}</label>
         <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amPromotion, 4)" id="amPromotion" multiple required>
-        <p v-if="errorsTab.indexOf('amPromotion') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">- 4 {{ $t('ambassador.form.maxFiles')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
-        </p>
+        <upload-files :files="formFinal.images.amPromotion" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.amIdea')}}</p>
         <p class="mb-0">{{ $t('ambassador.form.amParticipate')}}</p>
-
         <!-- UE Module Only-->
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.UEInter')}}</p>
         <hr>
-        <label class="mb-0" for="amRecueil">{{ $t('ambassador.form.amRecueil')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amRecueil, 1)" id="amRecueil">
-        <p v-if="errorsTab.indexOf('amRecueil') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
-        </p>
-        <label class="mb-0" for="amRapport">{{ $t('ambassador.form.amRapport')}}</label>
-        <input class="form-control mb-1 pb-5 pt-3" type="file" @change="onFileSelected($event, amRapport, 1)" id="amRapport">
-        <p v-if="errorsTab.indexOf('amRapport') !== -1" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}</span><br>
-          <span class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
-        </p>
+        <label class="mb-0">{{ $t('ambassador.form.amRecueil')}}</label>
+        <upload-files :files="formFinal.images.amRecueil" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        <label class="mb-0">{{ $t('ambassador.form.amRapport')}}</label>
+        <upload-files :files="formFinal.images.amRapport" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         <div class="d-flex"></div>
         <button type="submit" :disabled="isDisabled" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('ambassador.form.sendForm')}}<br></button>
       </form>
-      <button class="btn explorebtnsecondary" @click="saveForm()">{{ $t('ambassador.form.saveForm')}}<br></button>
+      <button class="btn explorebtnsecondary" @click="saveForm()">{{ $t('ambassador.form.saveForm')}}<br>{{ $t('ambassador.form.exceptImages')}}</button>
+      <button class="btn explorebtnsecondary explorebtn-delete mt-3" @click="deleteForm()">
+        <i class="fas fa-exclamation-triangle"></i>   {{ $t('ambassador.form.deleteForm')}}   <i class="fas fa-exclamation-triangle"></i> </button>
     </div>
   </div>
 </template>
 
 <script>
 import UploadFiles from "./UploadFiles";
-import imageCompressor from 'vue-image-compressor'
 
 export default {
-  components: {UploadFiles, imageCompressor},
+  components: {UploadFiles},
   props: {},
   data: function ()  {
     return {
-      form: {
-        array1:[],
-        array2:[],
+      formFinal:{
+        images:{
+          amDoPhoto: [],
+          amDoPostal:[],
+          amRepresent:[],
+          amCarnet:[],
+          amPlan:[],
+          amPromotion:[],
+          amRecueil:[],
+          amRapport:[],
+        },
+        texts:{
+          amCountry: null,
+          amUniversity: null,
+          amExchange: null,
+          amComposante: null,
+          amDoPortrait: null,
+          amDoInterview: null,
+          amDoPubli: null,
+          amBlog: null,
+        }
       },
-      acceptCB: false,
-      amCountry:null,
-      amUniversity:null,
-      amExchange:null,
-      amComposante:null,
-      amDoPortrait:null,
-      amDoInterview:null,
-      amDoPhoto: {},
-      amDoPubli:null,
-      amDoPostal:{},
-      amRepresent:{},
-      amBlog:null,
-      amCarnet:{},
-      amPlan:{},
-      amPromotion:{},
-      amRecueil:{},
-      amRapport:{},
       isDisabled:false,
-      errorsTab:[],
-      img: "e",
-      scale: 50,
-      quality: 30,
-      originalSize: true,
-      original: {},
     }
   },
 
   beforeMount() {
-    this.form = JSON.parse(localStorage.getItem("form"));
-    if(!this.form){
-      this.form = {array1: [], array2: []};
+    this.formFinal = {
+      images:{ amDoPhoto: [], amDoPostal:[], amRepresent:[], amCarnet:[], amPlan:[], amPromotion:[], amRecueil:[], amRapport:[],},
+      texts:{amCountry: "", amUniversity: "", amExchange: "", amComposante: "", amDoPortrait: "", amDoInterview: Date, amDoPubli: "", amBlog: "",}
     }
-  },
-
-  updated() {
-    console.log("YES form.array1 = ", this.form.array1)
+    if(localStorage.getItem("ambassadorForm")){
+      this.formFinal.texts = JSON.parse(localStorage.getItem("ambassadorForm"));
+    }
   },
 
   methods: {
     becomeAmbassador() {
       console.log("becomeAmbassador = OK")
     },
-    onFileSelected(event, inputRef, maxFileNumber) {
-      let elementId = event.target.id
-      if (event.target.files.length > maxFileNumber) {
-        // Trop de fichiers - Affiche une erreur
-        this.errorsTab.push(elementId)
-        this.isDisabled = true;
-        return -1
-      } else {
-        // OK - Enlève l'erreur sur cet input
-        const idx = this.errorsTab.indexOf(elementId);
-        if (idx > -1) {
-          this.errorsTab.splice(this.errorsTab.indexOf(elementId), 1);
-        }
-      }
-      inputRef.selectedFile = []
-      inputRef.fd = []
-      for (let i = 0; i < event.target.files.length; i++) {
-        // Control de la Taille du fichier courant "i"
-        if ((event.target.files[i].size / 1024 / 1024) > 2) {
-          // Le fichier est trop lourd - Superieur à 2mo
-          this.errorsTab.push(elementId)
-          this.isDisabled = true
-          return (-1);
-        } else {
-          // Le fichier est OK - On enlève l'erreur
-          const idx = this.errorsTab.indexOf(elementId);
-          if (idx > -1) {
-            this.errorsTab.splice(this.errorsTab.indexOf(elementId), 1);
-          }
-          if (this.errorsTab.length <= 0) {
-            this.isDisabled = false
-          }
-        }
-        // Ajout des infos du file necessaire a la creation du FormData
-        inputRef.selectedFile.push(event.target.files[i])
-        // Ajout du FormData (Données binaires effective du fichier) dans l'objet corespondant
-        inputRef.fd[i] = new FormData();
-        inputRef.fd[i].append('image', inputRef.selectedFile[i], inputRef.selectedFile[i].name)
-      }
-    },
     saveForm(){
-      let formResult = {
-        amCountry:this.amCountry,
-        amUniversity:this.amUniversity,
-        amExchange:this.amExchange,
-        amComposante:this.amComposante,
-        amDoPortrait:this.amDoPortrait,
-        amDoInterview:this.amDoInterview,
-        amDoPhoto:this.amDoPhoto,
-        amDoPubli:this.amDoPubli,
-        amDoPostal:this.amDoPostal,
-        amRepresent:this.amRepresent,
-        amBlog:this.amBlog,
-        amCarnet:this.amCarnet,
-        amPlan:this.amPlan,
-        amPromotion:this.amPromotion,
-        amRecueil:this.amRecueil,
-        amRapport:this.amRapport,
-        selectedFile:this.selectedFile,
-      }
-      //localStorage.setItem("form", JSON.stringify(this.form));
-      console.log("formResult = ", formResult)
+      localStorage.setItem("ambassadorForm", JSON.stringify(this.formFinal.texts));
+    },
+    deleteForm(){
+      localStorage.removeItem('ambassadorForm');
     },
     submitAmbassador(){
-      console.log("SubmitForm")
-    },
-    upload () {
-      let compressor = this.$refs.compressor.$el
-      compressor.click()
-    },
-    getFiles(obj){
-      this.img = obj.compressed.blob
-      this.original = obj.original
-      this.compressed = obj.compressed
+      console.log("Ambassador Form = ", this.formFinal)
     },
     disableForm(isDisabled){
-      console.log("db = ", isDisabled)
       this.isDisabled = isDisabled
     },
   }
@@ -252,23 +126,11 @@ export default {
 @import "../scss/_app-variables.scss";
 @import "../scss/app.scss";
 
-.cbAmbassador{
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  transform: scale(2);
-}
 
 .personal_infos{
   background-color: #f0f0f0;
   padding: 15px;
 }
-
-// TEST Upload Image in local storage
-#list img {max-width: 300px;}
-#deleteImgs {display: none;}
-
 
 </style>
 

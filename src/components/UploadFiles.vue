@@ -1,18 +1,20 @@
 <template>
-  <div class="mainctn">
-    <input type="file" @change="handleFileSelect" multiple>
-    <p id="state">{{ imagesState }}</p>
+  <div class="uploader-ctn">
+    <input type="file" class="mb-2 text-white" ref="fileInput" @change="handleFileSelect($event)" multiple required>
+<!--    <p id="state">{{ imagesState }}</p>-->
     <div v-if="files && files" id="list">
       <span v-for="file in files">
-        <img :src="file" style="width: 150px; height: 150px" class="thumb"/>
+        <img :src="file" class="uploader-img"/>
       </span>
     </div>
-    <a href="#" @click="deleteImages">{{$t('ambassador.form.deleteImages')}}</a>
+    <button v-if="this.files.length > 0" class="btn explorebtn explorebtnsecondary mt-2" @click="deletePreviewAndImages">{{$t('ambassador.form.deleteThisImages')}}</button>
     <!--Errors msgs-->
-    <p v-if="error.tooMuchFiles || error.tooBigFile || error.wrongFormat" class="bg-warning">{{ $t('ambassador.form.errorFiles')}}<br>
-      <span v-if="error.tooMuchFiles" class="font-weight-bolder"><span class="montserrat">{{ maxImages }}</span> {{ $t('ambassador.form.maxFiles')}}<br></span>
-      <span v-if="error.tooBigFile" class="font-weight-bolder">{{ $t('ambassador.form.errorFilesSize')}}<span class="montserrat"> {{maxSize}} </span>{{ $t('ambassador.form.errorFilesSizemo')}}<br></span>
-      <span v-if="error.wrongFormat" class="font-weight-bolder">{{ $t('ambassador.form.errorFilesFormat')}}</span>
+    <p v-if="error.tooMuchFiles || error.tooBigFile || error.wrongFormat" class="uploader-warning text-white">{{ $t('ambassador.form.errorFiles')}}<br>
+      <span v-if="error.tooMuchFiles" class="font-weight-bolder text-white"><span class="montserrat text-white">{{ maxImages }}</span> {{ $t('ambassador.form.maxFiles')}}<br></span>
+      <span v-if="error.tooBigFile" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorFilesSize')}}
+        <span class="montserrat text-white"> {{maxSize}} </span>{{ $t('ambassador.form.errorFilesSizemo')}}<br>
+      </span>
+      <span v-if="error.wrongFormat" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorFilesFormat')}}</span>
     </p>
   </div>
 </template>
@@ -25,7 +27,7 @@ export default {
   },
   data: function ()  {
     return {
-      maxSize: 1.5,
+      maxSize: 20,
       error:{
         tooMuchFiles: false,
         tooBigFile: false,
@@ -33,10 +35,13 @@ export default {
       }
     };
   },
+  beforeMount() {
+    console.log("files INSIDE = ", this.files)
+  },
   methods:{
-    checkFileSize(){},
     handleFileSelect(evt) {
-      this.deleteImages();
+      // Remove old preview images before add news
+      if(this.files && this.files.length > 0){this.deletePreview();}
       const files = evt.target.files; // FileList object
 
       // Check number of files
@@ -78,15 +83,17 @@ export default {
     },
     addImage(e, imgData){
       this.files.push(imgData);
-      console.log("addImage")
-      this.$emit('save', e);
     },
-    deleteImages(e){
+    deletePreview(){
       while(this.files.length != 0){
         this.files.pop();
       }
-      //localStorage.setItem("form", JSON.stringify(this.form));
-      this.$emit('save', e);
+    },
+    deletePreviewAndImages(){
+      while(this.files.length != 0){
+        this.files.pop();
+      }
+      this.$refs['fileInput'].value = '';
     }
   },
   computed:{
@@ -105,7 +112,24 @@ export default {
 @import "../scss/_app-variables.scss";
 @import "../scss/app.scss";
 
-
-
+.uploader{
+  &-ctn{
+    padding: 8px 12px;
+    background-color: $main-color;
+    border-radius: 12px;
+    box-shadow: 1px 2px 5px #888888;
+  }
+  &-img{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    margin: 1px;
+  }
+  &-warning{
+    background-color: $second-color;
+    padding: 8px 12px;
+    border-radius: 10px;
+  }
+}
 </style>
 

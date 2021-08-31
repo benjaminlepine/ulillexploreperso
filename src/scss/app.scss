@@ -72,6 +72,11 @@
     opacity: 1;
   }
 }
+.explorebtn-delete{
+  background-color: $second-color !important;
+  border: none !important;
+  color: white !important;
+}
 .explorebtnsecondary{
   border: 2px solid $clear-main-color;
   background-color: white;
