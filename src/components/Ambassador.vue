@@ -21,6 +21,10 @@
         <form @submit="acceptAmbassadorCG" class="text-center">
           <input v-model="acceptCB" id="ambassadorCG" class="cbAmbassador" type="checkbox" required>
           <label for="ambassadorCG" class="ml-3">{{ $t('ambassador.charte.cgAccept')}}</label>
+          <div class="d-flex">
+            <label for="ambassadorCGUE" class="text-left">{{ $t('ambassador.charte.cgUE')}}</label>
+            <input v-model="acceptCBUE" id="ambassadorCGUE" class="cbAmbassador mt-2 mr-1" type="checkbox">
+          </div>
           <button type="submit" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.validate')}}<br></button>
         </form>
       </div>
@@ -34,7 +38,8 @@
     props: {},
     data: function ()  {
       return {
-        acceptCB: false
+        acceptCB: false,
+        acceptCBUE: false
       }
     },
     methods:{

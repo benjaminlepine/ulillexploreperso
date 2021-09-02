@@ -35,9 +35,6 @@ export default {
       }
     };
   },
-  beforeMount() {
-    console.log("files INSIDE = ", this.files)
-  },
   methods:{
     handleFileSelect(evt) {
       // Remove old preview images before add news

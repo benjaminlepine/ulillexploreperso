@@ -214,7 +214,8 @@
         "cgMyBack": "À mon retour de mobilité : ",
         "cgDoOrga": "- Participer à l’organisation de l’ISW en tant qu’ambassadeur",
         "cgRepresent": "Je m’engage à représenter l’Université de Lille pendant ma mobilité et j’autorise l’Université de Lille à publier librement les photographies me représentant dans le cadre exclusif de ses publica-tions, à des fins pédagogiques ou scientifiques et/ou de communication externe ou interne, sur support papier ou numérique (annuaires, brochures de présentation, affichettes, site internet…) \nCette autorisation est valable 15 ans, sauf en ce qui concerne les annuaires de l'établissement pour lesquels elle est donnée sans limitation de durée. \nToute autre utilisation, sera soumise à une nouvelle demande préalable d'autorisation.",
-        "cgAccept": "J’accepte"
+        "cgAccept": "J’accepte",
+        "cgUE": "Je suis également inscris à l'UE (Unité d'Enseignement) pour les ambassadeur (Cocher cette case)"
       },
       "form": {
         "becomeAmbassador": "Envoi des pièces justificatives",
@@ -495,7 +496,8 @@
         "cgMyBack": "After the mobility :",
         "cgDoOrga": "- Join the organization team of the International Student Week.",
         "cgRepresent": "I commit to representing the University of Lille during my mobility and I authorize the University of Lille to freely publish pictures of me within the sole framework of its publications, for educational, scientific or communication purposes, on paper or digital media (annual directory, presentation leaflets, small posters, website, etc.) This authorization is valid for 15 years, except for the annual directory for which the authorization stands with no limit of time. For any other use, a new authorization request will be submitted.",
-        "cgAccept": "I accept"
+        "cgAccept": "I accept",
+        "cgUE": "I am also registered with the EU (Teaching Unit) for ambassadors (Check this box)"
       },
       "form": {
         "becomeAmbassador": "Sending documents",
