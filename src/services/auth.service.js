@@ -24,8 +24,8 @@ export default new class AuthService {
         localStorage.removeItem('user');
     }
 
-    async forgotPassword(email){
-        const resp = await axios.post(R.endpoint.forgotPassword(), {email: email})
+    async forgotPassword(lang, email){
+        const resp = await axios.post(R.endpoint.forgotPassword(lang), {email: email})
         if (resp.data){
             return resp.data;
         }

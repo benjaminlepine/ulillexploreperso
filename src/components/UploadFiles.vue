@@ -35,6 +35,7 @@ export default {
       }
     };
   },
+
   methods:{
     handleFileSelect(evt) {
       // Remove old preview images before add news

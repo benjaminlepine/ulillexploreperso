@@ -18,7 +18,7 @@
         <p class="mb-0">{{ $t('ambassador.charte.cgDoOrga')}}</p>
         <p>{{ $t('ambassador.charte.cgDoOrga')}}</p>
         <p class="mt-4">{{ $t('ambassador.charte.cgRepresent')}}</p>
-        <form @submit="acceptAmbassadorCG" class="text-center">
+        <form @submit.prevent="acceptAmbassadorCG" class="text-center">
           <input v-model="acceptCB" id="ambassadorCG" class="cbAmbassador" type="checkbox" required>
           <label for="ambassadorCG" class="ml-3">{{ $t('ambassador.charte.cgAccept')}}</label>
           <div class="d-flex">
@@ -44,7 +44,16 @@
     },
     methods:{
       acceptAmbassadorCG(){
-        this.$router.push('/becomeAmbassador');
+        this.$store.dispatch("user/subscribeToAmbassador", this.acceptCBUE).then(
+          (value) => {
+            console.log(value);
+            this.$router.push('/becomeAmbassador');
+          },
+          err => {
+            // FIXME error
+            console.log(err);
+          }
+        );
       }
     }
   }

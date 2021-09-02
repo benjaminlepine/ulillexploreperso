@@ -64,10 +64,12 @@ export const auth = {
         return Promise.resolve();
       }
     },
-    forgotPassword({ commit}, email){
+    forgotPassword({ commit, rootGetters }, email){
       commit('REQUEST_PASSWORD_FORGOT')
       console.log(email);
-      AuthService.forgotPassword(email).then(
+      const lang = rootGetters['header/language'];
+      console.log(lang);
+      AuthService.forgotPassword(lang, email).then(
         resp =>{
           commit('RECEIVE_PASSWORD_FORGOT_SUCCESS');
           return Promise.resolve(resp);

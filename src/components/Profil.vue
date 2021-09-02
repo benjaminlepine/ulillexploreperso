@@ -21,7 +21,7 @@
       <div>
         <p class="text-left mb-0">{{ $t('profil.myGodchild')}}</p>
         <p class="text-left mb-0">{{ $t('profil.myGodfather')}}</p>
-        <div v-for="godchfa in godchfas" class="profil-godcard d-flex justify-content-between">
+        <div v-for="(godchfa, index) in godchfas" :key="index" class="profil-godcard d-flex justify-content-between">
           <div>
             <p class="text-left mb-0 text-white">{{godchfa.name}}</p>
             <p class="text-left mb-0 profil-godcard-link-color">{{godchfa.email}}</p>
@@ -79,7 +79,7 @@ export default {
       return n < 10 ? '0'+ n : n;
     },
     unsubscribe(){
-      console.log("unsubscribe")
+      console.log("unsubscribe");
     }
   }
 }

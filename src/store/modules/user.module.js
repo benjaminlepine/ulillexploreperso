@@ -8,8 +8,33 @@ Vue.use(Vuex);
 
 export const user = {
     namespaced: true,
-    state: {godchildProfil: null, godfatherProfil: null},
+    state: { godchildProfil: null, godfatherProfil: null },
     actions:{
+        sendAmbassadorForm({ commit, rootGetters}, form){
+            return UserService.sendAmbassadorForm(form).then(
+                resp => {
+                    commit('RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS');
+                    return Promise.resolve(resp);
+                },
+                err => {
+                    commit('RECEIVE_SEND_AMBASSADOR_FORM_ERROR');
+                    return Promise.reject(err);
+                }
+            );
+        },
+        subscribeToAmbassador({ commit }, isUE){
+            commit('REQUEST_SUBSCRIBE_TO_AMBASSADOR');
+            return UserService.subscribeToAmbassador(isUE).then(
+                message => {
+                    commit('RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS');
+                    return Promise.resolve(message);
+                },
+                err => {
+                    commit('RECEIVE_SUBSCRIBE_TO_AMBASSADOR_ERROR');
+                    return Promise.reject(err);
+                }
+            );
+        },
         createGodfatherProfil({commit}, godfatherProfil){
             commit('CREATE_GODFATHER_PROFIL');
             return UserService.createGodfatherProfil(godfatherProfil).then(
@@ -65,6 +90,14 @@ export const user = {
         },
     },
     mutations:{
+        REQUEST_SEND_AMBASSADOR_FORM(state){},
+        RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS(state){},
+        RECEIVE_SEND_AMBASSADOR_FORM_ERROR(state){},
+
+        REQUEST_SUBSCRIBE_TO_AMBASSADOR(state){},
+        RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS(state){},
+        RECEIVE_SUBSCRIBE_TO_AMBASSADOR_ERROR(state){},
+
         CREATE_GODFATHER_PROFIL(state){},
         RECEIVE_GODFATHER_PROFIL_SUCCESS(state, godfatherProfil){
             state.godfatherProfil = godfatherProfil;
