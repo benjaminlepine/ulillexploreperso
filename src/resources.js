@@ -10,7 +10,7 @@ const R = {
         casSignin() { return process.env.VUE_APP_API_ENDPOINT+'/api/login'; },
         signup(){ return R.endpoint.base+'/api/auth/signup'; },
         signin(){ return R.endpoint.base+'/api/auth/signin'; },
-        forgotPassword(){ return R.endpoint.base+'/api/auth/forgot-password'; },
+        forgotPassword(lang){ return R.endpoint.base+'/api/auth/forgot-password/'+lang; },
         resetPassword(){ return R.endpoint.base+'/api/auth/reset-password'; },
         faculties(){
             return R.endpoint.base+"/api/ulillexplore/faculties/";
@@ -29,6 +29,12 @@ const R = {
         },
         createGodfatherProfil(){
             return R.endpoint.base+'/api/ulillexplore/godfather/profile/';
+        },
+        subscribeToAmbassador(isUE){
+            return R.endpoint.base+"/api/ulillexplore/ambassador/subscribe/"+isUE;
+        },
+        sendAmbassadorForm(){
+            return R.endpoint.base+"/api/ulillexplore/ambassador/submit/";
         }
     }
 };

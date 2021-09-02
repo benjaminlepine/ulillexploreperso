@@ -34,4 +34,18 @@ export default new class UserService {
         const resp = await axios.post(R.endpoint.createGodfatherProfil(), godfatherProfile, { headers: authHeader() });
         return resp.data;
     }
+
+    async subscribeToAmbassador(isUE){
+        const resp = await axios.post(R.endpoint.subscribeToAmbassador(isUE), null, { headers: authHeader() });
+        console.log(resp);
+        return resp.data;
+    }
+
+    async sendAmbassadorForm(form){
+        const headers = authHeader();
+        headers['Content-Type'] = 'multipart/form-data; boundary=${form._boundary';
+        const resp = await axios.post(R.endpoint.sendAmbassadorForm(), form, {headers: headers });
+        console.log(resp);
+        return resp.data;
+    }
 };

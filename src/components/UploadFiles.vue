@@ -36,7 +36,7 @@ export default {
     };
   },
   beforeMount() {
-    console.log("files INSIDE = ", this.files)
+    // console.log("files INSIDE = ", this.files)
   },
   methods:{
     handleFileSelect(evt) {
