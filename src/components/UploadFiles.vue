@@ -1,6 +1,6 @@
 <template>
   <div class="uploader-ctn">
-    <input type="file" class="mb-2 text-white" ref="fileInput" @change="handleFileSelect($event)" multiple required>
+    <input type="file" class="mb-2 text-white" ref="fileInput" @change="handleFileSelect($event)" multiple>
 <!--    <p id="state">{{ imagesState }}</p>-->
     <div v-if="files && files" id="list">
       <span v-for="(file, index) in files" :key="index">
