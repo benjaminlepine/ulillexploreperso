@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Email non authorisé</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- use the font -->
+    <style>
+        body { font-family: 'Calibri', sans-serif; font-size: 22px; margin: 0; padding: 0;}
+        .link{color: #B8166B;} .link:hover{cursor: pointer}
+        .UExploreBody{background-color:#eaeaea; padding: 40px 30px 40px 30px; }
+    </style>
 </head>
 <body>
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+    <tr>
+        <td align="center" bgcolor="#13505D" style="padding: 12px 0;">
+            <div style="display: flex">
+                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="margin: 0 20px; width:65px; height: 65px; enable-background:new 0 0 512 512;" xml:space="preserve" width="512px" height="512px" class=""><g><circle style="fill:#B8166B" cx="256" cy="256" r="256" data-original="#57A4FF" class="" data-old_color="#57A4FF"/><path style="fill:#730D43" d="M512,256c0-1.766-0.031-3.526-0.067-5.285l-67.121-67.121l-22.347-22.347l-64.021-64.021  l-2.196-2.196l-5.905-5.905l0,0l0,0L303.11,136.36l5.905,5.905l-11.808,11.808l-41.121,9.761l-5.734,1.632  c-0.38,0.108-0.754,0.227-1.131,0.342l-18.94-4.496l-21.388-21.388L161.657,92.69l-5.905,5.905l0,0l-82.66,82.66l-5.905,5.905  l68.622,68.622l6.086,25.637c0.405,1.218,0.84,2.424,1.289,3.624l-13.535,13.535c-8.152,8.152-8.152,21.369,0,29.521l0,0  c0.001,0.001,0.001,0.001,0.002,0.001l-0.132,0.129l59.011,59.011l0,0l0,0l29.521,29.521l0,0l0,0l89.949,89.949  C424.452,482.68,512,379.566,512,256z" data-original="#2488FF" class="" data-old_color="#2488FF"/><rect x="280.081" y="111.902" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 439.7396 572.95)" style="fill:#FFFFFF;" width="116.902" height="166.999" data-original="#FFFFFF" class=""/><rect x="329.97" y="132.565" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 460.3996 622.8342)" style="fill:#E1E3FA;" width="58.445" height="166.999" data-original="#E1E3FA" class=""/><rect x="307.158" y="126.564" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 525.2704 537.506)" style="fill:#0F9390" width="133.597" height="66.804" data-original="#3E3D42" class="" data-old_color="#3E3D42"/><rect x="364.177" y="150.186" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 548.8937 594.535)" style="fill:#0D6B69" width="66.804" height="66.804" data-original="#2D2D30" class="" data-old_color="#2D2D30"/><path style="fill:#FFC477;" d="M256.748,377.562l-8.856-8.856l-14.761-14.761l-35.426-35.426l-32.473-32.473l-8.856-8.856  c-8.152-8.152-8.152-21.369,0-29.521l0,0l58.171-58.171c15.298-16.605,24.202-20.501,41.539-25.665l41.121-9.761l47.234,47.234  l5.905,5.905l29.521,29.521l-9.761,41.121c-5.212,15.652-13.999,29.874-25.665,41.539l-58.171,58.171l0,0  C278.116,385.715,264.9,385.715,256.748,377.562z" data-original="#FFC477" class=""/><rect x="115.018" y="115.464" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -89.881 180.9362)" style="fill:#FFFFFF;" width="116.902" height="166.999" data-original="#FFFFFF" class=""/><rect x="123.569" y="136.128" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -110.5489 172.3676)" style="fill:#E1E3FA;" width="58.445" height="166.999" data-original="#E1E3FA" class=""/><rect x="71.246" y="130.134" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -75.2049 145.5111)" style="fill:#0F9390" width="133.597" height="66.804" data-original="#3E3D42" class="" data-old_color="#3E3D42"/><rect x="81.017" y="153.76" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -98.8313 135.7252)" style="fill:#0D6B69" width="66.804" height="66.804" data-original="#2D2D30" class="" data-old_color="#2D2D30"/><path style="fill:#99590A" d="M379.26,298.485l-73.271-73.208c5.397-8.109,4.521-19.158-2.63-26.31l0,0l-5.905-5.905  c-11.665-11.665-25.887-20.452-41.539-25.665l-41.121-9.761L167.56,204.87l-5.905,5.905l-29.521,29.521l9.761,41.121  c5.212,15.652,13.999,29.874,25.665,41.539l5.905,5.905l14.761,14.761l0.132-0.132l72.979,73.18c8.152,8.152,21.369,8.152,29.521,0  l0,0c8.152-8.152,8.152-21.369,0-29.521c8.152,8.152,21.369,8.152,29.521,0l0,0c7.967-7.967,8.143-20.768,0.539-28.955  c8.192,7.479,20.899,7.258,28.821-0.666l0,0c8.152-8.152,8.152-21.369,0-29.521c8.152,8.152,21.369,8.152,29.521,0l0,0  C387.413,319.853,387.413,306.637,379.26,298.485z" data-original="#FFA733" class="active-path" data-old_color="#FFA733"/><g>
+	            <path style="fill:#FFDAAA;" d="M244.067,219.019L244.067,219.019l1.349-1.349l0,0l18.57,9.459   c16.295,9.052,37.752,5.071,50.933-8.11l23.617-23.617l0,0l-41.33-41.33l0,0l-41.121,9.761l-5.734,1.632   c-10.791,3.071-20.619,8.848-28.553,16.781l-7.25,7.25l-26.569,26.569c-8.152,8.152-8.152,21.369,0,29.521l0,0   c8.152,8.152,21.369,8.152,29.521,0L244.067,219.019z" data-original="#FFDAAA" class=""/>
+                    <path style="fill:#FFDAAA;" d="M182.147,275.602L182.147,275.602c-8.152-8.152-21.369-8.152-29.521,0l-22.974,22.974   c-8.152,8.152-8.152,21.369,0,29.521l0,0c8.152,8.152,21.369,8.152,29.521,0l22.974-22.974   C190.299,296.971,190.299,283.754,182.147,275.602z" data-original="#FFDAAA" class=""/>
+                    <path style="fill:#FFDAAA;" d="M211.669,305.123L211.669,305.123c-8.152-8.152-21.369-8.152-29.521,0l-22.974,22.974   c-8.152,8.152-8.152,21.369,0,29.521l0,0c8.152,8.152,21.369,8.152,29.521,0l22.974-22.974   C219.821,326.492,219.821,313.275,211.669,305.123z" data-original="#FFDAAA" class=""/>
+                    <path style="fill:#FFDAAA;" d="M241.027,334.743L241.027,334.743c-8.152-8.152-21.369-8.152-29.521,0l-22.974,22.974   c-8.152,8.152-8.152,21.369,0,29.521l0,0c8.152,8.152,21.369,8.152,29.521,0l22.974-22.974   C249.179,356.113,249.179,342.895,241.027,334.743z" data-original="#FFDAAA" class=""/>
+                    <path style="fill:#FFDAAA;" d="M270.549,364.265L270.549,364.265c-8.152-8.152-21.369-8.152-29.521,0l-22.974,22.974   c-8.152,8.152-8.152,21.369,0,29.521l0,0c8.152,8.152,21.369,8.152,29.521,0l22.974-22.974   C278.702,385.634,278.702,372.417,270.549,364.265z" data-original="#FFDAAA" class=""/></g><script xmlns=""/></g></svg>
+                <p style="color: #FAEB49">ulillexplore.univ-lille.fr</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="UExploreBody">
+            <p>Email non autorisé: <span th:text="${}"></span></p>
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#777777" style="padding: 12px">
+            <p th:text="${signature}"></p>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>
