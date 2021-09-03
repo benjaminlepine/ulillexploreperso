@@ -142,28 +142,28 @@ export default {
         console.log("file", file);
       });
       this.form.images.postcard.forEach((file) => {
-        form.append("postcard[]", file.file);
+        form.append("postcard", file.file);
       });
       this.form.images.represent.forEach((file) => {
-        form.append("represent[]", file.file);
+        form.append("represent", file.file);
       });
       this.form.images.logbook.forEach((file) => {
-        form.append("logbook[]", file.file);
+        form.append("logbook", file.file);
       });
       this.form.images.tips.forEach((file) => {
-        form.append("tips[]", file.file);
+        form.append("tips", file.file);
       });
       this.form.images.promotion.forEach((file) => {
-        form.append("promotion[]", file.file);
+        form.append("promotion", file.file);
       });
       if (this.form.images.ueTips && this.form.images.ueTips.length > 0){
         this.form.images.ueTips.forEach((file) => {
-          form.append("ueTips[]", file.file);
+          form.append("ueTips", file.file);
         });
       }
       if (this.form.images.ueReport && this.form.images.ueReport.length > 0){
         this.form.images.ueReport.forEach((file) => {
-          form.append("ueReport[]", file.file);
+          form.append("ueReport", file.file);
         });
       }
       this.$store.dispatch("user/sendAmbassadorForm", form).then(
