@@ -104,7 +104,7 @@ export default {
 
   methods: {
     becomeAmbassador() {
-      console.log("becomeAmbassador = OK")
+      // console.log("becomeAmbassador = OK")
     },
     saveForm(){
       localStorage.setItem("ambassadorForm", JSON.stringify(this.form.texts));
@@ -112,17 +112,55 @@ export default {
     deleteForm(){
       localStorage.removeItem('ambassadorForm');
     },
-    submitAmbassador(){
-      const form = {...this.form.texts,...this.form.images};
-      console.log("Ambassador Form = ", form);
-      /*this.$store("user/sendAmbassadorForm", form).then(
-        (value) => {
+    submitAmbassador(e){
+      const form = new FormData();
+      
+      form.append('country', this.form.texts.country);//required
+      form.append('university', this.form.texts.university);//required
+      form.append('exchange', this.form.texts.exchange);//required
+      form.append('component', this.form.texts.component);//required
 
+      form.append('portrait', this.form.texts.portrait);
+      form.append('interview', this.form.texts.interview.toString()); //required
+      form.append('publication', this.form.texts.publication);
+      form.append('blog', this.form.texts.blog);
+      this.form.images.photo.forEach((file) => {
+        form.append("photo", file.file);
+        console.log("file", file);
+      });
+      this.form.images.postcard.forEach((file) => {
+        form.append("postcard[]", file.file);
+      });
+      this.form.images.represent.forEach((file) => {
+        form.append("represent[]", file.file);
+      });
+      this.form.images.logbook.forEach((file) => {
+        form.append("logbook[]", file.file);
+      });
+      this.form.images.tips.forEach((file) => {
+        form.append("tips[]", file.file);
+      });
+      this.form.images.promotion.forEach((file) => {
+        form.append("promotion[]", file.file);
+      });
+      if (this.form.images.ueTips && this.form.images.ueTips.length > 0){
+        this.form.images.ueTips.forEach((file) => {
+          form.append("ueTips[]", file.file);
+        });
+      }
+      if (this.form.images.ueReport && this.form.images.ueReport.length > 0){
+        this.form.images.ueReport.forEach((file) => {
+          form.append("ueReport[]", file.file);
+        });
+      }
+      this.$store.dispatch("user/sendAmbassadorForm", form).then(
+        (value) => {
+          console.log(value);
         },
         err => {
           console.log(err);
         }
-      );*/
+      );
     },
     disableForm(isDisabled){
       this.isDisabled = isDisabled
@@ -134,7 +172,6 @@ export default {
 <style scoped lang="scss">
 @import "../scss/_app-variables.scss";
 @import "../scss/app.scss";
-
 
 .personal_infos{
   background-color: #f0f0f0;
