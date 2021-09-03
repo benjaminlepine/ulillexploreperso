@@ -28,7 +28,7 @@
     <!-- Body UlillExplore section -->
     <tr>
         <td class="UExploreBody">
-            <p>Resultat du formulaire de: <span th:text="${firstname + ' ' + lastname}"></span></p>
+            <p>Resultat du formulaire de: <span th:text="${firstname + ' ' + lastname + ' ('+ email + ')' }"></span></p>
             <p>Pays : <span th:text="${country}"></span></p>
             <p>Université : <span th:text="${university}"></span></p>
             <p>Université d'échange : <span th:text="${exchange}"></span></p>
