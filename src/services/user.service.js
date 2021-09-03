@@ -43,7 +43,8 @@ export default new class UserService {
 
     async sendAmbassadorForm(form){
         const headers = authHeader();
-        headers['Content-Type'] = 'multipart/form-data; boundary=${form._boundary';
+        headers['Content-Type'] = `multipart/form-data`;
+        console.log(headers);
         const resp = await axios.post(R.endpoint.sendAmbassadorForm(), form, {headers: headers });
         console.log(resp);
         return resp.data;

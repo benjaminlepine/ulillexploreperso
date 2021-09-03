@@ -3,8 +3,8 @@
     <input type="file" class="mb-2 text-white" ref="fileInput" @change="handleFileSelect($event)" multiple required>
 <!--    <p id="state">{{ imagesState }}</p>-->
     <div v-if="files && files" id="list">
-      <span v-for="file in files">
-        <img :src="file" class="uploader-img"/>
+      <span v-for="(file, index) in files" :key="index">
+        <img :src="file.url" class="uploader-img"/>
       </span>
     </div>
     <button v-if="this.files.length > 0" class="btn explorebtn explorebtnsecondary mt-2" @click="deletePreviewAndImages">{{$t('ambassador.form.deleteThisImages')}}</button>
@@ -32,6 +32,7 @@ export default {
         tooMuchFiles: false,
         tooBigFile: false,
         wrongFormat: false,
+        currentFile: null,
       }
     };
   },
@@ -67,29 +68,33 @@ export default {
       // Loop through the FileList and render image files as thumbnails.
       for (var i = 0, f; f = files[i]; i++) {
         // Only process image files.
-        if (!f.type.match('image.*')) { // FIXME Add pdf, jpeg, png
-          console.log("not match");
+        if (!f.type.match('image.*', 'application/pdf')) { // FIXME Add pdf, jpeg, png
+          console.log("not match image type ", f.type); // FIXME error message
           continue;
         }
+
+        this.addImage(f);
         var reader = new FileReader();
         // Closure to capture the file information.
-        reader.onload = (e) => {
-          this.addImage(e, e.target.result);
-        };
-        reader.readAsDataURL(f);
+        // this.currentFile = f;
+        // reader.onload = (e) => {
+         // console.log(e);
+         // this.addImage(e.target.result);
+       // };
+       // reader.readAsDataURL(f);
       }
     },
-    addImage(e, imgData){
-      this.files.push(imgData);
+    addImage(file){
+      this.files.push({url: URL.createObjectURL(file), file});
     },
     deletePreview(){
       while(this.files.length != 0){
-        this.files.pop();
+         URL.revokeObjectURL(this.files.pop().url);
       }
     },
     deletePreviewAndImages(){
       while(this.files.length != 0){
-        this.files.pop();
+        URL.revokeObjectURL(this.files.pop().url);
       }
       this.$refs['fileInput'].value = '';
     }
