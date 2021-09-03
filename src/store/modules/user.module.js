@@ -122,6 +122,7 @@ export const user = {
         fullName: (state, getters, rootState, rootGetters)=>{
             const user = rootGetters['auth/user'];
             if (user){
+                console.log("user = ", user);
                 if (user.firstname && user.lastname){
                     return user.firstname + ' ' + user.lastname;
                 }else if ( user.firstname){
@@ -129,6 +130,14 @@ export const user = {
                 }else if (user.lastname){
                     return user.lastname;
                 }
+            }
+            return "N/A"
+        },
+        isAmbassadorUE: (state, getters, rootState, rootGetters)=>{
+            const user = rootGetters['auth/user'];
+            if (user && user.profile && user.profile.ue){
+                console.log("user = ", user);
+                return user.profile.ue
             }
             return "N/A"
         },

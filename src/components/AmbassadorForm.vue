@@ -89,6 +89,7 @@ export default {
         }
       },
       isDisabled:false,
+      isUE:false,
     }
   },
 
@@ -101,8 +102,20 @@ export default {
       this.form.texts = JSON.parse(localStorage.getItem("ambassadorForm"));
     }
   },
+  mounted() {
+    //this.isUE()
+    console.log("this.$store.getters['user/isUE'] = ", this.$store.getters['user/isAmbassadorUE'])
+  },
+
+  updated() {
+    console.log("isAmbassadorUE = ", this.$store.getters['user/isAmbassadorUE'])
+  },
 
   methods: {
+    // isUE(){
+    //   console.log("VA TE FAIRE ENCULER FILS DE PUTE")
+    //   //return this.$store.getters['user/isUE'];
+    // },
     becomeAmbassador() {
       console.log("becomeAmbassador = OK")
     },
