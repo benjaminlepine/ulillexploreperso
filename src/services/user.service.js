@@ -10,10 +10,10 @@ export default new class UserService {
     async fetchGodfatherProfile(){
         return this.fetch(R.endpoint.fethGodfatherProfile());
     }
-    async fetchGochildrenProfile(){
+    async fetchGodchildProfile(){
         return this.fetch(R.endpoint.fetchGodchildProfile());
     }
-    async fethAmbassadorProfile(){
+    async fetchAmbassadorProfile(){
         return this.fetch(R.endpoint.fetchAmbassadorProfile());
     }
 

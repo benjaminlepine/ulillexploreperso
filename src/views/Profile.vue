@@ -58,8 +58,7 @@
 </template>
 
 <script>
-import { faSubscript } from '@fortawesome/free-solid-svg-icons';
-import store from '../store.js';
+
 import EndOfRelation from "../components/EndOfRelation";
 import RelationInfos from "../components/RelationInfos";
 export default {
@@ -67,10 +66,12 @@ export default {
   components: {RelationInfos, EndOfRelation},
   data: function () {
     return {
-      store: store,
-      godchilds: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr', relationId:501},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr', relationId:502}],
-      godfather: {name:'Gandalf', email:'gandalf.leblanc@univ-lille.fr', relationId:503},
+      godchilds: this.$store.getters['user/godchildren'],
+      godfather: this.$store.getters['user/godfather'],
     }
+  },
+  beforeMount(){
+    console.log(this.$store);
   },
 
   computed:{

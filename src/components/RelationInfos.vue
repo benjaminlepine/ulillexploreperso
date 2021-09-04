@@ -4,13 +4,13 @@
       <div class="d-flex">
         <img src="../assets/img/user2.svg">
         <div class="ml-2">
-          <p class="text-left mb-0 text-white">{{relation.name}}</p>
+          <p class="text-left mb-0 text-white">{{ relation.firstname + ' ' + relation.lastname }}</p>
           <p class="text-left mb-0 relation-godcard-link-color">{{relation.email}}</p>
         </div>
       </div>
       <div v-on:click="displayEndRelation = !displayEndRelation"><i class="fas fa-exclamation-triangle relation-godCardIcon"></i></div>
     </div>
-    <end-of-relation v-if="displayEndRelation" :relationId="relation.relationId"></end-of-relation>
+    <end-of-relation v-if="displayEndRelation" :relationId="relation.id"></end-of-relation>
   </div>
 </template>
 

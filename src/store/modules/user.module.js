@@ -10,8 +10,8 @@ Vue.use(Vuex);
 export const user = {
     namespaced: true,
     state: {
-        godchildProfile: JSON.parse(localStorage.getItem('godfatherProfile')),
-        godfatherProfile: JSON.parse(localStorage.getItem('godchildProfile')),
+        godfatherProfile: JSON.parse(localStorage.getItem('godfatherProfile')),
+        godchildProfile: JSON.parse(localStorage.getItem('godchildProfile')),
         ambassadorProfile: JSON.parse(localStorage.getItem('ambassadorProfile'))
     },
     actions:{
@@ -178,6 +178,32 @@ export const user = {
         RECEIVE_HOBBIES_AND_ACTIVITIES_ERROR(state){},
     },
     getters:{
+        godfatherProfile: state => {
+            if (state.godfatherProfile){
+                return state.godfatherProfile.profile;
+            }
+            return null;
+        },
+        godchildProfile: state => {
+            if (state.godchildProfile){
+                return state.godchildProfile.profile;
+            }
+            return null;
+        },
+        godfather: state => {
+            console.log('godfather', state.godchildProfile);
+            if (state.godchildProfile && state.godchildProfile.godfather){
+                return state.godchildProfile.godfather;
+            }
+           return null;
+        },
+        godchildren: state => {
+            if (state.godfatherProfile && state.godfatherProfile.godchildren){
+                return state.godfatherProfile.godchildren;
+            }
+            return [];
+        },
+        ambassador: state => state.ambassadorProfile,
         fullName: (state, getters, rootState, rootGetters)=>{
             const user = rootGetters['auth/user'];
             if (user){
