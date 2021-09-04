@@ -1,5 +1,11 @@
 <template>
     <div class="grey-ctn">
+      <h1>{{releationId}}</h1>
+      <h1>{{releationId}}</h1>
+      <h1>{{releationId}}</h1>
+      <h1>{{releationId}}</h1>
+      <h1>{{releationId}}</h1>
+      <h1>{{releationId}}</h1>
             <form @submit.prevent="submitProblem">
                 <div class="text-left">
                     <label for="whatProblem">{{ $t('problem.endRelation')}}</label>
@@ -24,8 +30,10 @@
 
 <script>
     export default {
-        props: {},
-        data: function ()  {
+        props: {
+          relationId: Number
+        },
+      data: function ()  {
             return {
               endingReason: null,
               acceptCB: null,
@@ -34,6 +42,7 @@
         methods:{
             submitProblem: function (e) {
                 console.log("Ending Relation with for = ", this.endingReason)
+                console.log("Relation ID = ", this.relationId)
             }
         }
     }

@@ -62,8 +62,8 @@ export default {
   data: function () {
     return {
       store: store,
-      godchilds: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr'}],
-      godfather: {name:'Gandalf', email:'gandalf.leblanc@univ-lille.fr'},
+      godchilds: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr', relationId:501},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr', relationId:502}],
+      godfather: {name:'Gandalf', email:'gandalf.leblanc@univ-lille.fr', relationId:503},
     }
   },
 

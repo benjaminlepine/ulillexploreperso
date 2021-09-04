@@ -10,7 +10,7 @@
       </div>
       <div v-on:click="displayEndRelation = !displayEndRelation"><i class="fas fa-exclamation-triangle relation-godCardIcon"></i></div>
     </div>
-    <end-of-relation v-if="displayEndRelation"></end-of-relation>
+    <end-of-relation v-if="displayEndRelation" :relationId="relation.relationId"></end-of-relation>
   </div>
 </template>
 
@@ -18,19 +18,15 @@
 import EndOfRelation from "./EndOfRelation";
 export default {
   components: {EndOfRelation},
-  props: {relation: Object},
+  props: {
+    relation: Object,
+  },
   data: function ()  {
     return {
-      godchilds: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr'}],
-      godfather: {name:'Gandalf', email:'gandalf.leblanc@univ-lille.fr'},
       displayEndRelation: false
     }
   },
-  methods:{
-    test(){
-      console.log("dfg")
-    }
-  }
+  methods:{}
 }
 </script>
 
