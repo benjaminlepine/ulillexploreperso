@@ -1,35 +1,36 @@
 <template>
   <div>
-    <div v-if="userGodStatus.isGodfather">
-      <p class="text-left mb-0">{{ $t('profil.myGodchild')}}</p>
-    </div>
-    <div v-if="userGodStatus.isGodchild">
-      <p class="text-left mb-0">{{ $t('profil.myGodfather')}}</p>
-      <div v-for="(godchfa, index) in godchfas" :key="index" class="relation-godcard d-flex justify-content-between">
-        <div class="d-flex">
-          <img src="../assets/img/user2.svg">
-          <div class="ml-2">
-            <p class="text-left mb-0 text-white">{{godchfa.name}}</p>
-            <p class="text-left mb-0 relation-godcard-link-color">{{godchfa.email}}</p>
-          </div>
+    <div class="relation-godcard d-flex justify-content-between">
+      <div class="d-flex">
+        <img src="../assets/img/user2.svg">
+        <div class="ml-2">
+          <p class="text-left mb-0 text-white">{{relation.name}}</p>
+          <p class="text-left mb-0 relation-godcard-link-color">{{relation.email}}</p>
         </div>
-        <i class="fas fa-exclamation-triangle relation-godCardIcon"></i>
       </div>
-
+      <div v-on:click="displayEndRelation = !displayEndRelation"><i class="fas fa-exclamation-triangle relation-godCardIcon"></i></div>
     </div>
-
+    <end-of-relation v-if="displayEndRelation"></end-of-relation>
   </div>
 </template>
 
 <script>
+import EndOfRelation from "./EndOfRelation";
 export default {
-  props: {userGodStatus: Object},
+  components: {EndOfRelation},
+  props: {relation: Object},
   data: function ()  {
     return {
-      godchfas: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr'}]
+      godchilds: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr'}],
+      godfather: {name:'Gandalf', email:'gandalf.leblanc@univ-lille.fr'},
+      displayEndRelation: false
     }
   },
-  methods:{}
+  methods:{
+    test(){
+      console.log("dfg")
+    }
+  }
 }
 </script>
 

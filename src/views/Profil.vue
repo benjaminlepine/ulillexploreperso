@@ -18,7 +18,7 @@
       </div>
       <hr>
       <!-- Parrain / Filleuls section -->
-      <div>
+
         <div class="grey-ctn" v-if="!userGodStatus.isGodchild && !userGodStatus.isGodfather">
           <p class="text-left">{{ $t('profil.noRelations')}}</p>
           <div class="d-flex justify-content-between">
@@ -27,22 +27,30 @@
           </div>
         </div>
         <div v-else>
-          <relation-infos :userGodStatus="userGodStatus"></relation-infos>
-        </div>
-      </div>
+          <div v-if="userGodStatus.isGodfather">
+            <p class="text-left mb-0">{{ $t('profil.myGodchild')}}</p>
+            <div v-for="(godchild, index) in godchilds" :key="index">
+              <relation-infos :relation="godchild"></relation-infos>
+            </div>
+          </div>
+            <div v-if="userGodStatus.isGodchild">
+              <p class="text-left mb-0">{{ $t('profil.myGodfather')}}</p>
+              <relation-infos :relation="godfather"></relation-infos>
+            </div>
+          </div>
 
-      <hr>
-      <!-- Ambassador section -->
-      <div>
-        <p class="text-left">{{ $t('profil.ambassador')}}</p>
-        <div class="profil-ambassador">
-          <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profil.isAmbassador')}}</p>
-          <router-link to="/ambassador" class="btn explorebtn mb-3">{{ $t('profil.seeMyForm')}}</router-link>
-          <button class="btn" @click="unsubscribe">{{ $t('profil.unsubscribe')}}</button>
+        <hr>
+        <!-- Ambassador section -->
+        <div>
+          <p class="text-left">{{ $t('profil.ambassador')}}</p>
+          <div class="profil-ambassador">
+            <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profil.isAmbassador')}}</p>
+            <router-link to="/ambassador" class="btn explorebtn mb-3">{{ $t('profil.seeMyForm')}}</router-link>
+            <button class="btn" @click="unsubscribe">{{ $t('profil.unsubscribe')}}</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -56,14 +64,11 @@ export default {
   data: function () {
     return {
       store: store,
-
+      godchilds: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr'}],
+      godfather: {name:'Gandalf', email:'gandalf.leblanc@univ-lille.fr'},
     }
   },
 
-  updated() {
-    //console.log("user = ", this.$store.getters['auth/user']);
-    console.log("userGodStatus = ", this.userGodStatus);
-  },
   computed:{
     userFullName(){
       return this.$store.getters['user/fullName'];
