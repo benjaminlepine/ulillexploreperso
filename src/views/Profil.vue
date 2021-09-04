@@ -18,7 +18,6 @@
       </div>
       <hr>
       <!-- Parrain / Filleuls section -->
-
         <div class="grey-ctn" v-if="!userGodStatus.isGodchild && !userGodStatus.isGodfather">
           <p class="text-left">{{ $t('profil.noRelations')}}</p>
           <div class="d-flex justify-content-between">
@@ -38,7 +37,6 @@
               <relation-infos :relation="godfather"></relation-infos>
             </div>
           </div>
-
         <hr>
         <!-- Ambassador section -->
         <div>
