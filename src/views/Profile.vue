@@ -1,50 +1,50 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
-    <p class="mb-0 mainTitle">{{ $t('profil.myProfil')}}</p>
+    <p class="mb-0 mainTitle">{{ $t('profile.myProfile')}}</p>
     <div class="mainctn">
       <!-- Name section -->
       <div class="d-flex justify-content-between">
-        <span class="profil-name">{{userFullName}}</span>
-        <img :alt="$t('wait.oneUndredDay')" class="profil-picto" src="../assets/img/user.svg">
+        <span class="profile-name">{{userFullName}}</span>
+        <img :alt="$t('wait.oneUndredDay')" class="profile-picto" src="../assets/img/user.svg">
       </div>
       <hr>
       <!-- Infos & update password section -->
       <div>
-        <p class="text-left mb-0">{{ $t('profil.contactEmail')}}</p>
-        <p class="mb-2 text-left mb-0 profil-info">{{userEmail}}</p>
-        <p class="text-left mb-0">{{ $t('profil.subscribedFrom')}}</p>
-        <p class="mb-2 text-left mb-0 profil-info montserrat">{{registrationDate}}</p>
+        <p class="text-left mb-0">{{ $t('profile.contactEmail')}}</p>
+        <p class="mb-2 text-left mb-0 profile-info">{{userEmail}}</p>
+        <p class="text-left mb-0">{{ $t('profile.subscribedFrom')}}</p>
+        <p class="mb-2 text-left mb-0 profile-info montserrat">{{registrationDate}}</p>
       </div>
       <hr>
       <!-- Parrain / Filleuls section -->
         <div class="grey-ctn" v-if="!userGodStatus.isGodchild && !userGodStatus.isGodfather">
-          <p class="text-left">{{ $t('profil.noRelations')}}</p>
+          <p class="text-left">{{ $t('profile.noRelations')}}</p>
           <div class="d-flex justify-content-between">
-            <div class="w-50 text-center profil-godlink"><router-link to="/becomeGodfather">{{ $t('sideMenu.becomeGodfather')}}</router-link></div>
-            <div class="w-50 text-center profil-godlink"><router-link to="/becomeGodchild">{{ $t('sideMenu.becomeGodchild')}}</router-link></div>
+            <div class="w-50 text-center profile-godlink"><router-link to="/becomeGodfather">{{ $t('sideMenu.becomeGodfather')}}</router-link></div>
+            <div class="w-50 text-center profile-godlink"><router-link to="/becomeGodchild">{{ $t('sideMenu.becomeGodchild')}}</router-link></div>
           </div>
         </div>
         <div v-else>
           <div v-if="userGodStatus.isGodfather">
-            <p class="text-left mb-0">{{ $t('profil.myGodchild')}}</p>
+            <p class="text-left mb-0">{{ $t('profile.myGodchild')}}</p>
             <div v-for="(godchild, index) in godchilds" :key="index">
               <relation-infos :relation="godchild"></relation-infos>
             </div>
           </div>
             <div v-if="userGodStatus.isGodchild">
-              <p class="text-left mb-0">{{ $t('profil.myGodfather')}}</p>
+              <p class="text-left mb-0">{{ $t('profile.myGodfather')}}</p>
               <relation-infos :relation="godfather"></relation-infos>
             </div>
           </div>
         <hr>
         <!-- Ambassador section -->
         <div>
-          <p class="text-left">{{ $t('profil.ambassador')}}</p>
-          <div class="profil-ambassador">
-            <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profil.isAmbassador')}}</p>
-            <router-link to="/ambassador" class="btn explorebtn mb-3">{{ $t('profil.seeMyForm')}}</router-link>
-            <button class="btn" @click="unsubscribe">{{ $t('profil.unsubscribe')}}</button>
+          <p class="text-left">{{ $t('profile.ambassador')}}</p>
+          <div class="profile-ambassador">
+            <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profile.isAmbassador')}}</p>
+            <router-link to="/ambassador" class="btn explorebtn mb-3">{{ $t('profile.seeMyForm')}}</router-link>
+            <button class="btn" @click="unsubscribe">{{ $t('profile.unsubscribe')}}</button>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ import store from '../store.js';
 import EndOfRelation from "../components/EndOfRelation";
 import RelationInfos from "../components/RelationInfos";
 export default {
-  name: 'Profil',
+  name: 'Profile',
   components: {RelationInfos, EndOfRelation},
   data: function () {
     return {
@@ -109,7 +109,7 @@ export default {
 @import "../scss/_app-variables.scss";
 @import "../scss/app.scss";
 
-.profil{
+.profile{
   &-name{
     padding-top: 4px;
     font-size: 22px !important;
