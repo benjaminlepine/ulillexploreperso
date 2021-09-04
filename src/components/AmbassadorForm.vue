@@ -117,13 +117,6 @@ export default {
   },
 
   methods: {
-    // isUE(){
-    //   console.log("VA TE FAIRE ENCULER FILS DE PUTE")
-    //   //return this.$store.getters['user/isUE'];
-    // },
-    becomeAmbassador() {
-      // console.log("becomeAmbassador = OK")
-    },
     saveForm(){
       localStorage.setItem("ambassadorForm", JSON.stringify(this.form.texts));
     },
