@@ -4,7 +4,7 @@
     <div class="mainctn">
       <h3>{{ $t('ambassador.form.becomeAmbassador')}}</h3>
       <form @submit.prevent="submitAmbassador" class="text-left">
-        <div class="personal_infos">
+        <div class="grey-ctn">
           <h5>{{ $t('ambassador.form.personalInfos')}}</h5>
           <input class="form-control mb-3" v-model="form.texts.country" :placeholder="$t('ambassador.form.amCountry')" required>
           <input class="form-control mb-3" v-model="form.texts.university" :placeholder="$t('ambassador.form.amUniversity')" required>
@@ -12,31 +12,52 @@
           <input class="form-control mb-3" v-model="form.texts.component" :placeholder="$t('ambassador.form.amComposante')" required>
         </div>
         <h5 class="mt-4">{{ $t('ambassador.form.amBefore')}}</h5>
-        <label class="mb-0" for="amDoPortrait">{{ $t('ambassador.form.amDoPortrait')}}</label>
-        <upload-files :files="form.images.portrait" :maxImages="1" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-        <label class="mb-0" for="amDoInterview">{{ $t('ambassador.form.amDoInterview')}}</label>
-        <p class="mb-0"><b>{{ $t('ambassador.form.amChooseInterview')}}</b></p>
-        <input class="form-control mb-3" v-model="form.texts.interview" id="amDoInterview" type="date" required>
-        <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
-        <upload-files :files="form.images.photo" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-        <label class="mb-0" for="amDoPubli">{{ $t('ambassador.form.amDoPubli')}}</label>
-        <p class="mb-0">{{ $t('ambassador.form.amProposition')}}</p>
-        <textarea class="form-control mb-3" v-model="form.texts.publication" id="amDoPubli"></textarea>
-        <label class="mb-0">{{ $t('ambassador.form.amDoPostal')}}</label>
-        <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
-        <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
-        <upload-files :files="form.images.postcard" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-        <label class="mb-0">{{ $t('ambassador.form.amRepresent')}}</label>
-        <upload-files :files="form.images.represent" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-        <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
-        <textarea class="form-control mb-3" v-model="form.texts.blog" id="amBlog" ></textarea>
-        <label class="mb-0">{{ $t('ambassador.form.amCarnet')}}</label>
-        <upload-files :files="form.images.logbook" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-        <label class="mb-0">{{ $t('ambassador.form.amPlan')}}</label>
-        <upload-files :files="form.images.tips" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-        <label class="mb-0">{{ $t('ambassador.form.amPromotion')}}</label>
-        <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
-        <upload-files :files="form.images.promotion" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        <div class="grey-ctn">
+          <label class="mb-0">{{ $t('ambassador.form.amDoPortrait')}}</label>
+          <upload-files :files="form.images.portrait" :maxImages="1" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0" for="amDoInterview">{{ $t('ambassador.form.amDoInterview')}}</label>
+          <p class="mb-0"><b>{{ $t('ambassador.form.amChooseInterview')}}</b></p>
+          <input class="form-control mb-3" v-model="form.texts.interview" id="amDoInterview" type="date" required>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
+          <upload-files :files="form.images.photo" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0" for="amDoPubli">{{ $t('ambassador.form.amDoPubli')}}</label>
+          <p class="mb-0">{{ $t('ambassador.form.amProposition')}}</p>
+          <textarea class="form-control mb-3" v-model="form.texts.publication" id="amDoPubli"></textarea>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0">{{ $t('ambassador.form.amDoPostal')}}</label>
+          <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
+          <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
+          <upload-files :files="form.images.postcard" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0">{{ $t('ambassador.form.amRepresent')}}</label>
+          <upload-files :files="form.images.represent" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
+          <textarea class="form-control mb-3" v-model="form.texts.blog" id="amBlog" ></textarea>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0">{{ $t('ambassador.form.amCarnet')}}</label>
+          <upload-files :files="form.images.logbook" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0">{{ $t('ambassador.form.amPlan')}}</label>
+          <upload-files :files="form.images.tips" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        </div>
+        <div class="grey-ctn">
+          <label class="mb-0">{{ $t('ambassador.form.amPromotion')}}</label>
+          <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
+          <upload-files :files="form.images.promotion" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        </div>
+
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.amIdea')}}</p>
         <p class="mb-0">{{ $t('ambassador.form.amParticipate')}}</p>
@@ -44,14 +65,19 @@
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.UEInter')}}</p>
         <div class="w-100 text-center mt-3" >
-        <input type="checkbox" class="cbAmbassador" v-model="isUE" @change="isUE">
+          <input type="checkbox" class="cbAmbassador" v-model="isUE" @change="isUE">
         </div>
         <hr>
         <div v-if="isUE">
-          <label class="mb-0">{{ $t('ambassador.form.amRecueil')}}</label>
-          <upload-files :files="form.images.ueTips" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-          <label class="mb-0">{{ $t('ambassador.form.amRapport')}}</label>
-          <upload-files :files="form.images.ueReport" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+
+          <div class="grey-ctn">
+            <label class="mb-0">{{ $t('ambassador.form.amRecueil')}}</label>
+            <upload-files :files="form.images.ueTips" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          </div>
+          <div class="grey-ctn">
+            <label class="mb-0">{{ $t('ambassador.form.amRapport')}}</label>
+            <upload-files :files="form.images.ueReport" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          </div>
         </div>
         <button type="submit" :disabled="isDisabled" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('ambassador.form.sendForm')}}<br></button>
       </form>
@@ -63,7 +89,7 @@
 </template>
 
 <script>
-import UploadFiles from "./UploadFiles";
+import UploadFiles from "../components/UploadFiles";
 
 export default {
   components: {UploadFiles},
@@ -138,7 +164,7 @@ export default {
       if (this.form.images.promotion && this.form.images.promotion.length > 0){ n++;}
       if (this.form.images.ueTips && this.form.images.ueTips.length > 0){ n++;}
       if (this.form.images.ueReport && this.form.images.ueReport.length > 0){ n++;}
-        return n >= 5;
+      return n >= 5;
     },
     submitAmbassador(){
       if (!this.checkForm()){
@@ -203,11 +229,6 @@ export default {
 <style scoped lang="scss">
 @import "../scss/_app-variables.scss";
 @import "../scss/app.scss";
-
-.personal_infos{
-  background-color: #f0f0f0;
-  padding: 15px;
-}
 
 </style>
 

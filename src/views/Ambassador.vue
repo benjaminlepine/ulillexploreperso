@@ -21,7 +21,7 @@
         <form @submit.prevent="acceptAmbassadorCG" class="text-center">
           <input v-model="acceptCB" id="ambassadorCG" class="cbAmbassador" type="checkbox" required>
           <label for="ambassadorCG" class="ml-3">{{ $t('ambassador.charte.cgAccept')}}</label>
-          <button type="submit" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.validate')}}<br></button>
+          <button :disabled="!acceptCB" type="submit" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.validate')}}<br></button>
         </form>
       </div>
     </div>
@@ -35,7 +35,6 @@
     data: function ()  {
       return {
         acceptCB: false,
-        acceptCBUE: false
       }
     },
     methods:{

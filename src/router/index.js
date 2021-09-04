@@ -1,23 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Ambassador from '../components/Ambassador.vue'
-import BecomeAmbassador from '../components/AmbassadorForm.vue'
-import BecomeAmbassadoraa from '../components/UploadFiles.vue'
-import Buddy from '../components/Buddy.vue'
-import Home from '../components/Home.vue'
-import SignIn from '../components/SignIn.vue'
-import SignUp from '../components/SignUp.vue'
-import ForgotPassword from '../components/ForgotPassword.vue'
-import ResetPassword from '../components/ResetPassword.vue'
-import BecomeGodchild from '../components/BecomeGodchild.vue'
-import BecomeGodfather from '../components/BecomeGodfather.vue'
-import Wait from '../components/Wait.vue'
-import Help from '../components/Help.vue'
-import Matching from '../components/Matching.vue'
-import Problem from '../components/Problem.vue'
-import NeedHelp from '../components/NeedHelp.vue'
-import Updatepassword from '../components/Updatepassword.vue'
-import Profil from '../components/Profil.vue'
+import Ambassador from '../views/Ambassador.vue'
+import BecomeAmbassador from '../views/AmbassadorForm.vue'
+import Buddy from '../views/Buddy.vue'
+import Home from '../views/Home.vue'
+import SignIn from '../views/SignIn.vue'
+import SignUp from '../views/SignUp.vue'
+import ForgotPassword from '../views/ForgotPassword.vue'
+import ResetPassword from '../views/ResetPassword.vue'
+import BecomeGodchild from '../views/BecomeGodchild.vue'
+import BecomeGodfather from '../views/BecomeGodfather.vue'
+import Wait from '../views/Wait.vue'
+import Help from '../views/Help.vue'
+import Matching from '../views/Matching.vue'
+import NeedHelp from '../views/NeedHelp.vue'
+import Updatepassword from '../views/Updatepassword.vue'
+import Profil from '../views/Profil.vue'
 
 Vue.use(VueRouter);
 
@@ -26,7 +24,6 @@ const routes = [
   {path: '/home', component: Home},
   {path: '/ambassador', name: 'Ambassador', component: Ambassador},
   {path: '/becomeAmbassador', name: 'BecomeAmbassador', component: BecomeAmbassador},
-  {path: '/becomeAmbassadoraa', name: 'BecomeAmbassadoraa', component: BecomeAmbassadoraa},
   {path: '/buddy', name: 'Buddy', component: Buddy},
   {path: '/profil', name: 'Profil', component: Profil},
   {path: '/becomegodchild', name: 'BecomeGodchild', component: BecomeGodchild},
@@ -39,7 +36,6 @@ const routes = [
   {path: '/wait', name: 'Wait', component: Wait},
   {path: '/help', name: 'Help', component: Help},
   {path: '/matching', name: 'Matching', component: Matching},
-  {path: '/problem', name: 'Problem', component: Problem},
   {path: '/needhelp', name: 'NeedHelp', component: NeedHelp},
   {path: '*', component: Home }
 ];

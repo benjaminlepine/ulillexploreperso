@@ -151,7 +151,8 @@
       "ambassador": "Ambassadeur",
       "isAmbassador": "Je suis inscrit à l'UE ambassadeur pour l'année scolaire",
       "seeMyForm": "Voir mon formulaire",
-      "unsubscribe": "Me desinscrire"
+      "unsubscribe": "Me desinscrire",
+      "noRelations": "Tu n'a pas encore de status Lilord (parrain) ou Lilot (filleul), a toi de choisir si tu souhaite accompagner un Lilot ou si tu as besoin d'être aidé par un Lilord"
     },
     "wait": {
       "sorry": "Désolé",
@@ -269,6 +270,8 @@
       "aboutProblem": "Pour tout problème avec votre parrain, cliquez ici"
     },
     "problem": {
+      "endRelation": "Si tu souhaite mettre fin à cette relation, tu doit en donner la raison",
+      "noProblem": "La relation s'est bien passé (pas de problème)",
       "problemWithMyGodfather": "Problème avec mon parrain",
       "whatIsTheProblem": "Quel est le problème avec ton parrain ?",
       "chooseOption": "Choisir une option",
@@ -276,7 +279,8 @@
       "noAffinity": "Je n'ai pas d'affinités avec mon parrain / filleul",
       "communication": "J'ai des difficultés à communiquer avec mon parrain/ filleul (langue)",
       "weird": "Mon parrain/filleul a eu un comportement déplacé",
-      "rgpd": "En envoyant ce formulaire vous perdrez tout contact avec votre parrain, vous ne pourrez plus voir ses coordonnées et l'administration de Lille sera prévenu"
+      "rgpd": "En envoyant ce formulaire vous perdrez tout contact avec votre parrain, vous ne pourrez plus voir ses coordonnées et l'administration de Lille en sera informée",
+      "endRelationSubmit": "Terminer la relation"
     }
   },
 
@@ -433,7 +437,8 @@
       "ambassador": "Ambassador",
       "isAmbassador": "I'm registered at ambassador UE for scolar years",
       "seeMyForm": "See my form",
-      "unsubscribe": "Unsubscribe"
+      "unsubscribe": "Unsubscribe",
+      "noRelations": "You do not yet have a Lilord (godfather) or Lilot (godchild) status, it's up to you to choose if you want to support a Lilot or if you need to be helped by a Lilord"
     },
     "wait": {
       "sorry": "Sorry",
@@ -550,6 +555,8 @@
       "aboutProblem": "For any problem with your godfather, click here"
     },
     "problem": {
+      "endRelation": "If you want to end this relation, you must give the reason",
+      "noProblem": "The relationship went well (no problem)",
       "problemWithMyGodfather": "Problem with my godfather",
       "whatIsTheProblem": "What is the problem with your godfather ?",
       "chooseOption": "Choose an option",
@@ -557,7 +564,8 @@
       "noAffinity": "I have no affinity with my godfather / godchild",
       "communication": "I have difficulty communicating with my godfather / godchild (language)",
       "weird": "My godfather / godchild behaved inappropriately",
-      "rgpd": "By sending this form you will lose all contact with your godfather, you will no longer be able to see their contact details and the Lille administration will be notified"
+      "rgpd": "By sending this form you will lose all contact with your godfather, you will no longer be able to see their contact details and the Lille administration will be notified",
+      "endRelationSubmit": "End this releation"
     }
   }
 }

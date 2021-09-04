@@ -1,4 +1,4 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
   <div>
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <p class="mb-0 mainTitle">{{ $t('profil.myProfil')}}</p>
@@ -19,16 +19,18 @@
       <hr>
       <!-- Parrain / Filleuls section -->
       <div>
-        <p class="text-left mb-0">{{ $t('profil.myGodchild')}}</p>
-        <p class="text-left mb-0">{{ $t('profil.myGodfather')}}</p>
-        <div v-for="(godchfa, index) in godchfas" :key="index" class="profil-godcard d-flex justify-content-between">
-          <div>
-            <p class="text-left mb-0 text-white">{{godchfa.name}}</p>
-            <p class="text-left mb-0 profil-godcard-link-color">{{godchfa.email}}</p>
+        <div class="grey-ctn" v-if="!userGodStatus.isGodchild && !userGodStatus.isGodfather">
+          <p class="text-left">{{ $t('profil.noRelations')}}</p>
+          <div class="d-flex justify-content-between">
+            <div class="w-50 text-center profil-godlink"><router-link to="/becomeGodfather">{{ $t('sideMenu.becomeGodfather')}}</router-link></div>
+            <div class="w-50 text-center profil-godlink"><router-link to="/becomeGodchild">{{ $t('sideMenu.becomeGodchild')}}</router-link></div>
           </div>
-          <img src="../assets/img/user2.svg">
+        </div>
+        <div v-else>
+          <relation-infos :userGodStatus="userGodStatus"></relation-infos>
         </div>
       </div>
+
       <hr>
       <!-- Ambassador section -->
       <div>
@@ -46,13 +48,21 @@
 <script>
 import { faSubscript } from '@fortawesome/free-solid-svg-icons';
 import store from '../store.js';
+import EndOfRelation from "../components/EndOfRelation";
+import RelationInfos from "../components/RelationInfos";
 export default {
   name: 'Profil',
+  components: {RelationInfos, EndOfRelation},
   data: function () {
     return {
       store: store,
-      godchfas: [{name:'Frodon', email:'frodon.saquet@univ-lille.fr'},{name:'Arthur', email:'arthur.minimoy@univ-lille.fr'}]
+
     }
+  },
+
+  updated() {
+    //console.log("user = ", this.$store.getters['auth/user']);
+    console.log("userGodStatus = ", this.userGodStatus);
   },
   computed:{
     userFullName(){
@@ -63,6 +73,13 @@ export default {
       if (user && user.email){
         return user.email;
       }
+      return "N/A"
+    },
+    userGodStatus(){
+      const user = this.$store.getters['auth/user'];
+      //if (user && user.profile){ return {isGodfather: user.profile.godfather, isGodchild: user.profile.godchild};}
+      if (user && user.profile){ return {isGodfather: user.profile.godfather, isGodchild: true};}
+      //if (user && user.profile){ return {isGodfather: true, isGodchild: user.profile.godchild};}
       return "N/A"
     },
     registrationDate(){
@@ -100,16 +117,6 @@ export default {
   }
   &-picto{
     max-width: 45px;
-  }
-  &-godcard{
-    background-color: $main-color;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 16px;
-    margin-bottom: 8px;
-    &-link-color{
-      color:$third-color;
-    }
   }
   &-ambassador{
     padding: 12px;
