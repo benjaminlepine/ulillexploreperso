@@ -6,10 +6,48 @@ import userService from "../../services/user.service";
 
 Vue.use(Vuex);
 
+
 export const user = {
     namespaced: true,
-    state: { godchildProfile: null, godfatherProfile: null, ambassadorProfile: null},
+    state: {
+        godchildProfile: JSON.parse(localStorage.getItem('godfatherProfile')),
+        godfatherProfile: JSON.parse(localStorage.getItem('godchildProfile')),
+        ambassadorProfile: JSON.parse(localStorage.getItem('ambassadorProfile'))
+    },
     actions:{
+        fetchGodfatherProfile({ commit }){
+            return UserService.fetchGodfatherProfile().then(
+                godfatherProfile => {
+                    commit('RECEIVE_FETCH_GODFATHER_PROFILE_SUCCESS', godfatherProfile);
+                    return Promise.resolve(godfatherProfile);
+                },
+                err => {
+                    return Promise.reject(err);
+                }
+            );
+        },
+        fetchGodchildProfile({ commit }){
+            return UserService.fetchGodchildProfile().then(
+                godchildProfile => {
+                    commit('RECEIVE_FETCH_GODCHILD_PROFILE_SUCCESS', godchildProfile);
+                    return Promise.resolve(godchildProfile);
+                },
+                err => {
+                    return Promise.reject(err);
+                }
+            );
+        },
+        fetchAmbassadorProfile({ commit }){
+            return UserService.fetchAmbassadorProfile().then(
+                profile => {
+                    commit('RECEIVE_FETCH_AMBASSADOR_PROFILE_SUCCESS', profile);
+                    return Promise.resolve(profile);
+                },
+                err => {
+                    return Promise.reject(err);
+                }
+            );
+        },
         sendAmbassadorForm({ commit, rootGetters}, form){
             return UserService.sendAmbassadorForm(form).then(
                 profile => {
@@ -90,20 +128,45 @@ export const user = {
         },
     },
     mutations:{
+        RECEIVE_FETCH_GODFATHER_PROFILE_SUCCESS(state, godfather){
+            state.godfatherProfile = godfather;
+            localStorage.setItem('godfatherProfile', JSON.stringify(state.godfatherProfile));
+        },
+        RECEIVE_FETCH_GODCHILD_PROFILE_SUCCESS(state, godchild){
+            state.godchildProfile = godchild;
+            localStorage.setItem('godchildProfile', JSON.stringify(state.godchildProfile));
+        },
+        RECEIVE_FETCH_AMBASSADOR_PROFILE_SUCCESS(state, ambassador){
+            state.ambassadorProfile = ambassador;
+            localStorage.setItem('ambassadorProfile', JSON.stringify(state.ambassadorProfile));
+        },
+
         REQUEST_SEND_AMBASSADOR_FORM(state){},
-        RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS(state, profile){ state.ambassadorProfile = profile; },
+        RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS(state, profile){
+            state.ambassadorProfile = profile;
+            localStorage.setItem('ambassadorProfile', JSON.stringify(state.ambassadorProfile));
+        },
         RECEIVE_SEND_AMBASSADOR_FORM_ERROR(state){},
 
         REQUEST_SUBSCRIBE_TO_AMBASSADOR(state){},
-        RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS(state, profile){ state.ambassadorProfile = profile; },
+        RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS(state, profile){
+            state.ambassadorProfile = profile;
+            localStorage.setItem('ambassadorProfile', JSON.stringify(state.ambassadorProfile));
+        },
         RECEIVE_SUBSCRIBE_TO_AMBASSADOR_ERROR(state){},
 
         CREATE_GODFATHER_PROFILE(state){},
-        RECEIVE_GODFATHER_PROFILE_SUCCESS(state, profile){ state.godfatherProfile = profile; },
+        RECEIVE_GODFATHER_PROFILE_SUCCESS(state, profile){
+            state.godfatherProfile.profile = profile;
+            localStorage.setItem('godfatherProfile', JSON.stringify(state.godfatherProfile));
+        },
         RECEIVE_GODFATHER_PROFIL_ERROR(state){},
 
         CREATE_GODCHILD_PROFILE(state){},
-        RECEIVE_GODCHILD_PROFILE_SUCCESS(state, profile){ state.godchildProfile = profile; },
+        RECEIVE_GODCHILD_PROFILE_SUCCESS(state, profile){
+            state.godchildProfile.profile = profile;
+            localStorage.setItem('godchildProfile', JSON.stringify(state.godchildProfile));
+        },
         RECEIVE_GODCHILD_PROFILE_ERROR(state){},
 
         REQUEST_FACULTIES(state){},
@@ -129,11 +192,12 @@ export const user = {
             }
             return "N/A"
         },
-        isAmbassadorUE: (state, getters, rootState, rootGetters)=>{
-            const user = rootGetters['auth/user'];
-            if (user && user.profile && user.profile.ue){
-                console.log("user = ", user);
-                return user.profile.ue
+        isAmbassadorUE: (state)=>{
+            //const user = rootGetters['auth/user'];
+            state.ambassador
+            if (state.ambassadorProfile){
+                console.log("user = ", state.ambassadorProfile);
+                return  state.ambassadorProfile.isUE
             }
             return "N/A"
         },

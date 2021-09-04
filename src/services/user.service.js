@@ -7,6 +7,16 @@ export default new class UserService {
         const resp = await axios.get();
         return resp.data;
     }
+    async fetchGodfatherProfile(){
+        return this.fetch(R.endpoint.fethGodfatherProfile());
+    }
+    async fetchGochildrenProfile(){
+        return this.fetch(R.endpoint.fetchGodchildProfile());
+    }
+    async fethAmbassadorProfile(){
+        return this.fetch(R.endpoint.fetchAmbassadorProfile());
+    }
+
     async fetchHobbies(lang){
         const resp = await axios.get(R.endpoint.hobbies(lang), { headers: authHeader() });
         return resp.data;
@@ -22,6 +32,11 @@ export default new class UserService {
 
     async fetchFaculties(){
         const resp = await axios.get(R.endpoint.faculties(), { headers: authHeader() });
+        return resp.data;
+    }
+
+    async fetch(url){
+        const resp = await axios.get(url, { headers: authHeader() });
         return resp.data;
     }
 

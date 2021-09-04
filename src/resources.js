@@ -1,7 +1,7 @@
 const R = {
     endpoint: {
-        //base: process.env.VUE_APP_API_ENDPOINT,
-        base:"http://192.168.1.193:9000",
+        base: process.env.VUE_APP_API_ENDPOINT,
+        // base:"http://192.168.1.193:9000",
         //godfatherSummary(){ return R.endpoint.base+'/api/ulillexplore/godfather/summary/{pageNo}/{pageSize}'; },
         //godfatherSummary(){ return R.endpoint.base+'/api/ulillexplore/godfather/summary/0/5'; },
         //godfatherDetails(){ return R.endpoint.base+'/api/ulillexplore/godfather/{id}'; },
@@ -35,7 +35,10 @@ const R = {
         },
         sendAmbassadorForm(){
             return R.endpoint.base+"/api/ulillexplore/ambassador/submit/";
-        }
+        },
+        fethGodfatherProfile(){ return R.endpoint.base+"/api/ulillexplore/godfather/profile"; },
+        fetchGodchildProfile(){ return R.endpoint.base+"/api/ulillexplore/godchild/profile"; },
+        fetchAmbassadorProfile(){ return R.endpoint.base+"/api/ulillexplore/ambassador"; }
     }
 };
 export default R;

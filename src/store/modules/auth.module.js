@@ -29,12 +29,15 @@ export const auth = {
           }
         );
     },
-    signin({ commit }, user){
+    signin({ commit, dispatch }, user){
       commit('REQUEST_SIGNIN')
       return AuthService
       .signin(user).then (
         user => {
           commit('RECEIVE_SIGNIN_SUCCESS', user);
+          dispatch('user/fetchGodfatherProfile', null , {root:true});
+          dispatch('user/fetchGodchildProfile', null , {root:true});
+          dispatch('user/fetchAmbassadorProfile', null , {root:true});
           return Promise.resolve(user);
         },
         err => {
@@ -71,6 +74,7 @@ export const auth = {
       console.log(lang);
       AuthService.forgotPassword(lang, email).then(
         resp =>{
+
           commit('RECEIVE_PASSWORD_FORGOT_SUCCESS');
           return Promise.resolve(resp);
         },

@@ -43,7 +43,7 @@
             },
             create(){
                 if (this.signIn){
-                    this.$router.push('/'); // FIXME go to profile page
+                    this.$router.push('/profile'); // FIXME go to profile page
                 }
             }
         },
@@ -57,7 +57,7 @@
                 if (this.user.email && this.user.password){
                     this.$store.dispatch('auth/signin', this.user).then(
                         () => {
-                            this.$router.push('/');
+                            this.$router.push('/profile');
                         },
                         error => {
                             this.loading = false;
