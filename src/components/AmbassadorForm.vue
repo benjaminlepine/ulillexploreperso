@@ -13,7 +13,7 @@
         </div>
         <h5 class="mt-4">{{ $t('ambassador.form.amBefore')}}</h5>
         <label class="mb-0" for="amDoPortrait">{{ $t('ambassador.form.amDoPortrait')}}</label>
-        <textarea class="form-control mb-3" id="amDoPortrait" v-model="form.texts.portrait" rows="5" cols="33"></textarea>
+        <upload-files :files="form.images.portrait" :maxImages="1" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         <label class="mb-0" for="amDoInterview">{{ $t('ambassador.form.amDoInterview')}}</label>
         <p class="mb-0"><b>{{ $t('ambassador.form.amChooseInterview')}}</b></p>
         <input class="form-control mb-3" v-model="form.texts.interview" id="amDoInterview" type="date" required>
@@ -72,6 +72,7 @@ export default {
     return {
       form:{
         images:{
+          portrait: [],
           photo: [],
           postcard:[],
           represent:[],
@@ -86,7 +87,6 @@ export default {
           university: null,
           exchange: null,
           component: null,
-          portrait: null,
           interview: null,
           publication: null,
           blog: null,
@@ -100,8 +100,8 @@ export default {
 
   beforeMount() {
     this.form = {
-      images:{ photo: [], postcard:[], represent:[], logbook:[], tips:[], promotion:[], ueTips:[], ueReport:[] },
-      texts:{ country: "", university: "", exchange: "", component: "", portrait: "", interview: Date, publication: "", blog: "" }
+      images:{ portrait: [], photo: [], postcard:[], represent:[], logbook:[], tips:[], promotion:[], ueTips:[], ueReport:[] },
+      texts:{ country: "", university: "", exchange: "", component: "", interview: Date, publication: "", blog: "" }
     }
     if(localStorage.getItem("ambassadorForm")){
       this.form.texts = JSON.parse(localStorage.getItem("ambassadorForm"));
@@ -130,45 +130,65 @@ export default {
     deleteForm(){
       localStorage.removeItem('ambassadorForm');
     },
-    submitAmbassador(e){
-      const form = new FormData();
 
+    checkForm(){
+      //required 5 / 11 - for UE 8/11
+      let n = 0;
+      if (this.form.images.portrait[0]){ n++;}
+      if (this.form.texts.publication){ n++;}
+      if (this.form.texts.blog){ n++;}
+      if (this.form.images.photo && this.form.images.photo.length > 0){ n++;}
+      if (this.form.images.postcard && this.form.images.postcard.length > 0){ n++;}
+      if (this.form.images.represent && this.form.images.represent.length > 0){ n++;}
+      if (this.form.images.logbook && this.form.images.logbook.length > 0){ n++;}
+      if (this.form.images.tips && this.form.images.tips.length > 0){ n++;}
+      if (this.form.images.promotion && this.form.images.promotion.length > 0){ n++;}
+      if (this.form.images.ueTips && this.form.images.ueTips.length > 0){ n++;}
+      if (this.form.images.ueReport && this.form.images.ueReport.length > 0){ n++;}
+        return n >= 5;
+    },
+    submitAmbassador(){
+      if (!this.checkForm()){
+        return ; // FIXME message error
+      }
+      const form = new FormData(); // 5 / 11 -  8/11
       form.append('country', this.form.texts.country);//required
       form.append('university', this.form.texts.university);//required
       form.append('exchange', this.form.texts.exchange);//required
       form.append('component', this.form.texts.component);//required
-
-      form.append('portrait', this.form.texts.portrait);
       form.append('interview', this.form.texts.interview.toString()); //required
+
+      form.append('portrait', this.form.images.portrait[0].file);
       form.append('publication', this.form.texts.publication);
       form.append('blog', this.form.texts.blog);
+
       this.form.images.photo.forEach((file) => {
         form.append("photo", file.file);
         console.log("file", file);
       });
       this.form.images.postcard.forEach((file) => {
-        form.append("postcard[]", file.file);
+        form.append("postcard", file.file);
       });
       this.form.images.represent.forEach((file) => {
-        form.append("represent[]", file.file);
+        form.append("represent", file.file);
       });
       this.form.images.logbook.forEach((file) => {
-        form.append("logbook[]", file.file);
+        form.append("logbook", file.file);
       });
       this.form.images.tips.forEach((file) => {
-        form.append("tips[]", file.file);
+        form.append("tips", file.file);
       });
       this.form.images.promotion.forEach((file) => {
-        form.append("promotion[]", file.file);
+        form.append("promotion", file.file);
       });
       if (this.form.images.ueTips && this.form.images.ueTips.length > 0){
         this.form.images.ueTips.forEach((file) => {
-          form.append("ueTips[]", file.file);
+          form.append("ueTips", file.file);
         });
       }
       if (this.form.images.ueReport && this.form.images.ueReport.length > 0){
         this.form.images.ueReport.forEach((file) => {
-          form.append("ueReport[]", file.file);
+          form.append("ueReport", file.file);
         });
       }
       this.$store.dispatch("user/sendAmbassadorForm", form).then(
