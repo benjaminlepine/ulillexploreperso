@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
-    <p class="mb-0 mainTitle">{{ $t('godfather.createMyProfil')}}</p>
+    <p class="mb-0 mainTitle">{{ $t('godfather.createMyProfile')}}</p>
     <div class="mainctn">
       <form @submit.prevent="submitGodFather">
         <div class="text-left">
@@ -241,7 +241,7 @@
           hobbies: utils.getArrayIndexesFrom(this.hobbies,function(value){ return value.checked})
         };
         console.log(form)
-        this.$store.dispatch("user/createGodfatherProfil", form).then(
+        this.$store.dispatch("user/createGodfatherProfile", form).then(
           (profile) => { 
             // FXIME form submit with succes
             console.log(profile);

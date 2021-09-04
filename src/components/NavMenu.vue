@@ -20,7 +20,7 @@
                     </li>
                   <li >
                     <i class="fas fa-user fa-2x sidebar-panel-nav--icon"></i>
-                    <router-link to="/profil">{{ $t('sideMenu.profil')}}</router-link>
+                    <router-link to="/profile">{{ $t('sideMenu.profile')}}</router-link>
                   </li>
                     <li >
                         <i class="fas fa-user-graduate fa-2x sidebar-panel-nav--icon"></i>

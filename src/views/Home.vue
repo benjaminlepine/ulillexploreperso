@@ -19,14 +19,13 @@
       <img class="homecard-picto" :alt="$t('home.shareYourExperience')" src="../assets/img/postal.svg">
     </router-link>
 
-    <router-link to="/profil" class="homecard">
+    <router-link to="/profile" class="homecard">
       <div class="homecard-text">
-        <p class="mb-0 homecard-text--title">{{ $t('home.profil')}}</p>
+        <p class="mb-0 homecard-text--title">{{ $t('home.profile')}}</p>
         <p class="mb-0 homecard-text--subtitle">{{ $t('home.myInfos')}}</p>
       </div>
       <img class="homecard-picto" src="../assets/img/user.svg">
     </router-link>
-
 
   </div>
 </template>

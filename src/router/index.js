@@ -15,7 +15,7 @@ import Help from '../views/Help.vue'
 import Matching from '../views/Matching.vue'
 import NeedHelp from '../views/NeedHelp.vue'
 import Updatepassword from '../views/Updatepassword.vue'
-import Profil from '../views/Profil.vue'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter);
 
@@ -25,7 +25,7 @@ const routes = [
   {path: '/ambassador', name: 'Ambassador', component: Ambassador},
   {path: '/becomeAmbassador', name: 'BecomeAmbassador', component: BecomeAmbassador},
   {path: '/buddy', name: 'Buddy', component: Buddy},
-  {path: '/profil', name: 'Profil', component: Profil},
+  {path: '/profile', name: 'Profile', component: Profile},
   {path: '/becomegodchild', name: 'BecomeGodchild', component: BecomeGodchild},
   {path: '/becomegodfather', name: 'BecomeGodfather', component: BecomeGodfather},
   {path: '/signin', name: 'SignIn', component: SignIn},
