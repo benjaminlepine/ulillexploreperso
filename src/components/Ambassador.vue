@@ -21,10 +21,10 @@
         <form @submit.prevent="acceptAmbassadorCG" class="text-center">
           <input v-model="acceptCB" id="ambassadorCG" class="cbAmbassador" type="checkbox" required>
           <label for="ambassadorCG" class="ml-3">{{ $t('ambassador.charte.cgAccept')}}</label>
-          <div class="d-flex">
-            <label for="ambassadorCGUE" class="text-left">{{ $t('ambassador.charte.cgUE')}}</label>
-            <input v-model="acceptCBUE" id="ambassadorCGUE" class="cbAmbassador mt-2 mr-1" type="checkbox">
-          </div>
+<!--          <div class="d-flex">-->
+<!--            <label for="ambassadorCGUE" class="text-left">{{ $t('ambassador.charte.cgUE')}}</label>-->
+<!--            <input v-model="acceptCBUE" id="ambassadorCGUE" class="cbAmbassador mt-2 mr-1" type="checkbox">-->
+<!--          </div>-->
           <button type="submit" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.validate')}}<br></button>
         </form>
       </div>
@@ -44,7 +44,7 @@
     },
     methods:{
       acceptAmbassadorCG(){
-        this.$store.dispatch("user/subscribeToAmbassador", this.acceptCBUE).then(
+        this.$store.dispatch("user/subscribeToAmbassador").then(
           (value) => {
             console.log(value);
             this.$router.push('/becomeAmbassador');
@@ -55,7 +55,14 @@
           }
         );
       }
-    }
+    },
+    mounted() {
+      console.log("this.$store.getters['user/isUE'] = ", this.$store.getters['user/isAmbassadorUE'])
+    },
+
+    updated() {
+      console.log("isAmbassadorUE = ", this.$store.getters['user/isAmbassadorUE'])
+    },
   }
 </script>
 
@@ -63,13 +70,7 @@
   @import "../scss/_app-variables.scss";
   @import "../scss/app.scss";
 
-  .cbAmbassador{
-    -ms-transform: scale(2); /* IE */
-    -moz-transform: scale(2); /* FF */
-    -webkit-transform: scale(2); /* Safari and Chrome */
-    -o-transform: scale(2); /* Opera */
-    transform: scale(2);
-  }
+
 
 
 </style>

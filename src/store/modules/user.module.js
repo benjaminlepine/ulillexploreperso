@@ -22,9 +22,9 @@ export const user = {
                 }
             );
         },
-        subscribeToAmbassador({ commit }, isUE){
+        subscribeToAmbassador({ commit }){
             commit('REQUEST_SUBSCRIBE_TO_AMBASSADOR');
-            return UserService.subscribeToAmbassador(isUE).then(
+            return UserService.subscribeToAmbassador().then(
                 message => {
                     commit('RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS');
                     return Promise.resolve(message);

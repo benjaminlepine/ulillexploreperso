@@ -43,12 +43,16 @@
         <!-- UE Module Only-->
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.UEInter')}}</p>
+        <div class="w-100 text-center mt-3" >
+        <input type="checkbox" class="cbAmbassador" v-model="isUE" @change="isUE">
+        </div>
         <hr>
-        <label class="mb-0">{{ $t('ambassador.form.amRecueil')}}</label>
-        <upload-files :files="form.images.ueTips" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-        <label class="mb-0">{{ $t('ambassador.form.amRapport')}}</label>
-        <upload-files :files="form.images.ueReport" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
-        <div class="d-flex"></div>
+        <div v-if="isUE">
+          <label class="mb-0">{{ $t('ambassador.form.amRecueil')}}</label>
+          <upload-files :files="form.images.ueTips" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <label class="mb-0">{{ $t('ambassador.form.amRapport')}}</label>
+          <upload-files :files="form.images.ueReport" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+        </div>
         <button type="submit" :disabled="isDisabled" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('ambassador.form.sendForm')}}<br></button>
       </form>
       <button class="btn explorebtnsecondary" @click="saveForm()">{{ $t('ambassador.form.saveForm')}}<br>{{ $t('ambassador.form.exceptImages')}}</button>
@@ -89,6 +93,7 @@ export default {
         }
       },
       isDisabled:false,
+
       isUE:false,
     }
   },
@@ -127,7 +132,7 @@ export default {
     },
     submitAmbassador(e){
       const form = new FormData();
-      
+
       form.append('country', this.form.texts.country);//required
       form.append('university', this.form.texts.university);//required
       form.append('exchange', this.form.texts.exchange);//required
@@ -167,12 +172,12 @@ export default {
         });
       }
       this.$store.dispatch("user/sendAmbassadorForm", form).then(
-        (value) => {
-          console.log(value);
-        },
-        err => {
-          console.log(err);
-        }
+          (value) => {
+            console.log(value);
+          },
+          err => {
+            console.log(err);
+          }
       );
     },
     disableForm(isDisabled){
