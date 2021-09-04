@@ -18,37 +18,43 @@
       </div>
       <hr>
       <!-- Parrain / Filleuls section -->
-        <div class="grey-ctn" v-if="!userGodStatus.isGodchild && !userGodStatus.isGodfather">
-          <p class="text-left">{{ $t('profile.noRelations')}}</p>
-          <div class="d-flex justify-content-between">
-            <div class="w-50 text-center profile-godlink"><router-link to="/becomeGodfather">{{ $t('sideMenu.becomeGodfather')}}</router-link></div>
-            <div class="w-50 text-center profile-godlink"><router-link to="/becomeGodchild">{{ $t('sideMenu.becomeGodchild')}}</router-link></div>
+      <div class="grey-ctn" v-if="!userGodStatus.isGodchild && !userGodStatus.isGodfather">
+        <p class="text-left">{{ $t('profile.noRelations')}}</p>
+        <div class="d-flex justify-content-between">
+          <div class="w-50 text-center profile-godlink"><router-link to="/becomeGodfather">{{ $t('sideMenu.becomeGodfather')}}</router-link></div>
+          <div class="w-50 text-center profile-godlink"><router-link to="/becomeGodchild">{{ $t('sideMenu.becomeGodchild')}}</router-link></div>
+        </div>
+      </div>
+      <div v-else>
+        <div v-if="userGodStatus.isGodfather">
+          <p class="text-left mb-0">{{ $t('profile.myGodchild')}}</p>
+          <div v-for="(godchild, index) in godchilds" :key="index">
+            <relation-infos :relation="godchild"></relation-infos>
           </div>
         </div>
-        <div v-else>
-          <div v-if="userGodStatus.isGodfather">
-            <p class="text-left mb-0">{{ $t('profile.myGodchild')}}</p>
-            <div v-for="(godchild, index) in godchilds" :key="index">
-              <relation-infos :relation="godchild"></relation-infos>
-            </div>
-          </div>
-            <div v-if="userGodStatus.isGodchild">
-              <p class="text-left mb-0">{{ $t('profile.myGodfather')}}</p>
-              <relation-infos :relation="godfather"></relation-infos>
-            </div>
-          </div>
-        <hr>
-        <!-- Ambassador section -->
-        <div>
-          <p class="text-left">{{ $t('profile.ambassador')}}</p>
-          <div class="profile-ambassador">
-            <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profile.isAmbassador')}}</p>
-            <router-link to="/ambassador" class="btn explorebtn mb-3">{{ $t('profile.seeMyForm')}}</router-link>
-            <button class="btn" @click="unsubscribe">{{ $t('profile.unsubscribe')}}</button>
-          </div>
+        <div v-if="userGodStatus.isGodchild">
+          <p class="text-left mb-0">{{ $t('profile.myGodfather')}}</p>
+          <relation-infos :relation="godfather"></relation-infos>
+        </div>
+      </div>
+      <hr>
+      <!-- Ambassador section -->
+      <p class="text-left">{{ $t('profile.ambassador')}}</p>
+      <div v-if="isAmbassador && isAmbassador.ambassador">
+        <div class="profile-ambassador">
+          <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profile.isAmbassador')}}</p>
+          <router-link to="/becomeAmbassador" class="btn explorebtn mb-3">{{ $t('profile.seeMyForm')}}</router-link>
+          <button class="btn" @click="unsubscribe">{{ $t('profile.unsubscribe')}}</button>
+        </div>
+      </div>
+      <div v-else>
+        <div class="profile-ambassador">
+          <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profile.becomeAmbassador')}}</p>
+          <router-link to="/ambassador" class="btn explorebtn mb-3">{{ $t('profile.becomeAmbassadorValid')}}</router-link>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -75,6 +81,13 @@ export default {
       const user = this.$store.getters['auth/user'];
       if (user && user.email){
         return user.email;
+      }
+      return "N/A"
+    },
+    isAmbassador(){
+      const user = this.$store.getters['auth/user'];
+      if (user && user.profile){
+        return user.profile;
       }
       return "N/A"
     },

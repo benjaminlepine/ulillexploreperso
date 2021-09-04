@@ -150,6 +150,8 @@
       "myGodfather": "Mon parrain",
       "ambassador": "Ambassadeur",
       "isAmbassador": "Je suis inscrit à l'UE ambassadeur pour l'année scolaire",
+      "becomeAmbassador": "Tu n'est pas encore ambassadeur, pour le devenir, rend toi ici",
+      "becomeAmbassadorValid": "Devenir ambassadeur",
       "seeMyForm": "Voir mon formulaire",
       "unsubscribe": "Me desinscrire",
       "noRelations": "Tu n'a pas encore de status Lilord (parrain) ou Lilot (filleul), a toi de choisir si tu souhaite accompagner un Lilot ou si tu as besoin d'être aidé par un Lilord"
@@ -437,6 +439,8 @@
       "myGodfather": "My godfather",
       "ambassador": "Ambassador",
       "isAmbassador": "I'm registered at ambassador UE for scolar years",
+      "becomeAmbassador": "You are not yet an ambassador, to become one, go here",
+      "becomeAmbassadorValid": "Become ambassador",
       "seeMyForm": "See my form",
       "unsubscribe": "Unsubscribe",
       "noRelations": "You do not yet have a Lilord (godfather) or Lilot (godchild) status, it's up to you to choose if you want to support a Lilot or if you need to be helped by a Lilord"
