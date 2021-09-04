@@ -30,8 +30,8 @@ const R = {
         createGodfatherProfil(){
             return R.endpoint.base+'/api/ulillexplore/godfather/profile/';
         },
-        subscribeToAmbassador(isUE){
-            return R.endpoint.base+"/api/ulillexplore/ambassador/subscribe/"+isUE;
+        subscribeToAmbassador(){
+            return R.endpoint.base+"/api/ulillexplore/ambassador/subscribe/";
         },
         sendAmbassadorForm(){
             return R.endpoint.base+"/api/ulillexplore/ambassador/submit/";

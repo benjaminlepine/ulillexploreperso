@@ -35,8 +35,8 @@ export default new class UserService {
         return resp.data;
     }
 
-    async subscribeToAmbassador(isUE){
-        const resp = await axios.post(R.endpoint.subscribeToAmbassador(isUE), null, { headers: authHeader() });
+    async subscribeToAmbassador(){
+        const resp = await axios.post(R.endpoint.subscribeToAmbassador(), null, { headers: authHeader() });
         console.log(resp);
         return resp.data;
     }
