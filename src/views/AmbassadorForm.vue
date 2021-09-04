@@ -14,7 +14,7 @@
         <h5 class="mt-4">{{ $t('ambassador.form.amBefore')}}</h5>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amDoPortrait')}}</label>
-          <upload-files :files="form.images.portrait" :maxImages="1" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.portrait" :maxFiles="3" :isText=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0" for="amDoInterview">{{ $t('ambassador.form.amDoInterview')}}</label>
@@ -23,7 +23,7 @@
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
-          <upload-files :files="form.images.photo" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.photo" :maxFiles="10" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0" for="amDoPubli">{{ $t('ambassador.form.amDoPubli')}}</label>
@@ -34,11 +34,11 @@
           <label class="mb-0">{{ $t('ambassador.form.amDoPostal')}}</label>
           <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
           <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
-          <upload-files :files="form.images.postcard" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.postcard" :maxFiles="2" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amRepresent')}}</label>
-          <upload-files :files="form.images.represent" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.represent" :maxFiles="10" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
@@ -46,39 +46,44 @@
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amCarnet')}}</label>
-          <upload-files :files="form.images.logbook" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.logbook" :maxFiles="2" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amPlan')}}</label>
-          <upload-files :files="form.images.tips" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.tips" :maxFiles="2" :isText=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amPromotion')}}</label>
           <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
-          <upload-files :files="form.images.promotion" :maxImages="10" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.promotion" :maxFiles="10" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
 
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.amIdea')}}</p>
         <p class="mb-0">{{ $t('ambassador.form.amParticipate')}}</p>
-        <!-- UE Module Only-->
+
+        <!--------------------------------------------------------------------------------------------------->
+        <!-------------------------------------------- UE MODULE -------------------------------------------->
+        <!--------------------------------------------------------------------------------------------------->
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.UEInter')}}</p>
         <div class="w-100 text-center mt-3" >
-          <input type="checkbox" class="cbAmbassador" v-model="isUE" @change="isUE">
+          <input type="checkbox" class="cbAmbassador" v-model="form.texts.isUE" @change="form.texts.isUE">
         </div>
         <hr>
-        <div v-if="isUE">
-
+        <div v-if="form.texts.isUE">
           <div class="grey-ctn">
             <label class="mb-0">{{ $t('ambassador.form.amRecueil')}}</label>
-            <upload-files :files="form.images.ueTips" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+            <upload-files :files="form.images.ueTips" :maxFiles="2" :isText=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
           </div>
           <div class="grey-ctn">
             <label class="mb-0">{{ $t('ambassador.form.amRapport')}}</label>
-            <upload-files :files="form.images.ueReport" :maxImages="2" @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+            <upload-files :files="form.images.ueReport" :maxFiles="2" :isText=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
           </div>
         </div>
+        <!--------------------------------------------------------------------------------------------------->
+        <!-------------------------------------------- UE MODULE -------------------------------------------->
+        <!--------------------------------------------------------------------------------------------------->
         <button type="submit" :disabled="isDisabled" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('ambassador.form.sendForm')}}<br></button>
       </form>
       <button class="btn explorebtnsecondary" @click="saveForm()">{{ $t('ambassador.form.saveForm')}}<br>{{ $t('ambassador.form.exceptImages')}}</button>
@@ -116,11 +121,10 @@ export default {
           interview: null,
           publication: null,
           blog: null,
+          isUE: false,
         }
       },
       isDisabled:false,
-
-      isUE:false,
     }
   },
 
@@ -132,14 +136,6 @@ export default {
     if(localStorage.getItem("ambassadorForm")){
       this.form.texts = JSON.parse(localStorage.getItem("ambassadorForm"));
     }
-  },
-  mounted() {
-    //this.isUE()
-    console.log("this.$store.getters['user/isUE'] = ", this.$store.getters['user/isAmbassadorUE'])
-  },
-
-  updated() {
-    console.log("isAmbassadorUE = ", this.$store.getters['user/isAmbassadorUE'])
   },
 
   methods: {
@@ -175,6 +171,7 @@ export default {
       form.append('university', this.form.texts.university);//required
       form.append('exchange', this.form.texts.exchange);//required
       form.append('component', this.form.texts.component);//required
+      form.append('isUE', this.form.texts.isUE);//required
       form.append('interview', this.form.texts.interview.toString()); //required
 
       form.append('portrait', this.form.images.portrait[0].file);

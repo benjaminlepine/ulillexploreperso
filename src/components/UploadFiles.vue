@@ -1,7 +1,11 @@
 <template>
   <div class="uploader-ctn">
-    <input type="file" class="mb-2 text-white" ref="fileInput" @change="handleFileSelect($event)" multiple>
-<!--    <p id="state">{{ imagesState }}</p>-->
+    <div class="d-flex justify-content-between w-100">
+      <input type="file" class="mb-2 text-white" ref="fileInput" @change="handleFileSelect($event)" multiple>
+      <i v-if="isText" class="fas fa-file text-white fa-2x text-right"></i>
+      <i v-if="!isText" class="fas fa-file-image text-white fa-2x text-right"></i>
+    </div>
+    <!--    <p id="state">{{ imagesState }}</p>-->
     <div v-if="files && files" id="list">
       <span v-for="(file, index) in files" :key="index">
         <img :src="file.url" class="uploader-img"/>
@@ -10,11 +14,12 @@
     <button v-if="this.files.length > 0" class="btn explorebtn explorebtnsecondary mt-2" @click="deletePreviewAndImages">{{$t('ambassador.form.deleteThisImages')}}</button>
     <!--Errors msgs-->
     <p v-if="error.tooMuchFiles || error.tooBigFile || error.wrongFormat" class="uploader-warning text-white">{{ $t('ambassador.form.errorFiles')}}<br>
-      <span v-if="error.tooMuchFiles" class="font-weight-bolder text-white"><span class="montserrat text-white">{{ maxImages }}</span> {{ $t('ambassador.form.maxFiles')}}<br></span>
+      <span v-if="error.tooMuchFiles" class="font-weight-bolder text-white"><span class="montserrat text-white">{{ maxFiles }}</span> {{ $t('ambassador.form.maxFiles')}}<br></span>
       <span v-if="error.tooBigFile" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorFilesSize')}}
         <span class="montserrat text-white"> {{maxSize}} </span>{{ $t('ambassador.form.errorFilesSizemo')}}<br>
       </span>
-      <span v-if="error.wrongFormat" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorFilesFormat')}}</span>
+      <span v-if="error.wrongFormat && isText" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorTextsFilesFormat')}}</span>
+      <span v-if="error.wrongFormat && !isText" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorImagesFilesFormat')}}</span>
     </p>
   </div>
 </template>
@@ -23,7 +28,8 @@ export default {
   components: {},
   props:{
     files: Array,
-    maxImages: Number
+    maxFiles: Number,
+    isText: Boolean
   },
   data: function ()  {
     return {
@@ -38,19 +44,51 @@ export default {
   },
 
   methods:{
+    checkTypeValidity(files){
+      console.log('this.isText = ', this.isText)
+      console.log('this.isText = ', typeof this.isText)
+      if(this.isText === true){
+        console.log("CHECK DU TEXT")
+        for (let i = 0; i < files.length; i++) {
+          if (/\.(pdf|docx?|odt|rtf|tex|wpd|txt)$/i.test(files[i].name) === false) {
+            console.log("mauvais format")
+            return false;
+          }
+        }
+        return true
+      } else {
+        console.log("CHECK IMG")
+        for (let i = 0; i < files.length; i++) {
+          if (/\.(jpe?g|png|gif|bmp)$/i.test(files[i].name) === false ) {
+            console.log("mauvais format")
+            return false;
+          }
+        }
+        return true
+      }
+    },
+
     handleFileSelect(evt) {
       // Remove old preview images before add news
       if(this.files && this.files.length > 0){this.deletePreview();}
       const files = evt.target.files; // FileList object
 
       // Check number of files
-      if(files.length > this.maxImages){
+      if(files.length > this.maxFiles){
         this.$emit('disabled', true);
         this.error.tooMuchFiles= true;
         return-1;
       } else {
         this.$emit('disabled', false);
         this.error.tooMuchFiles= false;
+      }
+
+      // Check Format Extensions Files
+      if(!this.checkTypeValidity(files)){
+        this.$emit('disabled', true); this.error.wrongFormat= true;
+        return-1;
+      } else {
+        this.$emit('disabled', false); this.error.wrongFormat= false;
       }
 
       // Check size of each files
@@ -67,29 +105,16 @@ export default {
 
       // Loop through the FileList and render image files as thumbnails.
       for (var i = 0, f; f = files[i]; i++) {
-        // Only process image files.
-        if (!f.type.match('image.*') && !f.type.match('application/pdf')) { // FIXME Add pdf, jpeg, png
-          console.log("not match image type ", f.type); // FIXME error message
-          continue;
-        }
-
         this.addImage(f);
-        var reader = new FileReader();
-        // Closure to capture the file information.
-        // this.currentFile = f;
-        // reader.onload = (e) => {
-         // console.log(e);
-         // this.addImage(e.target.result);
-       // };
-       // reader.readAsDataURL(f);
       }
     },
+
     addImage(file){
       this.files.push({url: URL.createObjectURL(file), file});
     },
     deletePreview(){
       while(this.files.length != 0){
-         URL.revokeObjectURL(this.files.pop().url);
+        URL.revokeObjectURL(this.files.pop().url);
       }
     },
     deletePreviewAndImages(){
