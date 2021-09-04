@@ -8,13 +8,13 @@ Vue.use(Vuex);
 
 export const user = {
     namespaced: true,
-    state: { godchildProfil: null, godfatherProfil: null },
+    state: { godchildProfile: null, godfatherProfile: null, ambassadorProfile: null},
     actions:{
         sendAmbassadorForm({ commit, rootGetters}, form){
             return UserService.sendAmbassadorForm(form).then(
-                resp => {
-                    commit('RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS');
-                    return Promise.resolve(resp);
+                profile => {
+                    commit('RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS', profile);
+                    return Promise.resolve(profile);
                 },
                 err => {
                     commit('RECEIVE_SEND_AMBASSADOR_FORM_ERROR');
@@ -25,9 +25,9 @@ export const user = {
         subscribeToAmbassador({ commit }){
             commit('REQUEST_SUBSCRIBE_TO_AMBASSADOR');
             return UserService.subscribeToAmbassador().then(
-                message => {
-                    commit('RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS');
-                    return Promise.resolve(message);
+                profile => {
+                    commit('RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS', profile);
+                    return Promise.resolve(profile);
                 },
                 err => {
                     commit('RECEIVE_SUBSCRIBE_TO_AMBASSADOR_ERROR');
@@ -35,28 +35,28 @@ export const user = {
                 }
             );
         },
-        createGodfatherProfil({commit}, godfatherProfil){
-            commit('CREATE_GODFATHER_PROFIL');
-            return UserService.createGodfatherProfil(godfatherProfil).then(
-                profil => {
-                    commit('RECEIVE_GODFATHER_PROFIL_SUCCESS', profil);
-                    return Promise.resolve(profil);
+        createGodfatherProfile({commit}, godfatherProfile){
+            commit('CREATE_GODFATHER_PROFILE');
+            return UserService.createGodfatherProfil(godfatherProfile).then(
+                profile => {
+                    commit('RECEIVE_GODFATHER_PROFILE_SUCCESS', profile);
+                    return Promise.resolve(profile);
                 },
                 err => {
-                    commit('RECEIVE_GODFATHER_PROFIL_ERROR');
+                    commit('RECEIVE_GODFATHER_PROFILE_ERROR');
                     return Promise.reject(err);
                 }
             );
         },
-        createGodchildProfil({commit}, godchildProfil){
-            commit('CREATE_GODCHILD_PROFIL');
-            return UserService.createGodchildProfil(godchildProfil).then(
-                profil => {
-                    commit('RECEIVE_GODCHILD_PROFIL_SUCCESS', profil);
-                    return Promise.resolve(profil);
+        createGodchildProfile({commit}, godchildProfile){
+            commit('CREATE_GODCHILD_PROFILE');
+            return UserService.createGodchildProfile(godchildProfile).then(
+                profile => {
+                    commit('RECEIVE_GODCHILD_PROFILE_SUCCESS', profile);
+                    return Promise.resolve(profile);
                 },
                 err => {
-                    commit('RECEIVE_GODCHILD_PROFIL_ERROR');
+                    commit('RECEIVE_GODCHILD_PROFILE_ERROR');
                     return Promise.reject(err);
                 }
             );
@@ -91,24 +91,20 @@ export const user = {
     },
     mutations:{
         REQUEST_SEND_AMBASSADOR_FORM(state){},
-        RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS(state){},
+        RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS(state, profile){ state.ambassadorProfile = profile; },
         RECEIVE_SEND_AMBASSADOR_FORM_ERROR(state){},
 
         REQUEST_SUBSCRIBE_TO_AMBASSADOR(state){},
-        RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS(state){},
+        RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS(state, profile){ state.ambassadorProfile = profile; },
         RECEIVE_SUBSCRIBE_TO_AMBASSADOR_ERROR(state){},
 
-        CREATE_GODFATHER_PROFIL(state){},
-        RECEIVE_GODFATHER_PROFIL_SUCCESS(state, godfatherProfil){
-            state.godfatherProfil = godfatherProfil;
-        },
+        CREATE_GODFATHER_PROFILE(state){},
+        RECEIVE_GODFATHER_PROFILE_SUCCESS(state, profile){ state.godfatherProfile = profile; },
         RECEIVE_GODFATHER_PROFIL_ERROR(state){},
 
-        CREATE_GODCHILD_PROFIL(state){},
-        RECEIVE_GODCHILD_PROFIL_SUCCESS(state, godchildProfil){
-            state.godchildProfil = godchildProfil;
-        },
-        RECEIVE_GODCHILD_PROFIL_ERROR(state){},
+        CREATE_GODCHILD_PROFILE(state){},
+        RECEIVE_GODCHILD_PROFILE_SUCCESS(state, profile){ state.godchildProfile = profile; },
+        RECEIVE_GODCHILD_PROFILE_ERROR(state){},
 
         REQUEST_FACULTIES(state){},
         RECEIVE_FACULTIES_SUCCESS(state){},

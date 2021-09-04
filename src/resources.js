@@ -24,10 +24,10 @@ const R = {
         hobbiesActivities(lang){
             return R.endpoint.base+'/api/ulillexplore/hobbies-activities/'+lang;
         },
-        createGodchildProfil(){
+        createGodchildProfile(){
             return R.endpoint.base+'/api/ulillexplore/godchild/profile';
         },
-        createGodfatherProfil(){
+        createGodfatherProfile(){
             return R.endpoint.base+'/api/ulillexplore/godfather/profile/';
         },
         subscribeToAmbassador(){
