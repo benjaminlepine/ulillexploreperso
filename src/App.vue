@@ -20,11 +20,6 @@
     },
     mounted(){
         this.$i18n.locale = this.$store.getters['header/language'];
-    },
-    updated() {
-      if(!this.$store.getters['auth/isAuth']){
-        this.$router.push('/signin')
-      }
     }
   }
 

@@ -29,7 +29,7 @@ export default {
   props:{
     files: Array,
     maxFiles: Number,
-    isText: Boolean
+    isText: Boolean // FIXME get array of extention
   },
   data: function ()  {
     return {

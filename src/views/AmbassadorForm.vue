@@ -68,7 +68,7 @@
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.UEInter')}}</p>
         <div class="w-100 text-center mt-3" >
-          <input type="checkbox" class="cbAmbassador" v-model="form.texts.isUE" @change="form.texts.isUE">
+          <input type="checkbox" class="cbAmbassador" v-model="form.texts.isUE">
         </div>
         <hr>
         <div v-if="form.texts.isUE">
@@ -129,10 +129,6 @@ export default {
   },
 
   beforeMount() {
-    this.form = {
-      images:{ portrait: [], photo: [], postcard:[], represent:[], logbook:[], tips:[], promotion:[], ueTips:[], ueReport:[] },
-      texts:{ country: "", university: "", exchange: "", component: "", interview: Date, publication: "", blog: "" }
-    }
     if(localStorage.getItem("ambassadorForm")){
       this.form.texts = JSON.parse(localStorage.getItem("ambassadorForm"));
     }
@@ -180,7 +176,6 @@ export default {
 
       this.form.images.photo.forEach((file) => {
         form.append("photo", file.file);
-        console.log("file", file);
       });
       this.form.images.postcard.forEach((file) => {
         form.append("postcard", file.file);
@@ -209,10 +204,10 @@ export default {
       }
       this.$store.dispatch("user/sendAmbassadorForm", form).then(
           (value) => {
-            console.log(value);
+            console.log(value); // FIXME go to profile with message
           },
           err => {
-            console.log(err);
+            console.log(err); // FIXME error message
           }
       );
     },

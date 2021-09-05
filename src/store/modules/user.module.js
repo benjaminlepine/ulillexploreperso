@@ -191,23 +191,21 @@ export const user = {
             return null;
         },
         godfather: state => {
-            console.log('godfather', state.godchildProfile);
             if (state.godchildProfile && state.godchildProfile.godfather){
                 return state.godchildProfile.godfather;
             }
            return null;
         },
         godchildren: state => {
-            if (state.godfatherProfile && state.godfatherProfile.godchildren){
-                return state.godfatherProfile.godchildren;
+            if (state.godfatherProfile && state.godfatherProfile.children){
+                return state.godfatherProfile.children;
             }
-            return [];
+            return null;
         },
         ambassador: state => state.ambassadorProfile,
         fullName: (state, getters, rootState, rootGetters)=>{
             const user = rootGetters['auth/user'];
             if (user){
-                console.log("user = ", user);
                 if (user.firstname && user.lastname){
                     return user.firstname + ' ' + user.lastname;
                 }else if ( user.firstname){
@@ -219,13 +217,10 @@ export const user = {
             return "N/A"
         },
         isAmbassadorUE: (state)=>{
-            //const user = rootGetters['auth/user'];
-            state.ambassador
             if (state.ambassadorProfile){
-                console.log("user = ", state.ambassadorProfile);
                 return  state.ambassadorProfile.isUE
             }
-            return "N/A"
+            return false;
         },
     }
 };

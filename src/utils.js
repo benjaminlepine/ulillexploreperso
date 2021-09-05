@@ -25,5 +25,6 @@ export const utils = {
       }
     });
     return ret;
-  }
+  },
+  pad(s) { return (s < 10) ? '0' + s : s; }
 };

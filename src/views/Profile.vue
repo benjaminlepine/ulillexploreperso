@@ -19,6 +19,7 @@
       <hr>
       <!-- Parrain / Filleuls section -->
       <div class="profile-ctn profile-ctn-buddy">
+        
         <div class="d-flex justify-content-between">
           <div>
             <p class="mb-0 profile-title text-left text-white">{{ $t('home.buddySystem')}}</p>
@@ -26,8 +27,9 @@
           </div>
           <img class="profile-picto" :alt="$t('home.findYourGodfather')" src="../assets/img/buddy2.svg">
         </div>
-        <!-- Onboarding Si NI PARRAIN NI FILLEUL -->
-        <div v-if="!userGodStatus.isGodchild && !userGodStatus.isGodfather">
+
+        <!-- Onboarding No PROFILE - NI PARRAIN NI FILLEUL --> 
+        <div>
           <div class="grey-ctn mt-3 mb-0" >
             <p class="text-left">{{ $t('profile.noRelations')}}</p>
           </div>
@@ -47,7 +49,7 @@
           </router-link>
         </div>
         <!-- Si PARRAIN ou FILLEUL -> Liste des relations -->
-        <div v-else>
+        <div >
           <div v-if="userGodStatus.isGodfather">
             <p class="text-left mb-0">{{ $t('profile.myGodchild')}}</p>
             <div v-for="(godchild, index) in godchilds" :key="index">
@@ -62,31 +64,7 @@
       </div>
       <hr>
       <!-- Ambassador section -->
-      <div class="profile-ctn profile-ctn-ambassador">
-        <div class="d-flex justify-content-between">
-          <div>
-            <p class="mb-0 profile-title text-left"><b>{{ $t('home.ambassador')}}</b></p>
-            <p class="mb-0 text-left">{{ $t('home.shareYourExperience')}}</p>
-          </div>
-          <img class="profile-picto" :alt="$t('home.findYourGodfather')" src="../assets/img/map.svg">
-        </div>
-        <!-- Si ambassadeur -->
-        <div v-if="isAmbassador && isAmbassador.ambassador">
-          <p class="text-left mt-2 font-weight-bold mb-3">{{ $t('profile.isAmbassador')}}</p>
-          <router-link to="/becomeAmbassador" class="btn explorebtn mb-3">{{ $t('profile.seeMyForm')}}</router-link>
-        </div>
-        <!-- Si PAS ambassadeur -->
-        <div v-else>
-          <p class="mb-0 font-weight-bold mb-3" v-html="$t('profile.becomeAmbassador')"></p>
-          <router-link to="/ambassador" class="profile-card d-flex justify-content-between mt-2">
-            <div>
-              <h5 class="mb-0 text-left">{{ $t('home.ambassador')}}</h5>
-              <p class="mb-0 text-left ">{{ $t('home.shareYourExperience')}}</p>
-            </div>
-            <img :alt="$t('home.shareYourExperience')" class="ml-2" src="../assets/img/postal.svg">
-          </router-link>
-        </div>
-      </div>
+      <ambassador-component :ambassador="ambassador" > </ambassador-component>
     </div>
   </div>
 </template>
@@ -95,17 +73,16 @@
 
 import EndOfRelation from "../components/EndOfRelation";
 import RelationInfos from "../components/RelationInfos";
+import AmbassadorComponent from '../components/ambassadorComponent.vue';
 export default {
   name: 'Profile',
-  components: {RelationInfos, EndOfRelation},
+  components: {RelationInfos, EndOfRelation, AmbassadorComponent, },
   data: function () {
     return {
       godchilds: this.$store.getters['user/godchildren'],
       godfather: this.$store.getters['user/godfather'],
+      ambassador: this.$store.getters['user/ambassador'],
     }
-  },
-  beforeMount(){
-    console.log(this.$store);
   },
 
   computed:{
@@ -117,14 +94,7 @@ export default {
       if (user && user.email){
         return user.email;
       }
-      return "N/A"
-    },
-    isAmbassador(){
-      const user = this.$store.getters['auth/user'];
-      if (user && user.profile){
-        return user.profile;
-      }
-      return "N/A"
+      return "N/A";
     },
     userGodStatus(){
       const user = this.$store.getters['auth/user'];
