@@ -2,8 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Ambassador from '../views/Ambassador.vue'
 import BecomeAmbassador from '../views/AmbassadorForm.vue'
-import Buddy from '../views/Buddy.vue'
-import Home from '../views/Home.vue'
 import SignIn from '../views/SignIn.vue'
 import SignUp from '../views/SignUp.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
@@ -21,10 +19,8 @@ Vue.use(VueRouter);
 
 const routes = [
   {path: '/', name: 'Profile', component: Profile},
-  {path: '/onboarding', component: Home},
   {path: '/ambassador', name: 'Ambassador', component: Ambassador},
   {path: '/becomeAmbassador', name: 'BecomeAmbassador', component: BecomeAmbassador},
-  {path: '/buddy', name: 'Buddy', component: Buddy},
   {path: '/profile', name: 'Profile', component: Profile},
   {path: '/becomegodchild', name: 'BecomeGodchild', component: BecomeGodchild},
   {path: '/becomegodfather', name: 'BecomeGodfather', component: BecomeGodfather},
