@@ -20,8 +20,8 @@ import Profile from '../views/Profile.vue'
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '/', name: 'Home', component: Home},
-  {path: '/home', component: Home},
+  {path: '/', name: 'Profile', component: Profile},
+  {path: '/onboarding', component: Home},
   {path: '/ambassador', name: 'Ambassador', component: Ambassador},
   {path: '/becomeAmbassador', name: 'BecomeAmbassador', component: BecomeAmbassador},
   {path: '/buddy', name: 'Buddy', component: Buddy},
@@ -37,7 +37,7 @@ const routes = [
   {path: '/help', name: 'Help', component: Help},
   {path: '/matching', name: 'Matching', component: Matching},
   {path: '/needhelp', name: 'NeedHelp', component: NeedHelp},
-  {path: '*', component: Home }
+  {path: '*', component: Profile }
 ];
 
 const router = new VueRouter({
