@@ -45,16 +45,6 @@ export default {
       color:$third-color;
     }
   }
-  &-godlink{
-    padding: 8px 12px;
-    background-color: $second-color;
-    border-radius: 12px;
-    margin: 2px;
-    & > a{
-      color: white;
-      text-decoration:underline ;
-    }
-  }
   &-godCardIcon{
     color: $third-color;
     font-size: 22px;

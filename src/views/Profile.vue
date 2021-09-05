@@ -94,8 +94,8 @@ export default {
     },
     userGodStatus(){
       const user = this.$store.getters['auth/user'];
-      //if (user && user.profile){ return {isGodfather: user.profile.godfather, isGodchild: user.profile.godchild};}
-      if (user && user.profile){ return {isGodfather: user.profile.godfather, isGodchild: true};}
+      if (user && user.profile){ return {isGodfather: user.profile.godfather, isGodchild: user.profile.godchild};}
+      //if (user && user.profile){ return {isGodfather: user.profile.godfather, isGodchild: true};}
       //if (user && user.profile){ return {isGodfather: true, isGodchild: user.profile.godchild};}
       return "N/A"
     },
@@ -139,6 +139,16 @@ export default {
     padding: 12px;
     background-color: $third-color;
     border-radius: 10px;
+  }
+  &-godlink{
+    padding: 14px 12px;
+    background-color: $second-color;
+    border-radius: 12px;
+    margin: 2px;
+    & > a{
+      color: white;
+      text-decoration:underline ;
+    }
   }
 }
 </style>
