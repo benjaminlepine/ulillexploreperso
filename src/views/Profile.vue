@@ -44,12 +44,11 @@
         <div class="profile-ambassador">
           <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profile.isAmbassador')}}</p>
           <router-link to="/becomeAmbassador" class="btn explorebtn mb-3">{{ $t('profile.seeMyForm')}}</router-link>
-          <button class="btn" @click="unsubscribe">{{ $t('profile.unsubscribe')}}</button>
         </div>
       </div>
       <div v-else>
         <div class="profile-ambassador">
-          <p class="text-left mb-0 font-weight-bold mb-3">{{ $t('profile.becomeAmbassador')}}</p>
+          <p class="mb-0 font-weight-bold mb-3" v-html="$t('profile.becomeAmbassador')"></p>
           <router-link to="/ambassador" class="btn explorebtn mb-3">{{ $t('profile.becomeAmbassadorValid')}}</router-link>
         </div>
       </div>
@@ -112,9 +111,9 @@ export default {
     pad(n){
       return n < 10 ? '0'+ n : n;
     },
-    unsubscribe(){
-      console.log("unsubscribe");
-    }
+    // unsubscribe(){
+    //   console.log("unsubscribe");
+    // }
   }
 }
 </script>
