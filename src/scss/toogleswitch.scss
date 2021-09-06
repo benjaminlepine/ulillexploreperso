@@ -2,7 +2,6 @@ body{
   margin : 0;
 }
 
-
 /*Toogle Switch CSS*/
 
 .el-switch {
@@ -43,9 +42,14 @@ body{
 .el-switch > input[type="checkbox"] {
   display: none;
 }
-.el-switch > input[type="checkbox"]:checked + .el-switch-style {
+
+.el-switch.pink > input[type="checkbox"]:checked + .el-switch-style {
   background-color: $second-color;
 }
+.el-switch.yellow > input[type="checkbox"]:checked + .el-switch-style {
+  background-color: darken($third-color, 16%);
+}
+
 .el-switch > input[type="checkbox"]:checked + .el-switch-style:before {
   left: 50%;
 }
