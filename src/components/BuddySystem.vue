@@ -36,7 +36,10 @@
           <relation-infos :relation="godchild"></relation-infos>
         </div>
         <div class="d-flex justify-content-between mt-4">
-          <label class="el-switch" ><input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
+          <label class="el-switch pink">
+            <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked>
+            <span class="el-switch-style"></span>
+          </label>
           <p v-if="godStatus.godFatherisEnabled" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
           <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
         </div>
@@ -47,7 +50,7 @@
         <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
         <relation-infos :relation="godfather" v-bind:class="{ desaturate: !godStatus.godChildisEnabled }"></relation-infos>
         <div class="d-flex justify-content-between mt-4">
-          <label class="el-switch" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godStatus.godChildisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
+          <label class="el-switch pink" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godStatus.godChildisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
           <p v-if="godStatus.godChildisEnabled" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
           <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilot</i18n>
         </div>
@@ -76,8 +79,10 @@ export default {
         godFatherisEnabled: Boolean
       },
       showModal: true,
+      color: "#FF0000"
     };
   },
+
   methods:{
     updateGodfatherStatus(e){
       this.$store.dispatch("user/updateGodfatherStatus", {active:e.target.checked})
@@ -106,7 +111,6 @@ export default {
   &:hover{ background-color: darken($second-color, 10%); color: white; }
   &:disabled{ background-color: #707070; color: white; }
 }
-
 
 </style>
 
