@@ -61,8 +61,7 @@
   width: 100%;
   font-weight: bolder;
   &:hover{
-    color: white;
-    background-color: darken($clear-main-color, 5%);
+    color: $clear-main-color;
   }
   &:disabled{
     background-color: #707070;
