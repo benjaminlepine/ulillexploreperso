@@ -44,7 +44,7 @@ export default {
   methods: {
       lastSubmitDate(){
           const d = new Date(this.ambassador.submitTimestamp);
-          return d.getDate() + '/'+ (d.getMonth()+1)+'/'+d.getFullYear();
+          return  d.toString();// d.getDate() + '/'+ (d.getMonth()+1)+'/'+d.getFullYear(); FIXME
       }
   },
 }

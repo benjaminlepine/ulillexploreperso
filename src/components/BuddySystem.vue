@@ -30,7 +30,7 @@
 
     <!-- Si PARRAIN -->
     <div class="grey-ctn mt-3 mb-0">
-      <div v-if="userGodStatus.isGodfather">
+      <div v-if="godfatherProfile">
           <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
         <div v-bind:class="{ desaturate: !godStatus.godFatherisEnabled }" v-for="(godchild, index) in godchilds" :key="index">
           <relation-infos :relation="godchild"></relation-infos>
@@ -40,18 +40,18 @@
             <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked>
             <span class="el-switch-style"></span>
           </label>
-          <p v-if="godStatus.godFatherisEnabled" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
+          <p v-if="godfatherProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
           <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
         </div>
       </div>
 
       <!-- SI FILLEUL -->
-      <div v-if="userGodStatus.isGodchild">
+      <div v-if="godchildProfile">
         <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
         <relation-infos :relation="godfather" v-bind:class="{ desaturate: !godStatus.godChildisEnabled }"></relation-infos>
         <div class="d-flex justify-content-between mt-4">
           <label class="el-switch pink" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godStatus.godChildisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
-          <p v-if="godStatus.godChildisEnabled" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
+          <p v-if="godchildProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
           <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilot</i18n>
         </div>
       </div>
@@ -72,6 +72,8 @@ export default {
   props:{userGodStatus:Object},
   data: function ()  {
     return {
+      godfatherProfile: this.$store.getters['user/godfatherProfile'],
+      godchildProfile: this.$store.getters['user/godchildProfile'],
       godchilds: this.$store.getters['user/godchildren'],
       godfather: this.$store.getters['user/godfather'],
       godStatus: {
