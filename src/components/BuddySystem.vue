@@ -27,6 +27,7 @@
         <img :alt="$t('buddy.iSearchAGodfather')" class="ml-2" src="../assets/img/search.svg">
       </router-link>
     </div>
+
     <!-- Si PARRAIN -->
     <div class="grey-ctn mt-3 mb-0">
       <div v-if="userGodStatus.isGodfather">
@@ -37,9 +38,10 @@
         <div class="d-flex justify-content-between mt-4">
           <label class="el-switch" ><input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
           <p v-if="godStatus.godFatherisEnabled" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
-          <p v-else class="text-left ml-2" v-html="$t('profile.yourAccountInactive')"></p>
+          <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
         </div>
       </div>
+
       <!-- SI FILLEUL -->
       <div v-if="userGodStatus.isGodchild">
         <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
@@ -47,21 +49,23 @@
         <div class="d-flex justify-content-between mt-4">
           <label class="el-switch" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godStatus.godChildisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
           <p v-if="godStatus.godChildisEnabled" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
-          <p v-else class="text-left ml-2" v-html="$t('profile.yourAccountInactive')"></p>
+          <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilot</i18n>
         </div>
       </div>
       <!-- POP UP ERROR - On ne peux pas activer les 2 -->
-      <Popup v-if="godStatus.godChildisEnabled && godStatus.godFatherisEnabled" @close="godStatus.godFatherisEnabled=false">
-        <p slot="body">{{$t('profile.youCantBeBooth')}}</p>
-      </Popup>
+<!--      <Popup v-if="godStatus.godChildisEnabled && godStatus.godFatherisEnabled" @close="godStatus.godFatherisEnabled=false">-->
+<!--        <p slot="body">{{$t('profile.youCantBeBooth')}}</p>-->
+<!--      </Popup>-->
     </div>
+
   </div>
 </template>
 <script>
 import RelationInfos from "./RelationInfos";
 import Popup from "./Popup";
+
 export default {
-  components: {Popup, RelationInfos},
+  components: { Popup, RelationInfos},
   props:{userGodStatus:Object},
   data: function ()  {
     return {
@@ -71,7 +75,7 @@ export default {
         godChildisEnabled: Boolean,
         godFatherisEnabled: Boolean
       },
-      showModal: true
+      showModal: true,
     };
   },
   methods:{
@@ -79,6 +83,7 @@ export default {
       this.$store.dispatch("user/updateGodfatherStatus", {active:e.target.checked})
     },
     updateGodchildStatus(e){
+      console.log("dklfjghdfkjghdfkjgdf")
       this.$store.dispatch("user/updateGodchildStatus", {active:e.target.checked})
     }
   },
