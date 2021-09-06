@@ -12,20 +12,6 @@
       <div class="grey-ctn mt-3 mb-0" >
         <p class="text-left">{{ $t('profile.noRelations')}}</p>
       </div>
-      <router-link to="/becomeGodfather" class="profile-card d-flex justify-content-between mt-2">
-        <div>
-          <h5 class="mb-0 text-left">{{ $t('buddy.iWantBeGodfather')}}</h5>
-          <p class="mb-0 text-left ">{{ $t('buddy.toBeClassy')}}</p>
-        </div>
-        <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
-      </router-link>
-      <router-link to="/becomegodchild" class="profile-card d-flex justify-content-between mt-2">
-        <div>
-          <h5 class="mb-0 text-left">{{ $t('buddy.iSearchAGodfather')}}</h5>
-          <p class="mb-0 text-left ">{{ $t('buddy.iNeedGodfather')}}</p>
-        </div>
-        <img :alt="$t('buddy.iSearchAGodfather')" class="ml-2" src="../assets/img/search.svg">
-      </router-link>
     </div>
 
     <!-- Si PARRAIN -->
@@ -44,6 +30,15 @@
           <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
         </div>
       </div>
+      <div v-else>
+        <router-link to="/becomeGodfather" class="profile-card d-flex justify-content-between mt-2">
+          <div>
+            <h5 class="mb-0 text-left">{{ $t('buddy.iWantBeGodfather')}}</h5>
+            <p class="mb-0 text-left ">{{ $t('buddy.toBeClassy')}}</p>
+          </div>
+          <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
+        </router-link>
+      </div>
 
       <!-- SI FILLEUL -->
       <div v-if="godchildProfile">
@@ -54,6 +49,15 @@
           <p v-if="godchildProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
           <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilot</i18n>
         </div>
+      </div>
+      <div v-else>
+        <router-link to="/becomegodchild" class="profile-card d-flex justify-content-between mt-2">
+          <div>
+            <h5 class="mb-0 text-left">{{ $t('buddy.iSearchAGodfather')}}</h5>
+            <p class="mb-0 text-left ">{{ $t('buddy.iNeedGodfather')}}</p>
+          </div>
+          <img :alt="$t('buddy.iSearchAGodfather')" class="ml-2" src="../assets/img/search.svg">
+        </router-link>
       </div>
       <!-- POP UP ERROR - On ne peux pas activer les 2 -->
 <!--      <Popup v-if="godStatus.godChildisEnabled && godStatus.godFatherisEnabled" @close="godStatus.godFatherisEnabled=false">-->
@@ -68,8 +72,8 @@ import RelationInfos from "./RelationInfos";
 import Popup from "./Popup";
 
 export default {
-  components: { Popup, RelationInfos},
-  props:{userGodStatus:Object},
+  components: { Popup, RelationInfos}
+  ,
   data: function ()  {
     return {
       godfatherProfile: this.$store.getters['user/godfatherProfile'],
