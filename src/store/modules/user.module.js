@@ -75,7 +75,7 @@ export const user = {
         },
         createGodfatherProfile({commit}, godfatherProfile){
             commit('CREATE_GODFATHER_PROFILE');
-            return UserService.createGodfatherProfil(godfatherProfile).then(
+            return UserService.createGodfatherProfile(godfatherProfile).then(
                 profile => {
                     commit('RECEIVE_GODFATHER_PROFILE_SUCCESS', profile);
                     return Promise.resolve(profile);
@@ -91,6 +91,7 @@ export const user = {
             return UserService.createGodchildProfile(godchildProfile).then(
                 profile => {
                     commit('RECEIVE_GODCHILD_PROFILE_SUCCESS', profile);
+                    commit('reci', "", {root:true})
                     return Promise.resolve(profile);
                 },
                 err => {
@@ -134,6 +135,7 @@ export const user = {
         }
     },
     mutations:{
+        
         RECEIVE_FETCH_GODFATHER_PROFILE_SUCCESS(state, godfather){
             state.godfatherProfile = godfather;
             localStorage.setItem('godfatherProfile', JSON.stringify(state.godfatherProfile));

@@ -29,6 +29,9 @@
 </template>
 
 <script>
+
+import utils from '../utils';
+
 export default {
   name: 'AmbassdorComponent',
   props: {},
@@ -39,10 +42,10 @@ export default {
   },
   watch: {},
   methods: {
-    lastSubmitDate(){
-      const date = new Date(this.ambassador.submitTimestamp);
-      return date.toString();
-    }
+      lastSubmitDate(){
+          const d = new Date(this.ambassador.submitTimestamp);
+          return d.getDate() + '/'+ (d.getMonth()+1)+'/'+d.getFullYear();
+      }
   },
 }
 </script>
