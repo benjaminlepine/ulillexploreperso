@@ -18,53 +18,10 @@
       </div>
       <hr>
       <!-- Parrain / Filleuls section -->
-      <div class="profile-ctn profile-ctn-buddy">
-        
-        <div class="d-flex justify-content-between">
-          <div>
-            <p class="mb-0 profile-title text-left text-white">{{ $t('home.buddySystem')}}</p>
-            <p class="mb-0 text-white text-left">{{ $t('home.findYourGodfather')}}</p>
-          </div>
-          <img class="profile-picto" :alt="$t('home.findYourGodfather')" src="../assets/img/buddy2.svg">
-        </div>
-
-        <!-- Onboarding No PROFILE - NI PARRAIN NI FILLEUL --> 
-        <div>
-          <div class="grey-ctn mt-3 mb-0" >
-            <p class="text-left">{{ $t('profile.noRelations')}}</p>
-          </div>
-          <router-link to="/becomeGodfather" class="profile-card d-flex justify-content-between mt-2">
-            <div>
-              <h5 class="mb-0 text-left">{{ $t('buddy.iWantBeGodfather')}}</h5>
-              <p class="mb-0 text-left ">{{ $t('buddy.toBeClassy')}}</p>
-            </div>
-            <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
-          </router-link>
-          <router-link to="/becomegodchild" class="profile-card d-flex justify-content-between mt-2">
-            <div>
-              <h5 class="mb-0 text-left">{{ $t('buddy.iSearchAGodfather')}}</h5>
-              <p class="mb-0 text-left ">{{ $t('buddy.iNeedGodfather')}}</p>
-            </div>
-            <img :alt="$t('buddy.iSearchAGodfather')" class="ml-2" src="../assets/img/search.svg">
-          </router-link>
-        </div>
-        <!-- Si PARRAIN ou FILLEUL -> Liste des relations -->
-        <div >
-          <div v-if="userGodStatus.isGodfather">
-            <p class="text-left mb-0">{{ $t('profile.myGodchild')}}</p>
-            <div v-for="(godchild, index) in godchilds" :key="index">
-              <relation-infos :relation="godchild"></relation-infos>
-            </div>
-          </div>
-          <div v-if="userGodStatus.isGodchild">
-            <p class="text-left mb-0">{{ $t('profile.myGodfather')}}</p>
-            <relation-infos :relation="godfather"></relation-infos>
-          </div>
-        </div>
-      </div>
+      <buddy-system :userGodStatus="userGodStatus"></buddy-system>
       <hr>
       <!-- Ambassador section -->
-      <ambassador-component :ambassador="ambassador" > </ambassador-component>
+      <ambassador-component></ambassador-component>
     </div>
   </div>
 </template>
@@ -74,17 +31,13 @@
 import EndOfRelation from "../components/EndOfRelation";
 import RelationInfos from "../components/RelationInfos";
 import AmbassadorComponent from '../components/ambassadorComponent.vue';
+import BuddySystem from "../components/BuddySystem";
 export default {
   name: 'Profile',
-  components: {RelationInfos, EndOfRelation, AmbassadorComponent, },
+  components: {BuddySystem, RelationInfos, EndOfRelation, AmbassadorComponent, },
   data: function () {
-    return {
-      godchilds: this.$store.getters['user/godchildren'],
-      godfather: this.$store.getters['user/godfather'],
-      ambassador: this.$store.getters['user/ambassador'],
-    }
+    return {}
   },
-
   computed:{
     userFullName(){
       return this.$store.getters['user/fullName'];
@@ -123,7 +76,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../scss/_app-variables.scss";
 @import "../scss/app.scss";
 
@@ -155,29 +108,4 @@ export default {
     }
   }
 }
-
-.profile{
-  &-ctn{
-    padding: 12px 8px 8px 8px;
-    border-radius: 12px;
-    &-buddy{background-color: $second-color;}
-    &-ambassador{background-color: $third-color;}
-  }
-  &-title{font-size: 22px}
-  &-picto{max-width: 65px}
-  &-card{
-    border-radius: 12px;
-    background-color: #f0f0f0;
-    padding: 15px;
-    text-decoration: none;
-    transition: background-color 180ms, color 300ms;
-    &:hover{
-      cursor: pointer;
-      background-color: $main-color;
-      & h5 {color: white} p {color: lighten($clear-main-color, 45%)}
-    }
-  }
-}
-
-
 </style>

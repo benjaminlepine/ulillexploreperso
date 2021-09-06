@@ -126,6 +126,12 @@ export const user = {
                 }
             );
         },
+        updateGodfatherStatus({commit}, active){
+            // FIXME Need some endpoint
+        },
+        updateGodchildStatus({commit}, active){
+            // FIXME Need some endpoint
+        }
     },
     mutations:{
         RECEIVE_FETCH_GODFATHER_PROFILE_SUCCESS(state, godfather){
@@ -194,7 +200,7 @@ export const user = {
             if (state.godchildProfile && state.godchildProfile.godfather){
                 return state.godchildProfile.godfather;
             }
-           return null;
+            return null;
         },
         godchildren: state => {
             if (state.godfatherProfile && state.godfatherProfile.children){

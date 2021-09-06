@@ -1,0 +1,107 @@
+<template>
+  <div class="profile-ctn profile-ctn-buddy">
+    <div class="d-flex justify-content-between">
+      <div>
+        <p class="mb-0 profile-title text-left text-white">{{ $t('home.buddySystem')}}</p>
+        <p class="mb-0 text-white text-left">{{ $t('home.findYourGodfather')}}</p>
+      </div>
+      <img class="profile-picto" :alt="$t('home.findYourGodfather')" src="../assets/img/buddy2.svg">
+    </div>
+    <!-- Onboarding No PROFILE - NI PARRAIN NI FILLEUL -->
+    <div>
+      <div class="grey-ctn mt-3 mb-0" >
+        <p class="text-left">{{ $t('profile.noRelations')}}</p>
+      </div>
+      <router-link to="/becomeGodfather" class="profile-card d-flex justify-content-between mt-2">
+        <div>
+          <h5 class="mb-0 text-left">{{ $t('buddy.iWantBeGodfather')}}</h5>
+          <p class="mb-0 text-left ">{{ $t('buddy.toBeClassy')}}</p>
+        </div>
+        <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
+      </router-link>
+      <router-link to="/becomegodchild" class="profile-card d-flex justify-content-between mt-2">
+        <div>
+          <h5 class="mb-0 text-left">{{ $t('buddy.iSearchAGodfather')}}</h5>
+          <p class="mb-0 text-left ">{{ $t('buddy.iNeedGodfather')}}</p>
+        </div>
+        <img :alt="$t('buddy.iSearchAGodfather')" class="ml-2" src="../assets/img/search.svg">
+      </router-link>
+    </div>
+    <!-- Si PARRAIN -->
+    <div class="grey-ctn mt-3 mb-0">
+      <div v-if="userGodStatus.isGodfather">
+          <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
+        <div v-bind:class="{ desaturate: !godStatus.godFatherisEnabled }" v-for="(godchild, index) in godchilds" :key="index">
+          <relation-infos :relation="godchild"></relation-infos>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+          <label class="el-switch" ><input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
+          <p v-if="godStatus.godFatherisEnabled" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
+          <p v-else class="text-left ml-2" v-html="$t('profile.yourAccountInactive')"></p>
+        </div>
+      </div>
+      <!-- SI FILLEUL -->
+      <div v-if="userGodStatus.isGodchild">
+        <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
+        <relation-infos :relation="godfather" v-bind:class="{ desaturate: !godStatus.godChildisEnabled }"></relation-infos>
+        <div class="d-flex justify-content-between mt-4">
+          <label class="el-switch" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godStatus.godChildisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
+          <p v-if="godStatus.godChildisEnabled" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
+          <p v-else class="text-left ml-2" v-html="$t('profile.yourAccountInactive')"></p>
+        </div>
+      </div>
+      <!-- POP UP ERROR - On ne peux pas activer les 2 -->
+      <Popup v-if="godStatus.godChildisEnabled && godStatus.godFatherisEnabled" @close="godStatus.godFatherisEnabled=false">
+        <p slot="body">{{$t('profile.youCantBeBooth')}}</p>
+      </Popup>
+    </div>
+  </div>
+</template>
+<script>
+import RelationInfos from "./RelationInfos";
+import Popup from "./Popup";
+export default {
+  components: {Popup, RelationInfos},
+  props:{userGodStatus:Object},
+  data: function ()  {
+    return {
+      godchilds: this.$store.getters['user/godchildren'],
+      godfather: this.$store.getters['user/godfather'],
+      godStatus: {
+        godChildisEnabled: Boolean,
+        godFatherisEnabled: Boolean
+      },
+      showModal: true
+    };
+  },
+  methods:{
+    updateGodfatherStatus(e){
+      this.$store.dispatch("user/updateGodfatherStatus", {active:e.target.checked})
+    },
+    updateGodchildStatus(e){
+      this.$store.dispatch("user/updateGodchildStatus", {active:e.target.checked})
+    }
+  },
+}
+</script>
+
+<style scoped lang="scss">
+@import "../scss/_app-variables.scss";
+@import "../scss/app.scss";
+@import "../scss/toogleswitch";
+
+.explorebtnbuddy{
+  background-color: $second-color;
+  border-radius: 40px;
+  padding: 8px 25px;
+  width: 100%;
+  font-weight: bolder;
+  filter: none;
+  color: white;
+  &:hover{ background-color: darken($second-color, 10%); color: white; }
+  &:disabled{ background-color: #707070; color: white; }
+}
+
+
+</style>
+

@@ -8,6 +8,7 @@
       "findYourGodfather": "Trouver votre parrain/filleul",
       "ambassador": "Ambassadeur",
       "shareYourExperience": "Partager votre expérience",
+      "lastUpdate": "Dernière interaction",
       "correctErrors": "Veuillez corriger les erreurs suivantes :",
       "required": "requis",
       "profile": "Mon profil",
@@ -154,7 +155,12 @@
       "becomeAmbassadorValid": "Devenir ambassadeur",
       "seeMyForm": "Acceder au formulaire",
       "unsubscribe": "Me desinscrire",
-      "noRelations": "Tu n'a pas encore de status Lilord (parrain) ou Lilot (filleul), a toi de choisir si tu souhaite accompagner un Lilot ou si tu as besoin d'être aidé par un Lilord"
+      "noRelations": "Tu n'a pas encore de status Lilord (parrain) ou Lilot (filleul), a toi de choisir si tu souhaite accompagner un Lilot ou si tu as besoin d'être aidé par un Lilord",
+      "disabledGodchildAccount": "Suspendre mon compte Lilot (filleul)",
+      "disabledGodfatherAccount": "Suspendre mon compte Lilord (filleul)",
+      "thisNotDeleteRelation": "Tu peux activer ou desactiver ton compte ici. Ceci ne suspendra pas les relations en cours que tu peut avoir mais tu ne pourra plus avoir de nouveaux match",
+      "yourAccountInactive": "Ton compte est actuellement inactif, reactive le en cliquant ici",
+      "youCantBeBooth": "Desole mais tu ne peux pas être à la fois Lilord et Lilot, il faut d'abord desactiver l'un avant d'activer l'autre"
     },
     "wait": {
       "sorry": "Désolé",
@@ -298,6 +304,7 @@
       "findYourGodfather": "Find your godfather/godchild",
       "ambassador": "Ambassador",
       "shareYourExperience": "Share your experience",
+      "lastUpdate": "Last update",
       "correctErrors": "Please correct the following error(s):",
       "required": "required",
       "profile": "My profile",
@@ -443,7 +450,12 @@
       "becomeAmbassadorValid": "Become ambassador",
       "seeMyForm": "See ambassador form",
       "unsubscribe": "Unsubscribe",
-      "noRelations": "You do not yet have a Lilord (godfather) or Lilot (godchild) status, it's up to you to choose if you want to support a Lilot or if you need to be helped by a Lilord"
+      "noRelations": "You do not yet have a Lilord (godfather) or Lilot (godchild) status, it's up to you to choose if you want to support a Lilot or if you need to be helped by a Lilord",
+      "disabledGodchildAccount": "Suspend my Lilot account (godchild)",
+      "disabledGodfatherAccount": "Suspend my Lilord account (godfather)",
+      "thisNotDeleteRelation": "You can enable and disabled you account here. This will not suspend any current relationships you may have but you will not be able to have new matches.",
+      "yourAccountInactive": "Your account is currently inactive, reactivate it by clicking here",
+      "youCantBeBooth": "Sorry but you can't be both Lilord and Lilot, you have to deactivate one first before activating the other"
     },
     "wait": {
       "sorry": "Sorry",
