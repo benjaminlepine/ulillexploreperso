@@ -562,10 +562,10 @@
         "sendForm": "Send my form",
         "saveForm": "Save my form",
         "deleteForm": "Reset my form",
+        "exceptImages": "(no images saving)",
         "noImage": "No images stored in your browser.",
         "deleteImages": "Delete images",
         "deleteThisImages": "Delete this images"
-
       }
     },
     "matching": {

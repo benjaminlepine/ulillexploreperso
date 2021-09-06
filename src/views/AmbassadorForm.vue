@@ -3,7 +3,7 @@
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <div class="mainctn">
       <h3>{{ $t('ambassador.form.becomeAmbassador')}}</h3>
-      <form @submit.prevent="submitAmbassador" class="text-left">
+      <form @submit.prevent="submitAmbassador" ref="formAmba" class="text-left">
         <div class="grey-ctn">
           <h5>{{ $t('ambassador.form.personalInfos')}}</h5>
           <input class="form-control mb-3" v-model="form.texts.country" :placeholder="$t('ambassador.form.amCountry')" required>
@@ -139,6 +139,7 @@ export default {
       localStorage.setItem("ambassadorForm", JSON.stringify(this.form.texts));
     },
     deleteForm(){
+      this.$refs['formAmba'].reset()
       localStorage.removeItem('ambassadorForm');
     },
 
