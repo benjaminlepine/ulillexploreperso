@@ -6,7 +6,7 @@
       <form @submit.prevent="submitGodchild">
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godchild.nationality')}}</label>
-          <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="nationality" name="nationality"/>
+          <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="form.nationality" name="nationality"/>
           <datalist id="nationality" ref="nationality" name="nationality">
             <option class="form-control" v-for="(country, index) in countrys" :key="index">{{country.name}}</option>
           </datalist>
@@ -118,6 +118,9 @@ export default {
   props: {},
   data: function ()  {
     return {
+      form: {
+        nationality: null
+      },
       languages: formInfos.languages,
       nextMonths: [],
       active_el:0,
@@ -156,6 +159,18 @@ export default {
     this.getFaculties();
     this.getHobbiesAndActivities();
     this.DateUtilFunctions();
+
+
+  },
+
+  beforeMount() {
+    if(localStorage.getItem("godchildProfile")){
+      //this.form.texts = JSON.parse(localStorage.getItem("godchildProfile"));
+      this.form =  JSON.parse(localStorage.getItem("godchildProfile")).profile
+      console.log("godchildProfile = ", JSON.parse(localStorage.getItem("godchildProfile")))
+    }
+    console.log("this.form = ", this.form)
+
   },
 
   methods:{
@@ -199,9 +214,10 @@ export default {
       if (!this.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
       if (this.activities.length === 0) { this.errors.push(this.$t("errorsMsg.activitiesRequired")); }
       if (this.hobbies.length === 0) { this.errors.push(this.$t("errorsMsg.hobbiesRequired")); }
-      
+
       return this.errors.length == 0;
     },
+
     submitGodchild: function (e) {
       if (!this.checkForm(e)){ return; }
 

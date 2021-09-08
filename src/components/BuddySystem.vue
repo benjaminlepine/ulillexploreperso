@@ -85,7 +85,6 @@ export default {
         godFatherisEnabled: Boolean
       },
       showModal: true,
-      color: "#FF0000"
     };
   },
 

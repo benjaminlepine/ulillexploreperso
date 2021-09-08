@@ -80,7 +80,28 @@ export default {
 @import "../scss/_app-variables.scss";
 @import "../scss/app.scss";
 
+
 .profile{
+  &-ctn{
+    padding: 12px 8px 8px 8px;
+    border-radius: 12px;
+    &-buddy{background-color: $second-color;}
+    &-ambassador{background-color: $third-color;}
+  }
+  &-title{font-size: 22px}
+  &-picto{max-width: 65px}
+  &-card{
+    border-radius: 12px;
+    background-color: #f0f0f0;
+    padding: 15px;
+    text-decoration: none;
+    transition: background-color 180ms, color 300ms;
+    &:hover{
+      cursor: pointer;
+      background-color: $main-color;
+      & h5 {color: white} p {color: lighten($clear-main-color, 45%)}
+    }
+  }
   &-name{
     padding-top: 4px;
     font-size: 22px !important;
@@ -108,4 +129,6 @@ export default {
     }
   }
 }
+
+
 </style>

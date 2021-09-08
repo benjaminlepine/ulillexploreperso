@@ -60,9 +60,7 @@
   color: $clear-main-color;
   width: 100%;
   font-weight: bolder;
-  &:hover{
-    color: $clear-main-color;
-  }
+  &:hover{ color: $clear-main-color; }
   &:disabled{
     background-color: #707070;
     color: white;
@@ -71,7 +69,11 @@
 }
 
 .montserrat{
-  font-family: Montserrat;
+  font-family: Montserrat , Arial, Helvetica, sans-serif !important;
+}
+
+.raleway{
+  font-family: 'Raleway', Arial, Helvetica, sans-serif !important;
 }
 
 
@@ -111,28 +113,6 @@
   transform: scale(2);
 }
 
-.profile{
-  &-ctn{
-    padding: 12px 8px 8px 8px;
-    border-radius: 12px;
-    &-buddy{background-color: $second-color;}
-    &-ambassador{background-color: $third-color;}
-  }
-  &-title{font-size: 22px}
-  &-picto{max-width: 65px}
-  &-card{
-    border-radius: 12px;
-    background-color: #f0f0f0;
-    padding: 15px;
-    text-decoration: none;
-    transition: background-color 180ms, color 300ms;
-    &:hover{
-      cursor: pointer;
-      background-color: $main-color;
-      & h5 {color: white} p {color: lighten($clear-main-color, 45%)}
-    }
-  }
-}
 .desaturate{
   filter: saturate(0);
   opacity: 0.5;

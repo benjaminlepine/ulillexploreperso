@@ -54,55 +54,5 @@ export default {
 @import "../scss/_app-variables.scss";
 @import "../scss/app.scss";
 
-.profile{
-  &-name{
-    padding-top: 4px;
-    font-size: 22px !important;
-    color: $second-color;
-  }
-  &-info{
-    color: $clear-main-color;
-  }
-  &-picto{
-    max-width: 45px;
-  }
-  &-ambassador{
-    padding: 12px;
-    background-color: $third-color;
-    border-radius: 10px;
-  }
-  &-godlink{
-    padding: 14px 12px;
-    background-color: $main-color;
-    border-radius: 12px;
-    margin: 2px;
-    & > a{
-      color: white;
-      text-decoration:underline ;
-    }
-  }
-}
 
-.profile{
-  &-ctn{
-    padding: 12px 8px 8px 8px;
-    border-radius: 12px;
-    &-buddy{background-color: $second-color;}
-    &-ambassador{background-color: $third-color;}
-  }
-  &-title{font-size: 22px}
-  &-picto{max-width: 65px}
-  &-card{
-    border-radius: 12px;
-    background-color: #f0f0f0;
-    padding: 15px;
-    text-decoration: none;
-    transition: background-color 180ms, color 300ms;
-    &:hover{
-      cursor: pointer;
-      background-color: $main-color;
-      & h5 {color: white} p {color: lighten($clear-main-color, 45%)}
-    }
-  }
-}
 </style>

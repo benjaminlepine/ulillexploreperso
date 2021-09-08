@@ -168,6 +168,7 @@
         return formInfos.cycleOfStudiesList[this.$i18n.locale]
       },
     },
+
     mounted(){
       this.getFaculties();
       this.getHobbiesAndActivities();
@@ -242,7 +243,7 @@
         };
         console.log(form)
         this.$store.dispatch("user/createGodfatherProfile", form).then(
-          (profile) => { 
+          (profile) => {
             // FXIME form submit with succes
             console.log(profile);
             this.$router.push('/matching');
