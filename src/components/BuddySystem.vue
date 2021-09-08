@@ -15,9 +15,10 @@
     </div>
 
     <!-- Si PARRAIN -->
-    <div class="grey-ctn mt-3 mb-0">
+
       <div v-if="godfatherProfile">
-          <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
+        <!--          <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>-->
+        <h5 class="text-left mb-0">{{ $t('profile.myGodfatherProfile')}}</h5>
         <div v-bind:class="{ desaturate: !godStatus.godFatherisEnabled }" v-for="(godchild, index) in godchilds" :key="index">
           <relation-infos :relation="godchild"></relation-infos>
         </div>
@@ -41,7 +42,19 @@
       </div>
 
       <!-- SI FILLEUL -->
-      <div v-if="godchildProfile">
+      <div v-if="godchildProfile" class="grey-ctn mt-2 mb-0">
+        <div class="d-flex justify-content-between">
+          <h5 class="text-left pt-2 mb-0">{{ $t('profile.myGodchildProfile')}}</h5>
+          <router-link to="/becomeGodchild">
+            <button class="btn buddy-btn">
+              <span class="mb-0 text-white mr-2">
+                {{ $t('profile.edit')}}
+                <i class="fas fa-edit buddy-edit-button ml-2"></i>
+              </span>
+            </button>
+          </router-link>
+        </div>
+        <hr class="buddy-line">
         <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
         <relation-infos :relation="godfather" v-bind:class="{ desaturate: !godStatus.godChildisEnabled }"></relation-infos>
         <div class="d-flex justify-content-between mt-4">
@@ -60,12 +73,10 @@
         </router-link>
       </div>
       <!-- POP UP ERROR - On ne peux pas activer les 2 -->
-<!--      <Popup v-if="godStatus.godChildisEnabled && godStatus.godFatherisEnabled" @close="godStatus.godFatherisEnabled=false">-->
-<!--        <p slot="body">{{$t('profile.youCantBeBooth')}}</p>-->
-<!--      </Popup>-->
+      <!--      <Popup v-if="godStatus.godChildisEnabled && godStatus.godFatherisEnabled" @close="godStatus.godFatherisEnabled=false">-->
+      <!--        <p slot="body">{{$t('profile.youCantBeBooth')}}</p>-->
+      <!--      </Popup>-->
     </div>
-
-  </div>
 </template>
 <script>
 import RelationInfos from "./RelationInfos";
@@ -115,6 +126,22 @@ export default {
   color: white;
   &:hover{ background-color: darken($second-color, 10%); color: white; }
   &:disabled{ background-color: #707070; color: white; }
+}
+
+.buddy{
+  &-edit-button{ max-width: 18px; }
+  &-line{ background: $main-color; }
+  &-btn{
+    background-color: $main-color;
+    color: white;
+    border-radius: 40px;
+    &:hover{color: white}
+  }
+  &-mini-ctn{
+    padding: 8px 4px;
+    border-radius: 12px;
+    background-color: #707070;
+  }
 }
 
 </style>
