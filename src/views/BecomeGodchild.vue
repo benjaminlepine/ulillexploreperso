@@ -43,6 +43,7 @@
         <div class="text-left">
           <label class="mb-0" for="cycleOfStudies">{{ $t('godchild.whatYouStudying')}}</label>
           <select class="form-control mb-3" id="cycleOfStudies" v-model="cycleOfStudies">
+            <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
             <option v-for="(cycleOfStudies, index) in cycleOfStudiesList" :key="index">{{cycleOfStudies}}</option>
           </select>
         </div>
@@ -50,12 +51,14 @@
         <div class="text-left">
           <label class="mb-0" for="faculty">{{ $t('godchild.whatFaculty')}}</label>
           <select class="form-control mb-3" id="faculty" v-model="facultyIndex">
+            <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
             <option v-for="(faculty, index) in faculties" :key="index" :value="index">{{faculty.name}}</option>
           </select>
         </div>
         <div v-if="facultyIndex > -1" class="text-left">
           <label class="mb-0" for="department">{{ $t('godchild.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="department">
+            <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
             <option v-for="(department, index) in faculties[facultyIndex].departments" :key="index">{{department}}</option>
           </select>
         </div>
