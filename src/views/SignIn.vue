@@ -36,9 +36,10 @@ import axios from 'axios';
             };
         },
         beforeMount(){
-            axios.get("http://176.132.208.146:9595/api/account").then(
+            this.$store.dispatch("auth/casSignin").then(
                 (user) => {
                     console.log(user);
+                    this.$router.push('/profile');
                 },
                 err=>{
                     console.log(err);

@@ -7,7 +7,7 @@ export default function authHeader(){
             return  {Authorization: 'Bearer ' + user.token};
         }else {
             // FIXME use cas cookie
-            return {};
+            return  {withCredentials: true};
         }
     }else {
         return {};
