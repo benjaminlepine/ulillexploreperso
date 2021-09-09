@@ -6,13 +6,16 @@ import userService from "../../services/user.service";
 
 Vue.use(Vuex);
 
+const godfather = JSON.parse(localStorage.getItem('godfatherProfile')),
+    godchild = JSON.parse(localStorage.getItem('godchildProfile')),
+    ambassador = JSON.parse(localStorage.getItem('ambassadorProfile'));
 
 export const user = {
     namespaced: true,
     state: {
-        godfatherProfile: JSON.parse(localStorage.getItem('godfatherProfile')),
-        godchildProfile: JSON.parse(localStorage.getItem('godchildProfile')),
-        ambassadorProfile: JSON.parse(localStorage.getItem('ambassadorProfile'))
+        godfatherProfile: godfather ? godfather : null,
+        godchildProfile: godchild ? godchild: null,
+        ambassadorProfile: ambassador ? ambassador : null
     },
     actions:{
         fetchGodfatherProfile({ commit }){
@@ -145,8 +148,10 @@ export const user = {
             localStorage.setItem('godchildProfile', JSON.stringify(state.godchildProfile));
         },
         RECEIVE_FETCH_AMBASSADOR_PROFILE_SUCCESS(state, ambassador){
-            state.ambassadorProfile = ambassador;
-            localStorage.setItem('ambassadorProfile', JSON.stringify(state.ambassadorProfile));
+            if (ambassador){
+                state.ambassadorProfile = ambassador;
+                localStorage.setItem('ambassadorProfile', JSON.stringify(state.ambassadorProfile));
+            }
         },
 
         REQUEST_SEND_AMBASSADOR_FORM(state){},

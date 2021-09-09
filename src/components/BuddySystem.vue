@@ -29,7 +29,7 @@
       </div>
       <hr class="buddy-line">
       <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
-      <div v-bind:class="{ desaturate: !godStatus.godFatherisEnabled }" v-for="(godchild, index) in godchilds" :key="index">
+      <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
         <relation-infos :relation="godchild"></relation-infos>
       </div>
       <div class="d-flex justify-content-between mt-4">
@@ -65,7 +65,7 @@
         </router-link>
       </div>
       <!-- POP UP ERROR - On ne peux pas activer les 2 -->
-     <Popup v-if="godStatus.godChildisEnabled && godStatus.godFatherisEnabled" @close="godStatus.godFatherisEnabled=false">
+     <Popup v-if="godfatherProfile.active && godchildProfile.active" @close="godfatherProfile.active=false">
         <p slot="body">{{$t('profile.youCantBeBooth')}}</p>
      </Popup>
     </div>
@@ -107,11 +107,23 @@ export default {
 
   methods:{
     updateGodfatherStatus(e){
-      this.$store.dispatch("user/updateGodfatherStatus", {active:e.target.checked})
+      this.$store.dispatch("user/updateGodfatherStatus", {active:e.target.checked}).then(
+        (value) => {
+        
+        },
+        err => {}
+      )
     },
     updateGodchildStatus(e){
       console.log("dklfjghdfkjghdfkjgdf")
-      this.$store.dispatch("user/updateGodchildStatus", {active:e.target.checked})
+      this.$store.dispatch("user/updateGodchildStatus", {active:e.target.checked}).then(
+        (value) => {
+        
+        },
+        err => {
+
+        }
+      );
     }
   },
 }

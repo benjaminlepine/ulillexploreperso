@@ -35,9 +35,6 @@ export const auth = {
       .signin(user).then (
         user => {
           commit('RECEIVE_SIGNIN_SUCCESS', user);
-   /*       dispatch('user/fetchGodfatherProfile', {} , {root:true});
-          dispatch('user/fetchGodchildProfile', {} , {root:true});
-          dispatch('user/fetchAmbassadorProfile', {} , {root:true}); */
           return Promise.resolve(user);
         },
         err => {
