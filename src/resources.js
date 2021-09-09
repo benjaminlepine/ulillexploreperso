@@ -1,13 +1,14 @@
 const R = {
     endpoint: {
-        base: process.env.VUE_APP_API_ENDPOINT,
-        // base:"http://192.168.1.193:9000",
+        //base: process.env.VUE_APP_API_ENDPOINT,
+        base:"http://176.132.208.146:9595",
         //godfatherSummary(){ return R.endpoint.base+'/api/ulillexplore/godfather/summary/{pageNo}/{pageSize}'; },
         //godfatherSummary(){ return R.endpoint.base+'/api/ulillexplore/godfather/summary/0/5'; },
         //godfatherDetails(){ return R.endpoint.base+'/api/ulillexplore/godfather/{id}'; },
         //godchildSummary(){ return R.endpoint.base+'/api/ulillexplore/godchild/summary/{pageNo}/{pageSize}'; },
         //godchildDetails(){ return R.endpoint.base+'/api/ulillexplore/godchild/{id}'; },
-        casSignin() { return process.env.VUE_APP_API_ENDPOINT+'/api/login'; },
+        casSignin() { return R.endpoint.base+'/api/login/explore'; },
+        casAccount() { return R.endpoint.base+'/api/account'; },
         signup(){ return R.endpoint.base+'/api/auth/signup'; },
         signin(){ return R.endpoint.base+'/api/auth/signin'; },
         forgotPassword(lang){ return R.endpoint.base+'/api/auth/forgot-password/'+lang; },

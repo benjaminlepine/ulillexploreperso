@@ -22,6 +22,7 @@
 <script>
     import User from '../models/user';
     import R from '../resources';
+import axios from 'axios';
 
     export default {
         props: {},
@@ -33,6 +34,17 @@
                 email: null,
                 password: null,
             };
+        },
+        beforeMount(){
+            axios.get("http://176.132.208.146:9595/api/account").then(
+                (user) => {
+                    console.log(user);
+                },
+                err=>{
+                    console.log(err);
+                }
+
+            );
         },
         compute: {
             loading(){

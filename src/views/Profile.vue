@@ -38,6 +38,20 @@ export default {
   data: function () {
     return {}
   },
+  beforeMount(){
+    this.$store.dispatch('user/fetchGodfatherProfile').then(
+      (p) => {},
+      err =>{}
+    );
+    this.$store.dispatch('user/fetchGodchildProfile').then(
+      (p) => {},
+      err =>{}
+    );
+    this.$store.dispatch('user/fetchAmbassadorProfile').then(
+      (p) => {},
+      err =>{}
+    );
+  },
   computed:{
     userFullName(){
       return this.$store.getters['user/fullName'];
