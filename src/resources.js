@@ -21,12 +21,12 @@ const R = {
         hobbiesActivities(lang){
             return R.endpoint.base+'/api/ulillexplore/hobbies-activities/'+lang;
         },
-        createGodchildProfile(id){
-            return R.endpoint.base+'/api/ulillexplore/godchild/profile/'+id;
-        },
-        createGodfatherProfile(){
-            return R.endpoint.base+'/api/ulillexplore/godfather/profile/';
-        },
+        createGodchildProfile(){ return R.endpoint.base+'/api/ulillexplore/godchild/profile/';},
+        activateGodchilProfile(activate){ return R.endpoint.base+'/api/ulillexplore/godchild/profile/state/'+activate; },
+
+        createGodfatherProfile(){ return R.endpoint.base+'/api/ulillexplore/godfather/profile/'; },
+        activateGodchilProfile(activate){ return R.endpoint.base+'/api/ulillexplore/godfather/profile/state/'+activate; },
+        
         subscribeToAmbassador(){
             return R.endpoint.base+"/api/ulillexplore/ambassador/subscribe/";
         },

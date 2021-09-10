@@ -224,9 +224,10 @@ export default {
       return this.errors.length == 0;
     },
     submitGodFather: function (e) {
-      console.log("SUBMIT OK")
+      console.log("SUBMIT")
       if (!this.checkForm(e)){ return; }
       const availabilities = [];
+      console.log("SUBMIT OK")
       this.availability.forEach((v, index) => {
         if (v){
           availabilities.push(this.nextMonths[index].mmyyyy);
