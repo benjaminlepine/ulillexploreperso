@@ -19,6 +19,9 @@ const i18n = new VueI18n({ locale: 'fr', fallbackLocale: 'en', messages});
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
+window.Bus = new Vue();
+Vue.component('DisplayMessage', require('./components/DisplayMessage.vue').default);
+
 new Vue({
   router,
   i18n,

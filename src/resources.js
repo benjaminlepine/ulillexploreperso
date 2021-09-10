@@ -1,7 +1,8 @@
 const R = {
     endpoint: {
-        base: process.env.VUE_APP_API_ENDPOINT,
+        //base: process.env.VUE_APP_API_ENDPOINT,
         // base:"http://192.168.1.193:9000",
+        base:"http://176.132.208.146:9595",
         //godfatherSummary(){ return R.endpoint.base+'/api/ulillexplore/godfather/summary/{pageNo}/{pageSize}'; },
         //godfatherSummary(){ return R.endpoint.base+'/api/ulillexplore/godfather/summary/0/5'; },
         //godfatherDetails(){ return R.endpoint.base+'/api/ulillexplore/godfather/{id}'; },
@@ -24,8 +25,8 @@ const R = {
         hobbiesActivities(lang){
             return R.endpoint.base+'/api/ulillexplore/hobbies-activities/'+lang;
         },
-        createGodchildProfile(){
-            return R.endpoint.base+'/api/ulillexplore/godchild/profile';
+        createGodchildProfile(id){
+            return R.endpoint.base+'/api/ulillexplore/godchild/profile/'+id;
         },
         createGodfatherProfile(){
             return R.endpoint.base+'/api/ulillexplore/godfather/profile/';

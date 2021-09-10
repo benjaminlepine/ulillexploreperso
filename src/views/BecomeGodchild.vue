@@ -88,9 +88,9 @@
           </ul>
         </div>
         <div class="d-flex text-left">
-          <input type="checkbox" class="largerCheckbox">
+          <input type="checkbox" id="rgpdCB" class="largerCheckbox">
           <div>
-            <p class="rgpd-text">{{ $t('signup.rgpd')}}</p>
+            <label class="rgpd-text" for="rgpdCB">{{ $t('signup.rgpd')}}</label>
             <button @click="showModal=true" id="show-modal" class="rgpd-text rgpd-text-link">{{ $t('signup.rgpdPopUpLink')}}</button>
           </div>
         </div>
@@ -167,6 +167,7 @@ export default {
   },
 
   beforeMount() {
+    this.form = this.$store.getters["user/godchildProfile"]
     if(localStorage.getItem("godchildProfile")){
       //this.form.texts = JSON.parse(localStorage.getItem("godchildProfile"));
       this.form =  JSON.parse(localStorage.getItem("godchildProfile")).profile
@@ -207,7 +208,7 @@ export default {
     },
     checkForm(e) {
       this.errors = [];
-      if (!this.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
+      if (!this.form.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
       if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
       if (this.languagesSpoken.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
       if (!this.cycleOfStudies) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
@@ -231,6 +232,7 @@ export default {
         }
       });
       const form = {
+        id: this.form.id,
         nationality: this.nationality,
         availabilities: availabilities,
         spokenLanguages: utils.getArrayIndexesFrom(this.languagesSpoken), // indexes
@@ -245,9 +247,11 @@ export default {
         (profile) => {
           console.log(profile);
             // FXIME form submit with succes
-          this.$router.push('/matching');
+          //this.$router.push('/matching');
         },
         err => {
+          console.log("err= ", err.response)
+          Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
           // FIXME error message
         }
       );

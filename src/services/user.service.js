@@ -5,7 +5,10 @@ import R from '../resources';
 export default new class UserService {
     async fetchProfile(){
         const resp = await axios.get();
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
     async fetchGodfatherProfile(){
         return this.fetch(R.endpoint.fethGodfatherProfile());
@@ -19,41 +22,65 @@ export default new class UserService {
 
     async fetchHobbies(lang){
         const resp = await axios.get(R.endpoint.hobbies(lang), { headers: authHeader() });
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
     async fetchActivities(lang){
         const resp = await axios.get(R.endpoint.activities(lang), { headers: authHeader() });
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
     async fetchHobbiesAndActivities(lang){
         const resp = await axios.get(R.endpoint.hobbiesActivities(lang), { headers: authHeader() });
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async fetchFaculties(){
         const resp = await axios.get(R.endpoint.faculties(), { headers: authHeader() });
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async fetch(url){
         const resp = await axios.get(url, { headers: authHeader() });
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async createGodchildProfile(profile){
-        const resp = await axios.post(R.endpoint.createGodchildProfile(), profile, { headers: authHeader() });
-        return resp.data;
+        const resp = await axios.post(R.endpoint.createGodchildProfile(profile.id), profile, { headers: authHeader() });
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async createGodfatherProfile(profile){
         const resp = await axios.post(R.endpoint.createGodfatherProfile(), profile, { headers: authHeader() });
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async subscribeToAmbassador(){
         const resp = await axios.post(R.endpoint.subscribeToAmbassador(), null, { headers: authHeader() });
         console.log(resp);
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async sendAmbassadorForm(form){
@@ -62,6 +89,9 @@ export default new class UserService {
         console.log(headers);
         const resp = await axios.post(R.endpoint.sendAmbassadorForm(), form, {headers: headers });
         console.log(resp);
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 };
