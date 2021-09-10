@@ -1,6 +1,6 @@
 <template>
   <div class="msg-ctn" v-if="message" >
-    <div class="msg-ctn-color msg-error d-flex justify-content-between"
+    <div class="msg-ctn-color d-flex justify-content-between"
          :class="{'msg-error': message.type === 'error','msg-success': message.type === 'success', 'msg-info': message.type === 'info'}">
         <p class="mb-0 p-4">{{message.text}}</p>
         <p v-if="message.error" class="mb-0">{{message.error}}</p>
@@ -50,6 +50,7 @@ export default {
     position: fixed;
     bottom: 15px;
     z-index: 30;
+    padding: 12px;
     &-color{
       margin: 2%;
       border-radius: 12px;
@@ -70,7 +71,7 @@ export default {
   &-error{background-color: #f3c0c0;}
   &-info{background-color: #c0c0dc;}
   &-cross{
-    color: $second-color;
+    color: black;
     margin-top: 2px;
   }
 }

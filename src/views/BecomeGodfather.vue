@@ -224,10 +224,8 @@ export default {
       return this.errors.length == 0;
     },
     submitGodFather: function (e) {
-      console.log("SUBMIT")
       if (!this.checkForm(e)){ return; }
       const availabilities = [];
-      console.log("SUBMIT OK")
       this.availability.forEach((v, index) => {
         if (v){
           availabilities.push(this.nextMonths[index].mmyyyy);
@@ -246,16 +244,13 @@ export default {
         activities: utils.getArrayIndexesFrom(this.activities, function(value){ return value.checked}),
         hobbies: utils.getArrayIndexesFrom(this.hobbies,function(value){ return value.checked})
       };
-      console.log(form)
       this.$store.dispatch("user/createGodfatherProfile", form).then(
           (profile) => {
-            // FXIME form submit with succes
-            console.log(profile);
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.successCreation'), type: 'success'});
             this.$router.push('/matching');
           },
           err => {
-            // FIXME something went wrong show message
-            console.log("FIXME Error went we try to submit godfather form", err);
+            Bus.$emit('DisplayMessage', {text: err, type: 'error'});
           }
       )
     },

@@ -163,7 +163,8 @@
       "disabledGodfatherAccount": "Suspendre mon compte Lilord (filleul)",
       "thisNotDeleteRelation": "Tu peux activer ou desactiver ton compte ici. Ceci ne suspendra pas les relations en cours que tu peut avoir mais tu ne pourra plus avoir de nouveaux match",
       "yourAccountInactive": "Ton compte {0} est actuellement inactif, reactive le en cliquant ici",
-      "youCantBeBooth": "Desole mais tu ne peux pas être à la fois Lilord et Lilot, il faut d'abord desactiver l'un avant d'activer l'autre"
+      "youCantBeBooth": "Desole mais tu ne peux pas être à la fois Lilord et Lilot, il faut d'abord desactiver l'un avant d'activer l'autre",
+      "successCreation": "Profil crée avec succès"
     },
     "wait": {
       "sorry": "Désolé",
@@ -463,7 +464,7 @@
       "thisNotDeleteRelation": "You can enable and disabled you account here. This will not suspend any current relationships you may have but you will not be able to have new matches.",
       "yourAccountInactive": "Your {0} account is currently inactive, reactivate it by clicking here",
       "youCantBeBooth": "Sorry but you can't be both Lilord and Lilot, you have to deactivate one first before activating the other",
-      "textExemple": "Coucou {0} Nouvelle ligne"
+      "successCreation": "Profil created with success"
     },
     "wait": {
       "sorry": "Sorry",
