@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <DisplayMessage></DisplayMessage>
     <NavHeader></NavHeader>
     <NavMenu></NavMenu>
     <router-view class="pt-4"></router-view>
@@ -9,10 +10,11 @@
 <script>
   import NavHeader from "./components/NavHeader";
   import NavMenu from "./components/NavMenu";
+  import DisplayMessage from '@/components/DisplayMessage'
   import store from './store';
   export default {
     name: 'App',
-    components: {NavHeader, NavMenu},
+    components: {NavHeader, NavMenu, DisplayMessage},
     data: function () {
       return {
         store: store,

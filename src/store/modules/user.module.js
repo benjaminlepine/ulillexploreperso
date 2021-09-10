@@ -138,7 +138,7 @@ export const user = {
         }
     },
     mutations:{
-        
+
         RECEIVE_FETCH_GODFATHER_PROFILE_SUCCESS(state, godfather){
             state.godfatherProfile = godfather;
             localStorage.setItem('godfatherProfile', JSON.stringify(state.godfatherProfile));

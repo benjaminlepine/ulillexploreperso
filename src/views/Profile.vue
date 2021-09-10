@@ -13,8 +13,10 @@
       <div>
         <p class="text-left mb-0">{{ $t('profile.contactEmail')}}</p>
         <p class="mb-2 text-left mb-0 profile-info">{{userEmail}}</p>
+        <div v-if="registrationDate">
         <p class="text-left mb-0">{{ $t('profile.subscribedFrom')}}</p>
         <p class="mb-2 text-left mb-0 profile-info montserrat">{{registrationDate}}</p>
+        </div>
       </div>
       <hr>
       <!-- Parrain / Filleuls section -->

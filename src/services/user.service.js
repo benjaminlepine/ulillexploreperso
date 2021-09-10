@@ -33,19 +33,28 @@ export default new class UserService {
     }
 
     async createGodchildProfile(profile){
-        const resp = await axios.post(R.endpoint.createGodchildProfile(), profile, { headers: authHeader() });
-        return resp.data;
+        const resp = await axios.post(R.endpoint.createGodchildProfile(profile.id), profile, { headers: authHeader() });
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async createGodfatherProfile(profile){
         const resp = await axios.post(R.endpoint.createGodfatherProfile(), profile, { headers: authHeader() });
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async subscribeToAmbassador(){
         const resp = await axios.post(R.endpoint.subscribeToAmbassador(), null, { headers: authHeader(), withCredentials: true });
         console.log(resp);
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 
     async sendAmbassadorForm(form){
@@ -54,6 +63,9 @@ export default new class UserService {
         console.log(headers);
         const resp = await axios.post(R.endpoint.sendAmbassadorForm(), form, {headers: headers, withCredentials: true });
         console.log(resp);
-        return resp.data;
+        if(resp.data){
+            return resp.data;
+        }
+        return resp;
     }
 };

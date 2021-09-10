@@ -63,34 +63,32 @@
           </select>
         </div>
 
-
-
         <div class="text-left mb-3">
-          <label class="mb-0">{{ $t('godchild.outsideCourses')}}</label>
+          <label class="mb-0">{{ $t('godchild.outsideCourses')}}  {{ $t('godfather.outsideCoursesMinMax')}}</label>
           <ul class="lang-ctn">
             <label v-for="(activity, index) in activities" :key="index" class="lang-card d-flex text-left mb-0 w-100">
               <div class="hobbie-inside d-flex justify-content-between">
-                <input :id="activity.name" v-model="activity.checked" type="checkbox" class="mt-1">
+                <input :id="activity.name" @click="CheckBoxCount($event, activities,4)" v-model="activity.checked" type="checkbox" class="mt-1">
                 <span :for="activity.name" class="mb-0 w-100 ml-2">{{activity.name}}</span>
               </div>
             </label>
           </ul>
         </div>
         <div class="text-left mb-3">
-          <label class="mb-0">{{ $t('godchild.whatHobbies')}}</label>
+          <label class="mb-0">{{ $t('godchild.whatHobbies')}}  {{ $t('godfather.outsideCoursesMinMax')}}</label>
           <ul class="lang-ctn">
             <label  v-for="(hobby, index) in hobbies" :key="index" class="lang-card d-flex text-left mb-0 w-100">
               <div class="hobbie-inside d-flex justify-content-between">
-                <input :id="hobby.name" v-model="hobby.checked" type="checkbox" class="mt-1">
+                <input :id="hobby.name" @click="CheckBoxCount($event, hobbies,4)" v-model="hobby.checked" type="checkbox" class="mt-1">
                 <span for="hobby.name" class="mb-0 w-100 ml-2">{{hobby.name}}</span>
               </div>
             </label>
           </ul>
         </div>
         <div class="d-flex text-left">
-          <input type="checkbox" class="largerCheckbox">
+          <input type="checkbox" id="rgpdCB" class="largerCheckbox">
           <div>
-            <p class="rgpd-text">{{ $t('signup.rgpd')}}</p>
+            <label class="rgpd-text" for="rgpdCB">{{ $t('signup.rgpd')}}</label>
             <button @click="showModal=true" id="show-modal" class="rgpd-text rgpd-text-link">{{ $t('signup.rgpdPopUpLink')}}</button>
           </div>
         </div>
@@ -165,6 +163,7 @@ export default {
   },
 
   beforeMount() {
+    this.form = this.$store.getters["user/godchildProfile"]
     if(localStorage.getItem("godchildProfile")){
       //this.form.texts = JSON.parse(localStorage.getItem("godchildProfile"));
       this.form =  JSON.parse(localStorage.getItem("godchildProfile")).profile
@@ -175,6 +174,7 @@ export default {
   },
 
   methods:{
+    CheckBoxCount(e, tab, max){ utils.CheckBoxCount(e, tab, max) },
     getFaculties(){
       this.$store.dispatch("user/fetchFaculties").then(
         faculties => {
@@ -205,7 +205,7 @@ export default {
     },
     checkForm(e) {
       this.errors = [];
-      if (!this.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
+      if (!this.form.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
       if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
       if (this.languagesSpoken.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
       if (!this.cycleOfStudies) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
@@ -229,6 +229,7 @@ export default {
         }
       });
       const form = {
+        id: this.form.id,
         nationality: this.nationality,
         availabilities: availabilities,
         spokenLanguages: utils.getArrayIndexesFrom(this.languagesSpoken), // indexes
@@ -243,9 +244,11 @@ export default {
         (profile) => {
           console.log(profile);
             // FXIME form submit with succes
-          this.$router.push('/matching');
+          //this.$router.push('/matching');
         },
         err => {
+          console.log("err= ", err.response)
+          Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
           // FIXME error message
         }
       );
