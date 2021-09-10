@@ -15,18 +15,19 @@
     </div>
 
     <!-- Si PARRAIN -->
-    <div v-if="godfatherProfile" class="grey-ctn mt-2 mb-0">
-      <div class="d-flex justify-content-between">
-        <h5 class="text-left pt-2 mb-0">{{ $t('profile.myGodfatherProfile')}}</h5>
-        <router-link to="/becomeGodfather">
-          <button class="btn buddy-btn">
+    <div v-if="userRole !== 'STUDENT_EXTERN'">
+      <div v-if="godfatherProfile" class="grey-ctn mt-2 mb-0">
+        <div class="d-flex justify-content-between">
+          <h5 class="text-left pt-2 mb-0">{{ $t('profile.myGodfatherProfile')}}</h5>
+          <router-link to="/becomeGodfather">
+            <button class="btn buddy-btn">
               <span class="mb-0 text-white mr-2">
                 {{ $t('profile.edit')}}
                 <i class="fas fa-edit buddy-edit-button ml-2"></i>
               </span>
-          </button>
-        </router-link>
-      </div>
+            </button>
+          </router-link>
+        </div>
         <div class="d-flex justify-content-between mt-4">
         <label class="el-switch pink">
           <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godfatherProfile.active" name="switch" checked>
@@ -41,16 +42,23 @@
         <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
           <relation-infos :relation="godchild"></relation-infos>
         </div>
-      </div>
-    </div>
-    <div v-else>
-      <router-link to="/becomeGodfather" class="profile-card d-flex justify-content-between mt-2">
-        <div>
-          <h5 class="mb-0 text-left">{{ $t('buddy.iWantBeGodfather')}}</h5>
-          <p class="mb-0 text-left ">{{ $t('buddy.toBeClassy')}}</p>
+        <div v-if="godchilds && godchilds.length > 0">
+          <hr class="buddy-line">
+          <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
+          <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
+            <relation-infos :relation="godchild"></relation-infos>
+          </div>
         </div>
-        <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
-      </router-link>
+      </div>
+      <div v-else>
+        <router-link to="/becomeGodfather" class="profile-card d-flex justify-content-between mt-2">
+          <div>
+            <h5 class="mb-0 text-left">{{ $t('buddy.iWantBeGodfather')}}</h5>
+            <p class="mb-0 text-left ">{{ $t('buddy.toBeClassy')}}</p>
+          </div>
+          <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
+        </router-link>
+      </div>
     </div>
 
     <!-- SI FILLEUL -->
@@ -106,10 +114,12 @@ export default {
       godchilds: this.$store.getters['user/godchildren'],
       godfather: this.$store.getters['user/godfather'],
       showModal: true,
+      userRole: null
     };
   },
+
   beforeMount(){
-    console.log(this.godchilds);
+    this.userRole = this.$store.getters['auth/user'].roles[0];
   },
   methods:{
     updateGodfatherStatus(e){
