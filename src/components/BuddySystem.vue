@@ -63,10 +63,6 @@
           </button>
         </router-link>
       </div>
-      <!-- POP UP ERROR - On ne peux pas activer les 2 -->
-     <Popup v-if="godfatherProfile && godfatherProfile.active && godfatherProfile && godchildProfile.active" @close="godfatherProfile.active=false">
-        <p slot="body">{{$t('profile.youCantBeBooth')}}</p>
-     </Popup>
     </div>
     <div v-else>
       <router-link to="/becomegodchild" class="profile-card d-flex justify-content-between mt-2">
@@ -78,9 +74,9 @@
       </router-link>
     </div>
     <!-- POP UP ERROR - On ne peux pas activer les 2 -->
-    <!--      <Popup v-if="godStatus.godChildisEnabled && godStatus.godFatherisEnabled" @close="godStatus.godFatherisEnabled=false">-->
-    <!--        <p slot="body">{{$t('profile.youCantBeBooth')}}</p>-->
-    <!--      </Popup>-->
+    <Popup v-if="godfatherProfile && godfatherProfile.active && godchildProfile && godchildProfile.active" @close="godfatherProfile.active=false">
+      <p slot="body">{{$t('profile.youCantBeBooth')}}</p>
+    </Popup>
   </div>
 </template>
 <script>
@@ -107,21 +103,21 @@ export default {
   methods:{
     updateGodfatherStatus(e){
       this.$store.dispatch("user/updateGodfatherStatus", {active:e.target.checked}).then(
-        (value) => {
+          (value) => {
 
-        },
-        err => {}
+          },
+          err => {}
       )
     },
     updateGodchildStatus(e){
       console.log("dklfjghdfkjghdfkjgdf")
       this.$store.dispatch("user/updateGodchildStatus", {active:e.target.checked}).then(
-        (value) => {
+          (value) => {
 
-        },
-        err => {
+          },
+          err => {
 
-        }
+          }
       );
     }
   },
