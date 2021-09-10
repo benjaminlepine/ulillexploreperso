@@ -94,7 +94,6 @@ export const user = {
             return UserService.createGodchildProfile(godchildProfile).then(
                 profile => {
                     commit('RECEIVE_GODCHILD_PROFILE_SUCCESS', profile);
-                    commit('reci', "", {root:true})
                     return Promise.resolve(profile);
                 },
                 err => {
