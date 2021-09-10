@@ -18,7 +18,7 @@
             <label :for=month.monthName v-for="(month, index) in nextMonths" :key="index" class="lang-card d-flex text-left mb-0">
               <div class="lang-inside d-flex justify-content-between">
                 <div>
-                  <input :id=month.monthName v-model="availability[index]" type="checkbox" class="mt-1" name="availability">
+                  <input :id=month.monthName v-model="formulaire.availabilities[index]" type="checkbox" class="mt-1" name="availability">
                   <span class="mb-0 w-100 ml-2">{{ $t('months.'+month.monthName)}} {{month.year}}</span>
                 </div>
               </div>
@@ -125,22 +125,18 @@ export default {
         department: null,
         faculty: -1,
         hobbies: [],
-        studyCycle: null
+        studyCycle: null,
+        activities: [],
+        availabilities: []
       },
       languages: formInfos.languages,
       nextMonths: [],
       active_el:0,
       errors: [],
-      nationality: null,
+
+      showModal: false,
 
       faculties: [],
-      department: null,
-      facultyIndex: -1,
-      cycleOfStudies: null,
-
-      //languagesSpoken: [],
-      availability: [],
-      showModal: false,
       hobbies: [],
       activities: [],
       countrys: countrys
@@ -165,14 +161,30 @@ export default {
     this.getFaculties();
     this.getHobbiesAndActivities();
     this.DateUtilFunctions();
+    this.setAvailabilities();
   },
 
   beforeMount() {
-    this.formulaire = this.$store.getters["user/godchildProfile"]
+    this.formulaire = this.$store.getters["user/godchildProfile"];
+    if (!this.formulaire){
+      this.initForm();
+    }else {
+      this.setSpokenLanguages();
+    }
   },
-
   methods:{
-    setFaculties(){
+    initForm(){
+      this.formulaire = {
+        nationality: null,
+        spokenLanguages: [],
+        department: null,
+        faculty: -1,
+        hobbies: [],
+        studyCycle: null,
+        activities: []
+      };
+    },
+    setFaculty(){
       this.faculties.forEach((v,i) => {
         if(v.name === this.formulaire.faculty){
           this.formulaire.faculty = i;
@@ -181,13 +193,55 @@ export default {
       console.log("faculties= ", this.faculties)
       console.log("this.formulaire.faculty = ", this.formulaire.faculty)
     },
+    setHobbies(){
+      console.log(this.hobbies);
+      if (this.hobbies && this.hobbies.length > 0){
+        this.formulaire.hobbies.forEach((value) => {
+          this.hobbies[value].checked = true;
+        });
+      }
+      console.log(this.formulaire.hobbies);
+      console.log(this.hobbies);
+    },
+    setActivities(){
+      console.log(this.activities);
+      if (this.activities && this.activities.length > 0){
+        this.formulaire.activities.forEach((value) => {
+          this.activities[value].checked = true;
+        });
+      }
+      console.log(this.formulaire.activities);
+      console.log(this.activities);
+    },
+    setSpokenLanguages(){
+      if (this.formulaire && this.formulaire.spokenLanguages && this.formulaire.spokenLanguages.length){
+        const tmp = [];
+        this.formulaire.spokenLanguages.forEach((value) => {
+            tmp[value] = true;
+        });
+        this.formulaire.spokenLanguages = tmp;
+      }
+    },
+    setAvailabilities(){
+      if (this.formulaire && this.formulaire.availabilities && this.formulaire.availabilities.length){
+        const tmp = [];
+        this.formulaire.availabilities.forEach((mmyyyy) => {
+            this.nextMonths.find((month, index) => {
+              if (month.mmyyyy == mmyyyy){
+                tmp[index] = true;
+              }
+            });
+        });
+        this.formulaire.availabilities = tmp;
+      }
+    },
 
     CheckBoxCount(e, tab, max){ utils.CheckBoxCount(e, tab, max) },
     getFaculties(){
       this.$store.dispatch("user/fetchFaculties").then(
           faculties => {
             this.faculties = faculties;
-            this.setFaculties()
+            this.setFaculty();
           },
           err => {
             // FIXME error message
@@ -205,6 +259,8 @@ export default {
               const checked = this.activities[index] && this.activities[index].checked;
               this.$set(this.activities, index, {name, checked});
             });
+            this.setHobbies();
+            this.setActivities();
           },
           err => {
             // FIXME something went wrong show message
@@ -215,7 +271,7 @@ export default {
     checkForm(e) {
       this.errors = [];
       if (!this.formulaire.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
-      if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
+      if (this.formulaire.availabilities.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
       if (this.formulaire.spokenLanguages.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
       if (!this.formulaire.studyCycle) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
       if (this.formulaire.faculty < 0 || !this.faculties[this.formulaire.faculty] || !this.faculties[this.formulaire.faculty].name) {
@@ -232,7 +288,7 @@ export default {
       if (!this.checkForm(e)){ return; }
 
       const availabilities = [];
-      this.availability.forEach((v, index) => {
+      this.formulaire.availabilities.forEach((v, index) => {
         if (v){
           availabilities.push(this.nextMonths[index].mmyyyy);
         }

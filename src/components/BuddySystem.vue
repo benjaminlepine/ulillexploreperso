@@ -29,7 +29,7 @@
       </div>
         <div class="d-flex justify-content-between mt-4">
         <label class="el-switch pink">
-          <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked>
+          <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godfatherProfile.active" name="switch" checked>
           <span class="el-switch-style"></span>
         </label>
         <p v-if="godfatherProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
@@ -67,7 +67,7 @@
         </router-link>
       </div>
         <div class="d-flex justify-content-between mt-4">
-        <label class="el-switch pink" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godStatus.godChildisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
+        <label class="el-switch pink" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godchildProfile.active" name="switch" checked><span class="el-switch-style"></span></label>
         <p v-if="godchildProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
         <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilot</i18n>
       </div>
@@ -105,10 +105,6 @@ export default {
       godchildProfile: this.$store.getters['user/godchildProfile'],
       godchilds: this.$store.getters['user/godchildren'],
       godfather: this.$store.getters['user/godfather'],
-      godStatus: {
-        godChildisEnabled: Boolean,
-        godFatherisEnabled: Boolean
-      },
       showModal: true,
     };
   },
