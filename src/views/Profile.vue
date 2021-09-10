@@ -107,6 +107,7 @@ export default {
     transition: background-color 180ms, color 300ms;
     &:hover{
       cursor: pointer;
+      text-decoration: none;
       background-color: $main-color;
       & h5 {color: white} p {color: lighten($clear-main-color, 45%)}
     }
