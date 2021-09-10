@@ -50,7 +50,6 @@
         <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
       </router-link>
     </div>
-
     <!-- SI FILLEUL -->
     <div v-if="godchildProfile" class="grey-ctn mt-2 mb-0">
       <div class="d-flex justify-content-between">
@@ -65,7 +64,7 @@
         </router-link>
       </div>
       <!-- POP UP ERROR - On ne peux pas activer les 2 -->
-     <Popup v-if="godfatherProfile.active && godchildProfile.active" @close="godfatherProfile.active=false">
+     <Popup v-if="godfatherProfile && godfatherProfile.active && godfatherProfile && godchildProfile.active" @close="godfatherProfile.active=false">
         <p slot="body">{{$t('profile.youCantBeBooth')}}</p>
      </Popup>
     </div>
@@ -109,7 +108,7 @@ export default {
     updateGodfatherStatus(e){
       this.$store.dispatch("user/updateGodfatherStatus", {active:e.target.checked}).then(
         (value) => {
-        
+
         },
         err => {}
       )
@@ -118,7 +117,7 @@ export default {
       console.log("dklfjghdfkjghdfkjgdf")
       this.$store.dispatch("user/updateGodchildStatus", {active:e.target.checked}).then(
         (value) => {
-        
+
         },
         err => {
 

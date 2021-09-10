@@ -68,7 +68,7 @@
           <ul class="lang-ctn">
             <label v-for="(activity, index) in activities" :key="index" class="lang-card d-flex text-left mb-0 w-100">
               <div class="hobbie-inside d-flex justify-content-between">
-                <input :id="activity.name" @click="CheckBoxCount($event, activities,4)" v-model="activity.checked" type="checkbox" class="mt-1">
+                <input :id="activity.name" @click="CheckBoxCount($event, hobbies,4)" v-model="activity.checked" type="checkbox" class="mt-1">
                 <span :for="activity.name" class="mb-0 w-100 ml-2">{{activity.name}}</span>
               </div>
             </label>
