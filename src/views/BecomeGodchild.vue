@@ -162,8 +162,6 @@ export default {
     this.getFaculties();
     this.getHobbiesAndActivities();
     this.DateUtilFunctions();
-
-
   },
 
   beforeMount() {

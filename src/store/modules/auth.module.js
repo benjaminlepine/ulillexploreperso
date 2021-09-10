@@ -17,9 +17,11 @@ export const auth = {
     casSignin({ commit }){
       return AuthService.getCasUser().then(
         user => {
+          commit('RECEIVE_SIGNIN_SUCCESS', user);
           return Promise.resolve(user);
         },
         err => {
+          commit('RECEIVE_SIGNIN_ERROR');
           return Promise.reject(err);
         }
       )
@@ -57,7 +59,10 @@ export const auth = {
       commit('REQUEST_SIGNOUT');
       const isUserCAS = state.user && state.user.roles ? state.user.roles.includes('STUDENT') || state.user.roles.includes('PROFESSOR') : false;
       if (isUserCAS){
-        return AuthService.casSignout().then(
+        commit('RECEIVE_SIGNOUT_SUCCESS');
+        AuthService.casSignout();
+        return Promise.resolve();
+        /*.then(
           (resp) => {
             commit('RECEIVE_SIGNOUT_SUCCESS');
             return Promise.resolve();
@@ -66,7 +71,7 @@ export const auth = {
             commit('RECEIVE_SIGNOUT_ERROR');
             return Promise.reject(err);
           }
-        );
+        );*/
       }else {
         AuthService.signout();
         commit('RECEIVE_SIGNOUT_SUCCESS');

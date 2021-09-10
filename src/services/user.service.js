@@ -3,10 +3,6 @@ import authHeader from './auth-header';
 import R from '../resources';
 
 export default new class UserService {
-    async fetchProfile(){
-        const resp = await axios.get();
-        return resp.data;
-    }
     async fetchGodfatherProfile(){
         return this.fetch(R.endpoint.fethGodfatherProfile());
     }
@@ -18,25 +14,21 @@ export default new class UserService {
     }
 
     async fetchHobbies(lang){
-        const resp = await axios.get(R.endpoint.hobbies(lang), { headers: authHeader() });
-        return resp.data;
+        return this.fetch(R.endpoint.hobbies(lang));
     }
     async fetchActivities(lang){
-        const resp = await axios.get(R.endpoint.activities(lang), { headers: authHeader() });
-        return resp.data;
+        return this.fetch(R.endpoint.activities(lang));
     }
     async fetchHobbiesAndActivities(lang){
-        const resp = await axios.get(R.endpoint.hobbiesActivities(lang), { headers: authHeader() });
-        return resp.data;
+        return this.fetch(R.endpoint.hobbiesActivities(lang));
     }
 
     async fetchFaculties(){
-        const resp = await axios.get(R.endpoint.faculties(), { headers: authHeader() });
-        return resp.data;
+        return this.fetch(R.endpoint.faculties());
     }
 
     async fetch(url){
-        const resp = await axios.get(url, { headers: authHeader() });
+        const resp = await axios.get(url, { headers: authHeader(), withCredentials: true });
         return resp.data;
     }
 
@@ -51,7 +43,7 @@ export default new class UserService {
     }
 
     async subscribeToAmbassador(){
-        const resp = await axios.post(R.endpoint.subscribeToAmbassador(), null, { headers: authHeader() });
+        const resp = await axios.post(R.endpoint.subscribeToAmbassador(), null, { headers: authHeader(), withCredentials: true });
         console.log(resp);
         return resp.data;
     }
@@ -60,7 +52,7 @@ export default new class UserService {
         const headers = authHeader();
         headers['Content-Type'] = `multipart/form-data`;
         console.log(headers);
-        const resp = await axios.post(R.endpoint.sendAmbassadorForm(), form, {headers: headers });
+        const resp = await axios.post(R.endpoint.sendAmbassadorForm(), form, {headers: headers, withCredentials: true });
         console.log(resp);
         return resp.data;
     }

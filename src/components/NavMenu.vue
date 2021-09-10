@@ -61,7 +61,7 @@ export default {
               this.$router.push('/signin');
             }
           },
-          () => {
+          err => {
             // FIXME Error message
           }
       );

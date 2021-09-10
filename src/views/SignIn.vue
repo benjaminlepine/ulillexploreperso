@@ -36,16 +36,23 @@ import axios from 'axios';
             };
         },
         beforeMount(){
-            this.$store.dispatch("auth/casSignin").then(
-                (user) => {
-                    console.log(user);
-                    this.$router.push('/profile');
-                },
-                err=>{
-                    console.log(err);
-                }
+            const casCookie = document.cookie
+            .split(';')
+            .find(row => row.startsWith("XSRF-TOKEN"))
+            .split('=')[1];
+            console.log("casCookie = ", casCookie);
+            if (casCookie){
+                this.$store.dispatch("auth/casSignin").then(
+                    (user) => {
+                        console.log(user);
+                        this.$router.push('/profile');
+                    },
+                    err=>{
+                        console.log(err);
+                    }
 
-            );
+                );
+            }
         },
         compute: {
             loading(){
