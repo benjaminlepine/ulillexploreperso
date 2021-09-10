@@ -2,6 +2,23 @@ import axios from 'axios';
 import R from '../resources';
 
 export default new class AuthService {
+    async getCasUser(){
+        const resp = await axios.get(R.endpoint.casAccount(), { withCredentials: true });
+        if (resp.data){
+            console.log(resp); // FIXME remove log
+            localStorage.setItem('user', JSON.stringify(resp.data));
+        }
+        return resp.data;
+    }
+    async casSignout(){
+        const resp = await axios.get(R.endpoint.casSignout(), { withCredentials: true });
+        if (resp.data){
+            console.log(resp); // FIXME remove log
+            localStorage.removeItem('user');
+        }
+        return resp.data;
+    }
+
     async signup(user){
         const resp = await axios.post(R.endpoint.signup(), user);
 
@@ -12,7 +29,7 @@ export default new class AuthService {
     }
 
     async signin(user){
-        const resp = await axios.post(R.endpoint.signin(), user);
+        const resp = await axios.post(R.endpoint.signin(), user, { withCredentials: true });
         if (resp.data) {
             console.log(resp); // FIXME remove log
             localStorage.setItem('user', JSON.stringify(resp.data));

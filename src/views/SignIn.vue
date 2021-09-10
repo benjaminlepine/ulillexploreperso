@@ -22,6 +22,7 @@
 <script>
     import User from '../models/user';
     import R from '../resources';
+import axios from 'axios';
 
     export default {
         props: {},
@@ -33,6 +34,18 @@
                 email: null,
                 password: null,
             };
+        },
+        beforeMount(){
+            this.$store.dispatch("auth/casSignin").then(
+                (user) => {
+                    console.log(user);
+                    this.$router.push('/profile');
+                },
+                err=>{
+                    console.log(err);
+                }
+
+            );
         },
         compute: {
             loading(){

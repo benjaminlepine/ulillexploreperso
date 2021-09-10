@@ -14,6 +14,16 @@ export const auth = {
   namespaced: true,
   state: initialState,
   actions: {
+    casSignin({ commit }){
+      return AuthService.getCasUser().then(
+        user => {
+          return Promise.resolve(user);
+        },
+        err => {
+          return Promise.reject(err);
+        }
+      )
+    },
     signup({ commit }, user){
       commit('REQUEST_SIGNUP');
       console.log("in dispatch ", user);
@@ -35,9 +45,6 @@ export const auth = {
       .signin(user).then (
         user => {
           commit('RECEIVE_SIGNIN_SUCCESS', user);
-          dispatch('user/fetchGodfatherProfile', {} , {root:true});
-          dispatch('user/fetchGodchildProfile', {} , {root:true});
-          dispatch('user/fetchAmbassadorProfile', {} , {root:true});
           return Promise.resolve(user);
         },
         err => {
@@ -46,12 +53,11 @@ export const auth = {
         }
       );
     },
-    signout({ commit }){
+    signout({ commit, state }){
       commit('REQUEST_SIGNOUT');
-      const isUserCAS = false;
+      const isUserCAS = state.user && state.user.roles ? state.user.roles.includes('STUDENT') || state.user.roles.includes('PROFESSOR') : false;
       if (isUserCAS){
-        /* FIXME signout user form CAS
-        return AuthService.signoutUserCAS().then(
+        return AuthService.casSignout().then(
           (resp) => {
             commit('RECEIVE_SIGNOUT_SUCCESS');
             return Promise.resolve();
@@ -60,7 +66,7 @@ export const auth = {
             commit('RECEIVE_SIGNOUT_ERROR');
             return Promise.reject(err);
           }
-        ); */
+        );
       }else {
         AuthService.signout();
         commit('RECEIVE_SIGNOUT_SUCCESS');

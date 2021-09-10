@@ -14,6 +14,7 @@ import Matching from '../views/Matching.vue'
 import NeedHelp from '../views/NeedHelp.vue'
 import Updatepassword from '../views/Updatepassword.vue'
 import Profile from '../views/Profile.vue'
+import CASCookie from '../views/CASCookie';
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,7 @@ const routes = [
   {path: '/help', name: 'Help', component: Help},
   {path: '/matching', name: 'Matching', component: Matching},
   {path: '/needhelp', name: 'NeedHelp', component: NeedHelp},
+  {path: '/cas', name: 'CASCookie', component: CASCookie},
   {path: '*', component: Profile }
 ];
 
@@ -43,10 +45,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/signup','/signin', '/forgotpassword', '/resetpassword'];
+  const publicPages = ['/signup','/signin', '/forgotpassword', '/resetpassword', '/cas'];
   const authRequiest = !publicPages.includes(to.path);
   const signedIn = localStorage.getItem('user');
-
+  
   if (authRequiest && !signedIn){
     next('/signin');
   }else {

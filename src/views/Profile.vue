@@ -20,7 +20,7 @@
       </div>
       <hr>
       <!-- Parrain / Filleuls section -->
-      <buddy-system :userGodStatus="userGodStatus"></buddy-system>
+      <buddy-system></buddy-system>
       <hr>
       <!-- Ambassador section -->
       <ambassador-component></ambassador-component>
@@ -40,6 +40,34 @@ export default {
   data: function () {
     return {}
   },
+  beforeMount(){
+    this.$store.dispatch('user/fetchGodfatherProfile').then(
+      (p) => {},
+      err =>{}
+    );
+    this.$store.dispatch('user/fetchGodchildProfile').then(
+      (p) => {},
+      err =>{}
+    );
+    this.$store.dispatch('user/fetchAmbassadorProfile').then(
+      (p) => {},
+      err =>{}
+    );
+  },
+  beforeMount(){
+     this.$store.dispatch('user/fetchGodfatherProfile').then(
+      (p) => {},
+      err =>{}
+    );
+    this.$store.dispatch('user/fetchGodchildProfile').then(
+      (p) => {},
+      err =>{}
+    );
+    this.$store.dispatch('user/fetchAmbassadorProfile').then(
+      (p) => {},
+      err =>{}
+    );
+  },
   computed:{
     userFullName(){
       return this.$store.getters['user/fullName'];
@@ -50,13 +78,6 @@ export default {
         return user.email;
       }
       return "N/A";
-    },
-    userGodStatus(){
-      const user = this.$store.getters['auth/user'];
-      if (user && user.profile){ return {isGodfather: user.profile.godfather, isGodchild: user.profile.godchild};}
-      //if (user && user.profile){ return {isGodfather: user.profile.godfather, isGodchild: true};}
-      //if (user && user.profile){ return {isGodfather: true, isGodchild: user.profile.godchild};}
-      return "N/A"
     },
     registrationDate(){
       const user = this.$store.getters['auth/user'];
