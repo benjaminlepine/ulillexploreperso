@@ -6,7 +6,7 @@
       <form @submit.prevent="submitGodchild">
         <div class="text-left">
           <label class="mb-0" for="nationality">{{ $t('godchild.nationality')}}</label>
-          <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="form.nationality" name="nationality"/>
+          <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="formulaire.nationality" name="nationality"/>
           <datalist id="nationality" ref="nationality" name="nationality">
             <option class="form-control" v-for="(country, index) in countrys" :key="index">{{country.name}}</option>
           </datalist>
@@ -32,7 +32,7 @@
             <label :for=language v-for="(language, index) in languages" :key="index" class="lang-card d-flex text-left mb-0">
               <div class="lang-inside d-flex justify-content-between">
                 <div>
-                  <input :id=language v-model="languagesSpoken[index]" type="checkbox" class="mt-1" name="languagesSpoken">
+                  <input :id=language v-model="formulaire.spokenLanguages[index]" type="checkbox" class="mt-1" name="languagesSpoken">
                   <span class="mb-0 w-100 ml-2">{{ $t('lang.'+language)}}</span>
                 </div>
                 <img :alt="language" class="lang-flag" :src="require(`@/assets/img/flags/${language}.svg`)">
@@ -42,7 +42,7 @@
         </div>
         <div class="text-left">
           <label class="mb-0" for="cycleOfStudies">{{ $t('godchild.whatYouStudying')}}</label>
-          <select class="form-control mb-3" id="cycleOfStudies" v-model="cycleOfStudies">
+          <select class="form-control mb-3" id="cycleOfStudies" v-model="formulaire.studyCycle">
             <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
             <option v-for="(cycleOfStudies, index) in cycleOfStudiesList" :key="index">{{cycleOfStudies}}</option>
           </select>
@@ -50,16 +50,16 @@
 
         <div class="text-left">
           <label class="mb-0" for="faculty">{{ $t('godchild.whatFaculty')}}</label>
-          <select class="form-control mb-3" id="faculty" v-model="facultyIndex">
+          <select class="form-control mb-3" id="faculty" v-model="formulaire.faculty">
             <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
             <option v-for="(faculty, index) in faculties" :key="index" :value="index">{{faculty.name}}</option>
           </select>
         </div>
-        <div v-if="facultyIndex > -1" class="text-left">
+        <div v-if="formulaire.faculty > -1" class="text-left">
           <label class="mb-0" for="department">{{ $t('godchild.whatDepartment')}}</label>
-          <select class="form-control mb-3" id="department" v-model="department">
+          <select class="form-control mb-3" id="department" v-model="formulaire.department">
             <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
-            <option v-for="(department, index) in faculties[facultyIndex].departments" :key="index">{{department}}</option>
+            <option v-for="(dpt, index) in faculties[formulaire.faculty].departments" :key="index">{{dpt}}</option>
           </select>
         </div>
 
@@ -119,8 +119,13 @@ export default {
   props: {},
   data: function ()  {
     return {
-      form: {
-        nationality: null
+      formulaire: {
+        nationality: null,
+        spokenLanguages: [],
+        department: null,
+        faculty: -1,
+        hobbies: [],
+        studyCycle: null
       },
       languages: formInfos.languages,
       nextMonths: [],
@@ -133,7 +138,7 @@ export default {
       facultyIndex: -1,
       cycleOfStudies: null,
 
-      languagesSpoken: [],
+      //languagesSpoken: [],
       availability: [],
       showModal: false,
       hobbies: [],
@@ -163,56 +168,60 @@ export default {
   },
 
   beforeMount() {
-    this.form = this.$store.getters["user/godchildProfile"]
-    if(localStorage.getItem("godchildProfile")){
-      //this.form.texts = JSON.parse(localStorage.getItem("godchildProfile"));
-      this.form =  JSON.parse(localStorage.getItem("godchildProfile")).profile
-      console.log("godchildProfile = ", JSON.parse(localStorage.getItem("godchildProfile")))
-    }
-    console.log("this.form = ", this.form)
-
+    this.formulaire = this.$store.getters["user/godchildProfile"]
   },
 
   methods:{
+    setFaculties(){
+      this.faculties.forEach((v,i) => {
+        if(v.name === this.formulaire.faculty){
+          this.formulaire.faculty = i;
+        }
+      })
+      console.log("faculties= ", this.faculties)
+      console.log("this.formulaire.faculty = ", this.formulaire.faculty)
+    },
+
     CheckBoxCount(e, tab, max){ utils.CheckBoxCount(e, tab, max) },
     getFaculties(){
       this.$store.dispatch("user/fetchFaculties").then(
-        faculties => {
-          this.faculties = faculties;
-        },
-        err => {
-          // FIXME error message
-        }
+          faculties => {
+            this.faculties = faculties;
+            this.setFaculties()
+          },
+          err => {
+            // FIXME error message
+          }
       );
     },
     getHobbiesAndActivities(){
       this.$store.dispatch("user/fetchHobbiesAndActivities").then(
           payload => {
             payload.hobbies.forEach((name, index) => {
-                const checked = this.hobbies[index] && this.hobbies[index].checked;
-                this.$set(this.hobbies, index, {name, checked});
+              const checked = this.hobbies[index] && this.hobbies[index].checked;
+              this.$set(this.hobbies, index, {name, checked});
             });
             payload.activities.forEach((name, index) => {
-                const checked = this.activities[index] && this.activities[index].checked;
-                this.$set(this.activities, index, {name, checked});
+              const checked = this.activities[index] && this.activities[index].checked;
+              this.$set(this.activities, index, {name, checked});
             });
           },
           err => {
             // FIXME something went wrong show message
             console.log("Error went we try to get the hobbies and activities data", err);
           }
-        );
+      );
     },
     checkForm(e) {
       this.errors = [];
-      if (!this.form.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
+      if (!this.formulaire.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
       if (this.availability.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
-      if (this.languagesSpoken.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
-      if (!this.cycleOfStudies) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
-      if (this.facultyIndex < 0 || !this.faculties[this.facultyIndex] || !this.faculties[this.facultyIndex].name) {
+      if (this.formulaire.spokenLanguages.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
+      if (!this.formulaire.studyCycle) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
+      if (this.formulaire.faculty < 0 || !this.faculties[this.formulaire.faculty] || !this.faculties[this.formulaire.faculty].name) {
         this.errors.push(this.$t("errorsMsg.facultyRequired"));
       }
-      if (!this.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
+      if (!this.formulaire.department) { this.errors.push(this.$t("errorsMsg.departmentRequired")); }
       if (this.activities.length === 0) { this.errors.push(this.$t("errorsMsg.activitiesRequired")); }
       if (this.hobbies.length === 0) { this.errors.push(this.$t("errorsMsg.hobbiesRequired")); }
 
@@ -229,28 +238,28 @@ export default {
         }
       });
       const form = {
-        id: this.form.id,
-        nationality: this.nationality,
+        //id: this.formulaire.id,
+        nationality: this.formulaire.nationality,
         availabilities: availabilities,
-        spokenLanguages: utils.getArrayIndexesFrom(this.languagesSpoken), // indexes
-        studyCycle: this.cycleOfStudies,
-        faculty: this.faculties[this.facultyIndex].name,
-        department: this.department,
+        spokenLanguages: utils.getArrayIndexesFrom(this.formulaire.spokenLanguages), // indexes
+        studyCycle: this.formulaire.studyCycle,
+        faculty: this.faculties[this.formulaire.faculty].name,
+        department: this.formulaire.department,
         activities: utils.getArrayIndexesFrom(this.activities, function(value){ return value.checked}), // indexes
         hobbies: utils.getArrayIndexesFrom(this.hobbies, function(value){ return value.checked}) // indexes
       }
       console.log(form)
       this.$store.dispatch('user/createGodchildProfile', form).then(
-        (profile) => {
-          console.log(profile);
+          (profile) => {
+            console.log(profile);
             // FXIME form submit with succes
-          //this.$router.push('/matching');
-        },
-        err => {
-          console.log("err= ", err.response)
-          Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
-          // FIXME error message
-        }
+            //this.$router.push('/matching');
+          },
+          err => {
+            console.log("err= ", err.response)
+            Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
+            // FIXME error message
+          }
       );
     },
     activate:function(el){

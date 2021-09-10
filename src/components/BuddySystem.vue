@@ -84,8 +84,7 @@ import RelationInfos from "./RelationInfos";
 import Popup from "./Popup";
 
 export default {
-  components: { Popup, RelationInfos}
-  ,
+  components: { Popup, RelationInfos},
   data: function ()  {
     return {
       godfatherProfile: this.$store.getters['user/godfatherProfile'],
