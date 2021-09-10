@@ -15,42 +15,44 @@
     </div>
 
     <!-- Si PARRAIN -->
-    <div v-if="godfatherProfile" class="grey-ctn mt-2 mb-0">
-      <div class="d-flex justify-content-between">
-        <h5 class="text-left pt-2 mb-0">{{ $t('profile.myGodfatherProfile')}}</h5>
-        <router-link to="/becomeGodfather">
-          <button class="btn buddy-btn">
+    <div v-if="userRole !== 'STUDENT_EXTERN'">
+      <div v-if="godfatherProfile" class="grey-ctn mt-2 mb-0">
+        <div class="d-flex justify-content-between">
+          <h5 class="text-left pt-2 mb-0">{{ $t('profile.myGodfatherProfile')}}</h5>
+          <router-link to="/becomeGodfather">
+            <button class="btn buddy-btn">
               <span class="mb-0 text-white mr-2">
                 {{ $t('profile.edit')}}
                 <i class="fas fa-edit buddy-edit-button ml-2"></i>
               </span>
-          </button>
+            </button>
+          </router-link>
+        </div>
+        <div class="d-flex justify-content-between mt-4">
+          <label class="el-switch pink">
+            <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked>
+            <span class="el-switch-style"></span>
+          </label>
+          <p v-if="godfatherProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
+          <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
+        </div>
+        <div v-if="godchilds && godchilds.length > 0">
+          <hr class="buddy-line">
+          <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
+          <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
+            <relation-infos :relation="godchild"></relation-infos>
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <router-link to="/becomeGodfather" class="profile-card d-flex justify-content-between mt-2">
+          <div>
+            <h5 class="mb-0 text-left">{{ $t('buddy.iWantBeGodfather')}}</h5>
+            <p class="mb-0 text-left ">{{ $t('buddy.toBeClassy')}}</p>
+          </div>
+          <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
         </router-link>
       </div>
-        <div class="d-flex justify-content-between mt-4">
-        <label class="el-switch pink">
-          <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked>
-          <span class="el-switch-style"></span>
-        </label>
-        <p v-if="godfatherProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
-        <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
-      </div>
-      <div v-if="godchilds && godchilds.length > 0">
-        <hr class="buddy-line">
-        <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
-        <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
-          <relation-infos :relation="godchild"></relation-infos>
-        </div>
-      </div>
-    </div>
-    <div v-else>
-      <router-link to="/becomeGodfather" class="profile-card d-flex justify-content-between mt-2">
-        <div>
-          <h5 class="mb-0 text-left">{{ $t('buddy.iWantBeGodfather')}}</h5>
-          <p class="mb-0 text-left ">{{ $t('buddy.toBeClassy')}}</p>
-        </div>
-        <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
-      </router-link>
     </div>
 
     <!-- SI FILLEUL -->
@@ -66,7 +68,7 @@
           </button>
         </router-link>
       </div>
-        <div class="d-flex justify-content-between mt-4">
+      <div class="d-flex justify-content-between mt-4">
         <label class="el-switch pink" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godStatus.godChildisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
         <p v-if="godchildProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
         <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilot</i18n>
@@ -110,10 +112,12 @@ export default {
         godFatherisEnabled: Boolean
       },
       showModal: true,
+      userRole: null
     };
   },
+
   beforeMount(){
-    console.log(this.godchilds);
+    this.userRole = this.$store.getters['auth/user'].roles[0];
   },
   methods:{
     updateGodfatherStatus(e){
