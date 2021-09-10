@@ -29,24 +29,25 @@
           </router-link>
         </div>
         <div class="d-flex justify-content-between mt-4">
-        <label class="el-switch pink">
-          <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godfatherProfile.active" name="switch" checked>
-          <span class="el-switch-style"></span>
-        </label>
-        <p v-if="godfatherProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
-        <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
-      </div>
-      <div v-if="godchilds && godchilds.length > 0">
-        <hr class="buddy-line">
-        <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
-        <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
-          <relation-infos :relation="godchild"></relation-infos>
+          <label class="el-switch pink">
+            <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godfatherProfile.active" name="switch" checked>
+            <span class="el-switch-style"></span>
+          </label>
+          <p v-if="godfatherProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
+          <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
         </div>
         <div v-if="godchilds && godchilds.length > 0">
           <hr class="buddy-line">
           <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
           <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
             <relation-infos :relation="godchild"></relation-infos>
+          </div>
+          <div v-if="godchilds && godchilds.length > 0">
+            <hr class="buddy-line">
+            <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
+            <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
+              <relation-infos :relation="godchild"></relation-infos>
+            </div>
           </div>
         </div>
       </div>
