@@ -63,25 +63,23 @@
           </select>
         </div>
 
-
-
         <div class="text-left mb-3">
-          <label class="mb-0">{{ $t('godchild.outsideCourses')}}</label>
+          <label class="mb-0">{{ $t('godchild.outsideCourses')}}  {{ $t('godfather.outsideCoursesMinMax')}}</label>
           <ul class="lang-ctn">
             <label v-for="(activity, index) in activities" :key="index" class="lang-card d-flex text-left mb-0 w-100">
               <div class="hobbie-inside d-flex justify-content-between">
-                <input :id="activity.name" v-model="activity.checked" type="checkbox" class="mt-1">
+                <input :id="activity.name" @click="CheckBoxCount($event, activities,4)" v-model="activity.checked" type="checkbox" class="mt-1">
                 <span :for="activity.name" class="mb-0 w-100 ml-2">{{activity.name}}</span>
               </div>
             </label>
           </ul>
         </div>
         <div class="text-left mb-3">
-          <label class="mb-0">{{ $t('godchild.whatHobbies')}}</label>
+          <label class="mb-0">{{ $t('godchild.whatHobbies')}}  {{ $t('godfather.outsideCoursesMinMax')}}</label>
           <ul class="lang-ctn">
             <label  v-for="(hobby, index) in hobbies" :key="index" class="lang-card d-flex text-left mb-0 w-100">
               <div class="hobbie-inside d-flex justify-content-between">
-                <input :id="hobby.name" v-model="hobby.checked" type="checkbox" class="mt-1">
+                <input :id="hobby.name" @click="CheckBoxCount($event, hobbies,4)" v-model="hobby.checked" type="checkbox" class="mt-1">
                 <span for="hobby.name" class="mb-0 w-100 ml-2">{{hobby.name}}</span>
               </div>
             </label>
@@ -162,8 +160,6 @@ export default {
     this.getFaculties();
     this.getHobbiesAndActivities();
     this.DateUtilFunctions();
-
-
   },
 
   beforeMount() {
@@ -178,6 +174,7 @@ export default {
   },
 
   methods:{
+    CheckBoxCount(e, tab, max){ utils.CheckBoxCount(e, tab, max) },
     getFaculties(){
       this.$store.dispatch("user/fetchFaculties").then(
         faculties => {

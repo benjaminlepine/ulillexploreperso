@@ -26,5 +26,21 @@ export const utils = {
     });
     return ret;
   },
-  pad(s) { return (s < 10) ? '0' + s : s; }
+  pad(s) { return (s < 10) ? '0' + s : s; },
+
+  CheckBoxCount:function(e, tab, max) {
+    let count = 0
+    if(e.target.checked){
+      for(let i=0;tab.length>i;i++){
+        if(count >= max){
+          e.target.checked = false;
+          return
+        }
+        if(tab[i].checked){
+          count++
+        }
+      }
+    }
+    return true;
+  }
 };

@@ -208,6 +208,7 @@
       "whatFaculty": "Dans quelle faculté étudies-tu ?",
       "whatDepartment": "Dans quelle département étudies-tu ?",
       "outsideCourses": "En dehors des cours tu es plutôt ?",
+      "outsideCoursesMinMax": "(minimum 2 / maximum 4)",
       "whatHobbies": "Quelles activités privilégieras-tu / Qu'est-ce que tu aimerais faire avec ton/tes filleuls ?",
       "validate": "Valider"
     },
@@ -507,6 +508,7 @@
       "whatFaculty": "In which faculty are you studying ?",
       "whatDepartment": "In which department are you studying ?",
       "outsideCourses": "Are you rather outside of class ?",
+      "outsideCoursesMinMax": "(minimum 2 / maximum 4)",
       "whatHobbies": "What activities will you focus on / What would you like to do with your(s) godchild(s) ?",
       "validate": "Validate"
     },
