@@ -244,7 +244,7 @@ export default {
             this.setFaculty();
           },
           err => {
-            // FIXME error message
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
@@ -263,8 +263,8 @@ export default {
             this.setActivities();
           },
           err => {
-            // FIXME something went wrong show message
-            console.log("Error went we try to get the hobbies and activities data", err);
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')
+                  +" / Error went we try to get the hobbies and activities data || " + err, type: 'error'});
           }
       );
     },
@@ -312,9 +312,7 @@ export default {
             //this.$router.push('/matching');
           },
           err => {
-            console.log("err= ", err.response)
             Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
-            // FIXME error message
           }
       );
     },

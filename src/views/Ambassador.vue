@@ -41,12 +41,11 @@
       acceptAmbassadorCG(){
         this.$store.dispatch("user/subscribeToAmbassador").then(
           (value) => {
-            console.log(value);
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.successGen'), type: 'success'});
             this.$router.push('/becomeAmbassador');
           },
           err => {
-            // FIXME error
-            console.log(err);
+            Bus.$emit('DisplayMessage', {text: err, type: 'error'});
           }
         );
       }

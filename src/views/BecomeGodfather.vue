@@ -186,7 +186,7 @@ export default {
             this.faculties = faculties;
           },
           err => {
-            // FIXME error message
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
@@ -203,8 +203,7 @@ export default {
             });
           },
           err => {
-            // FIXME something went wrong show message
-            console.log("Error went we try to get the hobbies and activities data", err);
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
