@@ -15,7 +15,7 @@
     </div>
 
     <!-- Si PARRAIN -->
-    <div v-if="godfatherProfile">
+    <div v-if="godfatherProfile" class="grey-ctn mt-2 mb-0">
       <div class="d-flex justify-content-between">
         <h5 class="text-left pt-2 mb-0">{{ $t('profile.myGodfatherProfile')}}</h5>
         <router-link to="/becomeGodfather">
@@ -27,18 +27,20 @@
           </button>
         </router-link>
       </div>
-      <hr class="buddy-line">
-      <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
-      <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
-        <relation-infos :relation="godchild"></relation-infos>
-      </div>
-      <div class="d-flex justify-content-between mt-4">
+        <div class="d-flex justify-content-between mt-4">
         <label class="el-switch pink">
           <input type="checkbox" @change="updateGodfatherStatus($event)" v-model="godStatus.godFatherisEnabled" name="switch" checked>
           <span class="el-switch-style"></span>
         </label>
         <p v-if="godfatherProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
         <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilord</i18n>
+      </div>
+      <div v-if="godchilds && godchilds.length > 0">
+        <hr class="buddy-line">
+        <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
+        <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
+          <relation-infos :relation="godchild"></relation-infos>
+        </div>
       </div>
     </div>
     <div v-else>
@@ -50,6 +52,7 @@
         <img :alt="$t('buddy.iWantBeGodfather')" class="ml-2" src="../assets/img/parrainboring.svg">
       </router-link>
     </div>
+
     <!-- SI FILLEUL -->
     <div v-if="godchildProfile" class="grey-ctn mt-2 mb-0">
       <div class="d-flex justify-content-between">
@@ -63,6 +66,16 @@
           </button>
         </router-link>
       </div>
+        <div class="d-flex justify-content-between mt-4">
+        <label class="el-switch pink" ><input type="checkbox" @change="updateGodchildStatus($event)" v-model="godStatus.godChildisEnabled" name="switch" checked><span class="el-switch-style"></span></label>
+        <p v-if="godchildProfile.active" class="text-left ml-2" v-html="$t('profile.thisNotDeleteRelation')"></p>
+        <i18n v-else class="text-left ml-2" path="profile.yourAccountInactive">Lilot</i18n>
+      </div>
+      <div v-if="godfather">
+        <hr class="buddy-line">
+        <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
+        <relation-infos :relation="godfather" v-bind:class="{ desaturate: !godchildProfile.active}"></relation-infos>
+      </div>
     </div>
     <div v-else>
       <router-link to="/becomegodchild" class="profile-card d-flex justify-content-between mt-2">
@@ -73,6 +86,7 @@
         <img :alt="$t('buddy.iSearchAGodfather')" class="ml-2" src="../assets/img/search.svg">
       </router-link>
     </div>
+
     <!-- POP UP ERROR - On ne peux pas activer les 2 -->
     <Popup v-if="godfatherProfile && godfatherProfile.active && godchildProfile && godchildProfile.active" @close="godfatherProfile.active=false">
       <p slot="body">{{$t('profile.youCantBeBooth')}}</p>
@@ -99,7 +113,9 @@ export default {
       showModal: true,
     };
   },
-
+  beforeMount(){
+    console.log(this.godchilds);
+  },
   methods:{
     updateGodfatherStatus(e){
       this.$store.dispatch("user/updateGodfatherStatus", {active:e.target.checked}).then(
