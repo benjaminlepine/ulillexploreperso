@@ -32,10 +32,10 @@
                 // FIXME check if email is valid
                 this.$store.dispatch('auth/forgotPassword', this.email).then(
                     () => {
-                        // FIXME success message
+                      Bus.$emit('DisplayMessage', {text: this.$t('profile.successGen'), type: 'success'});
                     },
                     (err) => {
-                        // FIXME error message
+                      Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
                     }
                 );
             }

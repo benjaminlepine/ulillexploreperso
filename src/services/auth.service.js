@@ -5,7 +5,6 @@ export default new class AuthService {
     async getCasUser(){
         const resp = await axios.get(R.endpoint.casAccount(), { withCredentials: true });
         if (resp.data){
-            console.log(resp); // FIXME remove log
             localStorage.setItem('user', JSON.stringify(resp.data));
         }
         return resp.data;
@@ -13,11 +12,6 @@ export default new class AuthService {
     casSignout(){
         localStorage.removeItem('user');
         window.location.href = R.endpoint.casSignout();
-        /*const resp = await axios.get(R.endpoint.casSignout(), { withCredentials: true });
-        if (resp.data){
-            console.log(resp); // FIXME remove log
-        }
-        return resp.data;*/
     }
 
     async signup(user){
@@ -32,7 +26,6 @@ export default new class AuthService {
     async signin(user){
         const resp = await axios.post(R.endpoint.signin(), user, { withCredentials: true });
         if (resp.data) {
-            console.log(resp); // FIXME remove log
             localStorage.setItem('user', JSON.stringify(resp.data));
         }
         return resp.data;

@@ -59,7 +59,7 @@
           <label class="mb-0" for="department">{{ $t('godchild.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="formulaire.department">
             <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
-            <option v-for="(dpt, index) in faculties[formulaire.faculty].departments" :key="index">{{dpt}}</option>
+            <option v-for="(dpt, index) in faculties[formulaire.faculty]['departments']" :key="index">{{dpt}}</option>
           </select>
         </div>
 
@@ -133,9 +133,7 @@ export default {
       nextMonths: [],
       active_el:0,
       errors: [],
-
       showModal: false,
-
       faculties: [],
       hobbies: [],
       activities: [],
@@ -190,28 +188,20 @@ export default {
           this.formulaire.faculty = i;
         }
       })
-      console.log("faculties= ", this.faculties)
-      console.log("this.formulaire.faculty = ", this.formulaire.faculty)
     },
     setHobbies(){
-      console.log(this.hobbies);
       if (this.hobbies && this.hobbies.length > 0){
         this.formulaire.hobbies.forEach((value) => {
           this.hobbies[value].checked = true;
         });
       }
-      console.log(this.formulaire.hobbies);
-      console.log(this.hobbies);
     },
     setActivities(){
-      console.log(this.activities);
       if (this.activities && this.activities.length > 0){
         this.formulaire.activities.forEach((value) => {
           this.activities[value].checked = true;
         });
       }
-      console.log(this.formulaire.activities);
-      console.log(this.activities);
     },
     setSpokenLanguages(){
       if (this.formulaire && this.formulaire.spokenLanguages && this.formulaire.spokenLanguages.length){
@@ -244,7 +234,7 @@ export default {
             this.setFaculty();
           },
           err => {
-            // FIXME error message
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
@@ -263,8 +253,8 @@ export default {
             this.setActivities();
           },
           err => {
-            // FIXME something went wrong show message
-            console.log("Error went we try to get the hobbies and activities data", err);
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')
+                  +" / Error went we try to get the hobbies and activities data || " + err, type: 'error'});
           }
       );
     },
@@ -312,9 +302,7 @@ export default {
             //this.$router.push('/matching');
           },
           err => {
-            console.log("err= ", err.response)
             Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
-            // FIXME error message
           }
       );
     },

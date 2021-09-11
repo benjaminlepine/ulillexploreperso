@@ -164,7 +164,9 @@
       "thisNotDeleteRelation": "Tu peux activer ou desactiver ton compte ici. Ceci ne suspendra pas les relations en cours que tu peut avoir mais tu ne pourra plus avoir de nouveaux match",
       "yourAccountInactive": "Ton compte {0} est actuellement inactif, reactive le en cliquant ici",
       "youCantBeBooth": "Desole mais tu ne peux pas être à la fois Lilord et Lilot, il faut d'abord desactiver l'un avant d'activer l'autre",
-      "successCreation": "Profil crée avec succès"
+      "successCreation": "Profil crée avec succès",
+      "successGen": "L'opération s'est déroulée avec succès",
+      "errorGen": "We're sorry but an error has occured"
     },
     "wait": {
       "sorry": "Désolé",
@@ -464,7 +466,9 @@
       "thisNotDeleteRelation": "You can enable and disabled you account here. This will not suspend any current relationships you may have but you will not be able to have new matches.",
       "yourAccountInactive": "Your {0} account is currently inactive, reactivate it by clicking here",
       "youCantBeBooth": "Sorry but you can't be both Lilord and Lilot, you have to deactivate one first before activating the other",
-      "successCreation": "Profil created with success"
+      "successCreation": "Profil created with success",
+      "successGen": "L'opération s'est déroulée avec succès",
+      "errorGen": "Nous sommes désolé mais une erreur est survenue"
     },
     "wait": {
       "sorry": "Sorry",

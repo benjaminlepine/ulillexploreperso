@@ -161,7 +161,8 @@ export default {
     },
     submitAmbassador(){
       if (!this.checkForm()){
-        return ; // FIXME message error
+        Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen'), type: 'error'});
+        return ;
       }
       const form = new FormData(); // 5 / 11 -  8/11
       form.append('country', this.form.texts.country);//required
@@ -205,10 +206,10 @@ export default {
       }
       this.$store.dispatch("user/sendAmbassadorForm", form).then(
           (value) => {
-            console.log(value); // FIXME go to profile with message
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.successGen'), type: 'success'});
           },
           err => {
-            console.log(err); // FIXME error message
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },

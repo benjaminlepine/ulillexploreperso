@@ -65,7 +65,7 @@ import axios from 'axios';
             },
             create(){
                 if (this.signIn){
-                    this.$router.push('/profile'); // FIXME go to profile page
+                    this.$router.push('/profile');
                 }
             }
         },
