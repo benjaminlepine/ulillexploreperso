@@ -207,6 +207,7 @@ export default {
       this.$store.dispatch("user/sendAmbassadorForm", form).then(
           (value) => {
             Bus.$emit('DisplayMessage', {text: this.$t('profile.successGen'), type: 'success'});
+            this.$router.push('/profile');
           },
           err => {
             Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});

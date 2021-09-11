@@ -34,6 +34,9 @@ import EndOfRelation from "../components/EndOfRelation";
 import RelationInfos from "../components/RelationInfos";
 import AmbassadorComponent from '../components/ambassadorComponent.vue';
 import BuddySystem from "../components/BuddySystem";
+
+import { utils } from "../utils";
+
 export default {
   name: 'Profile',
   components: {BuddySystem, RelationInfos, EndOfRelation, AmbassadorComponent, },
@@ -69,9 +72,9 @@ export default {
       const user = this.$store.getters['auth/user'];
       if (user && user.createAt){
         const date = new Date(user.createAt);
-        return [this.pad(date.getDate()), this.pad(date.getMonth()), this.pad(date.getFullYear())].join('/');
+        return [utils.pad(date.getDate()), utils.pad(date.getMonth()), utils.pad(date.getFullYear())].join('/');
       }
-      return "N/A"
+      return null;
     },
   },
   methods: {

@@ -10,7 +10,7 @@
     </div>
     <!-- Si ambassadeur -->
     <div v-if="ambassador">
-      <p class="text-left mt-2 font-weight-bold mb-3"> {{ $t('home.lastUpdate')}}:{{ lastSubmitDate() }}</p>
+      <p v-if="ambassador.lastSubmit" class="text-left mt-2 font-weight-bold mb-3"> {{ $t('home.lastUpdate')}}:{{ " " + lastSubmitDate() }}</p>
       <p class="text-left mt-2 font-weight-bold mb-3">{{ $t('profile.isAmbassador')}}</p>
       <router-link to="/becomeAmbassador" class="btn explorebtn mb-3">{{ $t('profile.seeMyForm')}}</router-link>
     </div>
@@ -30,7 +30,7 @@
 
 <script>
 
-import utils from '../utils';
+import { utils } from '../utils';
 
 export default {
   name: 'AmbassdorComponent',
@@ -42,10 +42,13 @@ export default {
   },
   watch: {},
   methods: {
-      lastSubmitDate(){
-          const d = new Date(this.ambassador.submitTimestamp);
-          return  d.toString();// d.getDate() + '/'+ (d.getMonth()+1)+'/'+d.getFullYear(); FIXME
+    lastSubmitDate(){
+      if (this.ambassador.lastSubmit){
+        const date = new Date(this.ambassador.lastSubmit);
+        return [utils.pad(date.getDate()), utils.pad(date.getMonth()), utils.pad(date.getFullYear())].join('/');
       }
+      return null;
+    }
   },
 }
 </script>
