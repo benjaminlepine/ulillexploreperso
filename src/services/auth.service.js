@@ -10,7 +10,7 @@ export default new class AuthService {
         return resp.data;
     }
     casSignout(){
-        localStorage.removeItem('user');
+        this.out();
         window.location.href = R.endpoint.casSignout();
     }
 
@@ -32,7 +32,13 @@ export default new class AuthService {
     }
 
     signout(){
+        this.out();
+    }
+    out(){
         localStorage.removeItem('user');
+        localStorage.removeItem('godfatherProfile');
+        localStorage.removeItem('godchildProfile');
+        localStorage.removeItem('ambassadorProfile');
     }
 
     async forgotPassword(lang, email){
