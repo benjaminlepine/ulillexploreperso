@@ -150,7 +150,29 @@ export const user = {
                     return Promise.reject(err);
                 }
             );
-        }
+        },
+        deleteGodfatherMatchWithGodchild({commit, rootGetters}, payload){
+            payload.en = rootGetters['header/isEn'];
+            return UserService.deleteGodfatherMatchWithGodchild(payload).then(
+                message =>{
+                    return Promise.resolve(message);
+                },
+                err => {
+                    return Promise.reject(err);
+                }
+            );
+        },
+        deleteGodchildMatchWithGodfather({commit, rootGetters}, payload){
+            payload.en = rootGetters['header/isEn'];
+            return UserService.deleteGodchildMatchWithGodfather(payload).then(
+                message =>{
+                    return Promise.resolve(message);
+                },
+                err => {
+                    return Promise.reject(err);
+                }
+            );
+        },
     },
     mutations:{
 

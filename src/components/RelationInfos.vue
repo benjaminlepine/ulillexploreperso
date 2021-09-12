@@ -10,7 +10,7 @@
       </div>
       <div v-on:click="displayEndRelation = !displayEndRelation"><i class="fas fa-exclamation-triangle relation-godCardIcon"></i></div>
     </div>
-    <end-of-relation v-if="displayEndRelation" :relationId="relation.id"></end-of-relation>
+    <end-of-relation v-if="displayEndRelation" :isGodfather="isGodfather" :relationId="relation.id"></end-of-relation>
   </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
   components: {EndOfRelation},
   props: {
     relation: Object,
+    isGodfather:Boolean
   },
   data: function ()  {
     return {
