@@ -214,7 +214,7 @@ export default {
       if (this.formulaire && this.formulaire.spokenLanguages && this.formulaire.spokenLanguages.length){
         const tmp = [];
         this.formulaire.spokenLanguages.forEach((value) => {
-            tmp[value] = true;
+          tmp[value] = true;
         });
         this.formulaire.spokenLanguages = tmp;
       }
@@ -223,11 +223,11 @@ export default {
       if (this.formulaire && this.formulaire.availabilities && this.formulaire.availabilities.length){
         const tmp = [];
         this.formulaire.availabilities.forEach((mmyyyy) => {
-            this.nextMonths.find((month, index) => {
-              if (month.mmyyyy == mmyyyy){
-                tmp[index] = true;
-              }
-            });
+          this.nextMonths.find((month, index) => {
+            if (month.mmyyyy == mmyyyy){
+              tmp[index] = true;
+            }
+          });
         });
         this.formulaire.availabilities = tmp;
       }
@@ -241,7 +241,7 @@ export default {
             this.setFaculty();
           },
           err => {
-           //  Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
+            //  Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
