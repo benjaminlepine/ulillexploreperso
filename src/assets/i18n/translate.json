@@ -92,7 +92,8 @@
       "samePassword": "Les mots de passe doivent être identiques et contenir au moins 6 caractères",
       "validate": "Valider",
       "alreadyRegister": "Vous avez déjà un compte",
-      "signUp": "Inscription"
+      "signUp": "Inscription",
+      "wrongPassword": "Email ou mot de passe incorrect"
     },
     "signup": {
       "signup": "Inscription",
@@ -149,7 +150,7 @@
       "updatePassword": "Modifier le mot de passe",
       "myGodchild": "Mes filleul(s)",
       "myGodchildProfile": "Mon profil filleul",
-      "myGodfather": "My godfather",
+      "myGodfather": "Mon Lilord (parrain)",
       "myGodfatherProfile": "Mon profil parrain",
       "edit": "Editer",
       "ambassador": "Ambassadeur",
@@ -166,7 +167,9 @@
       "youCantBeBooth": "Desole mais tu ne peux pas être à la fois Lilord et Lilot, il faut d'abord desactiver l'un avant d'activer l'autre",
       "successCreation": "Profil crée avec succès",
       "successGen": "L'opération s'est déroulée avec succès",
-      "errorGen": "We're sorry but an error has occured"
+      "errorGen": "Nous sommes désolé mais une erreur est survenue",
+      "noGodfatherYet": "Tu n'a pas encore de Lilord mais nous y travaillons, tu seras prevenu par mail quand nous aurons trouvé ton Lilord",
+      "noGodchildYet": "Tu n'a pas encore de Lilot(s) mais nous y travaillons, tu seras prevenu par mail quand nous l'aurons trouvé(s)"
     },
     "wait": {
       "sorry": "Désolé",
@@ -375,6 +378,7 @@
       "becomeGodchild": "To be sponsored",
       "ambassador": "Ambassador",
       "profile": "Profile",
+      "login": "Login",
       "logout": "Logout"
     },
     "login": {
@@ -394,7 +398,8 @@
       "samePassword": "Passwords must be identical and contain minimum 6 characters",
       "validate": "Validate",
       "alreadyRegister": "You are already registered",
-      "signUp": "Sign Up"
+      "signUp": "Sign Up",
+      "wrongPassword": "Wrong Email or password"
     },
     "signup": {
       "signup": "Sign Up",
@@ -451,7 +456,7 @@
       "updatePassword": "Update password",
       "myGodchild": "My godchild(s)",
       "myGodchildProfile": "My godchild profile",
-      "myGodfather": "My godfather",
+      "myGodfather": "My Lilord (godfather)",
       "myGodfatherProfile": "My godfather profile",
       "edit": "Edit",
       "ambassador": "Ambassador",
@@ -467,8 +472,10 @@
       "yourAccountInactive": "Your {0} account is currently inactive, reactivate it by clicking here",
       "youCantBeBooth": "Sorry but you can't be both Lilord and Lilot, you have to deactivate one first before activating the other",
       "successCreation": "Profil created with success",
-      "successGen": "L'opération s'est déroulée avec succès",
-      "errorGen": "Nous sommes désolé mais une erreur est survenue"
+      "successGen": "The operation was successful",
+      "errorGen": "We're sorry but an error has occured",
+      "noGodfatherYet": "You don't have a Lilord yet but we are working on it, you will be notified by email when we have found your Lilord",
+      "noGodchildYet": "You don't have any Lilot(s) yet but we are working on it, you will be notified by email when we have found it (s)"
     },
     "wait": {
       "sorry": "Sorry",

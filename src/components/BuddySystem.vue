@@ -42,6 +42,10 @@
           <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
             <relation-infos :isGodfather='true' :relation="godchild"></relation-infos>
           </div>
+          <div v-else>
+            <p>{{ $t('profile.noGodchildYet')}}</p>
+            <loader></loader>
+          </div>
         </div>
       </div>
       <div v-else>
@@ -68,7 +72,7 @@
           </button>
         </router-link>
       </div>
-        <div class="d-flex justify-content-between mt-4">
+      <div class="d-flex justify-content-between mt-4">
         <label class="el-switch pink" >
           <input type="checkbox" @change="updateGodchildStatus($event)" v-model="godchildProfile.active" name="switch">
           <span class="el-switch-style"></span>
@@ -80,6 +84,10 @@
         <hr class="buddy-line">
         <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
         <relation-infos :isGodfather='false' :relation="godfather" v-bind:class="{ desaturate: !godchildProfile.active}"></relation-infos>
+      </div>
+      <div v-else>
+        <p>{{ $t('profile.noGodfatherYet')}}</p>
+        <loader></loader>
       </div>
     </div>
     <div v-else>
@@ -101,9 +109,10 @@
 <script>
 import RelationInfos from "./RelationInfos";
 import Popup from "./Popup";
+import Loader from "./Loader";
 
 export default {
-  components: { Popup, RelationInfos},
+  components: {Loader, Popup, RelationInfos},
   data: function ()  {
     return {
       godfatherProfile: this.$store.getters['user/godfatherProfile'],
@@ -139,7 +148,7 @@ export default {
               if (err.response.data && err.response.data.messages){
                 Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
               }else {
-                Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+                Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen'), type: 'error'});
               }
             }
         );
@@ -163,7 +172,7 @@ export default {
               if (err.response.data && err.response.data.messages){
                 Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
               }else {
-                Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+                Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen'), type: 'error'});
               }
             }
         );

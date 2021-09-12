@@ -1,4 +1,3 @@
-<router-link to="/signin" ><p class="mt-4 mb-2 forgot">{{ $t('login.alreadyRegister')}}</p></router-link>
 <template>
   <div>
     <div>

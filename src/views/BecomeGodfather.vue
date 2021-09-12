@@ -318,17 +318,16 @@ export default {
         activities: utils.getArrayIndexesFrom(this.activities, function(value){ return value.checked}),
         hobbies: utils.getArrayIndexesFrom(this.hobbies,function(value){ return value.checked})
       };
-      this.$store.dispatch("user/createGodfatherProfile", form).then(
-          (profile) => {
-            console.log(profile);
+      this.$store.dispatch('user/createGodfatherProfile', form).then(
+          () => {
             Bus.$emit('DisplayMessage', {text: this.$t('profile.successCreation'), type: 'success'});
-            // this.$router.push("/profile"); FIXME uncomment
+            this.$router.push("/profile");
           },
           err => {
-           if (err && err.response && err.response.data && err.response.data.messages){
+            if (err && err.response && err.response.data && err.response.data.messages){
               Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
             }else {
-              Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+              Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen'), type: 'error'}); // FIXME
             }
           }
       )

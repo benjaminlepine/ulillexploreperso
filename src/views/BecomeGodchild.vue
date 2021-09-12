@@ -214,7 +214,7 @@ export default {
       if (this.formulaire && this.formulaire.spokenLanguages && this.formulaire.spokenLanguages.length){
         const tmp = [];
         this.formulaire.spokenLanguages.forEach((value) => {
-            tmp[value] = true;
+          tmp[value] = true;
         });
         this.formulaire.spokenLanguages = tmp;
       }
@@ -223,11 +223,11 @@ export default {
       if (this.formulaire && this.formulaire.availabilities && this.formulaire.availabilities.length){
         const tmp = [];
         this.formulaire.availabilities.forEach((mmyyyy) => {
-            this.nextMonths.find((month, index) => {
-              if (month.mmyyyy == mmyyyy){
-                tmp[index] = true;
-              }
-            });
+          this.nextMonths.find((month, index) => {
+            if (month.mmyyyy == mmyyyy){
+              tmp[index] = true;
+            }
+          });
         });
         this.formulaire.availabilities = tmp;
       }
@@ -241,7 +241,7 @@ export default {
             this.setFaculty();
           },
           err => {
-           //  Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
+            //  Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
@@ -302,16 +302,15 @@ export default {
         hobbies: utils.getArrayIndexesFrom(this.hobbies, function(value){ return value.checked}) // indexes
       }
       this.$store.dispatch('user/createGodchildProfile', form).then(
-          (profile) => {
-            console.log(profile);
+          () => {
             Bus.$emit('DisplayMessage', {text: this.$t('profile.successCreation'), type: 'success'});
-            // this.$router.push("/profile"); FIXME uncomment
+            this.$router.push("/profile");
           },
           err => {
             if (err && err.response && err.response.data && err.response.data.messages){
               Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
             }else {
-              Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+              Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen'), type: 'error'});
             }
           }
       );
