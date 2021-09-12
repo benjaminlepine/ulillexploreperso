@@ -133,6 +133,10 @@ export default {
   },
   beforeMount(){
     this.userRole = this.$store.getters['auth/user'].roles[0];
+
+    this.godchildProfile = this.$store.getters['user/godchildProfile'];
+    // console.log('this.godchildProfile = ', this.godchildProfile)
+
     if (this.godchildProfile){
       this.active = this.godchildProfile.active;
     }

@@ -34,8 +34,6 @@ export default {
         this.message = null;
       }, 10000);
     });
-
-    console.log("message = ", this.message)
   }
 }
 </script>

@@ -41,15 +41,13 @@ export default {
           .split(';')
           .find(row => row.startsWith("XSRF-TOKEN"))
           .split('=')[1];
-      console.log("casCookie = ", casCookie);
       if (casCookie){
         this.$store.dispatch("auth/casSignin").then(
-            (user) => {
-              console.log(user);
+            () => {
               this.$router.push('/profile');
             },
             err=>{
-              console.log(err);
+              Bus.$emit('DisplayMessage', {text: err, type: 'error'});
             }
 
         );
@@ -69,6 +67,7 @@ export default {
       }
     }
   },
+
   methods:{
     casSignIn(){
       window.location.href = R.endpoint.casSignin();
@@ -79,13 +78,15 @@ export default {
       if (this.user.email && this.user.password){
         this.$store.dispatch('auth/signin', this.user).then(
             () => {
-              this.$router.push('/profile');
+              this.$store.dispatch('user/fetchGodchildProfile').then(()=>{
+                this.$router.push('/profile');
+              },err => Bus.$emit('DisplayMessage', {text: err, type: 'error'})
+              )
             },
             error => {
               this.loading = false;
               Bus.$emit('DisplayMessage', {text: this.$t('login.wrongPassword'), type: 'error'});
               this.message = (error.response && error.response.data) || error.message || error.toString();
-              console.log(this.message);
             }
         );
       }
