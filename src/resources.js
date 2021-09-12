@@ -21,6 +21,9 @@ const R = {
         hobbiesActivities(lang){
             return R.endpoint.base+'/api/ulillexplore/hobbies-activities/'+lang;
         },
+        createGodchildProfile(){ return R.endpoint.base+'/api/ulillexplore/godchild/profile/'; },
+        activateGodchildProfile(activate){ return R.endpoint.base+'/api/ulillexplore/godchild/profile/state/'+activate; },
+
         createGodfatherProfile(){ return R.endpoint.base+'/api/ulillexplore/godfather/profile/'; },
         activateGodchilProfile(activate){ return R.endpoint.base+'/api/ulillexplore/godfather/profile/state/'+activate; },
 
