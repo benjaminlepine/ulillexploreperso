@@ -65,5 +65,15 @@ export default new class UserService {
     async updateGodfatherStatus(active){
         return this.post(R.endpoint.updateGodchildStatus(), active)
     }
+    async deleteGodfatherMatchWithGodchild(payload){
+        const resp = await axios.post(R.endpoint.deleteGodfatherMatchWithGodchild(), payload, { headers: authHeader(), withCredentials: true });
+        console.log(resp);
+        return resp.data;
+    }
+    async deleteGodchildMatchWithGodfather(payload){
+        const resp = await axios.post(R.endpoint.deleteGodchildMatchWithGodfather(), payload, { headers: authHeader(), withCredentials: true });
+        console.log(resp);
+        return resp.data;
+    }
 
 };

@@ -5,11 +5,11 @@
         <label for="whatProblem" class="text-white">{{ $t('problem.endRelation')}}</label>
         <select class="form-control" name="problem" v-model="endingReason" id="whatProblem">
           <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
-          <option value="noProblem">{{ $t('problem.noProblem')}}</option>
-          <option value="unavailable">{{ $t('problem.unavailable')}}</option>
-          <option value="noAffinity">{{ $t('problem.noAffinity')}}</option>
-          <option value="communication">{{ $t('problem.communication')}}</option>
-          <option value="weird">{{ $t('problem.weird')}}</option>
+          <option value="0">{{ $t('problem.noProblem')}}</option>
+          <option value="1">{{ $t('problem.unavailable')}}</option>
+          <option value="2">{{ $t('problem.noAffinity')}}</option>
+          <option value="3">{{ $t('problem.communication')}}</option>
+          <option value="4">{{ $t('problem.weird')}}</option>
         </select>
       </div>
       <div class="d-flex text-left">
@@ -25,18 +25,38 @@
 <script>
 export default {
   props: {
-    relationId: Number
+    relationId: Number,
+    isGodfather: Boolean
   },
   data: function ()  {
     return {
-      endingReason: null,
+      endingReason: -1,
       acceptCB: null,
     }
   },
   methods:{
     submitProblem: function (e) {
-      console.log("Ending Relation with for = ", this.endingReason)
-      console.log("Relation ID = ", this.relationId)
+
+      const payload = { unmatch: parseInt(this.endingReason) };
+      if (this.isGodfather){
+        payload.godchild = this.relationId;
+        console.log("payload ", payload);
+        this.$store.dispatch("user/deleteGodfatherMatchWithGodchild", payload).then((message) => {
+          console.log("payload ", message);
+
+        }).catch((err) => {
+        }); 
+      }else {
+        payload.godfather = this.relationId;
+        console.log("payload ", payload);
+        this.$store.dispatch("user/deleteGodchildMatchWithGodfather", payload).then((message) => {
+          console.log("payload ", message);
+        }).catch((err) => {
+        });  
+      }
+
+
+        
     }
   }
 }

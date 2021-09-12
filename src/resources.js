@@ -40,7 +40,9 @@ const R = {
 
             return R.endpoint.base+"/api/ulillexplore/godchild/profile/activate"
         },
-        updateGodfatherStatus(){ return R.endpoint.base+"/api/ulillexplore/godfather/profile/activate" },
+        updateGodfatherStatus(){ return R.endpoint.base+"/api/ulillexplore/godfather/profile/activate"; },
+        deleteGodfatherMatchWithGodchild(){ return R.endpoint.base+"/api/ulillexplore/match/godfather/delete-match"; },
+        deleteGodchildMatchWithGodfather(){ return R.endpoint.base+"/api/ulillexplore/match/godchild/delete-match"; },
     }
 };
 export default R;

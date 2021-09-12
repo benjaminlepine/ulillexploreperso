@@ -40,14 +40,7 @@
           <hr class="buddy-line">
           <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
           <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
-            <relation-infos :relation="godchild"></relation-infos>
-          </div>
-          <div v-if="godchilds && godchilds.length > 0">
-            <hr class="buddy-line">
-            <h5 class="text-left mb-0">{{ $t('profile.myGodchild')}}</h5>
-            <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
-              <relation-infos :relation="godchild"></relation-infos>
-            </div>
+            <relation-infos :isGodfather='true' :relation="godchild"></relation-infos>
           </div>
           <div v-else>
             <p>{{ $t('profile.noGodchildYet')}}</p>
@@ -90,7 +83,7 @@
       <div v-if="godfather">
         <hr class="buddy-line">
         <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
-        <relation-infos :relation="godfather" v-bind:class="{ desaturate: !godchildProfile.active}"></relation-infos>
+        <relation-infos :isGodfather='false' :relation="godfather" v-bind:class="{ desaturate: !godchildProfile.active}"></relation-infos>
       </div>
       <div v-else>
         <p>{{ $t('profile.noGodfatherYet')}}</p>
