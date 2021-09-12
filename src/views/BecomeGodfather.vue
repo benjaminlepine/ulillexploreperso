@@ -184,19 +184,16 @@ export default {
   },
 
   mounted(){
-    this.getFaculties();
-    this.getHobbiesAndActivities();
-    this.DateUtilFunctions();
-    this.setAvailabilities();
-  },
-
-  beforeMount() {
     this.formulaire = this.$store.getters["user/godfatherProfile"];
     if (!this.formulaire){
       this.initForm();
     }else {
       this.setSpokenLanguages();
     }
+    this.getFaculties();
+    this.getHobbiesAndActivities();
+    this.DateUtilFunctions();
+    this.setAvailabilities();
   },
 
   methods:{
@@ -209,6 +206,7 @@ export default {
         hobbies: [],
         studyCycle: null,
         activities: [],
+        availabilities: [],
         ngodchild: null
       };
     },
