@@ -42,10 +42,10 @@
           <div v-bind:class="{ desaturate: !godfatherProfile.active }" v-for="(godchild, index) in godchilds" :key="index">
             <relation-infos :isGodfather='true' :relation="godchild"></relation-infos>
           </div>
-          <div v-else>
-            <p>{{ $t('profile.noGodchildYet')}}</p>
-            <loader></loader>
-          </div>
+        </div>
+        <div v-else>
+          <p>{{ $t('profile.noGodchildYet')}}</p>
+          <loader></loader>
         </div>
       </div>
       <div v-else>
