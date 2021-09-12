@@ -59,7 +59,7 @@
           <label class="mb-0" for="department">{{ $t('godchild.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="formulaire.department">
             <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
-            <option v-for="(dpt, index) in faculties[formulaire.faculty]['departments']" :key="index">{{dpt}}</option>
+            <option v-for="(dpt, index) in faculties[formulaire.faculty].departments" :key="index">{{dpt}}</option>
           </select>
         </div>
 
@@ -129,15 +129,18 @@ export default {
         activities: [],
         availabilities: []
       },
-      languages: formInfos.languages,
-      nextMonths: [],
-      active_el:0,
-      errors: [],
-      showModal: false,
+      // data fetch
       faculties: [],
       hobbies: [],
       activities: [],
-      countrys: countrys
+
+      // variable
+      countrys: countrys,
+      languages: formInfos.languages,
+      nextMonths: [],
+      errors: [],
+      showModal: false,
+      storageFacultyName: null,
     }
   },
 
@@ -152,20 +155,24 @@ export default {
       return this.$store.getters['header/language'];
     },
     cycleOfStudiesList(){
-      return formInfos.cycleOfStudiesList[this.$i18n.locale]
+      return formInfos.cycleOfStudiesList[this.$i18n.locale];
     },
   },
   mounted(){
-    this.formulaire = this.$store.getters["user/godchildProfile"];
-    if (!this.formulaire){
-      this.initForm();
-    }else {
-      this.setSpokenLanguages();
-    }
     this.getFaculties();
     this.getHobbiesAndActivities();
     this.DateUtilFunctions();
     this.setAvailabilities();
+  },
+  beforeMount(){
+    this.formulaire = this.$store.getters["user/godchildProfile"];
+    if (!this.formulaire){
+      this.initForm();
+    }else {
+      this.storageFacultyName = this.formulaire.faculty;
+      this.setSpokenLanguages();
+      this.setFaculty();
+    }
   },
   methods:{
     initForm(){
@@ -181,11 +188,13 @@ export default {
       };
     },
     setFaculty(){
-      this.faculties.forEach((v,i) => {
-        if(v.name === this.formulaire.faculty){
+      for (let i = 0; i < this.faculties.length; i++) {
+        if (this.faculties[i].name === this.storageFacultyName){
           this.formulaire.faculty = i;
+          return;
         }
-      })
+      }
+      this.formulaire.faculty = -1;
     },
     setHobbies(){
       if (this.hobbies && this.hobbies.length > 0){
@@ -282,7 +291,7 @@ export default {
         }
       });
       const form = {
-        //id: this.formulaire.id,
+        id: this.formulaire.id,
         nationality: this.formulaire.nationality,
         availabilities: availabilities,
         spokenLanguages: utils.getArrayIndexesFrom(this.formulaire.spokenLanguages), // indexes
@@ -292,12 +301,11 @@ export default {
         activities: utils.getArrayIndexesFrom(this.activities, function(value){ return value.checked}), // indexes
         hobbies: utils.getArrayIndexesFrom(this.hobbies, function(value){ return value.checked}) // indexes
       }
-      console.log(form)
       this.$store.dispatch('user/createGodchildProfile', form).then(
           (profile) => {
             console.log(profile);
-            // FXIME form submit with succes
-            //this.$router.push('/matching');
+            Bus.$emit('DisplayMessage', {text: this.$t('profile.successCreation'), type: 'success'});
+            // this.$router.push("/profile"); FIXME uncomment
           },
           err => {
             if (err && err.response && err.response.data && err.response.data.messages){
@@ -307,9 +315,6 @@ export default {
             }
           }
       );
-    },
-    activate:function(el){
-      this.active_el = el;
     },
     DateUtilFunctions() {
       this.nextMonths =  utils.getNextMonths();
