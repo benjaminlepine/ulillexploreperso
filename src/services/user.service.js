@@ -35,7 +35,6 @@ export default new class UserService {
         return resp.data;
     }
     async createGodchildProfile(profile){
-        console.log("toto")
         return this.post(R.endpoint.createGodchildProfile(), profile);
     }
     async activateGodchildProfile(activate){

@@ -166,7 +166,7 @@
       "youCantBeBooth": "Desole mais tu ne peux pas être à la fois Lilord et Lilot, il faut d'abord desactiver l'un avant d'activer l'autre",
       "successCreation": "Profil crée avec succès",
       "successGen": "L'opération s'est déroulée avec succès",
-      "errorGen": "We're sorry but an error has occured"
+      "errorGen": "Nous sommes désolé mais une erreur est survenue"
     },
     "wait": {
       "sorry": "Désolé",
@@ -467,8 +467,8 @@
       "yourAccountInactive": "Your {0} account is currently inactive, reactivate it by clicking here",
       "youCantBeBooth": "Sorry but you can't be both Lilord and Lilot, you have to deactivate one first before activating the other",
       "successCreation": "Profil created with success",
-      "successGen": "L'opération s'est déroulée avec succès",
-      "errorGen": "Nous sommes désolé mais une erreur est survenue"
+      "successGen": "The operation was successful",
+      "errorGen": "We're sorry but an error has occured"
     },
     "wait": {
       "sorry": "Sorry",

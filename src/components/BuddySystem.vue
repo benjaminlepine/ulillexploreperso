@@ -146,7 +146,7 @@ export default {
               if (err.response.data && err.response.data.messages){
                 Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
               }else {
-                Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+                Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen'), type: 'error'});
               }
             }
         );
@@ -170,7 +170,7 @@ export default {
               if (err.response.data && err.response.data.messages){
                 Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
               }else {
-                Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+                Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen'), type: 'error'});
               }
             }
         );
