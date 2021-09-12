@@ -166,7 +166,9 @@
       "youCantBeBooth": "Desole mais tu ne peux pas être à la fois Lilord et Lilot, il faut d'abord desactiver l'un avant d'activer l'autre",
       "successCreation": "Profil crée avec succès",
       "successGen": "L'opération s'est déroulée avec succès",
-      "errorGen": "Nous sommes désolé mais une erreur est survenue"
+      "errorGen": "Nous sommes désolé mais une erreur est survenue",
+      "noGodfatherYet": "Tu n'a pas encore de Lilord mais nous y travaillons, tu seras prevenu par mail quand nous aurons trouvé ton Lilord",
+      "noGodchildYet": "Tu n'a pas encore de Lilot(s) mais nous y travaillons, tu seras prevenu par mail quand nous l'aurons trouvé(s)"
     },
     "wait": {
       "sorry": "Désolé",
@@ -469,7 +471,9 @@
       "youCantBeBooth": "Sorry but you can't be both Lilord and Lilot, you have to deactivate one first before activating the other",
       "successCreation": "Profil created with success",
       "successGen": "The operation was successful",
-      "errorGen": "We're sorry but an error has occured"
+      "errorGen": "We're sorry but an error has occured",
+      "noGodfatherYet": "You don't have a Lilord yet but we are working on it, you will be notified by email when we have found your Lilord",
+      "noGodchildYet": "You don't have any Lilot(s) yet but we are working on it, you will be notified by email when we have found it (s)"
     },
     "wait": {
       "sorry": "Sorry",

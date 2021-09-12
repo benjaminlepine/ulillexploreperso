@@ -49,6 +49,10 @@
               <relation-infos :relation="godchild"></relation-infos>
             </div>
           </div>
+          <div v-else>
+            <p>{{ $t('profile.noGodchildYet')}}</p>
+            <loader></loader>
+          </div>
         </div>
       </div>
       <div v-else>
@@ -75,7 +79,7 @@
           </button>
         </router-link>
       </div>
-        <div class="d-flex justify-content-between mt-4">
+      <div class="d-flex justify-content-between mt-4">
         <label class="el-switch pink" >
           <input type="checkbox" @change="updateGodchildStatus($event)" v-model="godchildProfile.active" name="switch">
           <span class="el-switch-style"></span>
@@ -87,6 +91,10 @@
         <hr class="buddy-line">
         <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
         <relation-infos :relation="godfather" v-bind:class="{ desaturate: !godchildProfile.active}"></relation-infos>
+      </div>
+      <div v-else>
+        <p>{{ $t('profile.noGodfatherYet')}}</p>
+        <loader></loader>
       </div>
     </div>
     <div v-else>
