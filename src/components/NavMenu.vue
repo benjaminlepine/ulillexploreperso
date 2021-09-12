@@ -56,13 +56,9 @@ export default {
     logout(){
       this.$store.dispatch('auth/signout').then(
           () => {
-            Bus.$emit('DisplayMessage', {text: this.$t('profile.successGen'), type: 'success'});
             if (this.$router.history.current.fullPath != "/signin"){
               this.$router.push('/signin');
             }
-          },
-          err => {
-            Bus.$emit('DisplayMessage', {text: err, type: 'error'});
           }
       );
     }

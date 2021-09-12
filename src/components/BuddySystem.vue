@@ -142,6 +142,7 @@ export default {
               this.$store.dispatch('user/fetchGodfatherProfile');
             },
             err => {
+              if(err.response.status === 401){ this.$router.push('/signin'); }
               if (err.response.data && err.response.data.messages){
                 Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
               }else {
@@ -165,6 +166,7 @@ export default {
               this.$store.dispatch('user/fetchGodchildProfile');
             },
             err => {
+              if(err.response.status === 401){ this.$router.push('/signin'); }
               if (err.response.data && err.response.data.messages){
                 Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
               }else {
