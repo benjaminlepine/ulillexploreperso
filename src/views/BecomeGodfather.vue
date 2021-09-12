@@ -70,11 +70,11 @@
             <option v-for="(faculty, index) in faculties" :key="index" :value="index">{{faculty.name}}</option>
           </select>
         </div>
-        <div v-if="formulaire.faculty" class="text-left">
+        <div v-if="formulaire.faculty > -1" class="text-left">
           <label class="mb-0" for="department">{{ $t('godfather.whatDepartment')}}</label>
           <select class="form-control mb-3" id="department" v-model="formulaire.department">
             <option selected="true" disabled="disabled">{{ $t('problem.chooseOption')}}</option>
-            <option v-for="(dpt, index) in faculties[formulaire.faculty]['departments']" :key="index">{{dpt}}</option>
+            <option v-for="(dpt, index) in faculties[formulaire.faculty].departments" :key="index">{{dpt}}</option>
           </select>
         </div>
 
@@ -145,26 +145,20 @@ export default {
         availabilities: [],
         ngodchild: null
       },
-      languages: formInfos.languages,
-      nextMonths: [],
-      active_el:0,
-      isOlderSubscribed: false,
-      errors: [],
-      nationality: null,
-
-      department: null,
+      // data fetch
       faculties: [],
-      cycleOfStudies: null,
-
-      languagesSpoken: [],
-      availability: [],
-      godchildNumber: null,
-      showModal: false,
-      startDate: null,
-      godChildNumber: null,
       hobbies: [],
       activities: [],
-      countrys: countrys
+
+      // variable
+      countrys: countrys,
+      languages: formInfos.languages,
+      nextMonths: [],
+      errors: [],
+      showModal: false,
+      storageFacultyName: null,
+      isOlderSubscribed: false,
+      startDate: null,
     }
   },
 
@@ -184,18 +178,20 @@ export default {
   },
 
   mounted(){
-    this.formulaire = this.$store.getters["user/godfatherProfile"];
-    if (!this.formulaire){
-      this.initForm();
-    }else {
-      this.setSpokenLanguages();
-    }
     this.getFaculties();
     this.getHobbiesAndActivities();
     this.DateUtilFunctions();
     this.setAvailabilities();
   },
-
+  beforeMount(){
+    this.formulaire = this.$store.getters["user/godfatherProfile"];
+    if (!this.formulaire){
+      this.initForm();
+    }else {
+      this.storageFacultyName = this.formulaire.faculty;
+      this.setSpokenLanguages();
+    }
+  },
   methods:{
     initForm(){
       this.formulaire = {
@@ -211,11 +207,13 @@ export default {
       };
     },
     setFaculty(){
-      this.faculties.forEach((v,i) => {
-        if(v.name === this.formulaire.faculty){
+      for (let i = 0; i < this.faculties.length; i++) {
+        if (this.faculties[i].name === this.storageFacultyName){
           this.formulaire.faculty = i;
+          return;
         }
-      })
+      }
+      this.formulaire.faculty = -1;
     },
     setHobbies(){
       if (this.hobbies && this.hobbies.length > 0){
@@ -261,7 +259,7 @@ export default {
             this.setFaculty();
           },
           err => {
-            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
+            // Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
@@ -280,7 +278,7 @@ export default {
             this.setActivities();
           },
           err => {
-            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
+            // Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
@@ -310,7 +308,7 @@ export default {
 
       const form = {
         nationality: this.formulaire.nationality,
-        // startDate:this.startDate,
+        startDate:this.startDate,
         maxGodchildren: parseInt(this.formulaire.ngodchild, 10),
         availabilities: availabilities,
         spokenLanguages: utils.getArrayIndexesFrom(this.formulaire.spokenLanguages),
@@ -322,16 +320,18 @@ export default {
       };
       this.$store.dispatch("user/createGodfatherProfile", form).then(
           (profile) => {
+            console.log(profile);
             Bus.$emit('DisplayMessage', {text: this.$t('profile.successCreation'), type: 'success'});
-            this.$router.push('/matching');
+            // this.$router.push("/profile"); FIXME uncomment
           },
           err => {
-            Bus.$emit('DisplayMessage', {text: err, type: 'error'});
+           if (err && err.response && err.response.data && err.response.data.messages){
+              Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
+            }else {
+              Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+            }
           }
       )
-    },
-    activate:function(el){
-      this.active_el = el;
     },
     DateUtilFunctions() {
       this.nextMonths =  utils.getNextMonths();
