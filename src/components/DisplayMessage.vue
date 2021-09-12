@@ -32,7 +32,7 @@ export default {
       this.message = message;
       setTimeout(() => {
         this.message = null;
-      }, 6000);
+      }, 10000);
     });
 
     console.log("message = ", this.message)

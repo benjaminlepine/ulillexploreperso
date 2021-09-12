@@ -108,9 +108,10 @@
 <script>
 import RelationInfos from "./RelationInfos";
 import Popup from "./Popup";
+import Loader from "./Loader";
 
 export default {
-  components: { Popup, RelationInfos},
+  components: {Loader, Popup, RelationInfos},
   data: function ()  {
     return {
       godfatherProfile: this.$store.getters['user/godfatherProfile'],
