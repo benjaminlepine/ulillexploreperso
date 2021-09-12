@@ -156,19 +156,16 @@ export default {
     },
   },
   mounted(){
-    this.getFaculties();
-    this.getHobbiesAndActivities();
-    this.DateUtilFunctions();
-    this.setAvailabilities();
-  },
-
-  beforeMount() {
     this.formulaire = this.$store.getters["user/godchildProfile"];
     if (!this.formulaire){
       this.initForm();
     }else {
       this.setSpokenLanguages();
     }
+    this.getFaculties();
+    this.getHobbiesAndActivities();
+    this.DateUtilFunctions();
+    this.setAvailabilities();
   },
   methods:{
     initForm(){
@@ -179,7 +176,8 @@ export default {
         faculty: -1,
         hobbies: [],
         studyCycle: null,
-        activities: []
+        activities: [],
+        availabilities: []
       };
     },
     setFaculty(){
@@ -234,7 +232,7 @@ export default {
             this.setFaculty();
           },
           err => {
-            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
+           //  Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
           }
       );
     },
@@ -253,8 +251,8 @@ export default {
             this.setActivities();
           },
           err => {
-            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')
-                  +" / Error went we try to get the hobbies and activities data || " + err, type: 'error'});
+            // Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')
+            //      +" / Error went we try to get the hobbies and activities data || " + err, type: 'error'});
           }
       );
     },
@@ -302,7 +300,11 @@ export default {
             //this.$router.push('/matching');
           },
           err => {
-            Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
+            if (err && err.response && err.response.data && err.response.data.messages){
+              Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
+            }else {
+              Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+            }
           }
       );
     },
