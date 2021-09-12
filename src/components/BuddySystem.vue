@@ -100,7 +100,7 @@
     </div>
 
     <!-- POP UP ERROR - On ne peux pas activer les 2 -->
-    <Popup v-if="godfatherProfile && godfatherProfile.active && godchildProfile && godchildProfile.active" @close="godfatherProfile.active=false">
+    <Popup v-if="showPopup" @close="showPopup=false">
       <p slot="body">{{$t('profile.youCantBeBooth')}}</p>
     </Popup>
   </div>
@@ -119,6 +119,7 @@ export default {
       godfather: this.$store.getters['user/godfather'],
       showModal: true,
       userRole: null,
+      showPopup: false
     };
   },
   beforeMount(){
@@ -130,36 +131,44 @@ export default {
   methods:{
     updateGodfatherStatus(e){
       e.target.checked = !e.target.checked;
-      this.$store.dispatch("user/updateGodfatherStatus", {active: this.godfatherProfile.active}).then(
-          (message) => {
-            Bus.$emit('DisplayMessage', {text: message, type: 'success'});
-            this.$store.dispatch('user/fetchGodfatherProfile');
-          },
-          err => {
-            if (err.response.data && err.response.data.messages){
-              Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
-            }else {
-              Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+      if (this.godfatherProfile.active && (!this.godchildProfile || !this.godchildProfile.active)){
+        this.$store.dispatch("user/updateGodfatherStatus", {active: this.godfatherProfile.active}).then(
+            (message) => {
+              Bus.$emit('DisplayMessage', {text: message, type: 'success'});
+              this.$store.dispatch('user/fetchGodfatherProfile');
+            },
+            err => {
+              if (err.response.data && err.response.data.messages){
+                Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
+              }else {
+                Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+              }
             }
-          }
-      );
+        );
+      }else {
+        this.showPopup = true;
+      }
     },
     updateGodchildStatus(e){
       //console.log("0 checked = "+e.target.checked +", p.active = "+this.godchildProfile.active);
       e.target.checked = !e.target.checked;
-      this.$store.dispatch("user/updateGodchildStatus", {active: this.godchildProfile.active}).then(
-          (message) => {
-            Bus.$emit('DisplayMessage', {text: message, type: 'success'});
-            this.$store.dispatch('user/fetchGodchildProfile');
-          },
-          err => {
-            if (err.response.data && err.response.data.messages){
-              Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
-            }else {
-              Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+      if (this.godchildProfile.active && (!this.godfatherProfile || !this.godfatherProfile.active)){
+        this.$store.dispatch("user/updateGodchildStatus", {active: this.godchildProfile.active}).then(
+            (message) => {
+              Bus.$emit('DisplayMessage', {text: message, type: 'success'});
+              this.$store.dispatch('user/fetchGodchildProfile');
+            },
+            err => {
+              if (err.response.data && err.response.data.messages){
+                Bus.$emit('DisplayMessage', {text: err.response.data.messages, type: 'error'});
+              }else {
+                Bus.$emit('DisplayMessage', {text: "FIXME", type: 'error'}); // FIXME
+              }
             }
-          }
-      );
+        );
+      }else {
+        this.showPopup = true;
+      }
     }
   },
 }
