@@ -83,10 +83,8 @@ export const auth = {
     },
     forgotPassword({ commit, rootGetters }, email){
       commit('REQUEST_PASSWORD_FORGOT')
-      console.log(email);
-      const lang = rootGetters['header/language'];
-      console.log(lang);
-      AuthService.forgotPassword(lang, email).then(
+      const playload = {email, en: rootGetters['header/isEn']};
+      AuthService.forgotPassword(playload).then(
         resp =>{
 
           commit('RECEIVE_PASSWORD_FORGOT_SUCCESS');
@@ -98,8 +96,9 @@ export const auth = {
         }
       )
     },
-    resetPassword({ commit }, form){
+    resetPassword({ commit, rootGetters }, form){
       commit('REQUEST_RESET_PASSWORD');
+      form.en = rootGetters['header/isEn'];
       AuthService.resetPassword(form).then(
         resp => {
           commit('RECEIVE_RESET_PASSWORD_SUCCESS');

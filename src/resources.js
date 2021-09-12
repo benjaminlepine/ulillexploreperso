@@ -7,7 +7,7 @@ const R = {
         casSignout(){ return R.endpoint.base+'/api/logout/explore' },
         signup(){ return R.endpoint.base+'/api/auth/signup'; },
         signin(){ return R.endpoint.base+'/api/auth/signin'; },
-        forgotPassword(lang){ return R.endpoint.base+'/api/auth/forgot-password/'+lang; },
+        forgotPassword(){ return R.endpoint.base+'/api/auth/forgot-password/'; },
         resetPassword(){ return R.endpoint.base+'/api/auth/reset-password'; },
         faculties(){
             return R.endpoint.base+"/api/ulillexplore/faculties/";

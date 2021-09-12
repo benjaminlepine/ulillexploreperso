@@ -41,8 +41,9 @@ export default new class AuthService {
         localStorage.removeItem('ambassadorProfile');
     }
 
-    async forgotPassword(lang, email){
-        const resp = await axios.post(R.endpoint.forgotPassword(lang), {email: email}, { withCredentials: true })
+    async forgotPassword(playload){
+        console.log(playload);
+        const resp = await axios.post(R.endpoint.forgotPassword(), playload, { withCredentials: true })
         if (resp.data){
             return resp.data;
         }
@@ -50,6 +51,7 @@ export default new class AuthService {
     }
 
     async resetPassword(form){ // password & token
+        console.log(form);
         const resp = await axios.post(R.endpoint.resetPassword(), form, { withCredentials: true });
         if (resp.data){
             return resp.data;
