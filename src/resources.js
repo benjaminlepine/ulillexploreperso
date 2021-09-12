@@ -35,7 +35,9 @@ const R = {
         },
         fethGodfatherProfile(){ return R.endpoint.base+"/api/ulillexplore/godfather/profile"; },
         fetchGodchildProfile(){ return R.endpoint.base+"/api/ulillexplore/godchild/profile"; },
-        fetchAmbassadorProfile(){ return R.endpoint.base+"/api/ulillexplore/ambassador"; }
+        fetchAmbassadorProfile(){ return R.endpoint.base+"/api/ulillexplore/ambassador"; },
+        updateGodchildStatus(){ return R.endpoint.base+"/api/ulillexplore/godchild/profile/activate" },
+        updateGodfatherStatus(){ return R.endpoint.base+"/api/ulillexplore/godfather/profile/activate" },
     }
 };
 export default R;

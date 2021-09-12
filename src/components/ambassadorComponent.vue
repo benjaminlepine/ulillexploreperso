@@ -45,7 +45,7 @@ export default {
     lastSubmitDate(){
       if (this.ambassador.lastSubmit){
         const date = new Date(this.ambassador.lastSubmit);
-        return [utils.pad(date.getDate()), utils.pad(date.getMonth()), utils.pad(date.getFullYear())].join('/');
+        return [utils.pad(date.getDate()), utils.pad(date.getMonth()), utils.pad(date.getFullYear())].join('/') +' '+date.getHours()+':'+date.getMinutes();
       }
       return null;
     }

@@ -58,4 +58,12 @@ export default new class UserService {
         console.log(resp);
         return resp.data;
     }
+
+    async updateGodchildStatus(active){
+        return this.post(R.endpoint.updateGodchildStatus(), active)
+    }
+    async updateGodfatherStatus(active){
+        return this.post(R.endpoint.updateGodchildStatus(), active)
+    }
+
 };

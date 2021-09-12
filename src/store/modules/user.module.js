@@ -129,11 +129,27 @@ export const user = {
                 }
             );
         },
-        updateGodfatherStatus({commit}, active){
-            // FIXME Need some endpoint
+        updateGodfatherStatus({commit, rootGetters}, active){
+            active.en = rootGetters['header/isEn'];
+            return UserService.updateGodfatherStatus(active).then(
+                message =>{
+                    return Promise.resolve(message);
+                },
+                err => {
+                    return Promise.reject(err);
+                }
+            );
         },
-        updateGodchildStatus({commit}, active){
-            // FIXME Need some endpoint
+        updateGodchildStatus({commit, rootGetters}, active){
+            active.en = rootGetters['header/isEn'];
+            return UserService.updateGodchildStatus(active).then(
+                message =>{
+                    return Promise.resolve(message);
+                },
+                err => {
+                    return Promise.reject(err);
+                }
+            );
         }
     },
     mutations:{

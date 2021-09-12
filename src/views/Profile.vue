@@ -43,19 +43,10 @@ export default {
   data: function () {
     return {}
   },
-  beforeMount(){
-    this.$store.dispatch('user/fetchGodfatherProfile').then(
-      (p) => {},
-      err =>{}
-    );
-    this.$store.dispatch('user/fetchGodchildProfile').then(
-      (p) => {},
-      err =>{}
-    );
-    this.$store.dispatch('user/fetchAmbassadorProfile').then(
-      (p) => {},
-      err =>{}
-    );
+  mounted(){
+    this.$store.dispatch('user/fetchGodfatherProfile');
+    this.$store.dispatch('user/fetchGodchildProfile');
+    this.$store.dispatch('user/fetchAmbassadorProfile');
   },
   computed:{
     userFullName(){
@@ -81,9 +72,6 @@ export default {
     pad(n){
       return n < 10 ? '0'+ n : n;
     },
-    // unsubscribe(){
-    //   console.log("unsubscribe");
-    // }
   }
 }
 </script>
