@@ -130,8 +130,12 @@ export default {
   },
   methods:{
     updateGodfatherStatus(e){
-      e.target.checked = !e.target.checked;
-      if (this.godfatherProfile.active && (!this.godchildProfile || !this.godchildProfile.active)){
+      if (this.godfatherProfile.active && this.godchildProfile && this.godchildProfile.active){
+        this.showPopup = true;
+        this.godfatherProfile.active = false;
+        e.target.checked = false;
+      }else {
+        e.target.checked = !e.target.checked;
         this.$store.dispatch("user/updateGodfatherStatus", {active: this.godfatherProfile.active}).then(
             (message) => {
               Bus.$emit('DisplayMessage', {text: message, type: 'success'});
@@ -145,14 +149,16 @@ export default {
               }
             }
         );
-      }else {
-        this.showPopup = true;
       }
     },
     updateGodchildStatus(e){
       //console.log("0 checked = "+e.target.checked +", p.active = "+this.godchildProfile.active);
-      e.target.checked = !e.target.checked;
-      if (this.godchildProfile.active && (!this.godfatherProfile || !this.godfatherProfile.active)){
+      if (this.godchildProfile.active && this.godfatherProfile && this.godfatherProfile.active){
+        this.showPopup = true;
+        this.godchildProfile.active = false;
+        e.target.checked = false;
+      }else {
+        e.target.checked = !e.target.checked;
         this.$store.dispatch("user/updateGodchildStatus", {active: this.godchildProfile.active}).then(
             (message) => {
               Bus.$emit('DisplayMessage', {text: message, type: 'success'});
@@ -166,8 +172,6 @@ export default {
               }
             }
         );
-      }else {
-        this.showPopup = true;
       }
     }
   },
