@@ -16,12 +16,8 @@
     </div>
     <!-- Si PAS ambassadeur -->
     <div v-else>
-      <p class="mb-0 font-weight-bold mb-3" v-html="$t('profile.becomeAmbassador')"></p>
       <router-link to="/ambassador" class="profile-card d-flex justify-content-between mt-2">
-        <div>
-          <h5 class="mb-0 text-left">{{ $t('home.ambassador')}}</h5>
-          <p class="mb-0 text-left ">{{ $t('home.shareYourExperience')}}</p>
-        </div>
+        <p class="mb-0 text-left " v-html="$t('profile.becomeAmbassador')"></p>
         <img :alt="$t('home.shareYourExperience')" class="ml-2" src="../assets/img/postal.svg">
       </router-link>
     </div>
