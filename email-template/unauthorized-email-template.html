@@ -29,7 +29,9 @@
     </tr>
     <tr>
         <td class="UExploreBody">
-            <p>There are unauthorized Email: <span th:text="${}"></span></p>
+            <p>Nouvel Email non autorisée: <span th:text="${firstname}"></span><span th:text="${lastname}"></span></p>
+            <p>Pour autoriser cette user, rendez vous sur le <a href="${backoffice}">back-office</a></p>
+            <p>Email: <span th:text="${email}"></span></p>
         </td>
     </tr>
     <tr>
