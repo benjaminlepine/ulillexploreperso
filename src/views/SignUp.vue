@@ -40,7 +40,10 @@ export default {
             this.$router.push('/signin');
           },
           (err) => {
-            Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
+            if (err.response && err.response.data && err.response.data.message){
+              Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ ": " + err.response.data.message, type: 'error'});
+            }
+            
           }
       );
     }
