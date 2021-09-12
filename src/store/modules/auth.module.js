@@ -26,7 +26,8 @@ export const auth = {
         }
       )
     },
-    signup({ commit }, user){
+    signup({ commit, rootGetters }, user){
+      user.en = rootGetters['header/isEn'];
       commit('REQUEST_SIGNUP');
       console.log("in dispatch ", user);
       return AuthService
@@ -41,8 +42,10 @@ export const auth = {
           }
         );
     },
-    signin({ commit, dispatch }, user){
+    signin({ commit, rootGetters }, user){
+      user.en = rootGetters['header/isEn'];
       commit('REQUEST_SIGNIN')
+      console.log("in dispatch ", user);
       return AuthService
       .signin(user).then (
         user => {
@@ -107,6 +110,11 @@ export const auth = {
           return Promise.reject(err);
         }
       );
+    },
+    extendToken({ commit, rootGetters }, mobile){
+      const d = { token: user.token, mobile, en: rootGetters['header/isEn'] };
+      console.log(d);
+      // TODO extend token for web app mobile == false
     }
   },
   mutations: {
