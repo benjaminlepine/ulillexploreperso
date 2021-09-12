@@ -15,7 +15,7 @@ export default new class AuthService {
     }
 
     async signup(user){
-        const resp = await axios.post(R.endpoint.signup(), user);
+        const resp = await axios.post(R.endpoint.signup(), user, { withCredentials: true });
 
         if (resp.data) {
             localStorage.setItem('user', resp.data);
@@ -42,7 +42,7 @@ export default new class AuthService {
     }
 
     async forgotPassword(lang, email){
-        const resp = await axios.post(R.endpoint.forgotPassword(lang), {email: email})
+        const resp = await axios.post(R.endpoint.forgotPassword(lang), {email: email}, { withCredentials: true })
         if (resp.data){
             return resp.data;
         }
@@ -50,7 +50,7 @@ export default new class AuthService {
     }
 
     async resetPassword(form){ // password & token
-        const resp = await axios.post(R.endpoint.resetPassword(), form);
+        const resp = await axios.post(R.endpoint.resetPassword(), form, { withCredentials: true });
         if (resp.data){
             return resp.data;
         }
