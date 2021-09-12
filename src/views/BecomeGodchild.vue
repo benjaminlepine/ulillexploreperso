@@ -86,7 +86,7 @@
           </ul>
         </div>
         <div class="d-flex text-left">
-          <input type="checkbox" id="rgpdCB" class="largerCheckbox">
+          <input type="checkbox" id="rgpdCB" class="largerCheckbox" required>
           <div>
             <label class="rgpd-text" for="rgpdCB">{{ $t('signup.rgpd')}}</label>
             <button @click="showModal=true" id="show-modal" class="rgpd-text rgpd-text-link">{{ $t('signup.rgpdPopUpLink')}}</button>
