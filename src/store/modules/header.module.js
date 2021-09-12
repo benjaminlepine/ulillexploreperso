@@ -25,5 +25,6 @@ export const header = {
     getters: {
         isNavOpen: state => state.isNavOpen,
         language: state => state.lang,
+        isEn: state => state.lang == 'en',
     }
 };
