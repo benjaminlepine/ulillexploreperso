@@ -92,7 +92,8 @@
       "samePassword": "Les mots de passe doivent être identiques et contenir au moins 6 caractères",
       "validate": "Valider",
       "alreadyRegister": "Vous avez déjà un compte",
-      "signUp": "Inscription"
+      "signUp": "Inscription",
+      "wrongPassword": "Email ou mot de passe incorrect"
     },
     "signup": {
       "signup": "Inscription",
@@ -397,7 +398,8 @@
       "samePassword": "Passwords must be identical and contain minimum 6 characters",
       "validate": "Validate",
       "alreadyRegister": "You are already registered",
-      "signUp": "Sign Up"
+      "signUp": "Sign Up",
+      "wrongPassword": "Wrong Email or password"
     },
     "signup": {
       "signup": "Sign Up",
