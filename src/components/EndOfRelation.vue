@@ -53,10 +53,7 @@ export default {
           console.log("payload ", message);
         }).catch((err) => {
         });  
-      }
-
-
-        
+      }        
     }
   }
 }
