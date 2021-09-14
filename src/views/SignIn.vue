@@ -37,12 +37,10 @@ export default {
   },
   beforeMount(){
     if (document.cookie){
-      const casCookie = document.cookie
-          .split(';')
-          .find(row => row.startsWith("XSRF-TOKEN")).split('=')[1];
-      console.log("casCookie = ", casCookie)
-      if(casCookie){
-        //const casCookieStoreUser = tempCasCookie.split('=')[1];
+      const fullCookie = document.cookie.split(';')
+          .find(row => row.startsWith(process.env.VUE_APP_CAS_COOKIE_NAME))
+      if (fullCookie){
+        // const casCookie = fullCookie.split('=')[1];
         this.$store.dispatch("auth/casSignin").then(
             () => this.$router.push('/profile'),
             err => console.error(err)
