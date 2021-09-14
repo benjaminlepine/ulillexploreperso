@@ -273,8 +273,8 @@
         "errorFiles": "Un ou plusieurs fichier(s) chargé(s) ne corespond pas aux spécification suivantes : ",
         "errorImagesFilesFormat": "- Format images acceptés: png, jpg, jpeg, pdf, bmp, gif",
         "errorTextsFilesFormat": "- Format textes acceptés: pdf, doc, docx, odt, rtf, tex, wpd",
-        "errorFilesSize": "- Taille maximale par fichier:",
-        "errorFilesSizemo": "Mo",
+        "errorFilesSize": "Taille maximale par fichier:",
+        "errorFilesSizemo": "Mo (Reduisez la taille de vos images)",
         "maxFiles": "Fichiers maximum",
         "sendForm": "Envoyer mon formulaire",
         "saveForm": "Sauvegarder mon formulaire",
@@ -282,7 +282,7 @@
         "exceptImages": "(ne sauvegarde pas les images)",
         "noImage": "Pas d'image(s) selectionnée(s) ou sauvegardé(s)",
         "deleteImages": "Supprimer les images",
-        "deleteThisImages": "Supprimer ces images"
+        "deleteThisImages": "Supprimer ces documents"
       }
     },
     "matching": {
@@ -581,7 +581,8 @@
         "errorFiles": "One or more uploaded file(s) do not meet the following specifications:",
         "errorImagesFilesFormat": "- Accepted images formats: png, jpg, jpeg, pdf, bmp, gif",
         "errorTextsFilesFormat": "- Accepted texts formats: pdf, doc, docx, odt, rtf, tex, wpd",
-        "errorFilesSize": "- Maximum size per file: 1,5mo",
+        "errorFilesSize": "Maximum size per file:",
+        "errorFilesSizemo": "Mo (Reduce the size of your images)",
         "maxFiles": "Maximum files",
         "sendForm": "Send my form",
         "saveForm": "Save my form",
@@ -589,7 +590,7 @@
         "exceptImages": "(no images saving)",
         "noImage": "No images stored in your browser.",
         "deleteImages": "Delete images",
-        "deleteThisImages": "Delete this images"
+        "deleteThisImages": "Delete this documents"
       }
     },
     "matching": {

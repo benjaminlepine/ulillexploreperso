@@ -134,6 +134,11 @@ export default {
     if(localStorage.getItem("ambassadorForm")){
       this.form.texts = JSON.parse(localStorage.getItem("ambassadorForm"));
     }
+    this.checkForm()
+  },
+
+  updated() {
+    this.checkForm()
   },
 
   methods: {
@@ -159,7 +164,7 @@ export default {
       if (this.form.images.promotion && this.form.images.promotion.length > 0){ n++;}
       if (this.form.images.ueTips && this.form.images.ueTips.length > 0){ n++;}
       if (this.form.images.ueReport && this.form.images.ueReport.length > 0){ n++;}
-      return n >= 5;
+      this.isDisabled = this.form.texts.isUE && n < 8 || !this.form.texts.isUE && n < 5
     },
     submitAmbassador(){
       if (!this.checkForm()){

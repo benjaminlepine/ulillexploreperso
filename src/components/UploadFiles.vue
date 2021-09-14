@@ -33,7 +33,7 @@ export default {
   },
   data: function ()  {
     return {
-      maxSize: 20,
+      maxSize: 5,
       error:{
         tooMuchFiles: false,
         tooBigFile: false,
@@ -45,22 +45,16 @@ export default {
 
   methods:{
     checkTypeValidity(files){
-      console.log('this.isText = ', this.isText)
-      console.log('this.isText = ', typeof this.isText)
       if(this.isText === true){
-        console.log("CHECK DU TEXT")
         for (let i = 0; i < files.length; i++) {
           if (/\.(pdf|docx?|odt|rtf|tex|wpd|txt)$/i.test(files[i].name) === false) {
-            console.log("mauvais format")
             return false;
           }
         }
         return true
       } else {
-        console.log("CHECK IMG")
         for (let i = 0; i < files.length; i++) {
           if (/\.(jpe?g|png|gif|bmp)$/i.test(files[i].name) === false ) {
-            console.log("mauvais format")
             return false;
           }
         }
