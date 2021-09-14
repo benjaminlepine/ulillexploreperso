@@ -5,6 +5,7 @@ import R from '../resources';
 export default new class UserService {
     async fetch(url){
         const resp = await axios.get(url, { headers: authHeader(), withCredentials: true });
+        console.log(resp);
         return resp.data;
     }
     async fetchGodfatherProfile(){
@@ -63,7 +64,7 @@ export default new class UserService {
         return this.post(R.endpoint.updateGodchildStatus(), active)
     }
     async updateGodfatherStatus(active){
-        return this.post(R.endpoint.updateGodchildStatus(), active)
+        return this.post(R.endpoint.updateGodfatherStatus(), active)
     }
     async deleteGodfatherMatchWithGodchild(payload){
         const resp = await axios.post(R.endpoint.deleteGodfatherMatchWithGodchild(), payload, { headers: authHeader(), withCredentials: true });
