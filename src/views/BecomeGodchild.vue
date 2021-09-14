@@ -4,13 +4,11 @@
     <p class="mb-0 mainTitle">{{ $t('godchild.createMyProfile')}}</p>
     <div class="mainctn">
       <form @submit.prevent="submitGodchild">
-        <div class="text-left">
-          <label class="mb-0" for="nationality">{{ $t('godchild.nationality')}}</label>
-          <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="formulaire.nationality" name="nationality"/>
-          <datalist id="nationality" ref="nationality" name="nationality">
-            <option class="form-control" v-for="(country, index) in countrys" :key="index">{{country.name}}</option>
-          </datalist>
-        </div>
+        <label class="mb-0 w-100 text-left">{{ $t('godchild.nationality')}}</label>
+        <input class="form-control mb-3" type="text" @change="setNationality($event)" list="country">
+        <datalist id="country">
+          <option v-for="(country, index) in countrys" :key="index">{{country.name}}</option>
+        </datalist>
         <!-- Select month availability section -->
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godchild.whenAreYouAvailable')}}</label>
@@ -133,6 +131,13 @@ export default {
       faculties: [],
       hobbies: [],
       activities: [],
+
+      films:[
+        "A Throne Too Far",
+        "The Cat Wasn't Invited",
+        "You Only Meow Once",
+        "Catless in Seattle"
+      ],
 
       // variable
       countrys: countrys,
@@ -318,6 +323,7 @@ export default {
     DateUtilFunctions() {
       this.nextMonths =  utils.getNextMonths();
     },
+    setNationality(e){ this.formulaire.nationality = e.target.value },
   }
 }
 </script>
