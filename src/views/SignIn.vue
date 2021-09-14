@@ -39,17 +39,13 @@ export default {
     if (document.cookie){
       const casCookie = document.cookie
           .split(';')
-          .find(row => row.startsWith("XSRF-TOKEN"))
-          .split('=')[1];
-      if (casCookie){
+          .find(row => row.startsWith("XSRF-TOKEN")).split('=')[1];
+      console.log("casCookie = ", casCookie)
+      if(casCookie){
+        //const casCookieStoreUser = tempCasCookie.split('=')[1];
         this.$store.dispatch("auth/casSignin").then(
-            () => {
-              this.$router.push('/profile');
-            },
-            err=>{
-              Bus.$emit('DisplayMessage', {text: err, type: 'error'});
-            }
-
+            () => this.$router.push('/profile'),
+            err => console.error(err)
         );
       }
     }
@@ -79,8 +75,8 @@ export default {
         this.$store.dispatch('auth/signin', this.user).then(
             () => {
               this.$store.dispatch('user/fetchGodchildProfile').then(()=>{
-                this.$router.push('/profile');
-              },err => Bus.$emit('DisplayMessage', {text: err, type: 'error'})
+                    this.$router.push('/profile');
+                  },err => Bus.$emit('DisplayMessage', {text: err, type: 'error'})
               )
             },
             error => {

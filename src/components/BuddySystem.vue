@@ -85,7 +85,7 @@
         <h5 class="text-left mb-3">{{ $t('profile.myGodfather')}}</h5>
         <relation-infos :isGodfather='false' :relation="godfather" v-bind:class="{ desaturate: !godchildProfile.active}"></relation-infos>
       </div>
-      <div v-else>
+      <div v-else-if="!godfather && godchildProfile.active">
         <p>{{ $t('profile.noGodfatherYet')}}</p>
         <loader></loader>
       </div>
