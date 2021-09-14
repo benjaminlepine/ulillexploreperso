@@ -12,6 +12,10 @@
         <!-- Select month availability section -->
         <div class="text-left mb-3">
           <label class="mb-0">{{ $t('godchild.whenAreYouAvailable')}}</label>
+          <div class="lang-inside d-flex justify-content-between" for="allSelect">
+            <input class="mt-1" id="allSelect" type="checkbox" @change="setAllAvailabilities($event)">
+            <label class="mb-0 w-100 ml-2" for="allSelect">{{ $t('godchild.allSelect')}}</label>
+          </div>
           <ul class="lang-ctn">
             <label :for=month.monthName v-for="(month, index) in nextMonths" :key="index" class="lang-card d-flex text-left mb-0">
               <div class="lang-inside d-flex justify-content-between">
@@ -324,6 +328,7 @@ export default {
       this.nextMonths =  utils.getNextMonths();
     },
     setNationality(e){ this.formulaire.nationality = e.target.value },
+    setAllAvailabilities(e){ this.formulaire.availabilities = Array(this.nextMonths.length).fill(e.target.checked) }
   }
 }
 </script>
