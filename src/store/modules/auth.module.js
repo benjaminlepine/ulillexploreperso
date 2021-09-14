@@ -61,6 +61,7 @@ export const auth = {
     signout({ commit, state }){
       commit('REQUEST_SIGNOUT');
       const isUserCAS = state.user && state.user.roles ? state.user.roles.includes('STUDENT') || state.user.roles.includes('PROFESSOR') : false;
+      AuthService.casSignout();
       if (isUserCAS){
         commit('RECEIVE_SIGNOUT_SUCCESS');
         AuthService.casSignout();
