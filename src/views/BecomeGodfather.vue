@@ -5,7 +5,7 @@
     <div class="mainctn">
       <form @submit.prevent="submitGodFather">
         <label class="mb-0 w-100 text-left">{{ $t('godfather.nationality')}}</label>
-        <input class="form-control mb-3" type="text" @change="setNationality($event)" list="country">
+        <input class="form-control mb-3" :value="formulaire.nationality" type="text" @change="setNationality($event)" list="country">
         <datalist id="country">
           <option v-for="(country, index) in countrys " :key="index">{{country.name}}</option>
         </datalist>
@@ -19,10 +19,10 @@
         <div class="text-left">
           <p class="mb-0" >{{ $t('godfather.howManyGodchild')}}</p>
           <div class="d-flex justify-content-between">
-            <div><input v-model="formulaire.ngodchild" value=1 type="radio" id="1" name="godchildNumber" checked><label class="pl-2" for="1">1</label></div>
-            <div><input v-model="formulaire.ngodchild" value=2 type="radio" id="2" name="godchildNumber"><label class="pl-2" for="2">2</label></div>
-            <div><input v-model="formulaire.ngodchild" value=3 type="radio" id="3" name="godchildNumber"><label class="pl-2" for="3">3</label></div>
-            <div><input v-model="formulaire.ngodchild" value=4 type="radio" id="4" name="godchildNumber"><label class="pl-2" for="4">4</label></div>
+            <div><input v-model="formulaire.maxGodchildren" value=1 type="radio" id="1" name="godchildNumber" checked><label class="pl-2" for="1">1</label></div>
+            <div><input v-model="formulaire.maxGodchildren" value=2 type="radio" id="2" name="godchildNumber"><label class="pl-2" for="2">2</label></div>
+            <div><input v-model="formulaire.maxGodchildren" value=3 type="radio" id="3" name="godchildNumber"><label class="pl-2" for="3">3</label></div>
+            <div><input v-model="formulaire.maxGodchildren" value=4 type="radio" id="4" name="godchildNumber"><label class="pl-2" for="4">4</label></div>
           </div>
         </div>
         <!-- Select month availability section -->
@@ -141,7 +141,7 @@ export default {
         studyCycle: null,
         activities: [],
         availabilities: [],
-        ngodchild: null
+        maxGodchildren: null
       },
       // data fetch
       faculties: [],
@@ -201,7 +201,7 @@ export default {
         studyCycle: null,
         activities: [],
         availabilities: [],
-        ngodchild: null
+        maxGodchildren: null
       };
     },
     setFaculty(){
@@ -284,7 +284,7 @@ export default {
       this.errors = [];
       if (!this.formulaire.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
       if (!this.startDate) { this.errors.push(this.$t("errorsMsg.startDateRequired")); } // FIXME Remplacer par une date stocker server side
-      if (!this.formulaire.ngodchild) { this.errors.push(this.$t("errorsMsg.godChildNumberRequired")); }
+      if (!this.formulaire.maxGodchildren) { this.errors.push(this.$t("errorsMsg.godChildNumberRequired")); }
       if (this.formulaire.availabilities.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
       if (this.formulaire.spokenLanguages.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
       if (!this.formulaire.studyCycle) { this.errors.push(this.$t("errorsMsg.cycleOfStudiesRequired")); }
@@ -307,7 +307,7 @@ export default {
       const form = {
         nationality: this.formulaire.nationality,
         startDate:this.startDate,
-        maxGodchildren: parseInt(this.formulaire.ngodchild, 10),
+        maxGodchildren: parseInt(this.formulaire.maxGodchildren, 10),
         availabilities: availabilities,
         spokenLanguages: utils.getArrayIndexesFrom(this.formulaire.spokenLanguages),
         studyCycle: this.formulaire.studyCycle,

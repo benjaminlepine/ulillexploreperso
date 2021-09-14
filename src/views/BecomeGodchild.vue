@@ -5,7 +5,7 @@
     <div class="mainctn">
       <form @submit.prevent="submitGodchild">
         <label class="mb-0 w-100 text-left">{{ $t('godchild.nationality')}}</label>
-        <input class="form-control mb-3" type="text" @change="setNationality($event)" list="country">
+        <input class="form-control mb-3" type="text" :value="formulaire.nationality" @change="setNationality($event)" list="country">
         <datalist id="country">
           <option v-for="(country, index) in countrys" :key="index">{{country.name}}</option>
         </datalist>
