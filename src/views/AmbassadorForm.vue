@@ -11,7 +11,9 @@
           <input class="form-control mb-3" v-model="form.texts.exchange" :placeholder="$t('ambassador.form.amExchange')" required>
           <input class="form-control mb-3" v-model="form.texts.component" :placeholder="$t('ambassador.form.amComposante')" required>
         </div>
-        <h5 class="mt-4">{{ $t('ambassador.form.amBefore')}}</h5>
+        <hr class="mt-4">
+        <h5>{{ $t('ambassador.form.amBefore')}}</h5>
+        <p>{{ $t('ambassador.form.amBeforeDesc')}}</p>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amDoPortrait')}}</label>
           <upload-files :files="form.images.portrait" :maxFiles="3" :isText=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
