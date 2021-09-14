@@ -23,4 +23,7 @@ p, h1, h2, h3, h4, h5, h6, span, a, label{
   //font-family: $ulill-font, sans-serif !important;
   //text-decoration:none !important;
 }
-p, h1, h2, h3, h4, h5, h6, span, label{color: $text-color;}
+p, h1, h2, h3, h4, h5, h6, span, label, li{
+  color: $text-color;
+  font-family: "Raleway", Arial, Helvetica, sans-serif;
+}

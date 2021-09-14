@@ -29,7 +29,7 @@
         </div>
         <div class="grey-ctn">
           <label class="mb-0" for="amDoPubli">{{ $t('ambassador.form.amDoPubli')}}</label>
-          <p class="mb-0">{{ $t('ambassador.form.amProposition')}}</p>
+          <ul v-html="$t('ambassador.form.amProposition')"></ul>
           <textarea class="form-control mb-3" v-model="form.texts.publication" id="amDoPubli"></textarea>
         </div>
         <div class="grey-ctn">
@@ -62,15 +62,15 @@
 
         <hr>
         <p class="mb-0">{{ $t('ambassador.form.amIdea')}}</p>
-        <p class="mb-0">{{ $t('ambassador.form.amParticipate')}}</p>
+        <ul class="mb-0" v-html="$t('ambassador.form.amParticipate')"></ul>
 
         <!--------------------------------------------------------------------------------------------------->
         <!-------------------------------------------- UE MODULE -------------------------------------------->
         <!--------------------------------------------------------------------------------------------------->
         <hr>
-        <p class="mb-0">{{ $t('ambassador.form.UEInter')}}</p>
-        <div class="w-100 text-center mt-3" >
-          <input type="checkbox" class="cbAmbassador" v-model="form.texts.isUE">
+        <div class="w-100 text-center mt-3 d-flex align-items-center pl-2" >
+          <input type="checkbox" id="isUE" class="cbAmbassador mr-4" v-model="form.texts.isUE">
+          <label class="mb-0 text-left" for="isUE" v-html="$t('ambassador.form.UEInter')"></label>
         </div>
         <hr>
         <div v-if="form.texts.isUE">
