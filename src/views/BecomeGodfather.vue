@@ -4,13 +4,11 @@
     <p class="mb-0 mainTitle">{{ $t('godfather.createMyProfile')}}</p>
     <div class="mainctn">
       <form @submit.prevent="submitGodFather">
-        <div class="text-left">
-          <label class="mb-0" for="nationality">{{ $t('godfather.nationality')}}</label>
-          <input class="form-control mb-3" type="text" list="nationality" ref="nationality" v-model="formulaire.nationality" name="nationality"/>
-          <datalist id="nationality" ref="nationality" name="nationality">
-            <option class="form-control" v-for="(country, index) in countrys" :key="index">{{country.name}}</option>
-          </datalist>
-        </div>
+        <label class="mb-0 w-100 text-left">{{ $t('godfather.nationality')}}</label>
+        <input class="form-control mb-3" type="text" @change="setNationality($event)" list="country">
+        <datalist id="country">
+          <option v-for="(country, index) in countrys " :key="index">{{country.name}}</option>
+        </datalist>
         <div class="text-left">
           <label class="mb-0" for="startDate">{{ $t('godfather.whenYouStarted')}}</label>
           <input class="form-control mb-3 datepicker" id="startDate" v-model="startDate" ref="startDate" type="date" name="startDate" @change="checkSeniorityDate">
@@ -342,6 +340,7 @@ export default {
         this.isOlderSubscribed = true;
       }
     },
+    setNationality(e){ this.formulaire.nationality = e.target.value },
   }
 }
 </script>
