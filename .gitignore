@@ -23,3 +23,5 @@ pnpm-debug.log*
 *.sw?
 
 package-lock.json
+
+ulillexplore-wrapper/src/main/resources/static/
