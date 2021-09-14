@@ -93,10 +93,13 @@ export const user = {
             commit('CREATE_GODCHILD_PROFILE');
             return UserService.createGodchildProfile(godchildProfile).then(
                 profile => {
+                    console.log('SUCCESS use.module')
                     commit('RECEIVE_GODCHILD_PROFILE_SUCCESS', profile);
+                    console.log('Promise.resolve(profile); = ', Promise.resolve(profile))
                     return Promise.resolve(profile);
                 },
                 err => {
+                    console.log('ERROR use.module')
                     commit('RECEIVE_GODCHILD_PROFILE_ERROR');
                     return Promise.reject(err);
                 }
@@ -207,14 +210,21 @@ export const user = {
 
         CREATE_GODFATHER_PROFILE(state){},
         RECEIVE_GODFATHER_PROFILE_SUCCESS(state, profile){
-            state.godfatherProfile.profile = profile;
+            if(this.state.godfatherProfile){
+                state.godfatherProfile.profile = profile;
+            } else {
+                state.godfatherProfile = {profile};
+            }
             localStorage.setItem('godfatherProfile', JSON.stringify(state.godfatherProfile));
         },
         RECEIVE_GODFATHER_PROFIL_ERROR(state){},
-
         CREATE_GODCHILD_PROFILE(state){},
         RECEIVE_GODCHILD_PROFILE_SUCCESS(state, profile){
-            state.godchildProfile.profile = profile;
+            if(this.state.godchildProfile){
+                state.godchildProfile.profile = profile;
+            } else {
+                state.godchildProfile = {profile};
+            }
             localStorage.setItem('godchildProfile', JSON.stringify(state.godchildProfile));
         },
         RECEIVE_GODCHILD_PROFILE_ERROR(state){},

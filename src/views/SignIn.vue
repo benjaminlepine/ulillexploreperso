@@ -73,9 +73,6 @@ export default {
         this.$store.dispatch('auth/signin', this.user).then(
             () => {
               this.$router.push('/profile');
-              // this.$store.dispatch('user/fetchGodchildProfile').then(()=>{
-              //     },err => Bus.$emit('DisplayMessage', {text: err, type: 'error'})
-              // )
             },
             error => {
               this.loading = false;
