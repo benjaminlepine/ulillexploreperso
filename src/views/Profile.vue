@@ -43,11 +43,13 @@ export default {
   data: function () {
     return {}
   },
+
   mounted(){
     this.$store.dispatch('user/fetchGodfatherProfile');
     this.$store.dispatch('user/fetchGodchildProfile');
     this.$store.dispatch('user/fetchAmbassadorProfile');
   },
+
   computed:{
     userFullName(){
       return this.$store.getters['user/fullName'];

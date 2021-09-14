@@ -115,21 +115,21 @@ export default {
   components: {Loader, Popup, RelationInfos},
   data: function ()  {
     return {
-      godfatherProfile: this.$store.getters['user/godfatherProfile'],
-      godchildProfile: this.$store.getters['user/godchildProfile'],
-      godchilds: this.$store.getters['user/godchildren'],
-      godfather: this.$store.getters['user/godfather'],
       showModal: true,
       userRole: null,
       showPopup: false
     };
   },
+
+  computed:{
+    godfatherProfile: () => this.$store.getters['user/godfatherProfile'],
+    godchildProfile: () => this.$store.getters['user/godchildProfile'],
+    godchilds: () => this.$store.getters['user/godchildren'],
+    godfather: () => this.$store.getters['user/godfather'],
+  },
+
   beforeMount(){
     this.userRole = this.$store.getters['auth/user'].roles[0];
-
-    this.godchildProfile = this.$store.getters['user/godchildProfile'];
-    // console.log('this.godchildProfile = ', this.godchildProfile)
-
     if (this.godchildProfile){
       this.active = this.godchildProfile.active;
     }

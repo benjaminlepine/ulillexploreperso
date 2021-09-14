@@ -72,10 +72,10 @@ export default {
       if (this.user.email && this.user.password){
         this.$store.dispatch('auth/signin', this.user).then(
             () => {
-              this.$store.dispatch('user/fetchGodchildProfile').then(()=>{
-                    this.$router.push('/profile');
-                  },err => Bus.$emit('DisplayMessage', {text: err, type: 'error'})
-              )
+              this.$router.push('/profile');
+              // this.$store.dispatch('user/fetchGodchildProfile').then(()=>{
+              //     },err => Bus.$emit('DisplayMessage', {text: err, type: 'error'})
+              // )
             },
             error => {
               this.loading = false;
