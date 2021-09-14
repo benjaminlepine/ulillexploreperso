@@ -43,7 +43,7 @@
             <relation-infos :isGodfather='true' :relation="godchild"></relation-infos>
           </div>
         </div>
-        <div v-else>
+        <div v-else-if="!godchilds && godfatherProfile.active">
           <p>{{ $t('profile.noGodchildYet')}}</p>
           <loader></loader>
         </div>
