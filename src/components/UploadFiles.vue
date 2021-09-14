@@ -6,7 +6,7 @@
       <i v-if="!isText" class="fas fa-file-image text-white fa-2x text-right"></i>
     </div>
     <!--    <p id="state">{{ imagesState }}</p>-->
-    <div v-if="files && files" id="list">
+    <div v-if="files && !isText " id="list">
       <span v-for="(file, index) in files" :key="index">
         <img :src="file.url" class="uploader-img"/>
       </span>
