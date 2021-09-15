@@ -11,7 +11,7 @@
         </datalist>
         <div class="text-left">
           <label class="mb-0" for="startDate">{{ $t('godfather.whenYouStarted')}}</label>
-          <input class="form-control mb-3 datepicker" id="startDate" v-model="startDate" ref="startDate" type="date" name="startDate" @change="checkSeniorityDate">
+          <input class="form-control mb-3 datepicker" id="startDate" v-model="formulaire.startDate" ref="startDate" type="date" name="startDate" @change="checkSeniorityDate">
         </div>
         <div class="errors-ctn mt-3 mb-3" v-if="isOlderSubscribed">
           <p class="text-danger mb-0" v-if="isOlderSubscribed"><b>{{ $t('wait.oneUndredDay')}}</b></p>
@@ -138,6 +138,7 @@ export default {
     return {
       formulaire: {
         nationality: null,
+        startDate: null,
         spokenLanguages: [],
         department: null,
         faculty: -1,
@@ -160,7 +161,6 @@ export default {
       showModal: false,
       storageFacultyName: null,
       isOlderSubscribed: false,
-      startDate: null,
     }
   },
 
@@ -287,7 +287,7 @@ export default {
     checkForm: function (e) {
       this.errors = [];
       if (!this.formulaire.nationality) { this.errors.push(this.$t("errorsMsg.nationalityRequired")); }
-      if (!this.startDate) { this.errors.push(this.$t("errorsMsg.startDateRequired")); } // FIXME Remplacer par une date stocker server side
+      if (!this.formulaire.startDate) { this.errors.push(this.$t("errorsMsg.startDateRequired")); } // FIXME Remplacer par une date stocker server side
       if (!this.formulaire.maxGodchildren) { this.errors.push(this.$t("errorsMsg.godChildNumberRequired")); }
       if (this.formulaire.availabilities.length === 0) { this.errors.push(this.$t("errorsMsg.availabilityRequired")); }
       if (this.formulaire.spokenLanguages.length === 0) { this.errors.push(this.$t("errorsMsg.languagesSpokenRequired")); }
@@ -310,7 +310,7 @@ export default {
 
       const form = {
         nationality: this.formulaire.nationality,
-        startDate:this.startDate,
+        startDate: this.formulaire.startDate,
         maxGodchildren: parseInt(this.formulaire.maxGodchildren, 10),
         availabilities: availabilities,
         spokenLanguages: utils.getArrayIndexesFrom(this.formulaire.spokenLanguages),

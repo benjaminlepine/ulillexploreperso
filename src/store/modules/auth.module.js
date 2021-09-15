@@ -85,13 +85,15 @@ export const auth = {
     forgotPassword({ commit, rootGetters }, email){
       commit('REQUEST_PASSWORD_FORGOT')
       const playload = {email, en: rootGetters['header/isEn']};
-      AuthService.forgotPassword(playload).then(
-        resp =>{
+      return AuthService.forgotPassword(playload).then(
+        data =>{
 
+          console.log("module forgotPassword success", data)
           commit('RECEIVE_PASSWORD_FORGOT_SUCCESS');
-          return Promise.resolve(resp);
+          return Promise.resolve(data);
         },
         err => {
+          console.log("module forgotPassword err", err)
           commit('RECEIVE_PASSWORD_FORGOT_ERROR');
           return Promise.reject(err);
         }
@@ -100,7 +102,7 @@ export const auth = {
     resetPassword({ commit, rootGetters }, form){
       commit('REQUEST_RESET_PASSWORD');
       form.en = rootGetters['header/isEn'];
-      AuthService.resetPassword(form).then(
+      return AuthService.resetPassword(form).then(
         resp => {
           commit('RECEIVE_RESET_PASSWORD_SUCCESS');
           return Promise.resolve(resp);

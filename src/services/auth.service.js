@@ -5,6 +5,10 @@ export default new class AuthService {
     async getCasUser(){
         const resp = await axios.get(R.endpoint.casAccount(), { withCredentials: true });
         if (resp.data){
+            const roles = resp.data.roles ;
+            if (roles && roles.includes("admin")){
+                this.casSignout();
+            }
             localStorage.setItem('user', JSON.stringify(resp.data));
         }
         return resp.data;
@@ -44,18 +48,12 @@ export default new class AuthService {
     async forgotPassword(playload){
         console.log(playload);
         const resp = await axios.post(R.endpoint.forgotPassword(), playload, { withCredentials: true })
-        if (resp.data){
-            return resp.data;
-        }
-        return resp;
+        return resp.data;
     }
 
     async resetPassword(form){ // password & token
         console.log(form);
         const resp = await axios.post(R.endpoint.resetPassword(), form, { withCredentials: true });
-        if (resp.data){
-            return resp.data;
-        }
-        return resp;
+        return resp.data;
     }
 }

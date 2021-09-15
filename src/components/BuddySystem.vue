@@ -15,7 +15,7 @@
     </div>
 
     <!-- Si PARRAIN -->
-    <div v-if="userRole !== 'STUDENT_EXTERN'">
+    <div v-if="!isExtern">
       <div v-if="godfatherProfile" class="grey-ctn mt-2 mb-0">
         <div class="d-flex justify-content-between">
           <h5 class="text-left pt-2 mb-0">{{ $t('profile.myGodfatherProfile')}}</h5>
@@ -116,22 +116,15 @@ export default {
   data: function ()  {
     return {
       showModal: true,
-      userRole: null,
       showPopup: false
     };
-  },
-  updated(){
-    this.userRole = this.$store.getters['auth/user'].roles[0];
-
-    if (this.godchildProfile){
-      this.active = this.godchildProfile.active;
-    }
   },
   computed:{
     godfatherProfile() { return this.$store.getters['user/godfatherProfile'] },
     godchildProfile() { return this.$store.getters['user/godchildProfile'] },
     godchilds() { return this.$store.getters['user/godchildren'] },
     godfather() { return this.$store.getters['user/godfather'] },
+    isExtern() { return this.$store.getters['auth/user'].roles.includes('STUDENT_EXTERN') },
   },
   methods:{
     updateGodfatherStatus(e){
