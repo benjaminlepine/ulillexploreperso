@@ -32,4 +32,6 @@ ulillexplore-wrapper/src/main/resources/static/
 /public/cordova.js
 
 # Cordova
-src-cordova/
+/src-cordova/platforms
+/src-cordova/plugins
+/public/cordova.js
