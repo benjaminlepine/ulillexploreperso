@@ -1,7 +1,7 @@
 const R = {
     endpoint: {
-        //base: process.env.VUE_APP_API_ENDPOINT,
-        base:"http://176.132.208.146:9595",
+        base: process.env.VUE_APP_API_ENDPOINT,
+        //base:"http://176.132.208.146:9595",
         casSignin() { return R.endpoint.base+'/api/login/explore'; },
         casAccount() { return R.endpoint.base+'/api/account'; },
         casSignout(){ return R.endpoint.base+'/api/logout/explore' },
@@ -27,20 +27,16 @@ const R = {
         createGodfatherProfile(){ return R.endpoint.base+'/api/ulillexplore/godfather/profile/'; },
         activateGodchilProfile(activate){ return R.endpoint.base+'/api/ulillexplore/godfather/profile/state/'+activate; },
 
-        subscribeToAmbassador(){
-            return R.endpoint.base+"/api/ulillexplore/ambassador/subscribe/";
-        },
-        sendAmbassadorForm(){
-            return R.endpoint.base+"/api/ulillexplore/ambassador/submit/";
-        },
+        subscribeToAmbassador(){ return R.endpoint.base+"/api/ulillexplore/ambassador/subscribe/"; },
+        sendAmbassadorForm(){ return R.endpoint.base+"/api/ulillexplore/ambassador/submit/"; },
+        
         fethGodfatherProfile(){ return R.endpoint.base+"/api/ulillexplore/godfather/profile"; },
         fetchGodchildProfile(){ return R.endpoint.base+"/api/ulillexplore/godchild/profile"; },
         fetchAmbassadorProfile(){ return R.endpoint.base+"/api/ulillexplore/ambassador"; },
-        updateGodchildStatus(){
-
-            return R.endpoint.base+"/api/ulillexplore/godchild/profile/activate"
-        },
+        
+        updateGodchildStatus(){ return R.endpoint.base+"/api/ulillexplore/godchild/profile/activate"; },
         updateGodfatherStatus(){ return R.endpoint.base+"/api/ulillexplore/godfather/profile/activate"; },
+
         deleteGodfatherMatchWithGodchild(){ return R.endpoint.base+"/api/ulillexplore/match/godfather/delete-match"; },
         deleteGodchildMatchWithGodfather(){ return R.endpoint.base+"/api/ulillexplore/match/godchild/delete-match"; },
     }
