@@ -338,7 +338,7 @@ export default {
       this.nextMonths =  utils.getNextMonths();
     },
     checkSeniorityDate() {
-      if(Date.now() - this.$refs['startDate'].valueAsNumber > (24 * 3600000 * 100)){
+      if(Date.now() - this.$refs['startDate'].valueAsNumber > (24 * 3600000 * 300)){
         this.isOlderSubscribed = false;
       } else {
         this.isOlderSubscribed = true;
