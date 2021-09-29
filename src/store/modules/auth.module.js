@@ -19,15 +19,15 @@ export const auth = {
         user => {
           commit('RECEIVE_SIGNIN_SUCCESS', user);
           
-          console.log(navigator.userAgent);
+          // console.log(navigator.userAgent);
           if (/iPad|iPhone/.test(navigator.userAgent)){
-            console.log("is iphone or ipad");
-            console.log("ulillexplore://#/signin?cookie="+cookie);
-            window.location = "ulillexplore://#/signin?cookie="+cookie;
+           // console.log("is iphone or ipad");
+           // console.log("ulillexplore://#/signin?cookie="+cookie);
+           // window.location = "ulillexplore://#/signin?cookie="+cookie;
 
           }else if (navigator.userAgentData.mobile && navigator.userAgentData.platform == 'Android'){
-            console.log("is mobile Android");
-            onsole.log("is not mobile");
+           // console.log("is mobile Android");
+           // console.log("is not mobile");
           }
           return Promise.resolve(user);
         },
