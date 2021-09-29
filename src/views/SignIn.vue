@@ -36,9 +36,6 @@ export default {
     };
   },
   beforeMount(){
-    // get cookies from url;
-    console.info(this.$route.query.cookie);
-      console.info("start with cookie name "+process.env.VUE_APP_CAS_COOKIE_NAME);
     if (this.$route.query.cookie && this.$route.query.cookie.startsWith(process.env.VUE_APP_CAS_COOKIE_NAME)){
       const cookie = this.$route.query.cookie;
       this.$store.dispatch("auth/casSignin", cookie).then(
