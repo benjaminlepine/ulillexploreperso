@@ -2,13 +2,14 @@ import axios from 'axios';
 import R from '../resources';
 
 export default new class AuthService {
-    async getCasUser(){
-        const resp = await axios.get(R.endpoint.casAccount(), { withCredentials: true });
+    async getCasUser(cookie){
+        const resp = await axios.get(R.endpoint.casAccount(), { headers:{ Authorization: cookie}, withCredentials: true });
         if (resp.data){
             const roles = resp.data.roles ;
-            if (roles && roles.includes("admin")){
+            if (roles && roles.includes("ADMIN")){
                 this.casSignout();
             }
+            resp.data.cookie = cookie;
             localStorage.setItem('user', JSON.stringify(resp.data));
         }
         return resp.data;

@@ -36,16 +36,20 @@ export default {
     };
   },
   beforeMount(){
-    if (document.cookie){
-      const fullCookie = document.cookie.split(';')
-          .find(row => row.startsWith(process.env.VUE_APP_CAS_COOKIE_NAME))
-      if (fullCookie){
-        // const casCookie = fullCookie.split('=')[1];
-        this.$store.dispatch("auth/casSignin").then(
-            () => this.$router.push('/profile'),
-            err => console.error(err)
-        );
-      }
+    if (this.$route.query.cookie && this.$route.query.cookie.startsWith(process.env.VUE_APP_CAS_COOKIE_NAME)){
+      const cookie = this.$route.query.cookie;
+      this.$store.dispatch("auth/casSignin", cookie).then(
+        () => { this.$router.push('/profile'); },
+        err => { console.error(err); }
+      );
+    }else {
+      if (!document.cookie){ return; }
+      const cookie = document.cookie.split(';').find(row => row.startsWith(process.env.VUE_APP_CAS_COOKIE_NAME));
+      if (!cookie){ return; }
+      this.$store.dispatch("auth/casSignin", cookie).then(
+        () => { this.$router.push('/profile'); },
+        err => { console.error(err); }
+      );
     }
   },
   compute: {

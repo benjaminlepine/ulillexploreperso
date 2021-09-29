@@ -5,9 +5,10 @@ export default function authHeader(){
     if (user){
         if (user.token){ // student extern
             return  {Authorization: 'Bearer ' + user.token};
+        }else if (user.cookie) { // user cas
+            return  {Authorization : user.cookie };
         }else {
-            // FIXME use cas cookie
-            return  {withCredentials: true};
+            return {};
         }
     }else {
         return {};

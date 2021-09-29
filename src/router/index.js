@@ -18,7 +18,6 @@ import Profile from '../views/Profile.vue'
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '/', name: 'Profile', component: Profile},
   {path: '/ambassador', name: 'Ambassador', component: Ambassador},
   {path: '/becomeAmbassador', name: 'BecomeAmbassador', component: BecomeAmbassador},
   {path: '/profile', name: 'Profile', component: Profile},
