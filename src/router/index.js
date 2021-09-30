@@ -44,7 +44,7 @@ router.beforeEach((to, from, next) => {
   const publicPages = ['/signup','/signin', '/forgotpassword', '/resetpassword'];
   const authRequiest = !publicPages.includes(to.path);
   const signedIn = localStorage.getItem('user');
-  
+
   if (authRequiest && !signedIn){
     next('/signin');
   }else {

@@ -45,15 +45,15 @@ export default {
           console.log("payload ", message);
 
         }).catch((err) => {
-        }); 
+        });
       }else {
         payload.godfather = this.relationId;
         console.log("payload ", payload);
         this.$store.dispatch("user/deleteGodchildMatchWithGodfather", payload).then((message) => {
           console.log("payload ", message);
         }).catch((err) => {
-        });  
-      }        
+        });
+      }
     }
   }
 }

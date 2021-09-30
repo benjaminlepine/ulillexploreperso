@@ -18,10 +18,13 @@
             <i class="fas fa-user fa-2x sidebar-panel-nav--icon"></i>
             <router-link to="/profile">{{ $t('sideMenu.profile')}}</router-link>
           </li>
-          <li @click="logout">
+          <li v-if="!isAuth">
+            <i class="fas fa-sign-in-alt fa-2x sidebar-panel-nav--icon"></i>
+            <router-link to="/signin">{{ $t('sideMenu.login')}}</router-link>
+          </li>
+          <li v-if="isAuth" @click="logout">
             <i class="fas fa-sign-out-alt fa-2x sidebar-panel-nav--icon"></i>
-            <span v-if="isAuth" class="uexplore-link">{{ $t('sideMenu.logout')}}</span>
-            <span v-if="!isAuth" class="uexplore-link">{{ $t('sideMenu.login')}}</span>
+            <span  class="uexplore-link">{{ $t('sideMenu.logout')}}</span>
           </li>
           <li >
             <i class="fas fa-question-circle fa-2x sidebar-panel-nav--icon"></i>
