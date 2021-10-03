@@ -201,8 +201,8 @@
       "whatYouStudying": "Cycle d'études ?",
       "whatFaculty": "Dans quelle faculté étudies-tu ?",
       "whatDepartment": "Dans quel département étudies-tu ?",
-      "outsideCourses": "En dehors des cours tu es plutôt ?",
-      "whatHobbies": "Qu'est-ce que tu aimerais faire avec ton Lilord (parrain)?",
+      "outsideCourses": "Qu'est-ce que tu aimerais faire avec ton Lilord (parrain)?",
+      "whatHobbies": "En dehors des cours tu es plutôt ?",
       "validate": "Valider"
     },
     "godfather": {
@@ -215,9 +215,9 @@
       "whatYouStudying": "Cycle d'études ?",
       "whatFaculty": "Dans quelle faculté étudies-tu ?",
       "whatDepartment": "Dans quel département étudies-tu ?",
-      "outsideCourses": "En dehors des cours tu es plutôt ?",
+      "outsideCourses": "Qu'est-ce que tu aimerais faire avec ton/tes Lilots (filleuls) ?",
       "outsideCoursesMinMax": "(minimum 2 / maximum 4)",
-      "whatHobbies": "Qu'est-ce que tu aimerais faire avec ton/tes Lilots (filleuls) ?",
+      "whatHobbies": "En dehors des cours tu es plutôt ?",
       "validate": "Valider"
     },
     "ambassador": {
@@ -510,8 +510,8 @@
       "whatYouStudying": "Cycle of studies ?",
       "whatFaculty": "In which faculty are you studying ?",
       "whatDepartment": "In which department are you studying ?",
-      "outsideCourses": "What do you like to do outside class ?",
-      "whatHobbies": "What would you like to do with your Lilord (mentor)?",
+      "outsideCourses": "What would you like to do with your Lilord (mentor)?",
+      "whatHobbies": "What do you like to do outside class ?",
       "validate": "Confirm"
     },
     "godfather": {
@@ -524,9 +524,9 @@
       "whatYouStudying": "Cycle of studies ?",
       "whatFaculty": "In which faculty are you studying ?",
       "whatDepartment": "In which department are you studying ?",
-      "outsideCourses": "What do you like to do outside class ?",
+      "outsideCourses": "What would you like to do with your Lilot(s)(mentees) ?",
       "outsideCoursesMinMax": "(minimum 2 / maximum 4)",
-      "whatHobbies": "What would you like to do with your Lilot(s)(mentees) ?",
+      "whatHobbies": "What do you like to do outside class ?",
       "validate": "Confirm"
     },
     "ambassador": {
