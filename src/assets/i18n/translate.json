@@ -168,6 +168,7 @@
       "successCreation": "Profil créé avec succès",
       "successGen": "L'opération s'est déroulée avec succès",
       "errorGen": "Nous sommes désolés mais une erreur est survenue",
+      "signupPending": "Votre email n'était pas connu des services des RI de Lille mais votre demande d'inscription est maintenant prise en compte - Vous pourrez vous inscrire dans quelques jours avec l'email :",
       "noGodfatherYet": "Tu n'as pas encore de Lilord mais nous y travaillons, tu seras prévenu par mail quand nous l'aurons trouvé",
       "noGodchildYet": "Tu n'as pas encore de Lilot mais nous y travaillons, tu seras prévenu par mail quand nous l'aurons trouvé"
     },

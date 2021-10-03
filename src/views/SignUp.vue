@@ -3,7 +3,7 @@
     <p class="mb-0 uptitle">{{ $t('home.ulillexplore')}}</p>
     <p class="mb-0 mainTitle">{{ $t('signup.signup')}}</p>
     <div class="mainctn">
-      <form @submit.prevent="signUp">
+      <form @submit.prevent="signUp" ref="signup">
         <input v-model="lastname" class="form-control mb-3" :placeholder="$t('signup.lastname')" id="lastname" type="text" required>
         <input v-model="firstname" class="form-control mb-3" :placeholder="$t('signup.firstname')" id="firstname" type="text" required>
         <input v-model="email" class="form-control mb-3" :placeholder="$t('signup.email')" id="email" type="text" required>
@@ -41,12 +41,13 @@ export default {
           },
           (err) => {
             if (err.response && err.response.data && err.response.data.message){
-              Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ ": " + err.response.data.message, type: 'error'});
+              Bus.$emit('DisplayMessage', {text: this.$t('profile.signupPending') + this.email, type: 'success'});
+              this.$refs['signup'].reset()
+              this.$router.push('/');
             }
-            
           }
       );
-    }
+    },
   }
 }
 </script>

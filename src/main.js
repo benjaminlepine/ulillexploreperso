@@ -21,6 +21,11 @@ Vue.config.productionTip = false;
 window.Bus = new Vue();
 Vue.component('DisplayMessage', require('./components/DisplayMessage.vue').default);
 
+if (process.env.NODE_ENV === 'development') {
+  const { worker } = require('./mocks/browsers')
+  worker.start()
+}
+
 new Vue({
   router,
   i18n,
