@@ -6,7 +6,7 @@
       <form @submit.prevent="signUp" ref="signup">
         <input v-model="lastname" class="form-control mb-3" :placeholder="$t('signup.lastname')" id="lastname" type="text" required>
         <input v-model="firstname" class="form-control mb-3" :placeholder="$t('signup.firstname')" id="firstname" type="text" required>
-        <input v-model="email" class="form-control mb-3" :placeholder="$t('signup.email')" id="email" type="text" required>
+        <input v-model="email" class="form-control mb-3" :placeholder="$t('signup.email')" id="email" type="email" required>
         <input v-model="password" class="form-control mb-3" :placeholder="$t('signup.password')" id="password" type="password" required>
         <div class="d-flex text-left">
           <input type="checkbox" class="largerCheckbox" required>
