@@ -168,7 +168,7 @@
       "successCreation": "Profil créé avec succès",
       "successGen": "L'opération s'est déroulée avec succès",
       "errorGen": "Nous sommes désolés mais une erreur est survenue",
-      "signupPending": "Votre email n'était pas connu des services des RI de Lille mais votre demande d'inscription est maintenant prise en compte - Vous pourrez vous inscrire dans quelques jours avec l'email :",
+      "signupPending": "Votre email est maintenant en cours d'approbation par les services des RI - Repassez dans quelques jours pour vous inscrire à nouveau avec l'email :",
       "noGodfatherYet": "Tu n'as pas encore de Lilord mais nous y travaillons, tu seras prévenu par mail quand nous l'aurons trouvé",
       "noGodchildYet": "Tu n'as pas encore de Lilot mais nous y travaillons, tu seras prévenu par mail quand nous l'aurons trouvé"
     },
@@ -477,6 +477,7 @@
       "successCreation": "Profile created with success",
       "successGen": "The operation was successful",
       "errorGen": "We're sorry but an error has occured",
+      "signupPending": "Your email is now being approved by the IR services - Come back in a few days to register again with the email :",
       "noGodfatherYet": "You don't have a Lilord (mentor) yet but we are working on it, you will be notified by email when we have found your Lilord",
       "noGodchildYet": "You don't have any Lilot (mentee) yet but we are working on it, you will be notified by email when we have found your Lilot"
     },
