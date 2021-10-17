@@ -20,15 +20,14 @@ export const auth = {
           commit('RECEIVE_SIGNIN_SUCCESS', user);
           
           // console.log(navigator.userAgent);
-          if (/iPad|iPhone/.test(navigator.userAgent)){
+         //  if (/iPad|iPhone/.test(navigator.userAgent)){
            // console.log("is iphone or ipad");
            // console.log("ulillexplore://#/signin?cookie="+cookie);
            // window.location = "ulillexplore://#/signin?cookie="+cookie;
 
-          }else if (navigator.userAgentData.mobile && navigator.userAgentData.platform == 'Android'){
+          // }else if (navigator.userAgentData && navigator.userAgentData.mobile && navigator.userAgentData.platform == 'Android'){ // Warning userAgentData doesn't exist in safari & firefox
            // console.log("is mobile Android");
-           // console.log("is not mobile");
-          }
+           // console.log("is not mobile");}
           return Promise.resolve(user);
         },
         err => {
