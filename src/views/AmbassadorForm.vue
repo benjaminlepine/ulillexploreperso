@@ -144,6 +144,7 @@ export default {
   methods: {
     saveForm(){
       localStorage.setItem("ambassadorForm", JSON.stringify(this.form.texts));
+      Bus.$emit('DisplayMessage', {text: this.$t('ambassador.form.save'), type :'success'});
     },
     deleteForm(){
       this.$refs['formAmba'].reset()
@@ -167,10 +168,6 @@ export default {
       this.isDisabled = this.form.texts.isUE && n < 8 || !this.form.texts.isUE && n < 5
     },
     submitAmbassador(){
-      if (!this.checkForm()){
-        Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen'), type: 'error'});
-        return ;
-      }
       const form = new FormData(); // 5 / 11 -  8/11
       form.append('country', this.form.texts.country);//required
       form.append('university', this.form.texts.university);//required
@@ -179,7 +176,7 @@ export default {
       form.append('isUE', this.form.texts.isUE);//required
       form.append('interview', this.form.texts.interview.toString()); //required
 
-      form.append('portrait', this.form.images.portrait[0].file);
+      this.form.images.portrait[0] && form.append('portrait', this.form.images.portrait[0].file);
       form.append('publication', this.form.texts.publication);
       form.append('blog', this.form.texts.blog);
 

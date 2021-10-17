@@ -283,7 +283,8 @@
         "exceptImages": "(ne sauvegarde pas les images)",
         "noImage": "Pas d'image selectionnée ou sauvegardée",
         "deleteImages": "Supprimer les images",
-        "deleteThisImages": "Supprimer ces images"
+        "deleteThisImages": "Supprimer ces images",
+        "save":"Le formulaire a été enregistré."
       }
     },
     "matching": {
@@ -592,7 +593,8 @@
         "exceptImages": "(doesn't save images)",
         "noImage": "No images stored in your browser.",
         "deleteImages": "Delete images",
-        "deleteThisImages": "Delete these images"
+        "deleteThisImages": "Delete these images",
+        "save":"The form has been saved."
       }
     },
     "matching": {
