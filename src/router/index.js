@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Ambassador from '../views/Ambassador.vue'
 import BecomeAmbassador from '../views/AmbassadorForm.vue'
 import SignIn from '../views/SignIn.vue'
+import SigninWithoutCAS from '../views/SignInWithoutCAS'
 import SignUp from '../views/SignUp.vue'
 import ForgotPassword from '../views/ForgotPassword.vue'
 import ResetPassword from '../views/ResetPassword.vue'
@@ -24,6 +25,7 @@ const routes = [
   {path: '/becomegodchild', name: 'BecomeGodchild', component: BecomeGodchild},
   {path: '/becomegodfather', name: 'BecomeGodfather', component: BecomeGodfather},
   {path: '/signin', name: 'SignIn', component: SignIn},
+  {path: '/signinWithoutCAS', name: 'signinWithoutCAS', component: SigninWithoutCAS},
   {path: '/signup', name: 'SignUp', component: SignUp},
   {path: '/updatepassword', name: 'updatepassword', component: Updatepassword},
   {path: '/forgotpassword', name: 'ForgotPassword', component: ForgotPassword},
@@ -41,7 +43,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/signup','/signin', '/forgotpassword', '/resetpassword'];
+  const publicPages = ['/signup','/signin', '/forgotpassword', '/resetpassword', '/signinWithoutCAS'];
   const authRequiest = !publicPages.includes(to.path);
   const signedIn = localStorage.getItem('user');
 
