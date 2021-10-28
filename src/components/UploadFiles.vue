@@ -56,7 +56,6 @@ export default {
     },
     checkFilesTypeValidity(files){
       if(this.isText === true && this.isImage === true){
-        console.log("dkfjghdfkjghdfkghdfgdkghdk");
         for (let i = 0; i < files.length; i++) {
           if (/\.(jpe?g|png|gif|bmp|pdf|docx?|odt|rtf|tex|wpd|txt)$/i.test(files[i].name) === false ) {
             return false;
