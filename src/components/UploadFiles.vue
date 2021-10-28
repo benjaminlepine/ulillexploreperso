@@ -3,12 +3,13 @@
     <div class="d-flex justify-content-between w-100">
       <input type="file" class="mb-2 text-white" ref="fileInput" @change="handleFileSelect($event)" multiple>
       <i v-if="isText" class="fas fa-file text-white fa-2x text-right"></i>
-      <i v-if="!isText" class="fas fa-file-image text-white fa-2x text-right"></i>
+      <i v-if="isImage" class="fas fa-file-image text-white fa-2x text-right"></i>
     </div>
     <!--    <p id="state">{{ imagesState }}</p>-->
-    <div v-if="files && !isText " id="list">
+    <div v-if="files && isImage " id="list">
       <span v-for="(file, index) in files" :key="index">
-        <img :src="file.url" class="uploader-img"/>
+        <img v-if="isImageFile(file)" :src="file.url" class="uploader-img"/>
+        <img v-if="!isImageFile(file)" src="../assets/img/file.svg" class="uploader-img"/>
       </span>
     </div>
     <button v-if="this.files.length > 0" class="btn explorebtn explorebtnsecondary mt-2" @click="deletePreviewAndImages">{{$t('ambassador.form.deleteThisImages')}}</button>
@@ -18,8 +19,8 @@
       <span v-if="error.tooBigFile" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorFilesSize')}}
         <span class="montserrat text-white"> {{maxSize}} </span>{{ $t('ambassador.form.errorFilesSizemo')}}<br>
       </span>
-      <span v-if="error.wrongFormat && isText" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorTextsFilesFormat')}}</span>
-      <span v-if="error.wrongFormat && !isText" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorImagesFilesFormat')}}</span>
+      <span v-if="error.wrongFormat && isText" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorTextsFilesFormat')}}</span><br>
+      <span v-if="error.wrongFormat && isImage" class="font-weight-bolder text-white">{{ $t('ambassador.form.errorImagesFilesFormat')}}</span>
     </p>
   </div>
 </template>
@@ -29,7 +30,9 @@ export default {
   props:{
     files: Array,
     maxFiles: Number,
-    isText: Boolean // FIXME get array of extention
+    isText: Boolean,
+    isImage: Boolean
+
   },
   data: function ()  {
     return {
@@ -44,8 +47,24 @@ export default {
   },
 
   methods:{
-    checkTypeValidity(files){
-      if(this.isText === true){
+    isImageFile(file){
+      if (/\.(jpe?g|png|gif|bmp)$/i.test(file.file.name) === false ) {
+        return false;
+      } else {
+        return true
+      }
+    },
+    checkFilesTypeValidity(files){
+      if(this.isText === true && this.isImage === true){
+        console.log("dkfjghdfkjghdfkghdfgdkghdk");
+        for (let i = 0; i < files.length; i++) {
+          if (/\.(jpe?g|png|gif|bmp|pdf|docx?|odt|rtf|tex|wpd|txt)$/i.test(files[i].name) === false ) {
+            return false;
+          }
+        }
+        return true
+      }
+      else if (this.isText === true){
         for (let i = 0; i < files.length; i++) {
           if (/\.(pdf|docx?|odt|rtf|tex|wpd|txt)$/i.test(files[i].name) === false) {
             return false;
@@ -78,7 +97,7 @@ export default {
       }
 
       // Check Format Extensions Files
-      if(!this.checkTypeValidity(files)){
+      if(!this.checkFilesTypeValidity(files)){
         this.$emit('disabled', true); this.error.wrongFormat= true;
         return-1;
       } else {

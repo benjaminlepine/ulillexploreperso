@@ -25,7 +25,7 @@
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
-          <upload-files :files="form.images.photo" :maxFiles="10" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.photo" :maxFiles="10" :isText=true :is-image=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0" for="amDoPubli">{{ $t('ambassador.form.amDoPubli')}}</label>
@@ -36,11 +36,11 @@
           <label class="mb-0">{{ $t('ambassador.form.amDoPostal')}}</label>
           <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
           <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
-          <upload-files :files="form.images.postcard" :maxFiles="2" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.postcard" :maxFiles="2" :isImage=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amRepresent')}}</label>
-          <upload-files :files="form.images.represent" :maxFiles="10" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.represent" :maxFiles="10" :isImage=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
@@ -48,7 +48,7 @@
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amCarnet')}}</label>
-          <upload-files :files="form.images.logbook" :maxFiles="2" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.logbook" :maxFiles="2" :isImage=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amPlan')}}</label>
@@ -57,7 +57,7 @@
         <div class="grey-ctn">
           <label class="mb-0">{{ $t('ambassador.form.amPromotion')}}</label>
           <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
-          <upload-files :files="form.images.promotion" :maxFiles="10" :isText=false @disabled="disableForm" class="mt-2 mb-3"></upload-files>
+          <upload-files :files="form.images.promotion" :maxFiles="10" :isImage=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
 
         <hr>
