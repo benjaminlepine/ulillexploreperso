@@ -14,11 +14,11 @@
       <div v-if="showLang === true"
            v-closable="{ exclude: ['button'], handler: 'onClose'}"
            onclick="showLang = false" class="language-pop-in">
-        <div @click="selectLanguage('fr')" class="d-flex language-row">
+        <div @click="selectLanguage('fr')" class="d-flex language-row maxheightSafari">
           <img class="country" src="../assets/img/flags/french.svg">
           <span class="ml-2 text-dark">{{ $t('lang.fr') }}</span>
         </div>
-        <div @click="selectLanguage('en')" class="d-flex language-row">
+        <div @click="selectLanguage('en')" class="d-flex language-row maxheightSafari">
           <img class="country" src="../assets/img/flags/english.svg">
           <span class="ml-2 text-dark">{{ $t('lang.en') }}</span>
         </div>
@@ -80,6 +80,8 @@
 
 <style lang="scss" scoped>
   @import "../scss/_app-variables.scss";
+@import "../scss/app.scss";
+
   .header{
     box-shadow: 1px 1px 3px #006a60;
     top: 0;

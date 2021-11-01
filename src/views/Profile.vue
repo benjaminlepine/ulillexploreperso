@@ -4,7 +4,7 @@
     <p class="mb-0 mainTitle">{{ $t('profile.myProfile')}}</p>
     <div class="mainctn">
       <!-- Name section -->
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between maxheightSafari">
         <span class="profile-name">{{userFullName}}</span>
         <img :alt="$t('wait.oneUndredDay')" class="profile-picto" src="../assets/img/user.svg">
       </div>
@@ -132,6 +132,5 @@ export default {
     }
   }
 }
-
 
 </style>

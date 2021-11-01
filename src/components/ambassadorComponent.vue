@@ -1,7 +1,7 @@
 <template>
   <!-- Ambassador section -->
   <div class="profile-ctn profile-ctn-ambassador">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between maxheightSafari">
       <div>
         <p class="mb-0 profile-title text-left"><b>{{ $t('home.ambassador')}}</b></p>
         <p class="mb-0 text-left">{{ $t('home.shareYourExperience')}}</p>

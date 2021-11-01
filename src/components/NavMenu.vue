@@ -4,7 +4,7 @@
     <transition name="slide">
       <div v-if="isPanelOpen" class="sidebar-panel">
         <div v-on:click="closeSidebarPanel" class="side-header">
-          <div class="d-flex">
+          <div class="d-flex h-75">
             <img class="side-header--ico" src="../assets/img/cap.svg">
             <i class="fas fa-arrow-left fa-2x sidebar-panel-arrow"></i>
           </div>
