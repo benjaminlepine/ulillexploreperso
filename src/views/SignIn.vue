@@ -6,9 +6,9 @@
 <!--      {{ $t('login.iHaveUlillAdress')}}<br>-->
 <!--      {{ $t('login.iClickHere')}}-->
 <!--    </button>-->
-    <p class="mb-0 text-white mt-2">{{ $t('login.noteAboutUnivlille')}}</p>
+    <p class="mb-0 text-white mt-2" v-html="$t('login.noteAboutUnivlille')"></p>
     <hr class="separator-line">
-    <!--    <router-link class="mb-0 text-white mt-4 mb-3" to="/signinWithoutCAS"><b>{{ $t('login.iDontHaveAddress')}}</b></router-link>-->
+    <!--<router-link class="mb-0 text-white mt-4 mb-3" to="/signinWithoutCAS"><b>{{ $t('login.iDontHaveAddress')}}</b></router-link>-->
     <form @submit.prevent="handleSignIn">
       <input v-model="user.email" class="form-control mb-3" :placeholder="$t('login.email')" id="name" type="email" required>
       <input v-model="user.password" class="form-control mb-3" :placeholder="$t('login.password')" id="password" type="password" required>
