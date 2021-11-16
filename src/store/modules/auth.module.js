@@ -14,32 +14,9 @@ export const auth = {
   namespaced: true,
   state: initialState,
   actions: {
-    casSignin({ commit }, cookie){
-      return AuthService.getCasUser(cookie).then(
-        user => {
-          commit('RECEIVE_SIGNIN_SUCCESS', user);
-          
-          // console.log(navigator.userAgent);
-         //  if (/iPad|iPhone/.test(navigator.userAgent)){
-           // console.log("is iphone or ipad");
-           // console.log("ulillexplore://#/signin?cookie="+cookie);
-           // window.location = "ulillexplore://#/signin?cookie="+cookie;
-
-          // }else if (navigator.userAgentData && navigator.userAgentData.mobile && navigator.userAgentData.platform == 'Android'){ // Warning userAgentData doesn't exist in safari & firefox
-           // console.log("is mobile Android");
-           // console.log("is not mobile");}
-          return Promise.resolve(user);
-        },
-        err => {
-          commit('RECEIVE_SIGNIN_ERROR');
-          return Promise.reject(err);
-        }
-      )
-    },
     signup({ commit, rootGetters }, user){
       user.en = rootGetters['header/isEn'];
       commit('REQUEST_SIGNUP');
-      console.log("in dispatch ", user);
       return AuthService
         .signup(user).then(
           resp => {
@@ -55,7 +32,6 @@ export const auth = {
     signin({ commit, rootGetters }, user){
       user.en = rootGetters['header/isEn'];
       commit('REQUEST_SIGNIN')
-      console.log("in dispatch ", user);
       return AuthService
       .signin(user).then (
         user => {
@@ -70,27 +46,10 @@ export const auth = {
     },
     signout({ commit, state }){
       commit('REQUEST_SIGNOUT');
-      const isUserCAS = state.user && state.user.roles ? state.user.roles.includes('STUDENT') || state.user.roles.includes('PROFESSOR') : false;
-      AuthService.casSignout();
-      if (isUserCAS){
-        commit('RECEIVE_SIGNOUT_SUCCESS');
-        AuthService.casSignout();
-        return Promise.resolve();
-        /*.then(
-          (resp) => {
-            commit('RECEIVE_SIGNOUT_SUCCESS');
-            return Promise.resolve();
-          },
-          (err) => {
-            commit('RECEIVE_SIGNOUT_ERROR');
-            return Promise.reject(err);
-          }
-        );*/
-      }else {
-        AuthService.signout();
-        commit('RECEIVE_SIGNOUT_SUCCESS');
-        return Promise.resolve();
-      }
+      // FIXME signout
+      AuthService.signout();
+      commit('RECEIVE_SIGNOUT_SUCCESS');
+      return Promise.resolve();
     },
     forgotPassword({ commit, rootGetters }, email){
       commit('REQUEST_PASSWORD_FORGOT')

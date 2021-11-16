@@ -5,24 +5,20 @@ import AuthService from './auth.service';
 
 export default new class UserService {
     constructor(){
-        this.http = axios.create({
-            headers: authHeader(),
-            withCredentials: true 
-          });
+        this.http = axios.create();
         
         this.http.interceptors.response.use(function (response) {
-        return response;
+            return response;
         }, function (error) {
             if (error.response.status === 401){
-                AuthService.casSignout();
+                AuthService.signout();
             }
-        return Promise.reject(error);
+            return Promise.reject(error);
         });
           
     }
     async fetch(url){
-        const resp = await this.http.get(url, { headers: authHeader(), withCredentials: true });
-        console.log(resp);
+        const resp = await this.http.get(url, { headers: authHeader() });
         return resp.data;
     }
     async fetchGodfatherProfile(){
@@ -48,8 +44,7 @@ export default new class UserService {
     }
 
     async post(url, data){
-        const resp = await this.http.post(url, data, { headers: authHeader(), withCredentials: true });
-        console.log(resp);
+        const resp = await this.http.post(url, data, { headers: authHeader()});
         return resp.data;
     }
     async createGodchildProfile(profile){
@@ -72,7 +67,7 @@ export default new class UserService {
         const headers = authHeader();
         headers['Content-Type'] = `multipart/form-data`;
         console.log(headers);
-        const resp = await this.http.post(R.endpoint.sendAmbassadorForm(), form, {headers: headers, withCredentials: true });
+        const resp = await this.http.post(R.endpoint.sendAmbassadorForm(), form, { headers: headers });
         console.log(resp);
         return resp.data;
     }
@@ -84,14 +79,13 @@ export default new class UserService {
         return this.post(R.endpoint.updateGodfatherStatus(), active)
     }
     async deleteGodfatherMatchWithGodchild(payload){
-        const resp = await this.http.post(R.endpoint.deleteGodfatherMatchWithGodchild(), payload, { headers: authHeader(), withCredentials: true });
+        const resp = await this.http.post(R.endpoint.deleteGodfatherMatchWithGodchild(), payload, { headers: authHeader() });
         console.log(resp);
         return resp.data;
     }
     async deleteGodchildMatchWithGodfather(payload){
-        const resp = await this.http.post(R.endpoint.deleteGodchildMatchWithGodfather(), payload, { headers: authHeader(), withCredentials: true });
+        const resp = await this.http.post(R.endpoint.deleteGodchildMatchWithGodfather(), payload, { headers: authHeader() });
         console.log(resp);
         return resp.data;
     }
-
 };
