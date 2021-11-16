@@ -5,7 +5,7 @@
     <p class="mb-0 text-white mt-2" v-html="$t('login.noteAboutUnivlille')"></p>
     <hr class="separator-line">
     <form @submit.prevent="handleSignIn">
-      <input v-model="user.username" class="form-control mb-3" :placeholder="$t('login.email')" id="name" type="email" required>
+      <input v-model="user.username" class="form-control mb-3" :placeholder="$t('login.email')" id="name" required>
       <input v-model="user.password" class="form-control mb-3" :placeholder="$t('login.password')" id="password" type="password" required>
       <button type="submit" class="btn explorebtn">{{ $t('login.login')}}<br></button>
     </form>
