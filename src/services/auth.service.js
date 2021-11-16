@@ -1,26 +1,10 @@
 import axios from 'axios';
 import R from '../resources';
+import authHeader from './auth-header';
 
 export default new class AuthService {
-    async getCasUser(cookie){
-        const resp = await axios.get(R.endpoint.casAccount(), { headers:{ Authorization: cookie}, withCredentials: true });
-        if (resp.data){
-            const roles = resp.data.roles ;
-            if (roles && roles.includes("ADMIN")){
-                this.casSignout();
-            }
-            resp.data.cookie = cookie;
-            localStorage.setItem('user', JSON.stringify(resp.data));
-        }
-        return resp.data;
-    }
-    casSignout(){
-        this.out();
-        window.location.href = R.endpoint.casSignout();
-    }
-
     async signup(user){
-        const resp = await axios.post(R.endpoint.signup(), user, { withCredentials: true });
+        const resp = await axios.post(R.endpoint.signup(), user);
 
         if (resp.data) {
             localStorage.setItem('user', resp.data);
@@ -29,16 +13,20 @@ export default new class AuthService {
     }
 
     async signin(user){
-        const resp = await axios.post(R.endpoint.signin(), user, { withCredentials: true });
+        const resp = await axios.post(R.endpoint.signin(), user);
         if (resp.data) {
             localStorage.setItem('user', JSON.stringify(resp.data));
         }
         return resp.data;
     }
 
-    signout(){
+    async signout(){
+        const token = localStorage.getItem('user').token;
+        const resp = await axios.post(R.endpoint.signout(), { token }, { headers: authHeader() });
         this.out();
+        return resp.data;
     }
+
     out(){
         localStorage.removeItem('user');
         localStorage.removeItem('godfatherProfile');
@@ -48,13 +36,13 @@ export default new class AuthService {
 
     async forgotPassword(playload){
         console.log(playload);
-        const resp = await axios.post(R.endpoint.forgotPassword(), playload, { withCredentials: true })
+        const resp = await axios.post(R.endpoint.forgotPassword(), playload)
         return resp.data;
     }
 
     async resetPassword(form){ // password & token
         console.log(form);
-        const resp = await axios.post(R.endpoint.resetPassword(), form, { withCredentials: true });
+        const resp = await axios.post(R.endpoint.resetPassword(), form);
         return resp.data;
     }
 }
