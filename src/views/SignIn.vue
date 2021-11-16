@@ -13,8 +13,8 @@
     <router-link to="/signup" class="btn mt-3 explorebtn explorebtn--signup">{{ $t('login.signUp')}}<br></router-link>
   </div>
 </template>
+
 <script>
-import R from '../resources';
 import User from "../models/user";
 
 export default {
