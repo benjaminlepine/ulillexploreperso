@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     close(){
-      console.log("close")
       this.message = null;
     }
   },
