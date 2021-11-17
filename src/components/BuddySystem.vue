@@ -124,9 +124,14 @@ export default {
     godchildProfile() { return this.$store.getters['user/godchildProfile'] },
     godchilds() { return this.$store.getters['user/godchildren'] },
     godfather() {
-      console.log("GG ", this.$store.getters['user/godfather'] )
       return this.$store.getters['user/godfather'] },
-    isExtern() { return this.$store.getters['auth/user'].roles.includes('STUDENT_EXTERN') },
+    isExtern() {
+      const user = this.$store.getters['auth/user'];
+      if (user){
+        return this.$store.getters['auth/user'].roles.includes('STUDENT_EXTERN');
+      }
+      return false;
+    },
   },
   methods:{
     updateGodfatherStatus(e){
