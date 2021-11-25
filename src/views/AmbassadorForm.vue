@@ -24,45 +24,45 @@
           <input class="form-control mb-3" v-model="form.texts.interview" id="amDoInterview" type="date" required>
         </div>
         <div class="grey-ctn">
-          <label class="mb-0">{{ $t('ambassador.form.amDoPhoto')}}</label>
+          <label class="mb-0" v-html="$t('ambassador.form.amDoPhoto')"></label>
           <upload-files :files="form.images.photo" :maxFiles="10" :isText=true :is-image=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
-          <label class="mb-0" for="amDoPubli">{{ $t('ambassador.form.amDoPubli')}}</label>
-          <ul v-html="$t('ambassador.form.amProposition')"></ul>
+          <label class="mb-0" for="amDoPubli" v-html="$t('ambassador.form.amDoPubli')"></label>
+          <p v-html="$t('ambassador.form.amProposition')"></p>
           <textarea class="form-control mb-3" v-model="form.texts.publication" id="amDoPubli"></textarea>
         </div>
         <div class="grey-ctn">
-          <label class="mb-0">{{ $t('ambassador.form.amDoPostal')}}</label>
-          <p class="mb-0">{{ $t('ambassador.form.amAdress')}}</p>
-          <p class="mb-0">{{ $t('ambassador.form.amFizer')}}</p>
+          <label class="mb-0" v-html="$t('ambassador.form.amDoPostal')"></label>
+          <p class="mb-0" v-html="$t('ambassador.form.amAdress')"></p>
+          <p class="mb-0" v-html="$t('ambassador.form.amFizer')"></p>
           <upload-files :files="form.images.postcard" :maxFiles="2" :isImage=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
-          <label class="mb-0">{{ $t('ambassador.form.amRepresent')}}</label>
+          <label class="mb-0" v-html="$t('ambassador.form.amRepresent')"></label>
           <upload-files :files="form.images.represent" :maxFiles="10" :isImage=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
-          <label class="mb-0" for="amBlog">{{ $t('ambassador.form.amBlog')}}</label>
+          <label class="mb-0" for="amBlog" v-html="$t('ambassador.form.amBlog')"></label>
           <textarea class="form-control mb-3" v-model="form.texts.blog" id="amBlog" ></textarea>
         </div>
         <div class="grey-ctn">
-          <label class="mb-0">{{ $t('ambassador.form.amCarnet')}}</label>
+          <label class="mb-0" v-html="$t('ambassador.form.amCarnet')"></label>
           <upload-files :files="form.images.logbook" :maxFiles="2" :isImage=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
-          <label class="mb-0">{{ $t('ambassador.form.amPlan')}}</label>
+          <label class="mb-0" v-html="$t('ambassador.form.amPlan')"></label>
           <upload-files :files="form.images.tips" :maxFiles="2" :isText=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
         <div class="grey-ctn">
-          <label class="mb-0">{{ $t('ambassador.form.amPromotion')}}</label>
-          <p class="mb-0">{{ $t('ambassador.form.amPromotionList')}}</p>
+          <label class="mb-0" v-html="$t('ambassador.form.amPromotion')"></label>
+          <p class="mb-0" v-html="$t('ambassador.form.amPromotionList')"></p>
           <upload-files :files="form.images.promotion" :maxFiles="10" :isImage=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
         </div>
 
         <hr>
-        <p class="mb-0">{{ $t('ambassador.form.amIdea')}}</p>
-        <ul class="mb-0" v-html="$t('ambassador.form.amParticipate')"></ul>
+        <p class="mb-0" v-html="$t('ambassador.form.amIdea')"></p>
+        <p class="mb-0" v-html="$t('ambassador.form.amParticipate')"></p>
 
         <!--------------------------------------------------------------------------------------------------->
         <!-------------------------------------------- UE MODULE -------------------------------------------->
@@ -75,11 +75,11 @@
         <hr>
         <div v-if="form.texts.isUE">
           <div class="grey-ctn">
-            <label class="mb-0">{{ $t('ambassador.form.amRecueil')}}</label>
+            <label class="mb-0" v-html="$t('ambassador.form.amRecueil')"></label>
             <upload-files :files="form.images.ueTips" :maxFiles="2" :isText=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
           </div>
           <div class="grey-ctn">
-            <label class="mb-0">{{ $t('ambassador.form.amRapport')}}</label>
+            <label class="mb-0" v-html="$t('ambassador.form.amRapport')"></label>
             <upload-files :files="form.images.ueReport" :maxFiles="2" :isText=true @disabled="disableForm" class="mt-2 mb-3"></upload-files>
           </div>
         </div>
@@ -131,6 +131,7 @@ export default {
   },
 
   beforeMount() {
+    window.scrollTo(0, 0)
     if(localStorage.getItem("ambassadorForm")){
       this.form.texts = JSON.parse(localStorage.getItem("ambassadorForm"));
     }
