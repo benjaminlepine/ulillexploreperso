@@ -84,9 +84,6 @@
 
   .header{
     box-shadow: 1px 1px 3px #006a60;
-    top: 0;
-    position: fixed;
-    z-index: 6;
     width: 100%;
     background-color: $main-color;
     padding: 10px 0;

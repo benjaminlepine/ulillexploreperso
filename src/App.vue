@@ -3,7 +3,7 @@
     <DisplayMessage></DisplayMessage>
     <NavHeader></NavHeader>
     <NavMenu></NavMenu>
-    <router-view class="pt-4"></router-view>
+    <router-view class="pt-4 view-container"></router-view>
   </div>
 </template>
 
@@ -30,31 +30,25 @@
 <style lang="scss">
   @import "./scss/_app-variables.scss";
   #app {
-    margin-top: 70px;
+    height: 100vh;
     min-height: 100%;
     background-color: var(--background-main);
-    padding-bottom: 15px;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
+    overflow: hidden;
+  }
+  
+  .view-container{
+    height: calc(100% - 80px);
+    width: 100%;
     background-image: url("./assets/img/worldmap.svg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: 50% 65px;
+    overflow: scroll;
   }
 
-  /*
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: $text-color;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}*/
 </style>
