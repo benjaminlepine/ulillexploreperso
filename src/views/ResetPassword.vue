@@ -44,7 +44,6 @@ export default {
       } else{
         this.samePassword = true;
         const form = { token: this.$route.query.token, password: this.password, confirmPassword: this.passwordConfirm };
-        console.log(form);
         this.$store.dispatch('auth/resetPassword', form).then(
             (data) => {
               Bus.$emit('DisplayMessage', {text: this.$t('profile.successGen'), type: 'success'});

@@ -56,13 +56,10 @@ export const auth = {
       const playload = {email, en: rootGetters['header/isEn']};
       return AuthService.forgotPassword(playload).then(
         data =>{
-
-          console.log("module forgotPassword success", data)
           commit('RECEIVE_PASSWORD_FORGOT_SUCCESS');
           return Promise.resolve(data);
         },
         err => {
-          console.log("module forgotPassword err", err)
           commit('RECEIVE_PASSWORD_FORGOT_ERROR');
           return Promise.reject(err);
         }

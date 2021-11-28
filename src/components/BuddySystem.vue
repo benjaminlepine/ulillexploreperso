@@ -158,7 +158,6 @@ export default {
       }
     },
     updateGodchildStatus(e){
-      //console.log("0 checked = "+e.target.checked +", p.active = "+this.godchildProfile.active);
       if (this.godchildProfile.active && this.godfatherProfile && this.godfatherProfile.active){
         this.showPopup = true;
         this.godchildProfile.active = false;

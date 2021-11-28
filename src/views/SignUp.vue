@@ -33,7 +33,6 @@ export default {
   methods:{
     signUp: function() {
       const user = {firstname: this.firstname, lastname: this.lastname, email: this.email , password: this.password};
-      console.log("before dispatch ",user);
       this.$store.dispatch('auth/signup', user).then(
           () => {
             Bus.$emit('DisplayMessage', {text: this.$t('profile.successGen'), type: 'success'});

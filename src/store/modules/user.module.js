@@ -93,13 +93,10 @@ export const user = {
             commit('CREATE_GODCHILD_PROFILE');
             return UserService.createGodchildProfile(godchildProfile).then(
                 profile => {
-                    console.log('SUCCESS use.module')
                     commit('RECEIVE_GODCHILD_PROFILE_SUCCESS', profile);
-                    console.log('Promise.resolve(profile); = ', Promise.resolve(profile))
                     return Promise.resolve(profile);
                 },
                 err => {
-                    console.log('ERROR use.module')
                     commit('RECEIVE_GODCHILD_PROFILE_ERROR');
                     return Promise.reject(err);
                 }

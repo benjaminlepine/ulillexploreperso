@@ -40,21 +40,17 @@ export default {
       const payload = { unmatch: parseInt(this.endingReason) };
       if (this.isGodfather){
         payload.godchild = this.relationId;
-        console.log("payload ", payload);
         this.$store.dispatch("user/deleteGodfatherMatchWithGodchild", payload).then((message) => {
           console.log("payload ", message);
         }).catch((err) => {
           Bus.$emit('DisplayMessage', {text: err, type: 'error'});
-          console.log("err = ", err)
         });
       }else {
         payload.godfather = this.relationId;
-        console.log("payload ", payload);
         this.$store.dispatch("user/deleteGodchildMatchWithGodfather", payload).then((message) => {
           console.log("payload ", message);
         }).catch((err) => {
           Bus.$emit('DisplayMessage', {text: err, type: 'error'});
-          console.log("err = ", err)
         });
       }
     }

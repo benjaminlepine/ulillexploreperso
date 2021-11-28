@@ -35,13 +35,11 @@ export default new class AuthService {
     }
 
     async forgotPassword(playload){
-        console.log(playload);
         const resp = await axios.post(R.endpoint.forgotPassword(), playload)
         return resp.data;
     }
 
     async resetPassword(form){ // password & token
-        console.log(form);
         const resp = await axios.post(R.endpoint.resetPassword(), form);
         return resp.data;
     }
