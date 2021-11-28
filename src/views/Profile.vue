@@ -45,7 +45,7 @@ export default {
   },
 
   mounted(){
-    //this.$store.dispatch('user/fetchGodfatherProfile');
+    this.$store.dispatch('user/fetchGodfatherProfile');
     this.$store.dispatch('user/fetchGodchildProfile');
     this.$store.dispatch('user/fetchAmbassadorProfile');
   },
