@@ -188,10 +188,8 @@ export const user = {
             localStorage.setItem('godchildProfile', JSON.stringify(state.godchildProfile));
         },
         RECEIVE_FETCH_AMBASSADOR_PROFILE_SUCCESS(state, ambassador){
-            if (ambassador){
-                state.ambassadorProfile = ambassador;
-                localStorage.setItem('ambassadorProfile', JSON.stringify(state.ambassadorProfile));
-            }
+            state.ambassadorProfile = ambassador;
+            localStorage.setItem('ambassadorProfile', JSON.stringify(state.ambassadorProfile));
         },
 
         REQUEST_SEND_AMBASSADOR_FORM(state){},
