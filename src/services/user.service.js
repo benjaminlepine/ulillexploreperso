@@ -11,7 +11,7 @@ export default new class UserService {
             return response;
         }, function (error) {
             if (error.response.status === 401){
-                AuthService.signout();
+                AuthService.out();
             }
             return Promise.reject(error);
         });
@@ -66,9 +66,7 @@ export default new class UserService {
     async sendAmbassadorForm(form){
         const headers = authHeader();
         headers['Content-Type'] = `multipart/form-data`;
-        console.log(headers);
         const resp = await this.http.post(R.endpoint.sendAmbassadorForm(), form, { headers: headers });
-        console.log(resp);
         return resp.data;
     }
 
@@ -80,12 +78,10 @@ export default new class UserService {
     }
     async deleteGodfatherMatchWithGodchild(payload){
         const resp = await this.http.post(R.endpoint.deleteGodfatherMatchWithGodchild(), payload, { headers: authHeader() });
-        console.log(resp);
         return resp.data;
     }
     async deleteGodchildMatchWithGodfather(payload){
         const resp = await this.http.post(R.endpoint.deleteGodchildMatchWithGodfather(), payload, { headers: authHeader() });
-        console.log(resp);
         return resp.data;
     }
 };
