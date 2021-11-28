@@ -44,10 +44,10 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const publicPages = ['/signup','/signin', '/forgotpassword', '/resetpassword', '/signinWithoutCAS'];
-  const authRequiest = !publicPages.includes(to.path);
+  const authRequest = !publicPages.includes(to.path);
   const signedIn = localStorage.getItem('user');
 
-  if (authRequiest && !signedIn){
+  if (authRequest && !signedIn){
     next('/signin');
   }else {
     next();
