@@ -15,8 +15,8 @@ export const auth = {
   state: initialState,
   actions: {
     signup({ commit, rootGetters }, user){
+      commit('SET_LOADING', true);
       user.en = rootGetters['header/isEn'];
-      commit('REQUEST_SIGNUP');
       return AuthService
         .signup(user).then(
           resp => {
@@ -30,8 +30,8 @@ export const auth = {
         );
     },
     signin({ commit, rootGetters }, user){
+      commit('SET_LOADING', true);
       user.en = rootGetters['header/isEn'];
-      commit('REQUEST_SIGNIN')
       return AuthService
       .signin(user).then (
         user => {
@@ -45,36 +45,36 @@ export const auth = {
       );
     },
     signout({ commit, state }){
-      commit('REQUEST_SIGNOUT');
+      commit('SET_LOADING', true);
       // FIXME signout
       AuthService.signout();
       commit('RECEIVE_SIGNOUT_SUCCESS');
       return Promise.resolve();
     },
     forgotPassword({ commit, rootGetters }, email){
-      commit('REQUEST_PASSWORD_FORGOT')
+      commit('SET_LOADING', true);
       const playload = {email, en: rootGetters['header/isEn']};
       return AuthService.forgotPassword(playload).then(
         data =>{
-          commit('RECEIVE_PASSWORD_FORGOT_SUCCESS');
+          commit('SET_LOADING', false);
           return Promise.resolve(data);
         },
         err => {
-          commit('RECEIVE_PASSWORD_FORGOT_ERROR');
+          commit('SET_LOADING', false);
           return Promise.reject(err);
         }
       )
     },
     resetPassword({ commit, rootGetters }, form){
-      commit('REQUEST_RESET_PASSWORD');
+      commit('SET_LOADING', true);
       form.en = rootGetters['header/isEn'];
       return AuthService.resetPassword(form).then(
         resp => {
-          commit('RECEIVE_RESET_PASSWORD_SUCCESS');
+          commit('SET_LOADING', false);
           return Promise.resolve(resp);
         },
         err => {
-          commit('RECEIVE_RESET_PASSWORD_ERROR');
+          commit('SET_LOADING', false);
           return Promise.reject(err);
         }
       );
@@ -86,28 +86,8 @@ export const auth = {
     }
   },
   mutations: {
-    REQUEST_PASSWORD_FORGOT(state){
-      state.status.loading = true;
-    },
-    RECEIVE_PASSWORD_FORGOT_SUCCESS(state){
-      state.status.loading = false;
-    },
-    RECEIVE_PASSWORD_FORGOT_ERROR(state){
-      state.status.loading = false;
-    },
-
-    REQUEST_RESET_PASSWORD(state){
-      state.status.loading = true;
-    },
-    RECEIVE_RESET_PASSWORD_SUCCESS(state){
-      state.status.loading = false;
-    },
-    RECEIVE_RESET_PASSWORD_ERROR(state){
-      state.status.loading = false;
-    },
-
-    REQUEST_SIGNUP(state){
-      state.status.loading = true;
+    SET_LOADING(state, loading){
+      state.status.loading = loading;
     },
     RECEIVE_SIGNUP_SUCCESS(state){
       state.status.signIn = false;
@@ -116,10 +96,6 @@ export const auth = {
     RECEIVE_SIGNUP_ERROR(state){
       state.status.signIn = false;
       state.status.loading = false;
-    },
-
-    REQUEST_SIGNIN(state){
-      state.status.loading = true;
     },
     RECEIVE_SIGNIN_SUCCESS(state, user){
       state.status.signIn = true;
@@ -131,16 +107,9 @@ export const auth = {
       state.user = null;
       state.status.loading = false;
     },
-
-    REQUEST_SIGNOUT(state){
-      state.status.loading = true;
-    },
     RECEIVE_SIGNOUT_SUCCESS(state){
       state.status.signIn = false;
       state.user = null;
-      state.status.loading = false;
-    },
-    RECEIVE_SIGNOUT_ERROR(state){
       state.status.loading = false;
     }
   },
