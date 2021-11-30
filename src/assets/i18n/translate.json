@@ -62,7 +62,8 @@
       "activitiesRequired": "Activités requises",
       "hobbiesRequired":"Loisirs requis",
       "passwordRequired":"Veuillez entrer votre mot de passe actuel",
-      "samePasswordRequired":"Les 2 mots de passe doivent correspondre"
+      "samePasswordRequired":"Les 2 mots de passe doivent correspondre",
+      "noEmailInBase":"Aucun compte avec l'e-mail '{email}' n'a été trouvé."
     },
     "sideMenu": {
       "welcome": "Bienvenue",
@@ -372,7 +373,8 @@
       "activitiesRequired": "Activities required",
       "hobbiesRequired":"Hobbies required",
       "passwordRequired":"Please enter your current password",
-      "samePasswordRequired":"The 2 passwords must match"
+      "samePasswordRequired":"The 2 passwords must match",
+      "noEmailInBase":"No account with e-mail '{email}' was found."
     },
     "sideMenu": {
       "welcome": "Welcome",

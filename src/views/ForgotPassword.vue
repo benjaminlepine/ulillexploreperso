@@ -35,7 +35,15 @@
                       Bus.$emit('DisplayMessage', {text: this.$t('profile.successGen'), type: 'success'});
                     },
                     (err) => {
-                      Bus.$emit('DisplayMessage', {text: this.$t('profile.errorGen')+ " = " + err, type: 'error'});
+                        const status = err.response.status;
+                        let message;
+                        if (status == 404){
+                            message = this.$t('errorsMsg.noEmailInBase', {email: this.email});
+                        }else {
+                            message = this.$t('profile.errorGen');
+                        }
+
+                        Bus.$emit('DisplayMessage', {text: message, type: 'error'});
                     }
                 );
             }
