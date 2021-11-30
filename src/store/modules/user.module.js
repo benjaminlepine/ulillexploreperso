@@ -19,163 +19,201 @@ export const user = {
     },
     actions:{
         fetchGodfatherProfile({ commit }){
+            commit('auth/SET_LOADING', true, { root: true });
             return UserService.fetchGodfatherProfile().then(
                 godfatherProfile => {
                     commit('RECEIVE_FETCH_GODFATHER_PROFILE_SUCCESS', godfatherProfile);
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(godfatherProfile);
                 },
                 err => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         fetchGodchildProfile({ commit }){
+            commit('auth/SET_LOADING', true, { root: true });
             return UserService.fetchGodchildProfile().then(
                 godchildProfile => {
                     commit('RECEIVE_FETCH_GODCHILD_PROFILE_SUCCESS', godchildProfile);
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(godchildProfile);
                 },
                 err => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         fetchAmbassadorProfile({ commit }){
+            commit('auth/SET_LOADING', true, { root: true });
             return UserService.fetchAmbassadorProfile().then(
                 profile => {
                     commit('RECEIVE_FETCH_AMBASSADOR_PROFILE_SUCCESS', profile);
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(profile);
                 },
                 err => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
-        sendAmbassadorForm({ commit, rootGetters}, form){
+        sendAmbassadorForm({ commit}, form){
+            commit('auth/SET_LOADING', true, { root: true });
             return UserService.sendAmbassadorForm(form).then(
                 profile => {
                     commit('RECEIVE_SEND_AMBASSADOR_FORM_SUCCESS', profile);
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(profile);
                 },
                 err => {
                     commit('RECEIVE_SEND_AMBASSADOR_FORM_ERROR');
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         subscribeToAmbassador({ commit }){
+            commit('auth/SET_LOADING', true, { root: true });
             commit('REQUEST_SUBSCRIBE_TO_AMBASSADOR');
             return UserService.subscribeToAmbassador().then(
                 profile => {
                     commit('RECEIVE_SUBSCRIBE_TO_AMBASSADOR_SUCCESS', profile);
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(profile);
                 },
                 err => {
                     commit('RECEIVE_SUBSCRIBE_TO_AMBASSADOR_ERROR');
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         createGodfatherProfile({commit}, godfatherProfile){
+            commit('auth/SET_LOADING', true, { root: true });
             commit('CREATE_GODFATHER_PROFILE');
             return UserService.createGodfatherProfile(godfatherProfile).then(
                 profile => {
                     commit('RECEIVE_GODFATHER_PROFILE_SUCCESS', profile);
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(profile);
                 },
                 err => {
                     commit('RECEIVE_GODFATHER_PROFILE_ERROR');
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         createGodchildProfile({commit}, godchildProfile){
+            commit('auth/SET_LOADING', true, { root: true });
             commit('CREATE_GODCHILD_PROFILE');
             return UserService.createGodchildProfile(godchildProfile).then(
                 profile => {
                     commit('RECEIVE_GODCHILD_PROFILE_SUCCESS', profile);
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(profile);
                 },
                 err => {
                     commit('RECEIVE_GODCHILD_PROFILE_ERROR');
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         fetchHobbiesAndActivities({commit, rootGetters }){
+            commit('auth/SET_LOADING', true, { root: true });
             const lang = rootGetters['header/language'];
             commit('REQUEST_HOBBIES_AND_ACTIVITIES');
             return UserService.fetchHobbiesAndActivities(lang).then(
                 data => {
                     commit('RECEIVE_HOBBIES_AND_ACTIVITIES_SUCCESS', data);
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(data);
                 },
                 err => {
                     commit('RECEIVE_HOBBIES_AND_ACTIVITIES_ERROR');
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         fetchFaculties({commit}){
+            commit('auth/SET_LOADING', true, { root: true });
             commit('REQUEST_FACULTIES');
             return userService.fetchFaculties().then(
                 faculties => {
-                    commit('RECEIVE_FACULTIES_SUCCESS')
+                    commit('RECEIVE_FACULTIES_SUCCESS');
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(faculties);
                 },
                 err => {
                     commit('RECEIVE_FACULTIES_ERROR');
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         updateGodfatherStatus({commit, rootGetters}, active){
+            commit('auth/SET_LOADING', true, { root: true });
             active.en = rootGetters['header/isEn'];
             return UserService.updateGodfatherStatus(active).then(
-                message =>{
+                message => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(message);
                 },
                 err => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         updateGodchildStatus({commit, rootGetters}, active){
+            commit('auth/SET_LOADING', true, { root: true });
             active.en = rootGetters['header/isEn'];
             return UserService.updateGodchildStatus(active).then(
-                message =>{
+                message => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(message);
                 },
                 err => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         deleteGodfatherMatchWithGodchild({commit, rootGetters}, payload){
+            commit('auth/SET_LOADING', true, { root: true });
             payload.en = rootGetters['header/isEn'];
             return UserService.deleteGodfatherMatchWithGodchild(payload).then(
-                message =>{
+                message => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(message);
                 },
                 err => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
         deleteGodchildMatchWithGodfather({commit, rootGetters}, payload){
+            commit('auth/SET_LOADING', true, { root: true });
             payload.en = rootGetters['header/isEn'];
             return UserService.deleteGodchildMatchWithGodfather(payload).then(
-                message =>{
+                message => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.resolve(message);
                 },
                 err => {
+                    commit('auth/SET_LOADING', false, { root: true });
                     return Promise.reject(err);
                 }
             );
         },
     },
     mutations:{
-
         RECEIVE_FETCH_GODFATHER_PROFILE_SUCCESS(state, godfather){
             state.godfatherProfile = godfather;
             localStorage.setItem('godfatherProfile', JSON.stringify(state.godfatherProfile));

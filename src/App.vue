@@ -4,25 +4,28 @@
     <NavHeader></NavHeader>
     <NavMenu></NavMenu>
     <router-view class="pt-4 view-container"></router-view>
+    <Spinner v-if="loading"></Spinner>
   </div>
 </template>
 
 <script>
   import NavHeader from "./components/NavHeader";
   import NavMenu from "./components/NavMenu";
-  import DisplayMessage from '@/components/DisplayMessage'
-  import store from './store';
+  import DisplayMessage from './components/DisplayMessage';
+  import Spinner from "./components/Spinner.vue";
+
   export default {
     name: 'App',
-    components: {NavHeader, NavMenu, DisplayMessage},
-    data: function () {
-      return {
-        store: store,
-      }
-    },
+    components: {NavHeader, NavMenu, DisplayMessage, Spinner},
     mounted(){
         this.$i18n.locale = this.$store.getters['header/language'];
+    },
+    computed: {
+      loading (){
+        return this.$store.getters['auth/loading'];
+      }
     }
+
   }
 
 </script>
