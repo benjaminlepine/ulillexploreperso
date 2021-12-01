@@ -1,10 +1,13 @@
 <template>
   <div id="app">
+    <div class="spinner-ctn" v-if="loading">
+      <Spinner line-fg-color="#06a099" class="spinner" size="88" ></Spinner> 
+      <p class="spinner-txt">{{ $t('home.loading') }}</p>
+    </div>
     <DisplayMessage></DisplayMessage>
     <NavHeader></NavHeader>
     <NavMenu></NavMenu>
     <router-view class="pt-4 view-container"></router-view>
-    <Spinner v-if="loading"></Spinner>
   </div>
 </template>
 
@@ -12,7 +15,7 @@
   import NavHeader from "./components/NavHeader";
   import NavMenu from "./components/NavMenu";
   import DisplayMessage from './components/DisplayMessage';
-  import Spinner from "./components/Spinner.vue";
+  import Spinner from 'vue-simple-spinner';
 
   export default {
     name: 'App',
@@ -52,6 +55,23 @@
     background-size: 100%;
     background-position: 50% 65px;
     overflow: scroll;
+  }
+
+  .spinner{
+    margin-top: 20%;
+    &-txt{
+      color: white;
+      font-size: 25px;
+      margin-top: 10px;
+    }
+    &-ctn{
+      position: fixed;
+      z-index: 99;
+      background-color: rgb(29,29,29,0.8);
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
   }
 
 </style>

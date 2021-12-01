@@ -12,7 +12,8 @@
       "correctErrors": "Veuillez corriger les erreurs suivantes :",
       "required": "requis",
       "profile": "Mon profil",
-      "myInfos": "Voir mes informations"
+      "myInfos": "Voir mes informations",
+      "loading": "Merci de patienter"
     },
     "lang": {
       "fr": "Français",
@@ -308,8 +309,6 @@
     }
   },
 
-
-
   "en": {
     "home": {
       "ulillexplore": "UlillExplore",
@@ -323,7 +322,8 @@
       "correctErrors": "Please correct the following error(s):",
       "required": "required",
       "profile": "My profile",
-      "myInfos": "See my informations"
+      "myInfos": "See my informations",
+      "loading": "Thank to wait"
     },
     "lang": {
       "fr": "French",
