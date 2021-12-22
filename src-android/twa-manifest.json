@@ -1,0 +1,37 @@
+{
+  "packageId": "com.e.ulillexplore",
+  "host": "ulillexplore.univ-lille.fr",
+  "name": "ULillExplore",
+  "launcherName": "ULillExplore",
+  "display": "standalone",
+  "themeColor": "#06A099",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#C1E1DF",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://ulillexplore.univ-lille.fr/img/icons/android-chrome-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "/Users/djenaba/project/lille/ulillexploreperso/src-android/ulillexplore.jks",
+    "alias": "key0"
+  },
+  "appVersionName": "10",
+  "appVersionCode": 10,
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://ulillexplore.univ-lille.fr/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "orientation": "portrait",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "appVersion": "10"
+}

@@ -1,0 +1,277 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3    Copyright 2019 Google Inc. All Rights Reserved.
+4
+5     Licensed under the Apache License, Version 2.0 (the "License");
+6     you may not use this file except in compliance with the License.
+7     You may obtain a copy of the License at
+8
+9         http://www.apache.org/licenses/LICENSE-2.0
+10
+11     Unless required by applicable law or agreed to in writing, software
+12     distributed under the License is distributed on an "AS IS" BASIS,
+13     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+14     See the License for the specific language governing permissions and
+15     limitations under the License.
+16-->
+17<!--
+18 The "package" attribute is rewritten by the Gradle build with the value of applicationId.
+19     It is still required here, as it is used to derive paths, for instance when referring
+20     to an Activity by ".MyActivity" instead of the full name. If more Activities are added to the
+21     application, the package attribute will need to reflect the correct path in order to use
+22     the abbreviated format.
+23-->
+24<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+25    package="com.e.ulillexplore"
+26    android:versionCode="10"
+27    android:versionName="10" >
+28
+29    <uses-sdk
+30        android:minSdkVersion="19"
+30-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml
+31        android:targetSdkVersion="31" />
+31-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml
+32
+33    <queries>
+33-->[com.google.androidbrowserhelper:androidbrowserhelper:2.3.0] /Users/djenaba/.gradle/caches/transforms-2/files-2.1/572def1352afcb56982bb86acf89682d/androidbrowserhelper-2.3.0/AndroidManifest.xml:26:5-34:15
+34        <intent>
+34-->[com.google.androidbrowserhelper:androidbrowserhelper:2.3.0] /Users/djenaba/.gradle/caches/transforms-2/files-2.1/572def1352afcb56982bb86acf89682d/androidbrowserhelper-2.3.0/AndroidManifest.xml:27:9-33:18
+35            <action android:name="android.intent.action.VIEW" />
+35-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:123:17-68
+35-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:123:25-66
+36
+37            <category android:name="android.intent.category.BROWSABLE" />
+37-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:125:17-77
+37-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:125:27-75
+38
+39            <data android:scheme="https" />
+39-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:126:17-127:54
+39-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:126:23-45
+40        </intent>
+41    </queries>
+42
+43    <application
+43-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:29:5-166:19
+44        android:name="com.e.ulillexplore.Application"
+44-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:30:9-35
+45        android:allowBackup="true"
+45-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:31:9-35
+46        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+46-->[androidx.core:core:1.1.0] /Users/djenaba/.gradle/caches/transforms-2/files-2.1/e601daed4ba62929db8b322b2974c8f8/core-1.1.0/AndroidManifest.xml:24:18-86
+47        android:icon="@mipmap/ic_launcher"
+47-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:32:9-43
+48        android:label="@string/appName"
+48-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:33:9-40
+49        android:manageSpaceActivity="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity"
+49-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:35:9-105
+50        android:supportsRtl="true"
+50-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:37:9-35
+51        android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+51-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:38:9-68
+52        <meta-data
+52-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:40:9-42:58
+53            android:name="asset_statements"
+53-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:41:13-44
+54            android:resource="@string/assetStatements" />
+54-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:42:13-55
+55        <meta-data
+55-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:45:13-47:58
+56            android:name="web_manifest_url"
+56-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:46:17-48
+57            android:value="@string/webManifestUrl" />
+57-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:47:17-55
+58        <meta-data
+58-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:50:9-52:52
+59            android:name="twa_generator"
+59-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:51:13-41
+60            android:value="@string/generatorApp" />
+60-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:52:13-49
+61
+62        <activity android:name="com.google.androidbrowserhelper.trusted.ManageDataLauncherActivity" >
+62-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:55:13-59:24
+62-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:55:23-104
+63            <meta-data
+63-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:56:13-58:53
+64                android:name="android.support.customtabs.trusted.MANAGE_SPACE_URL"
+64-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:57:17-83
+65                android:value="@string/launchUrl" />
+65-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:58:17-50
+66        </activity>
+67        <activity
+67-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:62:9-131:20
+68            android:name="com.e.ulillexplore.LauncherActivity"
+68-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:62:19-50
+69            android:alwaysRetainTaskState="true"
+69-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:63:13-49
+70            android:exported="true"
+70-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:65:13-36
+71            android:label="@string/launcherName" >
+71-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:64:13-49
+72            <meta-data
+72-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:66:13-67:53
+73                android:name="android.support.customtabs.trusted.DEFAULT_URL"
+73-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:66:24-85
+74                android:value="@string/launchUrl" />
+74-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:67:17-50
+75            <meta-data
+75-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:69:13-71:58
+76                android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
+76-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:70:17-83
+77                android:resource="@color/colorPrimary" />
+77-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:71:17-55
+78            <meta-data
+78-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:73:13-75:61
+79                android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR"
+79-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:74:17-87
+80                android:resource="@color/navigationColor" />
+80-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:75:17-58
+81            <meta-data
+81-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:77:13-79:65
+82                android:name="android.support.customtabs.trusted.NAVIGATION_BAR_COLOR_DARK"
+82-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:78:17-92
+83                android:resource="@color/navigationColorDark" />
+83-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:79:17-62
+84            <meta-data
+84-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:81:13-83:68
+85                android:name="androix.browser.trusted.NAVIGATION_BAR_DIVIDER_COLOR"
+85-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:82:17-84
+86                android:resource="@color/navigationDividerColor" />
+86-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:83:17-65
+87            <meta-data
+87-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:85:13-87:72
+88                android:name="androix.browser.trusted.NAVIGATION_BAR_DIVIDER_COLOR_DARK"
+88-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:86:17-89
+89                android:resource="@color/navigationDividerColorDark" />
+89-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:87:17-69
+90            <meta-data
+90-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:89:13-90:54
+91                android:name="android.support.customtabs.trusted.SPLASH_IMAGE_DRAWABLE"
+91-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:89:24-95
+92                android:resource="@drawable/splash" />
+92-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:90:17-52
+93            <meta-data
+93-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:92:13-93:60
+94                android:name="android.support.customtabs.trusted.SPLASH_SCREEN_BACKGROUND_COLOR"
+94-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:92:24-104
+95                android:resource="@color/backgroundColor" />
+95-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:93:17-58
+96            <meta-data
+96-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:95:13-96:71
+97                android:name="android.support.customtabs.trusted.SPLASH_SCREEN_FADE_OUT_DURATION"
+97-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:95:24-105
+98                android:value="@integer/splashScreenFadeOutDuration" />
+98-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:96:17-69
+99            <meta-data
+99-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:98:13-99:60
+100                android:name="android.support.customtabs.trusted.FILE_PROVIDER_AUTHORITY"
+100-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:98:24-97
+101                android:value="@string/providerAuthority" />
+101-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:99:17-58
+102            <meta-data
+102-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:101:13-97
+103                android:name="android.app.shortcuts"
+103-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:101:24-60
+104                android:resource="@xml/shortcuts" />
+104-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:101:61-94
+105            <meta-data
+105-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:103:13-104:56
+106                android:name="android.support.customtabs.trusted.FALLBACK_STRATEGY"
+106-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:103:24-91
+107                android:value="@string/fallbackType" />
+107-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:104:17-53
+108            <meta-data
+108-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:110:13-111:54
+109                android:name="android.support.customtabs.trusted.SCREEN_ORIENTATION"
+109-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:110:24-92
+110                android:value="@string/orientation" />
+110-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:111:17-52
+111
+112            <intent-filter>
+112-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:117:13-120:29
+113                <action android:name="android.intent.action.MAIN" />
+113-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:118:17-69
+113-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:118:25-66
+114
+115                <category android:name="android.intent.category.LAUNCHER" />
+115-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:119:17-77
+115-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:119:27-74
+116            </intent-filter>
+117            <intent-filter android:autoVerify="true" >
+117-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:122:13-128:29
+117-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:122:28-53
+118                <action android:name="android.intent.action.VIEW" />
+118-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:123:17-68
+118-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:123:25-66
+119
+120                <category android:name="android.intent.category.DEFAULT" />
+120-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:124:17-76
+120-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:124:27-73
+121                <category android:name="android.intent.category.BROWSABLE" />
+121-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:125:17-77
+121-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:125:27-75
+122
+123                <data
+123-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:126:17-127:54
+124                    android:host="@string/hostName"
+124-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:127:21-52
+125                    android:scheme="https" />
+125-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:126:23-45
+126            </intent-filter>
+127        </activity>
+128        <activity android:name="com.google.androidbrowserhelper.trusted.FocusActivity" />
+128-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:133:9-90
+128-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:133:19-87
+129        <activity
+129-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:135:9-136:62
+130            android:name="com.google.androidbrowserhelper.trusted.WebViewFallbackActivity"
+130-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:135:19-97
+131            android:configChanges="orientation|screenSize" />
+131-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:136:13-59
+132
+133        <provider
+133-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:138:9-146:20
+134            android:name="androidx.core.content.FileProvider"
+134-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:139:13-62
+135            android:authorities="@string/providerAuthority"
+135-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:140:13-60
+136            android:exported="false"
+136-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:142:13-37
+137            android:grantUriPermissions="true" >
+137-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:141:13-47
+138            <meta-data
+138-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:143:13-145:53
+139                android:name="android.support.FILE_PROVIDER_PATHS"
+139-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:144:17-67
+140                android:resource="@xml/filepaths" />
+140-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:145:17-50
+141        </provider>
+142
+143        <service
+143-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:148:9-163:19
+144            android:name="com.e.ulillexplore.DelegationService"
+144-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:149:13-46
+145            android:enabled="@bool/enableNotification"
+145-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:150:13-55
+146            android:exported="@bool/enableNotification" >
+146-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:151:13-56
+147            <meta-data
+147-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:154:17-156:73
+148                android:name="android.support.customtabs.trusted.SMALL_ICON"
+148-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:155:21-81
+149                android:resource="@drawable/ic_notification_icon" />
+149-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:156:21-70
+150
+151            <intent-filter>
+151-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:159:13-162:29
+152                <action android:name="android.support.customtabs.trusted.TRUSTED_WEB_ACTIVITY_SERVICE" />
+152-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:160:17-105
+152-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:160:25-103
+153
+154                <category android:name="android.intent.category.DEFAULT" />
+154-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:124:17-76
+154-->/Users/djenaba/project/lille/ulillexploreperso/src-android/app/src/main/AndroidManifest.xml:124:27-73
+155            </intent-filter>
+156        </service>
+157    </application>
+158
+159</manifest>

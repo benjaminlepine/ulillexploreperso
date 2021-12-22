@@ -1,0 +1,8 @@
+com/e/ulillexplore/Application.java
+ com.e.ulillexplore.Application
+com/e/ulillexplore/BuildConfig.java
+ com.e.ulillexplore.BuildConfig
+com/e/ulillexplore/LauncherActivity.java
+ com.e.ulillexplore.LauncherActivity
+com/e/ulillexplore/DelegationService.java
+ com.e.ulillexplore.DelegationService
