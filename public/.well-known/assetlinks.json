@@ -1,9 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "com.e.ulillexplore",
-    "sha256_cert_fingerprints":
-    ["F6:A0:06:0D:70:5C:44:A7:0F:6F:07:17:E0:F9:3D:CB:89:74:8E:73:69:5A:BB:E6:8D:D2:C8:19:C0:8E:4C:53"]
-  }
-}]
