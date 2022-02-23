@@ -4,7 +4,7 @@
       <i class="fa fa-bars fa-2x bar-menu"></i>
     </div>
     <router-link to="/">
-      <img class="logo-univ" src="../assets/img/logo-univ.gif">
+      <img class="logo-univ" src="../assets/img/logo-univ.svg">
     </router-link>
     <div class="lang-ctn">
       <div @click="showLang = !showLang" ref="button">
